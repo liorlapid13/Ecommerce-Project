@@ -119,11 +119,13 @@
     <ClCompile Include="buyer.cpp" />
     <ClCompile Include="helper.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="seller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="address.h" />
     <ClInclude Include="buyer.h" />
     <ClInclude Include="helper.h" />
+    <ClInclude Include="seller.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

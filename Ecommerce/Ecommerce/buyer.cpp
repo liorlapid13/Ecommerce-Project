@@ -7,6 +7,13 @@ Buyer::Buyer(const char* username, const char* password, Address& address)
 	setAddress(address);
 }
 //----------------------------------------------------------------------------------------//
+Buyer::~Buyer()
+{
+	delete[] m_username;
+	delete[] m_password;
+	//delete address?
+}
+//----------------------------------------------------------------------------------------//
 bool Buyer::setUsername(const char* username)
 {
 	//check validity of username

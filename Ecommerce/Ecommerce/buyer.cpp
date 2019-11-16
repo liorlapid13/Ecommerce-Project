@@ -1,6 +1,6 @@
 #include "buyer.h"
 //----------------------------------------------------------------------------------------//
-Buyer::Buyer(const char* username, const char* password, Address& address)
+Buyer::Buyer(const char* username, const char* password, const Address& address)
 {
 	setUsername(username);
 	setPassword(password);
@@ -33,13 +33,23 @@ bool Buyer::setPassword(const char* password)
 	}
 }
 //----------------------------------------------------------------------------------------//
-bool Buyer::setAddress(Address& address)
+bool Buyer::setAddress(const Address& address)
 {
-	if (!addressCheck(address))
-		return false;
-	else
-	{
-		//insert set for a valid address
-	}
+	m_address = address;
+}
+//----------------------------------------------------------------------------------------//
+const char* Buyer::getUserName() const
+{
+	return m_username;
+}
+//----------------------------------------------------------------------------------------//
+const char* Buyer::getPassword() const
+{
+	return m_password;
+}
+//----------------------------------------------------------------------------------------//
+const Address Buyer::getAddress() const
+{
+	return m_address;
 }
 //----------------------------------------------------------------------------------------//

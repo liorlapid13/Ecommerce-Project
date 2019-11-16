@@ -6,14 +6,15 @@
 class Address
 {
 public:
-	//C'tor
+	//C'tors
+	Address() = default;
 	Address(const char* street_name, 
 			const int	house_number, 
 			const int	zip_code, 
 			const char* city, 
 			const char* country);
 
-	//D'tor
+	//D'tors
 	~Address();
 
 public:

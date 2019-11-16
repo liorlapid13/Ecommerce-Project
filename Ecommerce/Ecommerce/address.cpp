@@ -91,27 +91,27 @@ bool Address::setCountry(const char* country)
 	}
 }
 //----------------------------------------------------------------------------------------//
-inline const char* Address::getStreetName() const
+const char* Address::getStreetName() const
 {
 	return m_street_name;
 }
 //----------------------------------------------------------------------------------------//
-inline const int Address::getHouseNumber() const
+const int Address::getHouseNumber() const
 {
 	return m_house_number;
 }
 //----------------------------------------------------------------------------------------//
-inline const int Address::getZipCode() const
+const int Address::getZipCode() const
 {
 	return m_zip_code;
 }
 //----------------------------------------------------------------------------------------//
-inline const char* Address::getCity() const
+const char* Address::getCity() const
 {
 	return m_city;
 }
 //----------------------------------------------------------------------------------------//
-inline const char* Address::getCountry() const
+const char* Address::getCountry() const
 {
 	return m_country;
 }

@@ -118,10 +118,12 @@
     <ClCompile Include="buyer.cpp" />
     <ClCompile Include="helper.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="products.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="buyer.h" />
     <ClInclude Include="helper.h" />
+    <ClInclude Include="products.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

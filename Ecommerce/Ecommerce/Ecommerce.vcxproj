@@ -115,11 +115,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="address.cpp" />
     <ClCompile Include="buyer.cpp" />
     <ClCompile Include="helper.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="address.h" />
     <ClInclude Include="buyer.h" />
     <ClInclude Include="helper.h" />
   </ItemGroup>

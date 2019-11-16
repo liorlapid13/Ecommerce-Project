@@ -1,6 +1,6 @@
 #include "helper.h"
 //----------------------------------------------------------------------------------------//
-bool checkOnlyLetters(int length, char* string)
+bool checkOnlyLetters(const int length, const char* string)
 {
 	//scan string for any characters that are not a space or letter
 	for (int i = 0; i < length; i++)
@@ -82,40 +82,6 @@ bool usernameCheck(const char* username)
 			}
 		}
 		return true;
-	}
-}
-//----------------------------------------------------------------------------------------//
-bool addressCheck(Address& address)
-{
-	//check if zip code length is valid
-	if (address.zip_code < 1000000 || address.zip_code > 9999999)
-	{
-		cout << "Zip code must be 7 digits\n";
-		return false;
-	}
-
-	if (address.house_number < 1 || address.house_number > 999)
-	{
-		cout << "House number must be between 1-3 digits\n";
-		return false;
-	}
-
-	if (!checkOnlyLetters(strlen(address.city), address.city))
-	{
-		cout << "City can only contain letters\n";
-		return false;
-	}
-
-	if (!checkOnlyLetters(strlen(address.country), address.country))
-	{
-		cout << "Country can only contain letters\n";
-		return false;
-	}
-
-	if (!checkOnlyLetters(strlen(address.street_name), address.street_name))
-	{
-		cout << "Street name can only contain letters\n";
-		return false;
 	}
 }
 //----------------------------------------------------------------------------------------//

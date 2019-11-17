@@ -27,6 +27,9 @@
     <ClCompile Include="address.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="seller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="buyer.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="address.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="seller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

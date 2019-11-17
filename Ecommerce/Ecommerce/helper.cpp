@@ -18,7 +18,7 @@ bool checkOnlyLetters(const int length, const char* string)
 bool passwordCheck(const char* password)
 {
 	//check if length of password is valid
-	if (strlen(password) < Buyer::MIN_PASSWORD_LENGTH || strlen(password) > Buyer::MAX_PASSWORD_LENGTH)
+	if (strlen(password) < MIN_PASSWORD_LENGTH || strlen(password) > MAX_PASSWORD_LENGTH)
 	{
 		cout << "Password must contain 6-15 characters\n";
 		return false;
@@ -62,7 +62,7 @@ bool passwordCheck(const char* password)
 bool usernameCheck(const char* username)
 {
 	//check if username length is valid
-	if (strlen(username) < Buyer::MIN_USERNAME_LENGTH || strlen(username) > Buyer::MAX_USERNAME_LENGTH)
+	if (strlen(username) < MIN_USERNAME_LENGTH || strlen(username) > MAX_USERNAME_LENGTH)
 	{
 		cout << "Username must contain 6-15 characters\n";
 		return false;

@@ -117,6 +117,8 @@
   <ItemGroup>
     <ClCompile Include="address.cpp" />
     <ClCompile Include="buyer.cpp" />
+    <ClCompile Include="date.cpp" />
+    <ClCompile Include="feedback.cpp" />
     <ClCompile Include="helper.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="products.cpp" />
@@ -125,6 +127,8 @@
   <ItemGroup>
     <ClInclude Include="address.h" />
     <ClInclude Include="buyer.h" />
+    <ClInclude Include="date.h" />
+    <ClInclude Include="feedback.h" />
     <ClInclude Include="helper.h" />
     <ClInclude Include="products.h" />
     <ClInclude Include="seller.h" />

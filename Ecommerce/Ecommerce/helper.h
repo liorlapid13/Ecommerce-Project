@@ -12,6 +12,7 @@ static const int MIN_USERNAME_LENGTH = 7;
 static const int MAX_USERNAME_LENGTH = 15;
 static const int MIN_PASSWORD_LENGTH = 6;
 static const int MAX_PASSWORD_LENGTH = 15;
+static const int NUM_OF_CATEGORIES = 4;	//product catagories
 
 bool passwordCheck(const char* password);
 bool usernameCheck(const char* username);

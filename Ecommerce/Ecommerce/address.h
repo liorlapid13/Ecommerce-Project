@@ -13,6 +13,8 @@ public:
 			const int	zip_code, 
 			const char* city, 
 			const char* country);
+	Address(const Address& other);	//copy c'tor
+	Address(Address&& other);		//move c'tor
 
 	//D'tors
 	~Address();
@@ -26,11 +28,11 @@ public:
 	bool setCountry(const char* country);
 
 	//Getters
-	inline const char*	getStreetName() const;
-	inline const int	getHouseNumber() const;
-	inline const int	getZipCode() const;
-	inline const char*	getCity() const;
-	inline const char*	getCountry() const;
+	inline const char*	getStreetName()		const;
+	inline const int	getHouseNumber()	const;
+	inline const int	getZipCode()		const;
+	inline const char*	getCity()			const;
+	inline const char*	getCountry()		const;
 
 private:
 	char*	m_street_name;

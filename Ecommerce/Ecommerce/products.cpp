@@ -7,6 +7,7 @@ Products::Products(const char* name, float price, int serialNumber, Products::eC
 	setSerialNumber(serialNumber);
 	setCategory(category);
 }
+//----------------------------------------------------------------------------------------//
 Products::~Products()
 {
 	delete[] m_name;
@@ -19,13 +20,13 @@ bool Products::setName(const char* name)
 	{
 		if (name[i] < '0' || (name[i] > 'z'
 			|| (name[i] > '9' && name[i] < 'A')
-			|| (name[i] > 'Z' && name[i] < 'a' || name[i] != ' ')
-			))
+			|| (name[i] > 'Z' && name[i] < 'a' || name[i] != ' ')))
 		{
 			cout << "Name of products can only contain alphanumeric characters (lower/uppercase letters A-Z, numbers 0-9)\n";
 			return false;
 		}
 	}
+
 	m_name = new char[strlen(name) + 1];
 	strcpy(m_name, name);
 	return true;
@@ -55,22 +56,22 @@ bool Products::setCategory(Products::eCategory category)
 	}
 }
 //----------------------------------------------------------------------------------------//
-const char* Products::getName()     const
+const char* Products::getName() const
 {
 	return m_name;
 }
 //----------------------------------------------------------------------------------------//
-float Products::getPrice()          const
+float Products::getPrice() const
 {
 	return m_price;
 }
 //----------------------------------------------------------------------------------------//
-int Products::getSerialNumber()       const
+int Products::getSerialNumber() const
 {
 	return m_serialNumber;
 }
 //----------------------------------------------------------------------------------------//
-Products::eCategory Products::getCategory()     const
+Products::eCategory Products::getCategory() const
 {
 	return m_category;
 }

@@ -27,15 +27,15 @@ public:
 	//Getters
 	inline const char* getName()     const;
 	inline float getPrice()          const;
-	inline int getSerialNumber()       const;
-	inline eCategory getCategory()     const;
+	inline int getSerialNumber()     const;
+	inline eCategory getCategory()   const;
 
 private:
 
-	char * m_name;
-	float m_price;
-	int m_serialNumber;
-	eCategory m_category;
+	char*		m_name;
+	float		m_price;
+	int			m_serialNumber;
+	eCategory	m_category;
 };
 
 #endif // !__PROFUCTS_H

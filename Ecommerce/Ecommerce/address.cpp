@@ -10,6 +10,30 @@ Address::Address(const char* street_name, const int	house_number,
 	setCountry(country);
 }
 //----------------------------------------------------------------------------------------//
+Address::Address(const Address& other)	//Copy C'tor
+{
+	setStreetName(other.m_street_name);
+	setHouseNumber(other.m_house_number);
+	setZipCode(other.m_zip_code);
+	setCity(other.m_city);
+	setCountry(other.m_country);
+}
+//----------------------------------------------------------------------------------------//
+Address::Address(Address&& other)	//Move C'tor
+{
+	m_street_name = other.m_street_name;
+	other.m_street_name = nullptr;
+
+	m_city = other.m_city;
+	other.m_city = nullptr;
+
+	m_country = other.m_country;
+	other.m_country = nullptr;
+
+	setHouseNumber(other.m_house_number);
+	setZipCode(other.m_zip_code);
+}
+//----------------------------------------------------------------------------------------//
 Address::~Address()
 {
 	delete[] m_street_name;

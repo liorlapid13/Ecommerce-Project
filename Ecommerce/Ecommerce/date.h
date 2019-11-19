@@ -6,24 +6,26 @@
 class Date
 {
 public:
-	static const int CURRENT_YEAR = 2019;
+	static const int MAX_YEAR = 2019;
+	static const int MIN_YEAR = 2019;
 
 public:
-	//C'tor
+	//C'tors
 	Date() = delete;
 	Date(const int day, const int month, const int year);
-	Date(const Date& other);
-	
-public:
-	//Setters
-	bool setDay(const int day);
-	bool setMonth(const int month);
-	bool setYear(const int year);
+	Date(const Date& other);	//Copy C'tor
+
+	//D'tors
+	~Date();
 
 	//Getters
 	inline const int getDay() const;
 	inline const int getMonth() const;
 	inline const int getYear() const;
+
+	//Input Checks
+	bool checkDate(const int day, const int month, const int year);
+	bool isLeapYear(const int year);
 
 private:
 	int m_day;

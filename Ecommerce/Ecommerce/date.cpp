@@ -2,58 +2,54 @@
 //----------------------------------------------------------------------------------------//
 Date::Date(const int day, const int month, const int year)
 {
-	setDay(day);
-	setMonth(month);
-	setYear(year);
+	m_year = year;
+	m_month = month;
+	m_day = day;
 }
 //----------------------------------------------------------------------------------------//
-Date::Date(const Date& other)
+Date::Date(const Date& other)	//Copy C'tor
 {
-	setDay(other.m_day);
-	setMonth(other.m_month);
-	setYear(other.m_year);
+	m_year = other.m_year;
+	m_month = other.m_month;
+	m_day = other.m_day;
 }
 //----------------------------------------------------------------------------------------//
-bool Date::setDay(const int day)
+Date::~Date()
 {
-	if (day < 1 || day > 30)
-	{
-		cout << "Invalid day entered\n";
+	//No memory allocation, why have a destructor?
+}
+//----------------------------------------------------------------------------------------//
+bool Date::checkDate(const int day, const int month, const int year)
+{
+	//If invalid year/month/day 
+	if (year > MAX_YEAR || year < MIN_YEAR)
 		return false;
-	}
-	else
-	{
-		m_day = day;
-		return true;
-	}
-}
-//----------------------------------------------------------------------------------------//
-bool Date::setMonth(const int month)
-{	
 	if (month < 1 || month > 12)
-	{
-		cout << "Invalid month entered\n";
 		return false;
-	}
-	else
+	if (day < 1 || day > 31)
+		return false;
+
+	//Checks for February (leap year)
+	if (month == 2)
 	{
-		m_month = month;
-		return true;
+		if (isLeapYear(year))
+			return (day <= 29);
+		else
+			return (day <= 28);
 	}
+ 
+	//Checks for April, June, September and November (months with 30 days)
+	if (month == 4 || month == 6 || month == 9 || month == 11)
+		return (day <= 30);
+
+	return true;
 }
 //----------------------------------------------------------------------------------------//
-bool Date::setYear(const int year)
+bool Date::isLeapYear(int year)
 {
-	if (year < CURRENT_YEAR)
-	{
-		cout << "Invalid year entered\n";
-		return false;
-	}
-	else
-	{
-		m_year = year;
-		return true;
-	}
+	//If year is divisable by 400 then it is a leap year
+	//Else if year is divisable by 4 and not by 100 then it is a leap year
+	return (((year % 4 == 0) &&	(year % 100 != 0)) || (year % 400 == 0));
 }
 //----------------------------------------------------------------------------------------//
 const int Date::getDay() const

@@ -10,7 +10,9 @@ public:
 
 public:
 	//C'tor
+	Date() = delete;
 	Date(const int day, const int month, const int year);
+	Date(const Date& other);
 	
 public:
 	//Setters

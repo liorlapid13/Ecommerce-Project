@@ -1,25 +1,24 @@
 #include "feedback.h"
 //----------------------------------------------------------------------------------------//
-Feedback::Feedback(Date date, char* description, Buyer* buyer)
+Feedback::Feedback(const Date& date, const char* description, Buyer& buyer):m_date(date)
 {
-	setDate(date);
+	m_buyer = &buyer;
 	setDescription(description);
-	setBuyer(buyer);
-}
-//----------------------------------------------------------------------------------------//
-bool Feedback::setDate(const Date& date)
-{
-	
 }
 //----------------------------------------------------------------------------------------//
 bool Feedback::setDescription(const char* description)
 {
-	
-}
-//----------------------------------------------------------------------------------------//
-bool Feedback::setBuyer(const Buyer* buyer)
-{
-
+	if (strlen(description) == 0)
+	{
+		cout << "Cannot enter empty description\n";
+		return false;
+	}
+	else
+	{
+		m_description = new char[strlen(description) + 1];
+		strcpy(m_description, description);
+		return true;
+	}
 }
 //----------------------------------------------------------------------------------------//
 const Date Feedback::getDate() const

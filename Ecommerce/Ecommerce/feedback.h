@@ -9,13 +9,16 @@ class Feedback
 {
 public:
 	//C'tor
-	Feedback(Date date, char* description, Buyer* buyer);
+	Feedback() = delete;
+	Feedback(const Date& date, const char* description, Buyer& buyer);
 
 public:
 	//Setters
-	bool setDate(const Date& date);
 	bool setDescription(const char* description);
-	bool setBuyer(const Buyer* buyer);
+	/*
+	bool setDate(const Date& date);
+	bool setBuyer(Buyer& buyer);
+	*/
 
 	//Getters
 	inline const Date getDate() const;

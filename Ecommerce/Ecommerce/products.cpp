@@ -1,5 +1,5 @@
 #include "products.h"
-
+//----------------------------------------------------------------------------------------//
 Products::Products(const char* name, float price, int serialNumber, Products::eCategory category)
 {
 	setName(name);
@@ -11,8 +11,6 @@ Products::~Products()
 {
 	delete[] m_name;
 }
-
-
 //----------------------------------------------------------------------------------------//
 bool Products::setName(const char* name)
 {
@@ -31,7 +29,6 @@ bool Products::setName(const char* name)
 	m_name = new char[strlen(name) + 1];
 	strcpy(m_name, name);
 	return true;
-
 }
 //----------------------------------------------------------------------------------------//
 void Products::setPrice(float price)

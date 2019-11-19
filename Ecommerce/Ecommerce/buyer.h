@@ -12,6 +12,7 @@ class Buyer
 {
 public:
 	//C'tor
+	Buyer() = delete;
 	Buyer(const char* username,const char* password, const Address& address);
 	
 public:

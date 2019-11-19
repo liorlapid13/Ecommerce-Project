@@ -7,7 +7,7 @@ class Address
 {
 public:
 	//C'tors
-	Address() = default;
+	Address() = delete;
 	Address(const char* street_name, 
 			const int	house_number, 
 			const int	zip_code, 
@@ -39,6 +39,5 @@ private:
 	char*	m_city;
 	char*	m_country;
 };
-
 
 #endif // !__ADDRESS_H

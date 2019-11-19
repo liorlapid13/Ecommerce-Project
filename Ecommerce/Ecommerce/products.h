@@ -11,10 +11,13 @@ public:
 
 public:
 	//C'tor
+	Products() = delete;
 	Products(const char* name, float price, int serialNumber, Products::eCategory category);
+
 	//D'tor
 	~Products();
 
+public:
 	//Setters
 	bool setName(const char* name);
 	void setPrice(float price);

@@ -1,6 +1,6 @@
 #include "buyer.h"
 //----------------------------------------------------------------------------------------//
-Buyer::Buyer(const char* username, const char* password, const Address& address)
+Buyer::Buyer(const char* username, const char* password, const Address& address):m_address(address)
 {
 	setUsername(username);
 	setPassword(password);

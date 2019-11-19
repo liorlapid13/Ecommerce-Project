@@ -7,6 +7,13 @@ Date::Date(const int day, const int month, const int year)
 	setYear(year);
 }
 //----------------------------------------------------------------------------------------//
+Date::Date(const Date& other)
+{
+	setDay(other.m_day);
+	setMonth(other.m_month);
+	setYear(other.m_year);
+}
+//----------------------------------------------------------------------------------------//
 bool Date::setDay(const int day)
 {
 	if (day < 1 || day > 30)

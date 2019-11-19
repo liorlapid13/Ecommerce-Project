@@ -8,6 +8,7 @@ class Seller
 {
 public:
 	//C'tor
+	Seller() = delete;
 	Seller(const char* username, const char* password, const Address& address);
 
 	//D'tor

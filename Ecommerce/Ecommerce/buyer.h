@@ -7,28 +7,37 @@ using namespace std;
 
 #include "helper.h"
 #include "address.h"
+#include "products.h"
 
 class Buyer
 {
 public:
-	//C'tor
+	//C'tors
 	Buyer() = delete;
-	Buyer(const char* username,const char* password, const Address& address);
-	
+	Buyer(const char* username, const char* password, const Address& address);
+	Buyer(const Buyer& other, int numOfItemsInCart);
+	Buyer(Buyer&& other);
+
+	//D'tors
+	~Buyer();
+
 public:
 	//Setters
 	bool setUsername(const char* username);
 	bool setPassword(const char* password);
-	bool setAddress(const Address& address);
 
-	inline const char* getUserName()  const;
-	inline const char* getPassword()  const;
-	inline const Address getAddress() const;
+	//Getters
+
+	inline Products ** getShoppingCart()	const;
+	inline const char* getUserName()		const;
+	inline const char* getPassword()		const;
+	inline const Address getAddress()		const;
 
 private:
-	char* m_username;
-	char* m_password;
-	Address m_address;
+	char*		m_username;
+	char*		m_password;
+	Address		m_address;
+	Products**	m_shoppingCart;
 };
 
 #endif // __BUYER_H

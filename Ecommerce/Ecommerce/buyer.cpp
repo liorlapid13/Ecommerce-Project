@@ -4,7 +4,28 @@ Buyer::Buyer(const char* username, const char* password, const Address& address)
 {
 	setUsername(username);
 	setPassword(password);
-	setAddress(address);
+	m_shoppingCart = new Products*[];
+}
+//----------------------------------------------------------------------------------------//
+Buyer::Buyer(const Buyer& other, int numOfItemsInCart) :m_address(other.m_address)
+{
+	setUsername(other.m_username);
+	setPassword(other.m_password);
+	for (int i = 0; i < numOfItemsInCart; i++)
+	{
+		m_shoppingCart[i] = new Products(*(other.m_shoppingCart[i]));
+	}
+}
+//----------------------------------------------------------------------------------------//
+Buyer::Buyer(Buyer&&other) :m_address(other.m_address)
+{
+	m_username = other.m_username;
+	other.m_username = nullptr;
+	m_password = other.m_password;
+	other.m_password = nullptr;
+
+	m_shoppingCart = other.m_shoppingCart;
+	other.m_shoppingCart = nullptr;
 }
 //----------------------------------------------------------------------------------------//
 bool Buyer::setUsername(const char* username)
@@ -33,9 +54,9 @@ bool Buyer::setPassword(const char* password)
 	}
 }
 //----------------------------------------------------------------------------------------//
-bool Buyer::setAddress(const Address& address)
+inline Products** Buyer::getShoppingCart() const
 {
-	m_address = address;
+	return m_shoppingCart;
 }
 //----------------------------------------------------------------------------------------//
 const char* Buyer::getUserName() const

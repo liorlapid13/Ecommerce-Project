@@ -1,18 +1,25 @@
 #include "helper.h"
 //----------------------------------------------------------------------------------------//
-bool checkOnlyLetters(const int length, const char* string)
+bool checkString(const int length, const char* string)
 {
 	//scan string for any characters that are not a space or letter
 	for (int i = 0; i < length; i++)
 	{
+		//Check for double space
+		if ((string[i] == ' ') && (i < length - 1) && (string[i+1] == ' ')) //Order of conditions?
+		{
+			return false;
+		}
+
+		//Check for invalid characters
 		if (string[i] != ' ' && (string[i] < 'A' || string[i] > 'z'
 			|| (string[i] > 'Z' && string[i] < 'a'))) //KI#1,2
 		{
 			return false;
 		}
-		else
-			return true;
 	}
+
+	return true;
 }
 //----------------------------------------------------------------------------------------//
 bool passwordCheck(const char* password)

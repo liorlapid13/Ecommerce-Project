@@ -16,6 +16,6 @@ static const int NUM_OF_CATEGORIES = 4;	//product categories
 
 bool passwordCheck(const char* password);
 bool usernameCheck(const char* username);
-bool checkOnlyLetters(const int length, const char* string);
+bool checkString(const int length, const char* string);
 
 #endif // !__HELPER_H

@@ -15,6 +15,7 @@ bool Feedback::setDescription(const char* description)
 	}
 	else
 	{
+		delete[] m_description;
 		m_description = new char[strlen(description) + 1];
 		strcpy(m_description, description);
 		return true;

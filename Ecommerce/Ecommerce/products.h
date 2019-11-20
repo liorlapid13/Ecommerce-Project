@@ -13,6 +13,8 @@ public:
 	//C'tor
 	Products() = delete;
 	Products(const char* name, float price, int serialNumber, Products::eCategory category);
+	Products(const Products& other);
+	Products(Products&& other);
 
 	//D'tor
 	~Products();
@@ -20,8 +22,8 @@ public:
 public:
 	//Setters
 	bool setName(const char* name);
-	void setPrice(float price);
-	void setSerialNumber(int serialNumber);
+	bool setPrice(float price);
+	void setSerialNumber(unsigned int serialNumber);
 	bool setCategory(eCategory category);
 
 	//Getters
@@ -30,12 +32,14 @@ public:
 	inline int getSerialNumber()     const;
 	inline eCategory getCategory()   const;
 
+	bool isValidProducts(const char* name, float price, Products::eCategory category);
+
 private:
 
-	char*		m_name;
-	float		m_price;
-	int			m_serialNumber;
-	eCategory	m_category;
+	char*			m_name;
+	float		    m_price;
+	unsigned int	m_serialNumber;
+	eCategory		m_category;
 };
 
 #endif // !__PROFUCTS_H

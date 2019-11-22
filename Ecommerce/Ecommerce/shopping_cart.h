@@ -8,24 +8,25 @@ class ShoppingCart
 {
 public:
 	//C'tors
-	ShoppingCart(const Products** product_list, const int num_of_products);
+	ShoppingCart();								//default c'tor
 	ShoppingCart(const ShoppingCart& other);	//copy c'tor
-	ShoppingCart(const ShoppingCart&& other);	//move c'tor
+	ShoppingCart(ShoppingCart&& other);			//move c'tor
 	
 	//D'tors
 	~ShoppingCart();
 
 	//Setters
-	bool setNumProducts(const int num_of_products);
-	bool setProductList(const Products** product_list);
+	bool setNumProducts(const unsigned int num_of_products);
+	bool setCartSize(const unsigned int cart_size);
 	
 	//Getters
 	inline const Products** getProductList()	const;
-	inline const int getNumProducts()			const;
+	inline const unsigned int getNumProducts()	const;
 
 private:
-	Products**	m_product_list;
-	int			m_num_of_products;
+	unsigned int	m_num_of_products;	//physical size of shopping cart
+	unsigned int	m_cart_size;		//logical size of shopping cart
+	Products**		m_product_list;
 };
 
 #endif // !__SHOPPING_CART_H

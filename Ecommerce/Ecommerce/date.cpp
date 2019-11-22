@@ -1,17 +1,17 @@
 #include "date.h"
 //----------------------------------------------------------------------------------------//
-Date::Date(const int day, const int month, const int year)
+Date::Date(const unsigned int day, const unsigned int month, const unsigned int year)
 {
-	m_year = year;
-	m_month = month;
-	m_day = day;
+	setYear(year);
+	setMonth(month);
+	setDay(day, month, year);
 }
 //----------------------------------------------------------------------------------------//
 Date::Date(const Date& other)	//Copy C'tor
 {
-	m_year = other.m_year;
-	m_month = other.m_month;
-	m_day = other.m_day;
+	setYear(other.m_year);
+	setMonth(other.m_month);
+	setDay(other.m_day, other.m_month, other.m_year);
 }
 //----------------------------------------------------------------------------------------//
 Date::~Date()
@@ -19,13 +19,29 @@ Date::~Date()
 	//No memory allocation, why have a destructor?
 }
 //----------------------------------------------------------------------------------------//
-bool Date::checkDate(const int day, const int month, const int year)
+bool Date::setYear(const unsigned int year)
 {
-	//If invalid year/month/day 
+	//Check if year is in valid range
 	if (year > MAX_YEAR || year < MIN_YEAR)
 		return false;
+	
+	m_year = year;
+	return true;
+}
+//----------------------------------------------------------------------------------------//
+bool Date::setMonth(const unsigned int month)
+{
+	//Check if month is in valid range
 	if (month < 1 || month > 12)
 		return false;
+
+	m_month = month;
+	return true;
+}
+//----------------------------------------------------------------------------------------//
+bool Date::setDay(const unsigned int day, const unsigned int month, const unsigned int year)
+{
+	//Check if day is in valid range
 	if (day < 1 || day > 31)
 		return false;
 
@@ -33,36 +49,40 @@ bool Date::checkDate(const int day, const int month, const int year)
 	if (month == 2)
 	{
 		if (isLeapYear(year))
-			return (day <= 29);
-		else
-			return (day <= 28);
+		{
+			if (day > 29)
+				return false;
+		}
+		else if (day > 28)
+			return false;
 	}
- 
-	//Checks for April, June, September and November (months with 30 days)
-	if (month == 4 || month == 6 || month == 9 || month == 11)
-		return (day <= 30);
 
+	//Checks for April, June, September and November (months with 30 days)
+	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30)
+		return false;
+
+	m_day = day;
 	return true;
 }
 //----------------------------------------------------------------------------------------//
-bool Date::isLeapYear(int year)
+bool Date::isLeapYear(unsigned int year)
 {
 	//If year is divisable by 400 then it is a leap year
 	//Else if year is divisable by 4 and not by 100 then it is a leap year
 	return (((year % 4 == 0) &&	(year % 100 != 0)) || (year % 400 == 0));
 }
 //----------------------------------------------------------------------------------------//
-const int Date::getDay() const
+const unsigned int Date::getDay() const
 {
 	return m_day;
 }
 //----------------------------------------------------------------------------------------//
-const int Date::getMonth() const
+const unsigned int Date::getMonth() const
 {
 	return m_month;
 }
 //----------------------------------------------------------------------------------------//
-const int Date::getYear() const
+const unsigned int Date::getYear() const
 {
 	return m_year;
 }

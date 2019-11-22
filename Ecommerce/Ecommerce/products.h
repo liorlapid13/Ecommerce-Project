@@ -1,5 +1,5 @@
 #ifndef __PRODUCTS_H
-#define __PRODUCTS_h
+#define __PRODUCTS_H
 
 #include "helper.h"
 
@@ -7,11 +7,13 @@ class Products
 {
 public:
 	enum eCategory { KIDS, ELECTRICAL, CLOTHING, OFFICE };
+	static const int NUM_OF_CATEGORIES = 4;	//product categories
+	static const int MAX_SERIAL_NUMBER = 999999; //Serial number contains maximum 6 digits 
 
 public:
 	//C'tor
 	Products() = delete;
-	Products(const char* name, float price, int serialNumber, Products::eCategory category);
+	Products(const char* name, float price, unsigned int serialNumber, Products::eCategory category);
 	Products(const Products& other);
 	Products(Products&& other);
 
@@ -28,10 +30,9 @@ public:
 	//Getters
 	inline const char* getName()     const;
 	inline float getPrice()          const;
-	inline int getSerialNumber()     const;
+	inline unsigned int getSerialNumber()     const;
 	inline eCategory getCategory()   const;
 
-	bool isValidProducts(const char* name, float price, Products::eCategory category);
 
 private:
 

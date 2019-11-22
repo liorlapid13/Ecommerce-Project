@@ -12,32 +12,29 @@ public:
 public:
 	//C'tors
 	Date() = delete;
-	Date(const int day, const int month, const int year);
+	Date(const unsigned int day, const unsigned int month, const unsigned int year);
 	Date(const Date& other);	//Copy C'tor
 
 	//D'tors
 	~Date();
 
 	//Setters
-	/*
-	bool setDay(const int day);
-	bool setMonth(const int month);
-	bool setYear(const int year);
-	*/
-	
+	bool setDay(const unsigned int day, const unsigned int month, const unsigned int year);
+	bool setMonth(const unsigned int month);
+	bool setYear(const unsigned int year);
+		
 	//Getters
-	inline const int getDay() const;
-	inline const int getMonth() const;
-	inline const int getYear() const;
+	inline const unsigned int getDay() const;
+	inline const unsigned int getMonth() const;
+	inline const unsigned int getYear() const;
 
 	//Input Checks
-	bool checkDate(const int day, const int month, const int year);
-	bool isLeapYear(const int year);
+	bool isLeapYear(const unsigned int year);
 
 private:
-	int m_day;
-	int m_month;
-	int m_year;
+	unsigned int m_day;
+	unsigned int m_month;
+	unsigned int m_year;
 };
 
 #endif // !__DATE_H

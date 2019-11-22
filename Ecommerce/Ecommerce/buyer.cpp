@@ -1,31 +1,24 @@
 #include "buyer.h"
 //----------------------------------------------------------------------------------------//
-Buyer::Buyer(const char* username, const char* password, const Address& address):m_address(address)
+Buyer::Buyer(const char* username, const char* password, 
+	const Address& address) : m_address(address), m_shoppingCart()//can we remove this?
 {
 	setUsername(username);
 	setPassword(password);
-	m_shoppingCart = new Products*[];
 }
 //----------------------------------------------------------------------------------------//
-Buyer::Buyer(const Buyer& other, int numOfItemsInCart) :m_address(other.m_address)
+Buyer::Buyer(const Buyer& other) : m_address(other.m_address), m_shoppingCart(other.m_shoppingCart)	//copy c'tor
 {
 	setUsername(other.m_username);
 	setPassword(other.m_password);
-	for (int i = 0; i < numOfItemsInCart; i++)
-	{
-		m_shoppingCart[i] = new Products(*(other.m_shoppingCart[i]));
-	}
 }
 //----------------------------------------------------------------------------------------//
-Buyer::Buyer(Buyer&&other) :m_address(other.m_address)
+Buyer::Buyer(Buyer&& other) : m_address(other.m_address), m_shoppingCart(other.m_shoppingCart)	//move c'tor
 {
 	m_username = other.m_username;
 	other.m_username = nullptr;
 	m_password = other.m_password;
 	other.m_password = nullptr;
-
-	m_shoppingCart = other.m_shoppingCart;
-	other.m_shoppingCart = nullptr;
 }
 //----------------------------------------------------------------------------------------//
 bool Buyer::setUsername(const char* username)
@@ -54,7 +47,7 @@ bool Buyer::setPassword(const char* password)
 	}
 }
 //----------------------------------------------------------------------------------------//
-inline Products** Buyer::getShoppingCart() const
+const ShoppingCart& Buyer::getShoppingCart() const
 {
 	return m_shoppingCart;
 }
@@ -69,7 +62,7 @@ const char* Buyer::getPassword() const
 	return m_password;
 }
 //----------------------------------------------------------------------------------------//
-const Address Buyer::getAddress() const
+const Address& Buyer::getAddress() const
 {
 	return m_address;
 }

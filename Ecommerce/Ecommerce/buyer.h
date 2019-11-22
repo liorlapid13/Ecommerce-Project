@@ -8,6 +8,7 @@ using namespace std;
 #include "helper.h"
 #include "address.h"
 #include "products.h"
+#include "shopping_cart.h"
 
 class Buyer
 {
@@ -15,7 +16,7 @@ public:
 	//C'tors
 	Buyer() = delete;
 	Buyer(const char* username, const char* password, const Address& address);
-	Buyer(const Buyer& other, int numOfItemsInCart);
+	Buyer(const Buyer& other);
 	Buyer(Buyer&& other);
 
 	//D'tors
@@ -27,17 +28,16 @@ public:
 	bool setPassword(const char* password);
 
 	//Getters
-
-	inline Products ** getShoppingCart()	const;
-	inline const char* getUserName()		const;
-	inline const char* getPassword()		const;
-	inline const Address getAddress()		const;
+	inline const char* getUserName()				const;
+	inline const char* getPassword()				const;
+	inline const Address& getAddress()				const;
+	inline const ShoppingCart& getShoppingCart()	const;
 
 private:
-	char*		m_username;
-	char*		m_password;
-	Address		m_address;
-	Products**	m_shoppingCart;
+	char*			m_username;
+	char*			m_password;
+	Address			m_address;
+	ShoppingCart	m_shoppingCart;
 };
 
 #endif // __BUYER_H

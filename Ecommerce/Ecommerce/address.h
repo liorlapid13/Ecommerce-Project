@@ -8,11 +8,11 @@ class Address
 public:
 	//C'tors
 	Address() = delete;
-	Address(const char* street_name, 
-			const int	house_number, 
-			const int	zip_code, 
-			const char* city, 
-			const char* country);
+	Address(const char* street_name,
+		const int	house_number,
+		const int	zip_code,
+		const char* city,
+		const char* country);
 	Address(const Address& other);	//copy c'tor
 	Address(Address&& other);		//move c'tor
 
@@ -34,12 +34,6 @@ public:
 	inline const char*	getCity()			const;
 	inline const char*	getCountry()		const;
 
-	//General Functions
-	bool checkAddress(	const char* street_name,
-						const int	house_number,
-						const int	zip_code,
-						const char* city,
-						const char* country);
 
 private:
 	char*	m_street_name;

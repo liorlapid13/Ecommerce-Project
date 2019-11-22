@@ -1,7 +1,7 @@
 #include "address.h"
 //----------------------------------------------------------------------------------------//
-Address::Address(const char* street_name, const int	house_number, 
-			   	 const int zip_code, const char* city, const char* country)
+Address::Address(const char* street_name, const int	house_number,
+	const int zip_code, const char* city, const char* country)
 {
 	setStreetName(street_name);		//Street name
 	setHouseNumber(house_number);	//House number
@@ -13,20 +13,16 @@ Address::Address(const char* street_name, const int	house_number,
 Address::Address(const Address& other)	//Copy C'tor
 {
 	//Street name
-	m_street_name = new char[strlen(other.m_street_name) + 1];
-	strcpy(m_street_name, other.m_street_name);
-
+	setStreetName(other.m_street_name);
 	//House number & Zip code
-	m_house_number = other.m_house_number;
-	m_zip_code = other.m_zip_code;
+	setHouseNumber(other.m_house_number);
+	setZipCode(other.m_zip_code);
 
 	//City
-	m_city = new char[strlen(other.m_city) + 1];
-	strcpy(m_city, other.m_city);
+	setCity(other.m_city);
 
 	//Country
-	m_country = new char[strlen(other.m_country) + 1];
-	strcpy(m_country, other.m_country);
+	setCountry(other.m_country);
 }
 //----------------------------------------------------------------------------------------//
 Address::Address(Address&& other)	//Move C'tor
@@ -53,7 +49,7 @@ Address::~Address()
 {
 	delete[] m_street_name;
 	delete[] m_city;
-	delete[] m_country;	
+	delete[] m_country;
 }
 //----------------------------------------------------------------------------------------//
 bool Address::setStreetName(const char* street_name)
@@ -67,7 +63,7 @@ bool Address::setStreetName(const char* street_name)
 	{
 		delete[] m_street_name;
 		m_street_name = new char[strlen(street_name) + 1];
-		strcpy(m_street_name,street_name);
+		strcpy(m_street_name, street_name);
 		return true;
 	}
 }
@@ -156,40 +152,5 @@ const char* Address::getCity() const
 const char* Address::getCountry() const
 {
 	return m_country;
-}
-//----------------------------------------------------------------------------------------//
-bool Address::checkAddress(const char* street_name, const int house_number, const int zip_code,
-	const char* city, const char* country)
-{
-	if (house_number < 1 || house_number > 999)
-	{
-		cout << "Invalid house number (1-999)\n";
-		return false;
-	}
-	if (zip_code < 1000000 || zip_code > 9999999)
-	{
-		cout << "Invalid zip code (7 digits)\n";
-		return false;
-	}
-
-	if (!checkString(strlen(street_name),street_name))
-	{
-		cout << "Invalid street name\n";
-		return false;
-	}
-
-	if (!checkString(strlen(city), city))
-	{
-		cout << "Invalid city\n";
-		return false;
-	}
-
-	if (!checkString(strlen(country), country))
-	{
-		cout << "Invalid country\n";
-		return false;
-	}
-
-	return true;
 }
 //----------------------------------------------------------------------------------------//

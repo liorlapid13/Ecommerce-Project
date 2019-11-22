@@ -1,11 +1,12 @@
 #include "products.h"
 //----------------------------------------------------------------------------------------//
-Products::Products(const char* name, float price, unsigned int serialNumber, Products::eCategory category)
+Products::Products(const char* name, float price, unsigned int serialNumber, Products::eCategory category,Seller& seller)
 {
 	setName(name);
 	setPrice(price);
 	setSerialNumber(serialNumber);
 	setCategory(category);
+	m_seller = &seller;
 }
 //----------------------------------------------------------------------------------------//
 Products::Products(const Products& other)
@@ -14,6 +15,7 @@ Products::Products(const Products& other)
 	setPrice(other.m_price);
 	setSerialNumber(other.m_serialNumber);
 	setCategory(other.m_category);
+	m_seller = other.m_seller;
 }
 //----------------------------------------------------------------------------------------//
 Products::Products(Products&&other)
@@ -23,6 +25,8 @@ Products::Products(Products&&other)
 	m_price = other.m_price;
 	m_serialNumber = other.m_serialNumber;
 	m_category = other.m_category;
+	m_seller = other.m_seller;
+	other.m_seller = nullptr;
 }
 Products::~Products()
 {

@@ -121,6 +121,7 @@
     <ClCompile Include="feedback.cpp" />
     <ClCompile Include="helper.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="order.cpp" />
     <ClCompile Include="products.cpp" />
     <ClCompile Include="seller.cpp" />
     <ClCompile Include="shopping_cart.cpp" />
@@ -131,6 +132,7 @@
     <ClInclude Include="date.h" />
     <ClInclude Include="feedback.h" />
     <ClInclude Include="helper.h" />
+    <ClInclude Include="order.h" />
     <ClInclude Include="products.h" />
     <ClInclude Include="seller.h" />
     <ClInclude Include="shopping_cart.h" />

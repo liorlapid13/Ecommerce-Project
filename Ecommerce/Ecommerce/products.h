@@ -2,6 +2,7 @@
 #define __PRODUCTS_H
 
 #include "helper.h"
+#include "seller.h"
 
 class Products
 {
@@ -13,7 +14,7 @@ public:
 public:
 	//C'tor
 	Products() = delete;
-	Products(const char* name, float price, unsigned int serialNumber, Products::eCategory category);
+	Products(const char* name, float price, unsigned int serialNumber, Products::eCategory category,Seller& seller);
 	Products(const Products& other);
 	Products(Products&& other);
 
@@ -40,6 +41,7 @@ private:
 	float		    m_price;
 	unsigned int	m_serialNumber;
 	eCategory		m_category;
+	Seller*         m_seller;
 };
 
 #endif // !__PROFUCTS_H

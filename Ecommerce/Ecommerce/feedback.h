@@ -9,10 +9,10 @@ class Feedback
 {
 public:
 	//C'tor
-	Feedback() = delete;
+	Feedback() = default;
 	Feedback(const Date& date, const char* description, Buyer& buyer);
 
-
+	~Feedback();
 public:
 	//Setters
 	bool setDescription(const char* description);

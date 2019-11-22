@@ -22,6 +22,11 @@ bool Feedback::setDescription(const char* description)
 	}
 }
 //----------------------------------------------------------------------------------------//
+Feedback::~Feedback()
+{
+	delete[]m_description;
+}
+//----------------------------------------------------------------------------------------//
 const Date& Feedback::getDate() const
 {
 	return m_date;

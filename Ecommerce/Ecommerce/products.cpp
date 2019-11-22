@@ -2,10 +2,18 @@
 //----------------------------------------------------------------------------------------//
 Products::Products(const char* name, float price, int serialNumber, Products::eCategory category)
 {
-	setName(name);
-	setPrice(price);
-	setSerialNumber(serialNumber);
-	setCategory(category);
+	bool nameSet = 0, priceSet = 0, serialNumSet = 0, categorySet = 0;
+	while (!nameSet || !priceSet || !serialNumSet || !categorySet)
+	{
+		if (!nameSet)
+			nameSet = setName(name);
+		if (!priceSet)
+			priceSet = setPrice(price);
+		if (!serialNumSet)
+			serialNumSet = setSerialNumber(serialNumber);
+		if (!categorySet)
+			categorySet = setCategory(category);
+	}
 }
 //----------------------------------------------------------------------------------------//
 Products::Products(const Products& other)
@@ -69,6 +77,7 @@ bool Products::setName(const char* name)
 		}
 	}
 
+	delete[] m_name;
 	m_name = new char[strlen(name) + 1];
 	strcpy(m_name, name);
 	return true;
@@ -88,7 +97,7 @@ bool Products::setPrice(float price)
 	}
 }
 //----------------------------------------------------------------------------------------//
-void Products::setSerialNumber(unsigned int serialNumber)
+bool Products::setSerialNumber(unsigned int serialNumber)
 {
 	m_serialNumber = serialNumber;
 }

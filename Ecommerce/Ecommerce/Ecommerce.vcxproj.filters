@@ -39,6 +39,9 @@
     <ClCompile Include="feedback.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="shopping_cart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="buyer.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="feedback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shopping_cart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

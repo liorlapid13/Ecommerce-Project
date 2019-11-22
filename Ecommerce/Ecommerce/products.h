@@ -3,7 +3,6 @@
 
 #include "helper.h"
 
-
 class Products
 {
 public:
@@ -23,7 +22,7 @@ public:
 	//Setters
 	bool setName(const char* name);
 	bool setPrice(float price);
-	void setSerialNumber(unsigned int serialNumber);
+	bool setSerialNumber(unsigned int serialNumber);
 	bool setCategory(eCategory category);
 
 	//Getters

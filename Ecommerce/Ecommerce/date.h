@@ -18,6 +18,13 @@ public:
 	//D'tors
 	~Date();
 
+	//Setters
+	/*
+	bool setDay(const int day);
+	bool setMonth(const int month);
+	bool setYear(const int year);
+	*/
+	
 	//Getters
 	inline const int getDay() const;
 	inline const int getMonth() const;

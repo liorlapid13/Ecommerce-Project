@@ -7,13 +7,6 @@ Date::Date(const unsigned int day, const unsigned int month, const unsigned int 
 	setDay(day, month, year);
 }
 //----------------------------------------------------------------------------------------//
-Date::Date(const Date& other)	//Copy C'tor
-{
-	setYear(other.m_year);
-	setMonth(other.m_month);
-	setDay(other.m_day, other.m_month, other.m_year);
-}
-//----------------------------------------------------------------------------------------//
 Date::~Date()
 {
 	//No memory allocation, why have a destructor?

@@ -13,7 +13,6 @@ public:
 	//C'tors
 	Date() = delete;
 	Date(const unsigned int day, const unsigned int month, const unsigned int year);
-	Date(const Date& other);	//Copy C'tor
 
 	//D'tors
 	~Date();

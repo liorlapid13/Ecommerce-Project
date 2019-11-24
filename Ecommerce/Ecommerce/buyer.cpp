@@ -1,12 +1,13 @@
 #include "buyer.h"
 //----------------------------------------------------------------------------------------//
 Buyer::Buyer(const char* username, const char* password, 
-	const Address& address) : m_address(address), m_shoppingCart()//can we remove this?
+	const Address& address) : m_address(address), m_shoppingCart()
 {
 	setUsername(username);
 	setPassword(password);
 }
 //----------------------------------------------------------------------------------------//
+/*
 Buyer::Buyer(const Buyer& other) : m_address(other.m_address), m_shoppingCart(other.m_shoppingCart)	//copy c'tor
 {
 	setUsername(other.m_username);
@@ -20,6 +21,13 @@ Buyer::Buyer(Buyer&& other) : m_address(other.m_address), m_shoppingCart(other.m
 	m_password = other.m_password;
 	other.m_password = nullptr;
 }
+*/
+//----------------------------------------------------------------------------------------//
+Buyer::~Buyer()
+{
+	delete[] m_username;
+	delete[] m_password;
+}
 //----------------------------------------------------------------------------------------//
 bool Buyer::setUsername(const char* username)
 {
@@ -28,6 +36,7 @@ bool Buyer::setUsername(const char* username)
 		return false;
 	else
 	{
+		delete[] m_username;
 		m_username = new char[strlen(username) + 1];
 		strcpy(m_username, username);
 		return true;
@@ -41,10 +50,21 @@ bool Buyer::setPassword(const char* password)
 		return false;
 	else
 	{
+		delete[] m_password;
 		m_password = new char[strlen(password) + 1];
 		strcpy(m_password, password);
 		return true;
 	}
+}
+//----------------------------------------------------------------------------------------//
+bool Buyer::setAddress(const Address& address)
+{
+	//ASK AVIV!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	m_address.Address::setCity(address.getCity());
+	m_address.Address::setCountry(address.getCountry());
+	m_address.Address::setHouseNumber(address.getHouseNumber());
+	m_address.Address::setZipCode(address.getZipCode());
+	m_address.Address::setStreetName(address.getStreetName());
 }
 //----------------------------------------------------------------------------------------//
 const ShoppingCart& Buyer::getShoppingCart() const

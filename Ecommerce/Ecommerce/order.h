@@ -9,28 +9,30 @@ class Order
 {
 public:
 	//C'tors
-	Order(Products** product_list, const int list_size, const int price);
-	Order(const Order& other);	//copy c'tor
-	Order(Order&& other);		//move c'tor
+	Order() = delete;
+	Order(Products** product_list, const int list_size, const float total_price);
 
 	//D'tors
 	~Order();
 
+private:
+	Order(const Order& other);	//copy c'tor
+	Order(Order&& other);		//move c'tor
+
 	//Setters
 	/* bool setProductList(Products** product_list, const int list_size); */
-	bool setTotalPrice(const int total_price);
+	bool setTotalPrice(const float total_price);
 	bool setListSize(const int list_size);
 
 	//Getters
 	inline const Products** getProductList()	const;
 	inline const int getListSize()				const;
-	inline const int getTotalPrice()			const;
+	inline const float getTotalPrice()			const;
 
 private:
 	Products**	m_product_list;
 	int			m_list_size;
-	int			m_total_price;
+	float		m_total_price;
 };
-
 
 #endif // !__ORDER_H

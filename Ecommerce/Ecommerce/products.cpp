@@ -1,6 +1,6 @@
 #include "products.h"
 //----------------------------------------------------------------------------------------//
-Products::Products(const char* name, float price, unsigned int serialNumber, Products::eCategory category,Seller& seller)
+Products::Products(const char* name, float price, unsigned int serialNumber, Products::eCategory category, Seller& seller)
 {
 	setName(name);
 	setPrice(price);
@@ -9,7 +9,7 @@ Products::Products(const char* name, float price, unsigned int serialNumber, Pro
 	m_seller = &seller;
 }
 //----------------------------------------------------------------------------------------//
-Products::Products(const Products& other)
+Products::Products(const Products& other) //copy c'tor
 {
 	setName(other.m_name);
 	setPrice(other.m_price);
@@ -18,7 +18,8 @@ Products::Products(const Products& other)
 	m_seller = other.m_seller;
 }
 //----------------------------------------------------------------------------------------//
-Products::Products(Products&&other)
+/*
+Products::Products(Products&&other) //move c'tor
 {
 	m_name = other.m_name;
 	other.m_name = nullptr;
@@ -28,6 +29,8 @@ Products::Products(Products&&other)
 	m_seller = other.m_seller;
 	other.m_seller = nullptr;
 }
+*/
+//----------------------------------------------------------------------------------------//
 Products::~Products()
 {
 	delete[] m_name;
@@ -97,17 +100,22 @@ const char* Products::getName() const
 	return m_name;
 }
 //----------------------------------------------------------------------------------------//
-float Products::getPrice() const
+const Seller* const Products::getSeller() const
+{
+	return m_seller;
+}
+//----------------------------------------------------------------------------------------//
+const float Products::getPrice() const
 {
 	return m_price;
 }
 //----------------------------------------------------------------------------------------//
-unsigned int Products::getSerialNumber() const
+const unsigned int Products::getSerialNumber() const
 {
 	return m_serialNumber;
 }
 //----------------------------------------------------------------------------------------//
-Products::eCategory Products::getCategory() const
+const Products::eCategory Products::getCategory() const
 {
 	return m_category;
 }

@@ -2,17 +2,16 @@
 //----------------------------------------------------------------------------------------//
 ShoppingCart::ShoppingCart()
 {
-	setCartSize(1);		//logical size of cart
-	setNumProducts(0);	//physical size of cart
-	m_product_list = new Products*[m_cart_size];
+	setNumProducts(0);
+	m_product_list = nullptr;
 }
 //----------------------------------------------------------------------------------------//
+/*
 ShoppingCart::ShoppingCart(const ShoppingCart& other)	//copy c'tor
 {
-	m_product_list = new Products*[other.m_cart_size];
+	m_product_list = new Products*[other.m_num_of_products];
 	for (int i = 0; i < other.m_num_of_products; i++)
 		m_product_list[i] = new Products(*(other.m_product_list[i]));
-	setCartSize(other.m_cart_size);
 	setNumProducts(other.m_num_of_products);
 }
 //----------------------------------------------------------------------------------------//
@@ -21,12 +20,12 @@ ShoppingCart::ShoppingCart(ShoppingCart&& other)	//move c'tor
 	m_product_list = other.m_product_list;
 	other.m_product_list = nullptr;
 	m_num_of_products = other.m_num_of_products;
-	m_cart_size = other.m_cart_size;
 }
+*/
 //----------------------------------------------------------------------------------------//
 ShoppingCart::~ShoppingCart()
 {
-	for (int i = 0; i < m_cart_size; i++)
+	for (int i = 0; i < m_num_of_products; i++)
 		delete m_product_list[i];
 	delete[] m_product_list;
 }
@@ -34,11 +33,6 @@ ShoppingCart::~ShoppingCart()
 bool ShoppingCart::setNumProducts(const unsigned int num_of_products)
 {
 	m_num_of_products = num_of_products;
-}
-//----------------------------------------------------------------------------------------//
-bool ShoppingCart::setCartSize(const unsigned int cart_size)
-{
-	m_cart_size = cart_size;
 }
 //----------------------------------------------------------------------------------------//
 const unsigned int ShoppingCart::getNumProducts() const
@@ -51,4 +45,23 @@ const Products** ShoppingCart::getProductList() const
 	return m_product_list;
 }
 //----------------------------------------------------------------------------------------//
+void ShoppingCart::addItemToShoppingCart(Products& product)
+{
+	if (!m_product_list) //Empty shopping cart
+	{
+		m_num_of_products++;
+		m_product_list = new Products*[m_num_of_products];
+		m_product_list[0] = &product;
+	}
+	else //Shopping cart not empty
+	{
+		Products** temp = m_product_list;
+		m_product_list = new Products*[m_num_of_products + 1];
+		for (int i = 0; i < m_num_of_products; i++)
+			m_product_list[i] = temp[i];
+		m_product_list[m_num_of_products] = &product;
+		m_num_of_products++;
+		delete[] temp;
+	}
+}
 //----------------------------------------------------------------------------------------//

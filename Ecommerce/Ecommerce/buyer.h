@@ -16,16 +16,19 @@ public:
 	//C'tors
 	Buyer() = delete;
 	Buyer(const char* username, const char* password, const Address& address);
-	Buyer(const Buyer& other);
-	Buyer(Buyer&& other);
 
 	//D'tors
 	~Buyer();
+
+private:
+	Buyer(const Buyer& other);	//copy c'tor
+	Buyer(Buyer&& other);		//move c'tor
 
 public:
 	//Setters
 	bool setUsername(const char* username);
 	bool setPassword(const char* password);
+	bool setAddress(const Address& address);
 
 	//Getters
 	inline const char* getUserName()				const;

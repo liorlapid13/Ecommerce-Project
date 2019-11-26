@@ -57,14 +57,14 @@ bool Buyer::setPassword(const char* password)
 	}
 }
 //----------------------------------------------------------------------------------------//
-bool Buyer::setAddress(const Address& address)
+void Buyer::setAddress(const Address& address)
 {
-	//ASK AVIV!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	m_address.Address::setCity(address.getCity());
-	m_address.Address::setCountry(address.getCountry());
-	m_address.Address::setHouseNumber(address.getHouseNumber());
-	m_address.Address::setZipCode(address.getZipCode());
-	m_address.Address::setStreetName(address.getStreetName());
+	
+	m_address.setCity(address.getCity());
+	m_address.setCountry(address.getCountry());
+	m_address.setHouseNumber(address.getHouseNumber());
+	m_address.setZipCode(address.getZipCode());
+	m_address.setStreetName(address.getStreetName());
 }
 //----------------------------------------------------------------------------------------//
 const ShoppingCart& Buyer::getShoppingCart() const

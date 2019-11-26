@@ -4,13 +4,12 @@ Seller::Seller(const char* username, const char* password, const Address& addres
 {
 	setUsername(username);
 	setPassword(password);
-	setNumOfFeedbacks(0);		//physical size of feedback list
-	setFeedbackListSize(1);		//logical size of feedback lost
-	setNumOfProducts(0);		//physical size of product list
-	setProductsListSize(1);		//logical size of product list
-	m_feedback_list = new Feedback[m_feedback_list_size];
-	m_product_list = new Products[m_product_list_size];
+	setNumOfFeedbacks(0);		
+	setNumOfProducts(0);		
+	m_feedback_list = nullptr;
+	m_product_list = nullptr;
 }
+/*
 Seller::Seller(const Seller& other):m_address(other.m_address)
 {
 	setUsername(other.m_username);
@@ -28,13 +27,20 @@ Seller::Seller(Seller&& other):m_address(other.m_address)
 	other.m_feedback_list = nullptr;
 	m_product_list = other.m_product_list;
 	other.m_product_list = nullptr;
-}
+}*/
 //----------------------------------------------------------------------------------------//
 Seller::~Seller()
 {
+	int i;
+
 	delete[] m_username;
 	delete[] m_password;
-	//add delete to feedback* and products*
+	for ( i = 0; i < m_num_of_products; i++)
+		delete m_product_list[i];
+	delete[] m_product_list;
+	for (i = 0; i < m_num_of_feedbacks; i++)
+		delete m_feedback_list[i];
+	delete[] m_feedback_list;
 }
 //----------------------------------------------------------------------------------------//
 bool Seller::setUsername(const char* username)
@@ -62,35 +68,44 @@ bool Seller::setPassword(const char* password)
 		return true;
 	}
 }
+void Seller::setAddress(const Address& address)
+{
+
+	m_address.setCity(address.getCity());
+	m_address.setCountry(address.getCountry());
+	m_address.setHouseNumber(address.getHouseNumber());
+	m_address.setZipCode(address.getZipCode());
+	m_address.setStreetName(address.getStreetName());
+}
 //----------------------------------------------------------------------------------------//
 bool Seller::setNumOfFeedbacks(const unsigned int numOfFeedbacks)
 {
 	m_num_of_feedbacks = numOfFeedbacks;
 }
 //----------------------------------------------------------------------------------------//
-bool Seller::setFeedbackListSize(const unsigned int feedbackListSize)
-{
-	m_feedback_list_size = feedbackListSize;
-}
 //----------------------------------------------------------------------------------------//
 bool Seller::setNumOfProducts(const unsigned int numOfProducts)
 {
 	m_num_of_products = numOfProducts;
 }
 //----------------------------------------------------------------------------------------//
-bool Seller::setProductsListSize(const unsigned int productsListSize)
-{
-	m_product_list_size=productsListSize
-}
-//----------------------------------------------------------------------------------------//
-const Products* Seller::getStore()  const
+const Products** Seller::getStore() 
 {
 	return m_product_list;
 }
 //----------------------------------------------------------------------------------------//
-const Feedback* Seller:: getFeedbacks()  const
+const int Seller::getNumOfProducts()		 const
+{
+	return m_num_of_products;
+}
+//----------------------------------------------------------------------------------------//
+const Feedback** Seller::getFeedbackList()  
 {
 	return m_feedback_list;
+}
+const int Seller::getNumOfFeedbacks() const
+{
+	return m_num_of_feedbacks;
 }
 //----------------------------------------------------------------------------------------//
 const char* Seller::getUserName() const

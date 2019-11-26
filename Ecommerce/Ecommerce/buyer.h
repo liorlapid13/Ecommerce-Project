@@ -28,7 +28,7 @@ public:
 	//Setters
 	bool setUsername(const char* username);
 	bool setPassword(const char* password);
-	bool setAddress(const Address& address);
+	void setAddress(const Address& address);
 
 	//Getters
 	inline const char* getUserName()				const;

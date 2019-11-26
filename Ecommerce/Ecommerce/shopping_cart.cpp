@@ -25,8 +25,6 @@ ShoppingCart::ShoppingCart(ShoppingCart&& other)	//move c'tor
 //----------------------------------------------------------------------------------------//
 ShoppingCart::~ShoppingCart()
 {
-	for (int i = 0; i < m_num_of_products; i++)
-		delete m_product_list[i];
 	delete[] m_product_list;
 }
 //----------------------------------------------------------------------------------------//

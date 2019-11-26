@@ -1,12 +1,12 @@
 #include "products.h"
 //----------------------------------------------------------------------------------------//
-Products::Products(const char* name, float price, unsigned int serialNumber, Products::eCategory category, Seller& seller)
+Products::Products(const char* name, float price, unsigned int serialNumber, Products::eCategory category, char* seller)
 {
 	setName(name);
 	setPrice(price);
 	setSerialNumber(serialNumber);
 	setCategory(category);
-	m_seller = &seller;
+	setSeller(seller);
 }
 //----------------------------------------------------------------------------------------//
 Products::Products(const Products& other) //copy c'tor
@@ -15,7 +15,7 @@ Products::Products(const Products& other) //copy c'tor
 	setPrice(other.m_price);
 	setSerialNumber(other.m_serialNumber);
 	setCategory(other.m_category);
-	m_seller = other.m_seller;
+	setSeller(other.m_seller);
 }
 //----------------------------------------------------------------------------------------//
 /*
@@ -34,6 +34,7 @@ Products::Products(Products&&other) //move c'tor
 Products::~Products()
 {
 	delete[] m_name;
+	delete[] m_seller;
 }
 //----------------------------------------------------------------------------------------//
 bool Products::setName(const char* name)
@@ -94,13 +95,18 @@ bool Products::setCategory(Products::eCategory category)
 		return true;
 	}
 }
+void Products::setSeller(char* seller)
+{
+	m_seller = new char[strlen(seller) + 1];
+	strcpy(m_seller, seller);
+}
 //----------------------------------------------------------------------------------------//
 const char* Products::getName() const
 {
 	return m_name;
 }
 //----------------------------------------------------------------------------------------//
-const Seller* const Products::getSeller() const
+const char* Products::getSeller() const
 {
 	return m_seller;
 }

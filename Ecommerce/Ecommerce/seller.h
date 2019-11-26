@@ -5,6 +5,7 @@
 #include "address.h"
 #include "seller.h"
 #include "feedback.h"
+#include "products.h"
 
 class Seller
 {
@@ -12,38 +13,39 @@ public:
 	//C'tor
 	Seller() = delete;
 	Seller(const char* username, const char* password, const Address& address);
-	Seller(const Seller& other);
-	Seller(Seller&& other);
 
 	//D'tor
 	~Seller();
+
+private:
+	Seller(const Seller& other);
+	Seller(Seller&& other);
 
 public:
 	//Setters
 	bool setUsername(const char* username);
 	bool setPassword(const char* password);
 	bool setNumOfFeedbacks(const unsigned int numOfFeedbacks);
-	bool setFeedbackListSize(const unsigned int feedbackListSize);
 	bool setNumOfProducts(const unsigned int numOfProducts);
-	bool setProductsListSize(const unsigned int productsListSize);
+	void setAddress(const Address& address);
 
 	//add gets 
-	inline const char* getUserName()  const;
-	inline const char* getPassword()  const;
-	inline const Address& getAddress() const;
-	inline const Feedback* getFeedbacks()  const;
-	inline const Products* getStore()  const;
+	inline const char* getUserName()		   const;
+	inline const char* getPassword()		   const;
+	inline const Address& getAddress()		   const;
+	inline const Feedback** getFeedbackList();
+	inline const int getNumOfFeedbacks()	   const;
+	inline const Products** getStore();
+	inline const int getNumOfProducts()		   const;
 
 private:
 	char* m_username;
 	char* m_password;
 	Address m_address;
-	Feedback* m_feedback_list;
-	unsigned int m_num_of_feedbacks;			//physical size of feedback list
-	unsigned int m_feedback_list_size;		//logical size of feedback list
-	Products* m_product_list;
-	unsigned int m_num_of_products;			//physical size of store
-	unsigned int m_product_list_size;		//logical size of store
+	Feedback** m_feedback_list;
+	int m_num_of_feedbacks;				
+	Products** m_product_list;
+	int m_num_of_products;			
 };
 
 #endif // !__SELLER_H

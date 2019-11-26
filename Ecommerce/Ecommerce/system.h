@@ -7,34 +7,37 @@
 
 class System
 {
-
 public:
 	//C'tor
+	System() = delete;
 	System(const char* name);
 
 	//D'tor
 	~System();
 
-
+	//Setters
 	bool setName(const char* name);
 
-	inline const char* getName()			const;
-	inline const  Buyer** getBuyersArray();
-	inline const int getNumOfBuyers()		const;
-	inline const Seller** getSellersArray();
-	inline const int getNumOfSellers()		const;
+	//Getters
+	inline const char* getName()		const;
+	inline Buyer** getBuyerList();
+	inline const int getNumOfBuyers()	const;
+	inline Seller** getSellerList();
+	inline const int getNumOfSellers()	const;
 
-
-
+	//QUESTION 2
+	Seller createSeller();
+	void addSeller(Seller& new_seller);
+	bool searchUsername(char* username)	const;
 
 private:
-
-	char* m_name;
-	Buyer** m_buyers_array;
-	int m_num_of_buyers;
-	Seller** m_sellers_array;
-	int m_num_of_sellers;
+	char*		m_name;
+	Buyer**		m_buyer_list;
+	int			m_num_of_buyers;
+	Seller**	m_seller_list;
+	int			m_num_of_sellers;
 	
+	System(const System& other);	//remove copy c'tor
 };
 
 

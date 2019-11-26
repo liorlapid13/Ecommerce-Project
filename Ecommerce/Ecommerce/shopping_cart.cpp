@@ -45,21 +45,21 @@ const Products** ShoppingCart::getProductList() const
 //----------------------------------------------------------------------------------------//
 void ShoppingCart::addItemToShoppingCart(Products& product)
 {
-	if (!m_product_list) //Empty shopping cart
+	if (!m_product_list)	//If empty shopping cart
 	{
 		m_num_of_products++;
 		m_product_list = new Products*[m_num_of_products];
 		m_product_list[0] = &product;
 	}
-	else //Shopping cart not empty
+	else
 	{
-		Products** temp = m_product_list;
-		m_product_list = new Products*[m_num_of_products + 1];
-		for (int i = 0; i < m_num_of_products; i++)
-			m_product_list[i] = temp[i];
-		m_product_list[m_num_of_products] = &product;
-		m_num_of_products++;
-		delete[] temp;
+		Products** temp = new Products*[m_num_of_products + 1];	//allocate memory for new product array in temporary pointer
+		for (int i = 0; i < m_num_of_products; i++)				//copy each existing product to new array
+			temp[i] = m_product_list[i];
+		temp[m_num_of_products] = &product;						//add the new product to the new array
+		m_num_of_products++;									//advance the counter for number of products
+		m_product_list = temp;									//assign the new product array to the seller's store
+		temp = nullptr;											//remove the temporary pointer from the store
 	}
 }
 //----------------------------------------------------------------------------------------//

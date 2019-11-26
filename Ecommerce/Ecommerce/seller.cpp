@@ -4,11 +4,12 @@ Seller::Seller(const char* username, const char* password, const Address& addres
 {
 	setUsername(username);
 	setPassword(password);
-	setNumOfFeedbacks(0);		
-	setNumOfProducts(0);		
+	m_num_of_feedbacks = 0;
+	m_num_of_products = 0;
 	m_feedback_list = nullptr;
-	m_product_list = nullptr;
+	m_store = nullptr;
 }
+//----------------------------------------------------------------------------------------//
 /*
 Seller::Seller(const Seller& other):m_address(other.m_address)
 {
@@ -36,8 +37,8 @@ Seller::~Seller()
 	delete[] m_username;
 	delete[] m_password;
 	for ( i = 0; i < m_num_of_products; i++)
-		delete m_product_list[i];
-	delete[] m_product_list;
+		delete m_store[i];
+	delete[] m_store;
 	for (i = 0; i < m_num_of_feedbacks; i++)
 		delete m_feedback_list[i];
 	delete[] m_feedback_list;
@@ -78,23 +79,12 @@ void Seller::setAddress(const Address& address)
 	m_address.setStreetName(address.getStreetName());
 }
 //----------------------------------------------------------------------------------------//
-bool Seller::setNumOfFeedbacks(const unsigned int numOfFeedbacks)
-{
-	m_num_of_feedbacks = numOfFeedbacks;
-}
-//----------------------------------------------------------------------------------------//
-//----------------------------------------------------------------------------------------//
-bool Seller::setNumOfProducts(const unsigned int numOfProducts)
-{
-	m_num_of_products = numOfProducts;
-}
-//----------------------------------------------------------------------------------------//
 const Products** Seller::getStore() 
 {
-	return m_product_list;
+	return m_store;
 }
 //----------------------------------------------------------------------------------------//
-const int Seller::getNumOfProducts()		 const
+const int Seller::getNumOfProducts() const
 {
 	return m_num_of_products;
 }
@@ -121,5 +111,42 @@ const char* Seller::getPassword() const
 const Address& Seller::getAddress() const
 {
 	return m_address;
+}
+//----------------------------------------------------------------------------------------//
+bool Seller::addProduct(Products& new_product)
+{
+	if (m_store != nullptr)
+	{
+		if (!searchStore(new_product.getSerialNumber()))
+		{
+			Products** temp = new Products*[m_num_of_products + 1];	//allocate memory for new product array in temporary pointer
+			for (int i = 0; i < m_num_of_products; i++)				//copy each existing product to new array
+				temp[i] = m_store[i];
+			temp[m_num_of_products] = &new_product;					//add the new product to the new array
+			m_num_of_products++;									//advance the counter for number of products
+			m_store = temp;											//assign the new product array to the seller's store
+			temp = nullptr;											//remove the temporary pointer from the store
+			return true;
+		}
+		else
+			return false;
+	}
+	else
+	{
+		m_store = new Products*[m_num_of_products + 1];			//allocate memory for new product array in temporary pointer
+		m_store[m_num_of_products] = &new_product;				//add the new product to the new array
+		m_num_of_products++;									//advance the counter for number of products
+		return true;
+	}
+}
+//----------------------------------------------------------------------------------------//
+bool Seller::searchStore(unsigned int serial_number) const
+{
+	for (int i = 0; i < m_num_of_products; i++)
+	{
+		if ((m_store[i]->getSerialNumber()) == serial_number)
+			return false;
+	}
+	return true;
 }
 //----------------------------------------------------------------------------------------//

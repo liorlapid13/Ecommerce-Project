@@ -34,12 +34,17 @@ public:
 	void printSellerList()				const;	//->Seller.printSellerInfo
 	void printBuyerList()				const;	//->Buyer.printBuyerInfo
 
+	//QUESTION 10
+
+
 private:
 	char*		m_name;
 	Buyer**		m_buyer_list;
 	int			m_num_of_buyers;
 	Seller**	m_seller_list;
 	int			m_num_of_sellers;
+	Products**	m_product_list;
+	int			m_num_of_products;
 	
 	System(const System& other);	//remove copy c'tor
 };

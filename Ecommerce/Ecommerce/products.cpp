@@ -1,19 +1,20 @@
 #include "products.h"
+int Products::serial_num_generator = 1000000;	//Serial number contains 7 digits (starting at 1,000,000)
 //----------------------------------------------------------------------------------------//
-Products::Products(const char* name, float price, unsigned int serialNumber, Products::eCategory category, char* seller)
+Products::Products(const char* name, float price, Products::eCategory category, char* seller)
 {
+	m_serial_number = ++serial_num_generator;
 	setName(name);
 	setPrice(price);
-	setSerialNumber(serialNumber);
 	setCategory(category);
 	setSeller(seller);
 }
 //----------------------------------------------------------------------------------------//
 Products::Products(const Products& other) //copy c'tor
 {
+	m_serial_number = other.m_serial_number;
 	setName(other.m_name);
 	setPrice(other.m_price);
-	setSerialNumber(other.m_serialNumber);
 	setCategory(other.m_category);
 	setSeller(other.m_seller);
 }
@@ -71,17 +72,6 @@ bool Products::setPrice(const float price)
 	}
 }
 //----------------------------------------------------------------------------------------//
-bool Products::setSerialNumber(const  unsigned int serialNumber)
-{
-	if (serialNumber > MAX_SERIAL_NUMBER)
-		return false;
-	else
-	{
-		m_serialNumber = serialNumber;
-		return true;
-	}
-}
-//----------------------------------------------------------------------------------------//
 bool Products::setCategory(Products::eCategory category)
 {
 	if (category > NUM_OF_CATEGORIES - 1 || category < 0)
@@ -116,13 +106,24 @@ const float Products::getPrice() const
 	return m_price;
 }
 //----------------------------------------------------------------------------------------//
-const unsigned int Products::getSerialNumber() const
+const int Products::getSerialNumber() const
 {
-	return m_serialNumber;
+	return m_serial_number;
 }
 //----------------------------------------------------------------------------------------//
 const Products::eCategory Products::getCategory() const
 {
 	return m_category;
+}
+//----------------------------------------------------------------------------------------//
+void Products::printProduct() const
+{
+	cout << "--------------------------------------------------\n";
+	cout << "Product name: " << m_name << endl;
+	cout << "Serial number: " << m_serial_number << endl;
+	cout << "Price: $" << m_price << " " << endl;
+	cout << "Product type: " << categoryStr[m_category] << endl;
+	cout << "Seller name: " << m_seller << endl;
+	cout << "--------------------------------------------------\n";
 }
 //----------------------------------------------------------------------------------------//

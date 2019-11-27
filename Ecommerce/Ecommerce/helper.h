@@ -9,20 +9,23 @@ using namespace std;
 #include "address.h"
 #include "seller.h"
 #include "system.h"
+#include "products.h"
 
-static const int MIN_USERNAME_LENGTH = 7;
-static const int MAX_USERNAME_LENGTH = 15;
-static const int MIN_PASSWORD_LENGTH = 6;
-static const int MAX_PASSWORD_LENGTH = 15;
-static const int NUM_OF_CATEGORIES = 4;	//product categories
-static const int MAX_STREET_LENGTH = 100;
-static const int MAX_COUNTRY_LENGTH = 30;
-static const int MAX_CITY_LENGTH = 30;
+const int MIN_USERNAME_LENGTH = 7;
+const int MAX_USERNAME_LENGTH = 15;
+const int MIN_PASSWORD_LENGTH = 6;
+const int MAX_PASSWORD_LENGTH = 15;
+const int NUM_OF_CATEGORIES = 4;	//product categories
+const int MAX_STREET_LENGTH = 100;
+const int MAX_COUNTRY_LENGTH = 30;
+const int MAX_CITY_LENGTH = 30;
+const int MAX_PRODUCT_NAME = 30;
 
 bool passwordCheck(const char* password);
 bool usernameCheck(const char* username);
 bool checkString(const int length, const char* string);
 Seller* createSeller(System& system);
 Buyer* createBuyer(System& system);
+Products* createProduct();
 
 #endif // !__HELPER_H

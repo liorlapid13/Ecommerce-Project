@@ -150,3 +150,10 @@ bool Seller::searchStore(unsigned int serial_number) const
 	return true;
 }
 //----------------------------------------------------------------------------------------//
+void Seller::printSellerInfo() const
+{
+	cout << "Username: " << m_username << endl;
+	cout << "Address: ";
+	m_address.printAddress();
+}
+//----------------------------------------------------------------------------------------//

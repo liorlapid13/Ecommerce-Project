@@ -154,3 +154,8 @@ const char* Address::getCountry() const
 	return m_country;
 }
 //----------------------------------------------------------------------------------------//
+void Address::printAddress() const
+{
+	cout << m_street_name << " " << m_house_number << ", " << m_city << ", " << m_country << ", " << m_zip_code << endl;
+}
+//----------------------------------------------------------------------------------------//

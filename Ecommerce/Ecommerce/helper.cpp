@@ -86,3 +86,91 @@ bool usernameCheck(const char* username)
 	}
 }
 //----------------------------------------------------------------------------------------//
+Seller* createSeller(System& system)
+{
+	char username[MAX_USERNAME_LENGTH];
+	do
+	{
+		cout << "Please enter username: ";
+		cin.ignore();
+		cin.getline(username, MAX_USERNAME_LENGTH);
+	} while (system.searchUsername(username));	//is this how to call a system class function to search buyer/seller list for the inputted username?
+
+	char password[MAX_PASSWORD_LENGTH];
+	cout << "Please enter password: ";
+	cin.ignore();
+	cin.getline(password, MAX_PASSWORD_LENGTH);
+
+	char country[MAX_COUNTRY_LENGTH];
+	cout << "Please enter country: ";
+	cin.ignore();
+	cin.getline(country, MAX_COUNTRY_LENGTH);
+
+	char city[MAX_CITY_LENGTH];
+	cout << "Please enter city: ";
+	cin.ignore();
+	cin.getline(city, MAX_CITY_LENGTH);
+
+	char street_name[MAX_STREET_LENGTH];
+	cout << "Please enter street name: ";
+	cin.ignore();
+	cin.getline(street_name, MAX_STREET_LENGTH);
+
+	int house_number;
+	cout << "Please enter house number: ";
+	cin.ignore();
+	cin >> house_number;
+
+	int zip_code;
+	cout << "Please enter zip_code: ";
+	cin.ignore();
+	cin >> zip_code;
+
+	Address new_address(street_name, house_number, zip_code, city, country);
+	return (new Seller(username, password, new_address));
+}
+//----------------------------------------------------------------------------------------//
+Buyer* createBuyer(System& system)
+{
+	char username[MAX_USERNAME_LENGTH];
+	do
+	{
+		cout << "Please enter username: ";
+		cin.ignore();
+		cin.getline(username, MAX_USERNAME_LENGTH);
+	} while (system.searchUsername(username));	//is this how to call a system class function to search buyer/seller list for the inputted username?
+
+	char password[MAX_PASSWORD_LENGTH];
+	cout << "Please enter password: ";
+	cin.ignore();
+	cin.getline(password, MAX_PASSWORD_LENGTH);
+
+	char country[MAX_COUNTRY_LENGTH];
+	cout << "Please enter country: ";
+	cin.ignore();
+	cin.getline(country, MAX_COUNTRY_LENGTH);
+
+	char city[MAX_CITY_LENGTH];
+	cout << "Please enter city: ";
+	cin.ignore();
+	cin.getline(city, MAX_CITY_LENGTH);
+
+	char street_name[MAX_STREET_LENGTH];
+	cout << "Please enter street name: ";
+	cin.ignore();
+	cin.getline(street_name, MAX_STREET_LENGTH);
+
+	int house_number;
+	cout << "Please enter house number: ";
+	cin.ignore();
+	cin >> house_number;
+
+	int zip_code;
+	cout << "Please enter zip_code: ";
+	cin.ignore();
+	cin >> zip_code;
+
+	Address new_address(street_name, house_number, zip_code, city, country);
+	return (new Buyer(username, password, new_address));
+}
+//----------------------------------------------------------------------------------------//

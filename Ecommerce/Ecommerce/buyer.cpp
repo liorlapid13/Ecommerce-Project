@@ -87,3 +87,10 @@ const Address& Buyer::getAddress() const
 	return m_address;
 }
 //----------------------------------------------------------------------------------------//
+void Buyer::printBuyerInfo() const
+{
+	cout << "Username: " << m_username << endl;
+	cout << "Address: "; 
+	m_address.printAddress();
+}
+//----------------------------------------------------------------------------------------//

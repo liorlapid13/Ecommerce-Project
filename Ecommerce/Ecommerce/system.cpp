@@ -76,59 +76,44 @@ const int System::getNumOfSellers() const
 	return m_num_of_sellers;
 }
 //----------------------------------------------------------------------------------------//
-Seller System::createSeller()
+void System::addBuyer(Buyer& new_buyer)
 {
-	char username[MAX_USERNAME_LENGTH];
-	char password[MAX_PASSWORD_LENGTH];
-	
-	char street_name[MAX_STREET_LENGTH];
-	int house_number;
-	char city[MAX_CITY_LENGTH];
-	char country[MAX_COUNTRY_LENGTH];
-	int zip_code;
-
-	do
+	if (!m_buyer_list)	//If empty buyer list
 	{
-	cout << "Please enter username: ";
-	cin.ignore();
-	cin.getline(username, MAX_USERNAME_LENGTH);
-	} while (searchUsername(username));
-
-	cout << "Please enter password: ";
-	cin.ignore();
-	cin.getline(password, MAX_PASSWORD_LENGTH);
-
-	cout << "Please enter country: ";
-	cin.ignore();
-	cin.getline(country, MAX_COUNTRY_LENGTH);
-
-	cout << "Please enter city: ";
-	cin.ignore();
-	cin.getline(city, MAX_CITY_LENGTH);
-
-	cout << "Please enter street name: ";
-	cin.ignore();
-	cin.getline(street_name, MAX_STREET_LENGTH);
-
-	cout << "Please enter house number: ";
-	cin.ignore();
-	cin >> house_number;
-
-	cout << "Please enter zip_code: ";
-	cin.ignore();
-	cin >> zip_code;
-	
-	/*
-	Now we need to create a Seller with an Address from these parameters.
-	Option 1: Create Address and use Copy/Move C'tor			<--- probably the better option
-	Option 2: Create new Seller C'tor with address' fields
-	*/
-
+		m_num_of_buyers++;
+		m_buyer_list = new Buyer*[m_num_of_buyers];
+		m_buyer_list[0] = &new_buyer;
+	}
+	else
+	{
+		Buyer** temp = new Buyer*[m_num_of_buyers + 1];	//allocate memory for new buyer array in temporary parameter
+		for (int i = 0; i < m_num_of_buyers; i++)		//copy each existing buyer to new array
+			temp[i] = m_buyer_list[i];
+		temp[m_num_of_buyers] = &new_buyer;				//add the new buyer to the new array
+		m_num_of_buyers++;								//advance the counter for number of buyers
+		m_buyer_list = temp;							//assign the new buyer array
+		temp = nullptr;									//remove the temporary pointer
+	}
 }
 //----------------------------------------------------------------------------------------//
 void System::addSeller(Seller& new_seller)
 {
-
+	if (!m_seller_list)	//If empty seller list
+	{
+		m_num_of_sellers++;
+		m_seller_list = new Seller*[m_num_of_sellers];
+		m_seller_list[0] = &new_seller;
+	}
+	else
+	{
+		Seller** temp = new Seller*[m_num_of_sellers + 1];	//allocate memory for new seller array in temporary parameter
+		for (int i = 0; i < m_num_of_sellers; i++)			//copy each existing seller to new array
+			temp[i] = m_seller_list[i];
+		temp[m_num_of_sellers] = &new_seller;				//add the new seller to the new array
+		m_num_of_sellers++;									//advance the counter for number of sellers
+		m_seller_list = temp;								//assign the new seller array
+		temp = nullptr;										//remove the temporary pointer
+	}
 }
 //----------------------------------------------------------------------------------------//
 bool System::searchUsername(char* username)	const
@@ -148,5 +133,19 @@ bool System::searchUsername(char* username)	const
 	}
 
 	return true;
+}
+//----------------------------------------------------------------------------------------//
+void System::printBuyerList() const
+{
+	cout << "Buyer List\n";
+	for (int i = 0; i < m_num_of_buyers; i++)
+		m_buyer_list[i]->printBuyerInfo();
+}
+//----------------------------------------------------------------------------------------//
+void System::printSellerList() const
+{
+	cout << "Seller List\n";
+	for (int i = 0; i < m_num_of_sellers; i++)
+		m_seller_list[i]->printSellerInfo();
 }
 //----------------------------------------------------------------------------------------//

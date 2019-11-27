@@ -30,6 +30,9 @@ public:
 	bool setPassword(const char* password);
 	void setAddress(const Address& address);
 
+	//QUESTION 8
+	void printBuyerInfo()							const;
+
 	//Getters
 	inline const char* getUserName()				const;
 	inline const char* getPassword()				const;

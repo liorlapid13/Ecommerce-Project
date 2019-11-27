@@ -25,10 +25,14 @@ public:
 	inline Seller** getSellerList();
 	inline const int getNumOfSellers()	const;
 
-	//QUESTION 2
-	Seller createSeller();
+	//QUESTIONS 1,2
 	void addSeller(Seller& new_seller);
+	void addBuyer(Buyer& new_buyer);
 	bool searchUsername(char* username)	const;
+
+	//QUESTIONS 8,9
+	void printSellerList()				const;	//->Seller.printSellerInfo
+	void printBuyerList()				const;	//->Buyer.printBuyerInfo
 
 private:
 	char*		m_name;

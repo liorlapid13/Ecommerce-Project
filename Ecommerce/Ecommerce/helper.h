@@ -7,6 +7,8 @@ using namespace std;
 
 #include "buyer.h"
 #include "address.h"
+#include "seller.h"
+#include "system.h"
 
 static const int MIN_USERNAME_LENGTH = 7;
 static const int MAX_USERNAME_LENGTH = 15;
@@ -20,5 +22,7 @@ static const int MAX_CITY_LENGTH = 30;
 bool passwordCheck(const char* password);
 bool usernameCheck(const char* username);
 bool checkString(const int length, const char* string);
+Seller* createSeller(System& system);
+Buyer* createBuyer(System& system);
 
 #endif // !__HELPER_H

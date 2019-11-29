@@ -10,6 +10,7 @@ using namespace std;
 #include "seller.h"
 #include "system.h"
 #include "products.h"
+#include "shopping_cart.h"
 
 const int MIN_USERNAME_LENGTH = 7;
 const int MAX_USERNAME_LENGTH = 15;
@@ -27,5 +28,6 @@ bool checkString(const int length, const char* string);
 Seller* createSeller(System& system);
 Buyer* createBuyer(System& system);
 Products* createProduct();
+void newOrder(Buyer& buyer);
 
 #endif // !__HELPER_H

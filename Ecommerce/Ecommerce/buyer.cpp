@@ -1,10 +1,11 @@
 #include "buyer.h"
 //----------------------------------------------------------------------------------------//
 Buyer::Buyer(const char* username, const char* password, 
-	const Address& address) : m_address(address), m_shoppingCart()
+	const Address& address) : m_address(address), m_shopping_cart()
 {
 	setUsername(username);
 	setPassword(password);
+	m_order= nullptr;
 }
 //----------------------------------------------------------------------------------------//
 /*
@@ -69,7 +70,7 @@ void Buyer::setAddress(const Address& address)
 //----------------------------------------------------------------------------------------//
 const ShoppingCart& Buyer::getShoppingCart() const
 {
-	return m_shoppingCart;
+	return m_shopping_cart;
 }
 //----------------------------------------------------------------------------------------//
 const char* Buyer::getUserName() const
@@ -92,5 +93,34 @@ void Buyer::printBuyerInfo() const
 	cout << "Username: " << m_username << endl;
 	cout << "Address: "; 
 	m_address.printAddress();
+}
+//----------------------------------------------------------------------------------------//
+void Buyer::createOrder(int num_of_selected_products, int* product_index_array, float total_price)
+{
+	int new_shopping_cart_size = m_shopping_cart.getNumProducts() - num_of_selected_products;
+	Products** new_shopping_cart = new Products*[new_shopping_cart_size];
+	Products** new_order_product_list = new Products*[num_of_selected_products];
+	
+	int cart_index = 0, order_index = 0;
+
+	for (int i = 0; i < m_shopping_cart.getNumProducts(); i++)
+	{
+		switch (product_index_array[i])
+		{
+		case 0:
+			new_shopping_cart[cart_index] = m_shopping_cart.getProductList()[i];
+			cart_index++;
+			break;
+		case 1:
+			new_order_product_list[order_index] = m_shopping_cart.getProductList()[i];
+			order_index++;
+			break;
+		}
+	}
+
+	m_shopping_cart.setNumProducts(new_shopping_cart_size);
+	m_shopping_cart.setProductList(new_shopping_cart);
+
+	m_order = new Order(new_order_product_list, num_of_selected_products, total_price);
 }
 //----------------------------------------------------------------------------------------//

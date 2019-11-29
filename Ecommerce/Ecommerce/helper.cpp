@@ -196,6 +196,55 @@ Products* createProduct()
 	cin.ignore();
 	cin.getline(username, MAX_USERNAME_LENGTH);
 
-	return (new Products(product_name,price,(Products::eCategory)category,)
+	return (new Products(product_name, price, (Products::eCategory)category, username));
+}
+//----------------------------------------------------------------------------------------//
+void newOrder(Buyer& buyer)
+{
+	int cart_size = buyer.getShoppingCart().getNumProducts();
+	int* product_index_array = new int[cart_size];
+	int selection;
+	Products** temp = buyer.getShoppingCart().getProductList();
+
+	cout << "Your Shopping Cart:\n";
+
+	for (int i = 0; i < cart_size; i++)
+	{
+		temp[i]->printProduct;
+		cout << "Enter " << i << " to add " << temp[i]->getName() <<" to your order\n";
+	}
+	
+	cout << "Please enter the code/s of the product/s you wish to purchase (one by one)\n";
+
+	cin >> selection;
+
+	float total_price = 0;
+	int	num_of_selected_products = 0;
+
+	while (selection != -1)
+	{
+		if (selection >= cart_size || selection < 0)
+			cout << "Invalid product number, please try again: ";
+		else if (product_index_array[selection] == 1)
+			cout << "Product already selected\n";
+		else
+		{
+			product_index_array[selection] = 1;
+			num_of_selected_products++;
+			total_price += temp[selection]->getPrice();
+			cout << temp[selection]->getName() << " added to order\n";
+			cout << "Total price: " << total_price << endl;
+			cout << "Enter the next product code or enter -1 to checkout: ";
+		}
+
+		cin >> selection;
+	}
+
+	if (num_of_selected_products == 0)
+		cout << "No products selected, order cancelled\n";
+	else
+		buyer.createOrder(num_of_selected_products, product_index_array, total_price);
+
+	delete[] product_index_array;
 }
 //----------------------------------------------------------------------------------------//

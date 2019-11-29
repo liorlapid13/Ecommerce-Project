@@ -2,8 +2,8 @@
 //----------------------------------------------------------------------------------------//
 ShoppingCart::ShoppingCart()
 {
-	setNumProducts(0);
 	m_product_list = nullptr;
+	m_num_of_products = 0;
 }
 //----------------------------------------------------------------------------------------//
 /*
@@ -28,17 +28,24 @@ ShoppingCart::~ShoppingCart()
 	delete[] m_product_list;
 }
 //----------------------------------------------------------------------------------------//
-bool ShoppingCart::setNumProducts(const unsigned int num_of_products)
+bool ShoppingCart::setNumProducts(int num_of_products)
 {
 	m_num_of_products = num_of_products;
 }
 //----------------------------------------------------------------------------------------//
-const unsigned int ShoppingCart::getNumProducts() const
+bool ShoppingCart::setProductList(Products** product_list)
+{
+	if (m_product_list)
+		delete[] m_product_list;
+	m_product_list = product_list;
+}
+//----------------------------------------------------------------------------------------//
+const int ShoppingCart::getNumProducts()  const
 {
 	return m_num_of_products;
 }
 //----------------------------------------------------------------------------------------//
-const Products** ShoppingCart::getProductList() const
+Products** ShoppingCart::getProductList() const
 {
 	return m_product_list;
 }

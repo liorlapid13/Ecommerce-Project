@@ -149,3 +149,12 @@ void System::printSellerList() const
 		m_seller_list[i]->printSellerInfo();
 }
 //----------------------------------------------------------------------------------------//
+void System::printProductsByName(char* product_name) const
+{
+	for (int i = 0; i < m_num_of_products; i++)
+	{
+		if (strcmp(m_product_list[i]->getName(), product_name) == 0)
+			m_product_list[i]->printProduct();
+	}
+}	
+//----------------------------------------------------------------------------------------//

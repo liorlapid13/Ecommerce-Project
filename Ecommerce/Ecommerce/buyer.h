@@ -9,6 +9,7 @@ using namespace std;
 #include "address.h"
 #include "products.h"
 #include "shopping_cart.h"
+#include "order.h"
 
 class Buyer
 {
@@ -30,20 +31,24 @@ public:
 	bool setPassword(const char* password);
 	void setAddress(const Address& address);
 
-	//QUESTION 8
-	void printBuyerInfo()							const;
-
 	//Getters
 	inline const char* getUserName()				const;
 	inline const char* getPassword()				const;
 	inline const Address& getAddress()				const;
 	inline const ShoppingCart& getShoppingCart()	const;
 
+	//QUESTION 8
+	void printBuyerInfo()							const;
+
+	//QUESTION 6
+	void createOrder(int num_of_selected_products, int* product_index_array, float total_price);
+
 private:
 	char*			m_username;
 	char*			m_password;
 	Address			m_address;
-	ShoppingCart	m_shoppingCart;
+	ShoppingCart	m_shopping_cart;
+	Order*			m_order;
 };
 
 #endif // __BUYER_H

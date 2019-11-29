@@ -19,23 +19,23 @@ public:
 	bool setName(const char* name);
 
 	//Getters
-	inline const char* getName()		const;
+	inline const char* getName()					const;
 	inline Buyer** getBuyerList();
-	inline const int getNumOfBuyers()	const;
+	inline const int getNumOfBuyers()				const;
 	inline Seller** getSellerList();
-	inline const int getNumOfSellers()	const;
+	inline const int getNumOfSellers()				const;
 
 	//QUESTIONS 1,2
 	void addSeller(Seller& new_seller);
 	void addBuyer(Buyer& new_buyer);
-	bool searchUsername(char* username)	const;
+	bool searchUsername(char* username)				const;
 
 	//QUESTIONS 8,9
-	void printSellerList()				const;	//->Seller.printSellerInfo
-	void printBuyerList()				const;	//->Buyer.printBuyerInfo
+	void printSellerList()							const;	//->Seller.printSellerInfo
+	void printBuyerList()							const;	//->Buyer.printBuyerInfo
 
 	//QUESTION 10
-
+	void printProductsByName(char* product_name)	const;	//->Products.printProduct
 
 private:
 	char*		m_name;

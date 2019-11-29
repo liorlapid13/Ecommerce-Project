@@ -16,20 +16,21 @@ public:
 private:
 	ShoppingCart(const ShoppingCart& other);	//copy c'tor
 	ShoppingCart(ShoppingCart&& other);			//move c'tor
-
+	
 public:
 	//Setters
-	bool setNumProducts(const unsigned int num_of_products);
-	
+	bool setNumProducts(int num_of_products);
+	bool setProductList(Products** product_list);
+
 	//Getters
-	inline const Products** getProductList()	const;
-	inline const unsigned int getNumProducts()	const;
+	inline Products** getProductList()			const;
+	inline const int getNumProducts()           const;
 
 	//QUESTION 5
 	void addItemToShoppingCart(Products& product);
 
 private:
-	unsigned int	m_num_of_products;
+	int	            m_num_of_products;
 	Products**		m_product_list;
 };
 

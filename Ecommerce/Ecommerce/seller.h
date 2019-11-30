@@ -40,6 +40,9 @@ public:
 	bool addProduct(Products& new_product);
 	bool searchStore(unsigned int serial_number)	const;
 
+	//QUESTION 4
+	void addFeedback(Feedback& new_feedback);
+
 	//QUESTION 9
 	void printSellerInfo()							const;
 

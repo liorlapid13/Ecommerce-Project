@@ -19,6 +19,7 @@ private:
 	Order(const Order& other);	//copy c'tor
 	Order(Order&& other);		//move c'tor
 
+public:
 	//Setters
 	/* bool setProductList(Products** product_list, const int list_size); */
 	bool setTotalPrice(const float total_price);

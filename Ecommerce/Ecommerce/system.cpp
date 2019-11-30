@@ -86,12 +86,13 @@ void System::addBuyer(Buyer& new_buyer)
 	}
 	else
 	{
-		Buyer** temp = new Buyer*[m_num_of_buyers + 1];	//allocate memory for new buyer array in temporary parameter
-		for (int i = 0; i < m_num_of_buyers; i++)		//copy each existing buyer to new array
+		Buyer** temp = new Buyer*[m_num_of_buyers + 1];	//allocate memory for new buyer list
+		for (int i = 0; i < m_num_of_buyers; i++)		//copy each existing buyer to new list
 			temp[i] = m_buyer_list[i];
-		temp[m_num_of_buyers] = &new_buyer;				//add the new buyer to the new array
+		temp[m_num_of_buyers] = &new_buyer;				//add the new buyer to the new list
 		m_num_of_buyers++;								//advance the counter for number of buyers
-		m_buyer_list = temp;							//assign the new buyer array
+		delete[] m_buyer_list;							//delete the old buyer list
+		m_buyer_list = temp;							//assign the new buyer list
 		temp = nullptr;									//remove the temporary pointer
 	}
 }
@@ -111,26 +112,31 @@ void System::addSeller(Seller& new_seller)
 			temp[i] = m_seller_list[i];
 		temp[m_num_of_sellers] = &new_seller;				//add the new seller to the new array
 		m_num_of_sellers++;									//advance the counter for number of sellers
+		delete[] m_seller_list;								//delete the old seller list
 		m_seller_list = temp;								//assign the new seller array
 		temp = nullptr;										//remove the temporary pointer
 	}
 }
 //----------------------------------------------------------------------------------------//
+/*
+Search for username in system user lists.
+*/
 bool System::searchUsername(char* username)	const
 {
-	//search for username in buyer list
-	for (int i = 0; i < m_num_of_buyers; i++)
-	{
-		if (strcmp(m_buyer_list[i]->getUserName(),username) == 0)
-			return false;
-	}
+		//search for username in buyer list
+		for (int i = 0; i < m_num_of_buyers; i++)
+		{
+			if (strcmp(m_buyer_list[i]->getUserName(), username) == 0)
+				return false;
+		}
 
-	//search for username in seller list
-	for (int i = 0; i < m_num_of_sellers; i++)
-	{
-		if (strcmp(m_buyer_list[i]->getUserName(), username) == 0)
-			return false;
-	}
+		//search for username in seller list
+		for (int i = 0; i < m_num_of_sellers; i++)
+		{
+			if (strcmp(m_buyer_list[i]->getUserName(), username) == 0)
+				return false;
+		}
+
 
 	return true;
 }
@@ -157,4 +163,36 @@ void System::printProductsByName(char* product_name) const
 			m_product_list[i]->printProduct();
 	}
 }	
+//----------------------------------------------------------------------------------------//
+Seller* System::findSeller(const char* username) const
+{
+	for (int i = 0; i < m_num_of_sellers; i++)
+	{
+		if (strcmp(m_seller_list[i]->getUserName(), username) == 0)
+			return m_seller_list[i];
+	}
+
+	return nullptr;	//Seller not found
+}
+//----------------------------------------------------------------------------------------//
+void System::newProduct(Products& new_product)
+{
+	if (!m_product_list)	//If empty product list
+	{
+		m_num_of_sellers++;
+		m_product_list = new Products*[m_num_of_products];
+		m_product_list[0] = &new_product;
+	}
+	else
+	{
+		Products** temp = new Products*[m_num_of_products + 1];	//allocate memory for new product list
+		for (int i = 0; i < m_num_of_products; i++)				//copy each existing product to new list
+			temp[i] = m_product_list[i];
+		temp[m_num_of_products] = &new_product;					//add the new product to the new list
+		m_num_of_products++;									//advance the counter for number of products
+		delete[] m_product_list;								//delete the old product list
+		m_product_list = temp;									//assign the new product list
+		temp = nullptr;											//initialize the temporary pointer
+	}
+}
 //----------------------------------------------------------------------------------------//

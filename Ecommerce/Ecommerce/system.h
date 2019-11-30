@@ -30,12 +30,19 @@ public:
 	void addBuyer(Buyer& new_buyer);
 	bool searchUsername(char* username)				const;
 
+	//QUESTION 3
+	void newProduct(Products& new_product);
+
+	//QUESTION 4
+	Seller* findSeller(const char* username)		const;
+
 	//QUESTIONS 8,9
 	void printSellerList()							const;	//->Seller.printSellerInfo
 	void printBuyerList()							const;	//->Buyer.printBuyerInfo
 
 	//QUESTION 10
 	void printProductsByName(char* product_name)	const;	//->Products.printProduct
+
 
 private:
 	char*		m_name;

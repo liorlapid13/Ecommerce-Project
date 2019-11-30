@@ -119,11 +119,12 @@ bool Seller::addProduct(Products& new_product)
 	{
 		if (!searchStore(new_product.getSerialNumber()))
 		{
-			Products** temp = new Products*[m_num_of_products + 1];	//allocate memory for new product array in temporary pointer
-			for (int i = 0; i < m_num_of_products; i++)				//copy each existing product to new array
+			Products** temp = new Products*[m_num_of_products + 1];	//allocate memory for new product list
+			for (int i = 0; i < m_num_of_products; i++)				//copy each existing product to new list
 				temp[i] = m_store[i];
-			temp[m_num_of_products] = &new_product;					//add the new product to the new array
+			temp[m_num_of_products] = &new_product;					//add the new product to the new list
 			m_num_of_products++;									//advance the counter for number of products
+			delete[] m_store;										//delete the old store
 			m_store = temp;											//assign the new product array to the seller's store
 			temp = nullptr;											//remove the temporary pointer from the store
 			return true;
@@ -155,5 +156,26 @@ void Seller::printSellerInfo() const
 	cout << "Username: " << m_username << endl;
 	cout << "Address: ";
 	m_address.printAddress();
+}
+//----------------------------------------------------------------------------------------//
+void Seller::addFeedback(Feedback& new_feedback)
+{
+	if (!m_feedback_list)	//If empty feedback list
+	{
+		m_num_of_feedbacks++;
+		m_feedback_list = new Feedback*[m_num_of_feedbacks];
+		m_feedback_list[0] = &new_feedback;
+	}
+	else
+	{
+		Feedback** temp = new Feedback*[m_num_of_feedbacks + 1];	//allocate memory for new feedback list
+		for (int i = 0; i < m_num_of_feedbacks; i++)				//copy each existing feedback to new list
+			temp[i] = m_feedback_list[i];
+		temp[m_num_of_feedbacks] = &new_feedback;					//add the new feedback to the new list
+		m_num_of_feedbacks++;										//advance the counter for number of feedbacks
+		delete[] m_feedback_list;									//delete the old feedback list
+		m_feedback_list = temp;										//assign the new feedback list
+		temp = nullptr;												//initialize the temporary pointer
+	}
 }
 //----------------------------------------------------------------------------------------//

@@ -60,13 +60,14 @@ void ShoppingCart::addItemToShoppingCart(Products& product)
 	}
 	else
 	{
-		Products** temp = new Products*[m_num_of_products + 1];	//allocate memory for new product array in temporary pointer
-		for (int i = 0; i < m_num_of_products; i++)				//copy each existing product to new array
+		Products** temp = new Products*[m_num_of_products + 1];	//allocate memory for new product list
+		for (int i = 0; i < m_num_of_products; i++)				//copy each existing product to new list
 			temp[i] = m_product_list[i];
-		temp[m_num_of_products] = &product;						//add the new product to the new array
+		temp[m_num_of_products] = &product;						//add the new product to the new list
 		m_num_of_products++;									//advance the counter for number of products
-		m_product_list = temp;									//assign the new product array to the seller's store
-		temp = nullptr;											//remove the temporary pointer from the store
+		delete[] m_product_list;								//delete the old product list
+		m_product_list = temp;									//assign the new product list
+		temp = nullptr;											//remove the temporary pointer
 	}
 }
 //----------------------------------------------------------------------------------------//

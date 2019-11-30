@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string.h>
+#include <time.h>
 using namespace std;
 
 #include "buyer.h"
@@ -21,6 +22,7 @@ const int MAX_STREET_LENGTH = 100;
 const int MAX_COUNTRY_LENGTH = 30;
 const int MAX_CITY_LENGTH = 30;
 const int MAX_PRODUCT_NAME = 30;
+const int MAX_FEEDBACK_LENGTH = 250;
 
 bool passwordCheck(const char* password);
 bool usernameCheck(const char* username);
@@ -29,5 +31,7 @@ Seller* createSeller(System& system);
 Buyer* createBuyer(System& system);
 Products* createProduct();
 void newOrder(Buyer& buyer);
+void completeOrder(Buyer& buyer);
+void createFeedback(Buyer& buyer, System& system);
 
 #endif // !__HELPER_H

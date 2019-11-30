@@ -94,7 +94,8 @@ Seller* createSeller(System& system)
 		cout << "Please enter username: ";
 		cin.ignore();
 		cin.getline(username, MAX_USERNAME_LENGTH);
-	} while (system.searchUsername(username));	//is this how to call a system class function to search buyer/seller list for the inputted username?
+	} while (system.searchUsername(username));
+	//is this how to call a system class function to search buyer/seller list for the inputted username?
 
 	char password[MAX_PASSWORD_LENGTH];
 	cout << "Please enter password: ";
@@ -199,10 +200,21 @@ Products* createProduct()
 	return (new Products(product_name, price, (Products::eCategory)category, username));
 }
 //----------------------------------------------------------------------------------------//
+/*
+This function presents the buyer with their shopping cart and asks him which item/s he wishes to add to his order.
+The buyer's selections are saved in "product_index_array" which is a bucket array referring to the products'
+original index in the shopping cart. 
+1=item selected, 0=item not selected
+If atleast one item is selected, the "product_index_array" is sent to a function that creates the new order and updates
+the shopping cart.
+*/
 void newOrder(Buyer& buyer)
 {
 	int cart_size = buyer.getShoppingCart().getNumProducts();
 	int* product_index_array = new int[cart_size];
+	for (int i = 0; i < cart_size; i++)
+		product_index_array[i] = 0;
+
 	int selection;
 	Products** temp = buyer.getShoppingCart().getProductList();
 
@@ -245,6 +257,87 @@ void newOrder(Buyer& buyer)
 	else
 		buyer.createOrder(num_of_selected_products, product_index_array, total_price);
 
+	temp = nullptr;
 	delete[] product_index_array;
+}
+//----------------------------------------------------------------------------------------//
+void completeOrder(Buyer& buyer)
+{
+	if (buyer.getCurrentOrder() != nullptr)
+	{
+		cout << "Your Order:\n";
+		for (int i = 0; i < buyer.getCurrentOrder()->getListSize(); i++)
+			buyer.getCurrentOrder()->getProductList()[i]->printProduct();
+		cout << "Total price: " << buyer.getCurrentOrder()->getTotalPrice() << endl;
+		cout << "Your funds: " << buyer.getWallet() << endl;
+		cout << "Please enter 1 to pay, or 0 to cancel: ";
+		int selection;
+		cin >> selection;
+		switch (selection)
+		{
+		case 0:
+			cout << "Payment cancelled\n";
+			break;
+		case 1:
+			if (buyer.payOrder())
+				cout << "Order purchased successfully\n";
+			else
+				cout << "Insufficient funds in wallet, please top-up and try again\n";
+			break;
+		default:
+			cout << "Invalid input, payment cancelled\n";
+			break;
+		}
+	}
+	else
+		cout << "No Orders available\n";
+}
+//----------------------------------------------------------------------------------------//
+/*
+Presents buyer with his order history, and asks him to select seller for new feedback.
+Once buyer selects a seller, calls buyer method "newFeedback" to create the new feedback if terms are met.
+*/
+void createFeedback(Buyer& buyer, System& system)
+{
+	cout << "Please select for which seller you wish to publish a feedback\n";
+	for (int i = 0; i < buyer.getNumOrders(); i++)
+	{
+		cout << "Order No." << i + 1 << ": \n";
+		for (int j = 0; j < buyer.getOrderHistory()[i]->getListSize(); j++)
+		{
+			buyer.getOrderHistory()[i]->getProductList()[j]->printProduct();
+			cout << "Enter " << j << " to publish a feedback for this seller\n";
+		}
+
+		cout << "Please select a seller or enter -1 for next order: ";
+		int selection;
+		cin >> selection;
+
+		while ((selection != -1) && selection >= (buyer.getOrderHistory()[i]->getListSize()))
+		{
+			cout << "Invalid input, please try again: ";
+			cin >> selection;
+		}
+
+		if (selection != -1)
+		{
+			cout << "Seller selected, please enter feedback description (Max 250 letters):\n";
+			char description[MAX_FEEDBACK_LENGTH];
+			cin.getline(description, MAX_FEEDBACK_LENGTH);
+
+			cout << "Enter day, month and year (for example, 30 11 2019): ";
+			int day, month, year;
+			cin >> day >> month >> year;
+			Date date(day, month, year);
+			if (buyer.newFeedback(system.findSeller(buyer.getOrderHistory()[i]->getProductList()[selection]->getSeller()),
+				description, date))
+				cout << "Feedback added successfully\n";
+			else
+				cout << "Feedback for this seller already exists, feedback cancelled\n";
+			return;
+		}
+	}
+
+	cout << "No more orders, feedback cancelled\n";
 }
 //----------------------------------------------------------------------------------------//

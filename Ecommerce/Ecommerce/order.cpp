@@ -37,7 +37,7 @@ bool Order::setListSize(const int list_size)
 	m_list_size = list_size;
 }
 //----------------------------------------------------------------------------------------//
-const Products** Order::getProductList() const
+ Products** Order::getProductList() const
 {
 	return m_product_list;
 }

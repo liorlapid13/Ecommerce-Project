@@ -1,7 +1,7 @@
 #ifndef __ADDRESS_H
 #define __ADDRESS_H
 
-#include "helper.h"
+#include "validation.h"
 
 class Address
 {
@@ -9,8 +9,8 @@ public:
 	//C'tors
 	Address() = delete;
 	Address(const char* street_name,
-			const int	house_number,
-			const int	zip_code,
+			int	house_number,
+			int	zip_code,
 			const char* city,
 			const char* country);
 	Address(const Address& other);	//copy c'tor
@@ -29,8 +29,8 @@ public:
 
 	//Getters
 	inline const char*	getStreetName()		const;
-	inline const int	getHouseNumber()	const;
-	inline const int	getZipCode()		const;
+	inline int	getHouseNumber()			const;
+	inline int	getZipCode()				const;
 	inline const char*	getCity()			const;
 	inline const char*	getCountry()		const;
 

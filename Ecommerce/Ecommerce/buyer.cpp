@@ -89,7 +89,7 @@ void Buyer::setNumOrders(const int num_of_orders)
 	m_num_of_orders = num_of_orders;
 }
 //----------------------------------------------------------------------------------------//
-const ShoppingCart& Buyer::getShoppingCart() const
+ShoppingCart& Buyer::getShoppingCart()
 {
 	return m_shopping_cart;
 }
@@ -104,7 +104,7 @@ const char* Buyer::getPassword() const
 	return m_password;
 }
 //----------------------------------------------------------------------------------------//
-const Order* Buyer::getCurrentOrder() const
+Order* Buyer::getCurrentOrder() const
 {
 	return m_current_order;
 }
@@ -114,17 +114,17 @@ const Address& Buyer::getAddress() const
 	return m_address;
 }
 //----------------------------------------------------------------------------------------//
-const double Buyer::getWallet() const
+double Buyer::getWallet() const
 {
 	return m_wallet;
 }
 //----------------------------------------------------------------------------------------//
-const Order** Buyer::getOrderHistory() const
+ Order** Buyer::getOrderHistory() const
 {
 	return m_order_history;
 }
 //----------------------------------------------------------------------------------------//
-const int Buyer::getNumOrders() const
+int Buyer::getNumOrders() const
 {
 	return m_num_of_orders;
 }
@@ -215,18 +215,18 @@ void Buyer::addOrderToHistory()
 Checks if feedback by this buyer already exists in seller's feedback list.
 If not, creates the feedback and adds it to list via a seller class method "addFeedback".
 */
-bool Buyer::newFeedback(Seller* seller, const char* description, const Date& date)
+bool Buyer::newFeedback(Products* product, Seller* seller, const char* description, const Date& date)
 {
 	if (seller->getNumOfFeedbacks() != 0)
 	{
 		for (int i = 0; i < seller->getNumOfFeedbacks(); i++)
 		{
-			if (seller->getFeedbackList()[i]->getBuyer() == this)
+			if (seller->getFeedbackList()[i]->getBuyer() == this && seller->getFeedbackList()[i]->getProduct() == product)
 				return false;
 		}
 	}
 
-	Feedback new_feedback(date, description, *this);
+	Feedback new_feedback(date, description, *this, *product);
 	seller->addFeedback(new_feedback);
 	return true;
 }

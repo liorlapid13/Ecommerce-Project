@@ -1,7 +1,7 @@
 #include "address.h"
 //----------------------------------------------------------------------------------------//
-Address::Address(const char* street_name, const int	house_number,
-	const int zip_code, const char* city, const char* country)
+Address::Address(const char* street_name, int	house_number,
+	 int zip_code, const char* city, const char* country)
 {
 	setStreetName(street_name);		//Street name
 	setHouseNumber(house_number);	//House number
@@ -134,12 +134,12 @@ const char* Address::getStreetName() const
 	return m_street_name;
 }
 //----------------------------------------------------------------------------------------//
-const int Address::getHouseNumber() const
+ int Address::getHouseNumber() const
 {
 	return m_house_number;
 }
 //----------------------------------------------------------------------------------------//
-const int Address::getZipCode() const
+ int Address::getZipCode() const
 {
 	return m_zip_code;
 }

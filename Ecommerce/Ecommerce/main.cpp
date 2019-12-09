@@ -4,9 +4,14 @@ using namespace std;
 
 #pragma warning(disable: 4996)
 
-#include "buyer.h"
+#include "menu.h"
 
 void main()
 {
-	
+	System system("ECOM");
+	Menu menu(&system);
+
+	menu.mainMenu();
+
+
 }

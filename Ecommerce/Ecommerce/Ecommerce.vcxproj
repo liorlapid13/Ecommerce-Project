@@ -119,25 +119,27 @@
     <ClCompile Include="buyer.cpp" />
     <ClCompile Include="date.cpp" />
     <ClCompile Include="feedback.cpp" />
-    <ClCompile Include="helper.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="menu.cpp" />
     <ClCompile Include="order.cpp" />
     <ClCompile Include="products.cpp" />
     <ClCompile Include="seller.cpp" />
     <ClCompile Include="shopping_cart.cpp" />
     <ClCompile Include="system.cpp" />
+    <ClCompile Include="validation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="address.h" />
     <ClInclude Include="buyer.h" />
     <ClInclude Include="date.h" />
     <ClInclude Include="feedback.h" />
-    <ClInclude Include="helper.h" />
+    <ClInclude Include="menu.h" />
     <ClInclude Include="order.h" />
     <ClInclude Include="products.h" />
     <ClInclude Include="seller.h" />
     <ClInclude Include="shopping_cart.h" />
     <ClInclude Include="system.h" />
+    <ClInclude Include="validation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

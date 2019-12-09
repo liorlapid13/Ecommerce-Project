@@ -26,9 +26,9 @@ public:
 	bool setListSize(const int list_size);
 
 	//Getters
-	inline const Products** getProductList()	const;
-	inline const int getListSize()				const;
-	inline const float getTotalPrice()			const;
+	inline Products** getProductList()	const;
+	inline const int getListSize()		const;
+	inline const float getTotalPrice()	const;
 
 private:
 	Products**	m_product_list;

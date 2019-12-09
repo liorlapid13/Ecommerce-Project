@@ -1,7 +1,7 @@
 #ifndef __SHOPPING_CART_H
 #define __SHOPPING_CART_H
 
-#include "helper.h"
+#include "validation.h"
 #include "products.h"
 
 class ShoppingCart

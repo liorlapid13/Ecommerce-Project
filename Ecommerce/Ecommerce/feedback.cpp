@@ -1,9 +1,10 @@
 #include "feedback.h"
 //----------------------------------------------------------------------------------------//
-Feedback::Feedback(const Date& date, const char* description, Buyer& buyer) :m_date(date)
+Feedback::Feedback(const Date& date, const char* description, Buyer& buyer, Products& product) :m_date(date)
 {
 	m_buyer = &buyer;
 	setDescription(description);
+	m_product = &product;
 }
 //----------------------------------------------------------------------------------------//
 bool Feedback::setDescription(const char* description)
@@ -40,5 +41,10 @@ const char* Feedback::getDescription() const
 const Buyer* Feedback::getBuyer() const
 {
 	return m_buyer;
+}
+//----------------------------------------------------------------------------------------//
+const Products* Feedback::getProduct() const
+{
+	return m_product;
 }
 //----------------------------------------------------------------------------------------//

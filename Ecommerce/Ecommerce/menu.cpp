@@ -336,11 +336,17 @@ void Menu::signUp(int user_type)
 	}
 }
 //----------------------------------------------------------------------------------------//
+/*
+Receives user type (1=buyer,2=seller) and asks user to input his log-in details (username and password).
+Checks the relevant buyer/seller database and looks for a match of username and password.
+If username/password are invalid, asks the user if he wants to continue trying or exit to main menu.
+If username/password are correct, opens the corresponding buyer/seller menu.
+*/
 void Menu::logIn(int user_type)
 {
-	bool user_found = 0;
+	bool logged_in = 0;
 
-	while (!user_found)
+	while (!logged_in)
 	{
 		cout << "Enter username: ";
 		char username[MAX_USERNAME_LENGTH];
@@ -352,24 +358,46 @@ void Menu::logIn(int user_type)
 		cin.ignore();
 		cin >> password;
 
-		if (!(m_system->userLogIn(username, password, user_type)))
+		if (user_type == 1)
 		{
-			cout << "Username/Password do not match\n";
-			cout << "If you wish to exit login, press 0 else press 1: ";
+			Buyer* buyer = m_system->findBuyer(username);
+			if (!buyer)
+				break;
+			else if (strcmp(buyer->getPassword(), password) == 0)
+			{
+				logged_in = 1;
+				this->buyerMenu(*buyer);
+			}
 		}
 		else
-			user_found == 1;
+		{
+			Seller* seller = m_system->findSeller(username);
+			if (!seller)
+				break;
+			else if (strcmp(seller->getPassword(), password) == 0)
+			{
+				logged_in = 1;
+				this->sellerMenu(*seller);
+			}
+		}
+		
+		if (!logged_in)
+		{
+			cout << "Username/Password incorrect! Would you like to try again?\n";
+			cout << "Enter 1 to try again or -1 to return to main menu: ";
+			int retry;
+			cin >> retry;
+			while (retry != 1 && retry != -1)
+			{
+				cout << "Invalid input, please try again: ";
+				cin >> retry;
+			}
 
-		
-	}
-		
-	if (user_type == 1)
-	{
-		//buyer menu
-	}
-	else
-	{
-		//seller menu
+			if (retry == -1)
+			{
+				logged_in = 1;
+			}
+		}
 	}
 }
 //----------------------------------------------------------------------------------------//

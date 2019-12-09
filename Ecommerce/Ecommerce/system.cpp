@@ -175,6 +175,17 @@ Seller* System::findSeller(const char* username) const
 	return nullptr;	//Seller not found
 }
 //----------------------------------------------------------------------------------------//
+Buyer* System::findBuyer(const char* username) const
+{
+	for (int i = 0; i < m_num_of_buyers; i++)
+	{
+		if (strcmp(m_buyer_list[i]->getUserName(), username) == 0)
+			return m_buyer_list[i];
+	}
+
+	return nullptr;	//Buyer not found
+}
+//----------------------------------------------------------------------------------------//
 void System::newProduct(Products& new_product)
 {
 	if (!m_product_list)	//If empty product list

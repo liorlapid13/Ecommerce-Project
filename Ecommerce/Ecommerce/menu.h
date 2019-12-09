@@ -30,6 +30,8 @@ public:
 	void mainMenu();
 	void signUp(int user_type);
 	void logIn(int user_type);
+	void buyerMenu(Buyer& buyer);
+	void sellerMenu(Seller& seller);
 
 private:
 	System* m_system;

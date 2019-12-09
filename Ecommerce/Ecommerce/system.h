@@ -1,7 +1,7 @@
 #ifndef __SYSTEM_H
 #define __SYSTEM_H
 
-#include "helper.h"
+#include "validation.h"
 #include "buyer.h"
 #include "seller.h"
 
@@ -36,6 +36,9 @@ public:
 	//QUESTION 4
 	Seller* findSeller(const char* username)		const;
 
+	//Log-In
+	Buyer* findBuyer(const char* username)			const;
+
 	//QUESTIONS 8,9
 	void printSellerList()							const;	//->Seller.printSellerInfo
 	void printBuyerList()							const;	//->Buyer.printBuyerInfo
@@ -43,6 +46,7 @@ public:
 	//QUESTION 10
 	void printProductsByName(char* product_name)	const;	//->Products.printProduct
 
+	
 
 private:
 	char*		m_name;

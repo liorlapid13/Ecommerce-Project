@@ -71,3 +71,16 @@ void ShoppingCart::addItemToShoppingCart(Products& product)
 	}
 }
 //----------------------------------------------------------------------------------------//
+/*
+Receives order of a buyer from buyer menu, after buyer selected to cancel it.
+Returns all items placed in order to the shopping cart.
+*/
+void ShoppingCart::returnItemsToShoppingCart(Order& order)
+{
+	for (int i = 0; i < order.getListSize(); i++)
+		this->addItemToShoppingCart(*order.getProductList()[i]);
+
+	delete[] order.getProductList();
+	order.setListSize(0);
+}
+//----------------------------------------------------------------------------------------//

@@ -23,7 +23,7 @@ public:
 	System* getSystem();
 	Seller* createSeller();
 	Buyer* createBuyer();
-	Products* createProduct();
+	Products* createProduct(const char* seller_username);
 	void newOrder(Buyer& buyer);
 	void completeOrder(Buyer& buyer);
 	void createFeedback(Buyer& buyer);
@@ -31,7 +31,9 @@ public:
 	void signUp(int user_type);
 	void logIn(int user_type);
 	void buyerMenu(Buyer& buyer);
+	void printBuyerMenu()					const;
 	void sellerMenu(Seller& seller);
+	void printSellerMenu()					const;
 
 private:
 	System* m_system;

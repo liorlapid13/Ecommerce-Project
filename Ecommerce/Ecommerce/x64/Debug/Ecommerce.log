@@ -1,40 +1,4 @@
 ﻿  address.cpp
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(13): error C2061: syntax error: identifier 'Buyer'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(15): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(15): error C2143: syntax error: missing ',' before '&'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(28): error C2143: syntax error: missing ',' before '&'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(33): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(33): error C2143: syntax error: missing ';' before '&'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(33): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(33): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(40): error C2061: syntax error: identifier 'Products'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(49): error C3646: 'm_address': unknown override specifier
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(49): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\buyer.h(18): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\buyer.h(18): error C2143: syntax error: missing ',' before '&'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\buyer.h(31): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\buyer.h(31): error C2143: syntax error: missing ',' before '&'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\buyer.h(39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\buyer.h(39): error C2143: syntax error: missing ';' before '&'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\buyer.h(39): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\buyer.h(39): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\buyer.h(45): error C3646: 'm_address': unknown override specifier
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\buyer.h(45): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
 c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\address.cpp(57): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
 c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\address.cpp(66): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: see declaration of 'strcpy'
@@ -45,211 +9,24 @@ c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\address.cpp(118): 
 c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\address.cpp(127): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: see declaration of 'strcpy'
   buyer.cpp
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(13): error C2061: syntax error: identifier 'Buyer'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(23): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(23): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(23): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(23): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(30): error C2061: syntax error: identifier 'Buyer'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(39): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(39): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\helper.h(26): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\helper.h(26): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\buyer.cpp(41): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: see declaration of 'strcpy'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\buyer.cpp(55): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\products.h(4): fatal error C1083: Cannot open include file: 'helper.h': No such file or directory
   date.cpp
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(13): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(13): error C2143: syntax error: missing ',' before '&'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(26): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(26): error C2143: syntax error: missing ';' before '&'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(26): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(26): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(31): error C3646: 'm_date': unknown override specifier
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(31): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(40): error C2061: syntax error: identifier 'Products'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C2238: unexpected token(s) preceding ';'
+c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\date.h(4): fatal error C1083: Cannot open include file: 'helper.h': No such file or directory
   feedback.cpp
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(34): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(34): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(34): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(34): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(40): error C2061: syntax error: identifier 'Products'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(50): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(50): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(50): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.cpp(20): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: see declaration of 'strcpy'
-  helper.cpp
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(13): error C2061: syntax error: identifier 'Buyer'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(40): error C2061: syntax error: identifier 'Products'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C2238: unexpected token(s) preceding ';'
+c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\date.h(4): fatal error C1083: Cannot open include file: 'helper.h': No such file or directory
   main.cpp
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(13): error C2061: syntax error: identifier 'Buyer'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(23): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(23): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(23): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(23): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(30): error C2061: syntax error: identifier 'Buyer'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(39): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(39): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(39): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\helper.h(26): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\helper.h(26): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\main.cpp(10): warning C4326: return type of 'main' should be 'int' instead of 'void'
+c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\products.h(4): fatal error C1083: Cannot open include file: 'helper.h': No such file or directory
+  menu.cpp
+c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\products.h(4): fatal error C1083: Cannot open include file: 'helper.h': No such file or directory
   order.cpp
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(13): error C2061: syntax error: identifier 'Buyer'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(40): error C2061: syntax error: identifier 'Products'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\order.cpp(44): error C2440: 'return': cannot convert from 'Products **const ' to 'const Products **'
-  c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\order.cpp(44): note: Conversion loses qualifiers
+c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\products.h(4): fatal error C1083: Cannot open include file: 'helper.h': No such file or directory
   products.cpp
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\shopping_cart.h(25): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\shopping_cart.h(25): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\shopping_cart.h(25): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\shopping_cart.h(25): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\shopping_cart.h(29): error C2061: syntax error: identifier 'Products'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\shopping_cart.h(33): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\shopping_cart.h(33): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\shopping_cart.h(33): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(40): error C2061: syntax error: identifier 'Products'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\products.cpp(56): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: see declaration of 'strcpy'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\products.cpp(101): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\products.h(4): fatal error C1083: Cannot open include file: 'helper.h': No such file or directory
   seller.cpp
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(25): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(25): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(25): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(25): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(29): error C2061: syntax error: identifier 'Seller'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(41): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(41): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.h(41): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\helper.h(25): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\helper.h(25): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.cpp(55): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: see declaration of 'strcpy'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.cpp(68): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: see declaration of 'strcpy'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.cpp(84): error C2440: 'return': cannot convert from 'Products **' to 'const Products **'
-  c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.cpp(84): note: Conversion loses qualifiers
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.cpp(94): error C2440: 'return': cannot convert from 'Feedback **' to 'const Feedback **'
-  c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.cpp(94): note: Conversion loses qualifiers
+c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(4): fatal error C1083: Cannot open include file: 'helper.h': No such file or directory
   shopping_cart.cpp
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(13): error C2061: syntax error: identifier 'Buyer'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(40): error C2061: syntax error: identifier 'Products'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\buyer.h(40): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\buyer.h(40): error C2143: syntax error: missing ';' before '&'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\buyer.h(40): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\buyer.h(40): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\buyer.h(46): error C3646: 'm_shoppingCart': unknown override specifier
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\buyer.h(46): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\shopping_cart.cpp(43): error C2440: 'return': cannot convert from 'Products **const ' to 'const Products **'
-  c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\shopping_cart.cpp(43): note: Conversion loses qualifiers
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\shopping_cart.cpp(57): warning C4018: '<': signed/unsigned mismatch
+c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\products.h(4): fatal error C1083: Cannot open include file: 'helper.h': No such file or directory
   system.cpp
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(13): error C2061: syntax error: identifier 'Buyer'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(28): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\feedback.h(33): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C7525: inline variables require at least '/std:c++17'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(36): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(40): error C2061: syntax error: identifier 'Products'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C2143: syntax error: missing ';' before '*'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\seller.h(52): error C2238: unexpected token(s) preceding ';'
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\helper.h(25): error C2065: 'System': undeclared identifier
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\helper.h(26): error C2065: 'System': undeclared identifier
-c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\system.cpp(50): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  c:\program files (x86)\windows kits\10\include\10.0.17134.0\ucrt\string.h(133): note: see declaration of 'strcpy'
+c:\users\lior\documents\ecommerce-project\ecommerce\ecommerce\products.h(4): fatal error C1083: Cannot open include file: 'helper.h': No such file or directory
+  validation.cpp
   Generating Code...

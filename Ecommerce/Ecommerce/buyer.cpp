@@ -7,7 +7,7 @@ Buyer::Buyer(const char* username, const char* password,
 	setPassword(password);
 	setWallet(0);
 	setNumOrders(0);
-	m_current_order = nullptr;
+	setCurrentOrder(nullptr);
 	m_order_history = nullptr;
 	
 }
@@ -87,6 +87,11 @@ void Buyer::setAddress(const Address& address)
 void Buyer::setNumOrders(const int num_of_orders)
 {
 	m_num_of_orders = num_of_orders;
+}
+//----------------------------------------------------------------------------------------//
+void Buyer::setCurrentOrder(Order* order)
+{
+	m_current_order = order;
 }
 //----------------------------------------------------------------------------------------//
 ShoppingCart& Buyer::getShoppingCart()

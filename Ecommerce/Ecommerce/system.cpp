@@ -207,3 +207,17 @@ void System::newProduct(Products& new_product)
 	}
 }
 //----------------------------------------------------------------------------------------//
+/*
+Receives serial number from buyer menu, searches for item with matching serial number in the system's product list
+*/
+Products* System::findProduct(int serial_number) const
+{
+	for (int i = 0; i < m_num_of_products; i++)
+	{
+		if (m_product_list[i]->getSerialNumber() == serial_number)
+			return m_product_list[i];
+	}
+
+	return nullptr;
+}
+//----------------------------------------------------------------------------------------//

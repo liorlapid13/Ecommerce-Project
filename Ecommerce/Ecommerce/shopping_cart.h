@@ -29,6 +29,9 @@ public:
 	//QUESTION 5
 	void addItemToShoppingCart(Products& product);
 
+	//QUESTION 6
+	void returnItemsToShoppingCart(Order& order);
+
 private:
 	int	            m_num_of_products;
 	Products**		m_product_list;

@@ -1,13 +1,13 @@
 #include "products.h"
 int Products::serial_num_generator = 1000000;	//Serial number contains 7 digits (starting at 1,000,000)
 //----------------------------------------------------------------------------------------//
-Products::Products(const char* name, float price, Products::eCategory category, char* seller)
+Products::Products(const char* name, float price, Products::eCategory category, const char* seller_name)
 {
 	m_serial_number = ++serial_num_generator;
 	setName(name);
 	setPrice(price);
 	setCategory(category);
-	setSeller(seller);
+	setSellerName(seller_name);
 }
 //----------------------------------------------------------------------------------------//
 Products::Products(const Products& other) //copy c'tor
@@ -16,7 +16,7 @@ Products::Products(const Products& other) //copy c'tor
 	setName(other.m_name);
 	setPrice(other.m_price);
 	setCategory(other.m_category);
-	setSeller(other.m_seller);
+	setSellerName(other.m_seller);
 }
 //----------------------------------------------------------------------------------------//
 /*
@@ -85,10 +85,10 @@ bool Products::setCategory(Products::eCategory category)
 		return true;
 	}
 }
-void Products::setSeller(char* seller)
+void Products::setSellerName(const char* seller_name)
 {
-	m_seller = new char[strlen(seller) + 1];
-	strcpy(m_seller, seller);
+	m_seller = new char[strlen(seller_name) + 1];
+	strcpy(m_seller, seller_name);
 }
 //----------------------------------------------------------------------------------------//
 const char* Products::getName() const

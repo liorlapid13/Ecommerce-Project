@@ -69,7 +69,7 @@ Buyer* Menu::createBuyer()
 		cout << "Enter username: ";
 		cin.ignore();
 		cin.getline(username, MAX_USERNAME_LENGTH);
-	} while (m_system->searchUsername(username));	//is this how to call a system class function to search buyer/seller list for the inputted username?
+	} while (m_system->searchUsername(username));
 
 	char password[MAX_PASSWORD_LENGTH];
 	cout << "Enter password: ";
@@ -107,7 +107,7 @@ Buyer* Menu::createBuyer()
 	return new_buyer;
 }
 //----------------------------------------------------------------------------------------//
-Products* Menu::createProduct()
+Products* Menu::createProduct(const char* seller_username)
 {
 	char product_name[MAX_PRODUCT_NAME];
 	cout << "Enter product name: ";
@@ -124,12 +124,7 @@ Products* Menu::createProduct()
 	cin.ignore();
 	cin >> category;
 
-	char username[MAX_USERNAME_LENGTH];
-	cout << "Enter your username: ";
-	cin.ignore();
-	cin.getline(username, MAX_USERNAME_LENGTH);
-
-	return (new Products(product_name, price, (Products::eCategory)category, username));
+	return (new Products(product_name, price, (Products::eCategory)category, seller_username));
 }
 //----------------------------------------------------------------------------------------//
 /*
@@ -222,11 +217,11 @@ void Menu::completeOrder(Buyer& buyer)
 		}
 	}
 	else
-		cout << "No Orders available\n";
+		cout << "No existing order\n";
 }
 //----------------------------------------------------------------------------------------//
 /*
-Presents buyer with his order history, and asks him to select product for new feedback.
+Presents buyer with his order history, and asks him to select a product for new feedback.
 Once buyer selects a product, calls buyer method "newFeedback" to create the new feedback if he hasn't 
 submitted one for this product already.
 */
@@ -281,14 +276,21 @@ void Menu::mainMenu()
 
 	while (!quit_switch)
 	{
-		cout << "Welcome to " << m_system->getName() << endl;
+		cout << "\t\t ___________\n";
+		cout << "\t\t|           |\n";
+		cout << "\t\t|   " << m_system->getName() << "    |\n";	
+		cout << "\t\t|___________|\n";
+		cout << "\t\t|           |\n";
+		cout << "\t\t| MAIN MENU |\n";
+		cout << "\t\t|___________|\n\n";
 		cout << "Enter 1 to Log-In\n";
 		cout << "Enter 2 to Sign-Up\n";
-		cout << "Enter 3 to Quit\n";
+		cout << "Enter 3 to view User Lists\n";
+		cout << "Enter 4 to Quit\n";
 
 		int user_input;
 		cin >> user_input;
-		while (user_input != 1 && user_input != 2 && user_input != 3)
+		while (user_input != 1 && user_input != 2 && user_input != 3 && user_input != 4)
 		{
 			cout << "Invalid selection, please try again\n";
 			cin >> user_input;
@@ -305,6 +307,7 @@ void Menu::mainMenu()
 		cout << "Enter 2 for Seller\n";
 		int user_type;
 		cin >> user_type;
+
 		while (user_type != 1 && user_type != 2)
 		{
 			cout << "Invalid selection, please try again\n";
@@ -316,24 +319,30 @@ void Menu::mainMenu()
 			//Sign-up method
 			this->signUp(user_type);
 		}
+		else if (user_input == 3)
+		{
+			//Print list of buyers/sellers
+			if (user_type == 1)
+				m_system->printBuyerList();		//Question 8
+			else
+				m_system->printSellerList();	//Question 9
+		}
 		else
 		{
-			/*Log-In Method*/
-			
+			//Log-in method
+			this->logIn(user_type);
 		}
 	}
 }
 //----------------------------------------------------------------------------------------//
 void Menu::signUp(int user_type)
 {
+	cout << "Sign-Up\n";
+
 	if (user_type == 1)
-	{
-		//buyerMenu(createBuyer());
-	}
+		this->buyerMenu(*createBuyer());	//Question 1
 	else
-	{
-		//sellerMenu(createSeller());
-	}
+		this->sellerMenu(*createSeller());	//Question 2
 }
 //----------------------------------------------------------------------------------------//
 /*
@@ -344,6 +353,8 @@ If username/password are correct, opens the corresponding buyer/seller menu.
 */
 void Menu::logIn(int user_type)
 {
+	cout << "Log-In\n";
+
 	bool logged_in = 0;
 
 	while (!logged_in)
@@ -399,5 +410,175 @@ void Menu::logIn(int user_type)
 			}
 		}
 	}
+}
+//----------------------------------------------------------------------------------------//
+/*
+Once logged in as buyer, this method manages the menu of actions for buyers.
+*/
+void Menu::buyerMenu(Buyer& buyer)
+{
+	this->printBuyerMenu();
+
+	int selection;
+	cin >> selection;
+
+	while (selection != 5)
+	{
+		switch (selection)
+		{	
+			case 1:	/*Add item to shopping cart - Question 5*/
+				cout << "Enter name of product you wish to buy: ";
+				char product_name[MAX_PRODUCT_NAME];
+				cin.ignore();
+				cin.getline(product_name, MAX_PRODUCT_NAME);
+				m_system->printProductsByName(product_name);	//Question 10
+				
+				cout << "Enter serial number of product you wish to buy: ";
+				int serial_number;
+				cin >> serial_number;
+				Products* product = m_system->findProduct(serial_number);
+
+				while (!product)
+				{
+					cout << "Invalid serial number, please try again:";
+					cin >> serial_number;
+					product = m_system->findProduct(serial_number);
+				}
+
+				buyer.getShoppingCart().addItemToShoppingCart(*product);
+				cout << product->getName() << " added to your shopping cart\n";
+				break;
+
+			case 2:	/*Create new order - Question 6*/
+				if (!buyer.getCurrentOrder())
+					newOrder(buyer);
+				else
+				{
+					cout << "Order already exists, you can only have a maximum of 1 order at a time\n";
+					cout << "Enter 1 to cancel existing order and start a new one\n";
+					cout << "Enter -1 to leave existing order\n";
+					int input;
+					cin >> input;
+					while (input != 1 && input != -1)
+					{
+						cout << "Invalid input, please try again: ";
+						cin >> input;
+					}
+
+					if (input = 1)
+					{
+						buyer.getShoppingCart().returnItemsToShoppingCart(*buyer.getCurrentOrder());
+						buyer.setCurrentOrder(nullptr);
+						cout << "Items returned to your shopping cart\n";
+						newOrder(buyer);
+					}						
+				}
+				break;
+
+			case 3: /*Pay for existing order - Question 7*/
+				completeOrder(buyer);
+				break;
+
+			case 4: /*Publish new feedback - Question 4*/
+				if (buyer.getNumOrders() == 0)
+				{
+					cout << "No products have been purchased\n";
+					cout << "In order to submit a feedback you must first purchase a product\n";
+				}
+				else
+					createFeedback(buyer);
+				break;
+				
+			default:
+				cout << "Invalid number entered\n";
+				break;
+		}
+
+		this->printBuyerMenu();
+		cin >> selection;
+	}
+
+	cout << "Logging out...\n";
+}
+//----------------------------------------------------------------------------------------//
+void Menu::printBuyerMenu() const
+{
+	cout << "\t\t ____________\n";
+	cout << "\t\t|            |\n";
+	cout << "\t\t| BUYER MENU |\n";
+	cout << "\t\t|____________|\n\n";
+	cout << "What would you like to do?\n";
+	cout << "--------------------------------------------------\n";
+	cout << "1\tAdd item to your Shopping Cart\n";	//Question 5&10
+	cout << "2\tCreate new order\n";				//Question 6
+	cout << "3\tPay for existing order\n";			//Question 7
+	cout << "4\tPublish a new feedback\n";			//Question 4
+	cout << "5\tLog-out\n";
+	cout << "--------------------------------------------------\n";
+	cout << "Enter number of what you would like to do: ";
+}
+//----------------------------------------------------------------------------------------//
+/*
+Once logged in as seller, this method manages the menu of actions for sellers.
+*/
+void Menu::sellerMenu(Seller& seller)
+{
+	this->printSellerMenu();
+
+	int selection;
+	cin >> selection;
+
+	while (selection != 3)
+	{
+		switch (selection)
+		{
+			case 1: /*Add product to store - Question 3*/
+				Products* new_product = createProduct(seller.getUserName());
+				if (!seller.addProduct(*new_product))
+				{
+					delete new_product;
+					cout << "Error! Product with this name already exists in your store!\n";
+					cout << "Product not added\n";
+				}
+				else
+				{
+					m_system->newProduct(*new_product);
+					cout << new_product->getName() << " added to your store successfully!\n";
+				}
+				break;
+
+			case 2: /*Search product by name - Question 10*/
+				cout << "Enter name of product: ";
+				char product_name[MAX_PRODUCT_NAME];
+				cin.ignore();
+				cin.getline(product_name, MAX_PRODUCT_NAME);
+				m_system->printProductsByName(product_name);	//Question 10
+				break;
+
+			default:
+				cout << "Invalid number entered\n";
+				break;
+		}
+
+		this->printSellerMenu();
+		cin >> selection;
+	}
+
+	cout << "Logging out...\n";
+}
+//----------------------------------------------------------------------------------------//
+void Menu::printSellerMenu() const
+{
+	cout << "\t\t _____________\n";
+	cout << "\t\t|             |\n";
+	cout << "\t\t| SELLER MENU |\n";
+	cout << "\t\t|_____________|\n\n";
+	cout << "What would you like to do?\n";
+	cout << "--------------------------------------------------\n";
+	cout << "1\tAdd new product to your Store\n";	//Question 3
+	cout << "2\tSearch for product by name\n";		//Question 10
+	cout << "3\tLog-out\n";
+	cout << "--------------------------------------------------\n";
+	cout << "Enter number of what you would like to do: ";
 }
 //----------------------------------------------------------------------------------------//

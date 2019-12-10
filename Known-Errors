@@ -1,1 +1,6 @@
 Known Errors File
+
+Q10 -> 	We scan the product list twice. 
+	Once to print all products.
+	Second time to let buyer select product.
+Location: menu.cpp

@@ -32,6 +32,7 @@ public:
 	void setAddress(const Address& address);
 	bool setWallet(const double funds);
 	void setNumOrders(const int num_of_orders);
+	void setCurrentOrder(Order* order);
 
 	//Getters
 	inline const char* getUserName()		const;

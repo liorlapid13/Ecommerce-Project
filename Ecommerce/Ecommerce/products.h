@@ -15,7 +15,7 @@ public:
 public:
 	//C'tor
 	Products() = delete;
-	Products(const char* name, float price, Products::eCategory category,char* seller);
+	Products(const char* name, float price, Products::eCategory category, const char* seller_name);
 	Products(const Products& other); //copy c'tor
 
 	//D'tor
@@ -29,7 +29,7 @@ public:
 	bool setName(const char* name);
 	bool setPrice(float price);
 	bool setCategory(eCategory category);
-	void setSeller(char* seller);
+	void setSellerName(const char* seller_name);
 
 	//Getters
 	inline const char* getName()				const;

@@ -1,7 +1,7 @@
 #ifndef __DATE_H
 #define __DATE_H
 
-#include "helper.h"
+#include "validation.h"
 
 class Date
 {
@@ -23,9 +23,9 @@ public:
 	bool setYear(const unsigned int year);
 		
 	//Getters
-	inline const unsigned int getDay() const;
-	inline const unsigned int getMonth() const;
-	inline const unsigned int getYear() const;
+	const unsigned int getDay() const;
+	const unsigned int getMonth() const;
+	const unsigned int getYear() const;
 
 	//Input Checks
 	bool isLeapYear(const unsigned int year);

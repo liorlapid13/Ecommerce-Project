@@ -19,11 +19,11 @@ public:
 	bool setName(const char* name);
 
 	//Getters
-	inline const char* getName()					const;
-	inline Buyer** getBuyerList();
-	inline const int getNumOfBuyers()				const;
-	inline Seller** getSellerList();
-	inline const int getNumOfSellers()				const;
+	const char* getName()					const;
+	Buyer** getBuyerList();
+	const int getNumOfBuyers()				const;
+	Seller** getSellerList();
+	const int getNumOfSellers()				const;
 
 	//QUESTIONS 1,2
 	void addSeller(Seller& new_seller);
@@ -31,7 +31,7 @@ public:
 	bool searchUsername(char* username)				const;
 
 	//QUESTION 3
-	void newProduct(Products& new_product);
+	void newProduct(Product& new_product);
 
 	//QUESTION 4
 	Seller* findSeller(const char* username)		const;
@@ -47,7 +47,7 @@ public:
 	void printProductsByName(char* product_name)	const;	//->Products.printProduct
 
 	//QUESTION 5
-	Products* findProduct(int serial_number)		const;
+	Product* findProduct(int serial_number)		const;
 	
 
 private:
@@ -56,7 +56,7 @@ private:
 	int			m_num_of_buyers;
 	Seller**	m_seller_list;
 	int			m_num_of_sellers;
-	Products**	m_product_list;
+	Product**	m_product_list;
 	int			m_num_of_products;
 	
 	System(const System& other);	//remove copy c'tor

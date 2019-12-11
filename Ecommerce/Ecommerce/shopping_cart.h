@@ -2,7 +2,7 @@
 #define __SHOPPING_CART_H
 
 #include "validation.h"
-#include "products.h"
+#include "product.h"
 
 class ShoppingCart
 {
@@ -20,21 +20,21 @@ private:
 public:
 	//Setters
 	bool setNumProducts(int num_of_products);
-	bool setProductList(Products** product_list);
+	bool setProductList(Product** product_list);
 
 	//Getters
-	inline Products** getProductList()			const;
-	inline const int getNumProducts()           const;
+	Product** getProductList()			const;
+	const int getNumProducts()           const;
 
 	//QUESTION 5
-	void addItemToShoppingCart(Products& product);
+	void addItemToShoppingCart(Product& product);
 
 	//QUESTION 6
 	void returnItemsToShoppingCart(Order& order);
 
 private:
 	int	            m_num_of_products;
-	Products**		m_product_list;
+	Product**		m_product_list;
 };
 
 #endif // !__SHOPPING_CART_H

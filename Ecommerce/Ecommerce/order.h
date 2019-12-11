@@ -10,7 +10,7 @@ class Order
 public:
 	//C'tors
 	Order() = delete;
-	Order(Products** product_list, const int list_size, const float total_price);
+	Order(Product** product_list, const int list_size, const float total_price);
 
 	//D'tors
 	~Order();
@@ -26,12 +26,12 @@ public:
 	bool setListSize(const int list_size);
 
 	//Getters
-	inline Products** getProductList()	const;
-	inline const int getListSize()		const;
-	inline const float getTotalPrice()	const;
+	Product** getProductList()	const;
+	const int getListSize()		const;
+	const float getTotalPrice()	const;
 
 private:
-	Products**	m_product_list;
+	Product**	m_product_list;
 	int			m_list_size;
 	float		m_total_price;
 };

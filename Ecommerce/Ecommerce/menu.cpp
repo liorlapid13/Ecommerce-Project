@@ -107,7 +107,7 @@ Buyer* Menu::createBuyer()
 	return new_buyer;
 }
 //----------------------------------------------------------------------------------------//
-Products* Menu::createProduct(const char* seller_username)
+Product* Menu::createProduct(const char* seller_username)
 {
 	char product_name[MAX_PRODUCT_NAME];
 	cout << "Enter product name: ";
@@ -124,7 +124,7 @@ Products* Menu::createProduct(const char* seller_username)
 	cin.ignore();
 	cin >> category;
 
-	return (new Products(product_name, price, (Products::eCategory)category, seller_username));
+	return (new Product(product_name, price, (Product::eCategory)category, seller_username));
 }
 //----------------------------------------------------------------------------------------//
 /*
@@ -143,7 +143,7 @@ void Menu::newOrder(Buyer& buyer)
 		product_index_array[i] = 0;
 
 	int selection;
-	Products** temp = buyer.getShoppingCart().getProductList();
+	Product** temp = buyer.getShoppingCart().getProductList();
 
 	cout << "Your Shopping Cart:\n";
 
@@ -436,7 +436,7 @@ void Menu::buyerMenu(Buyer& buyer)
 				cout << "Enter serial number of product you wish to buy: ";
 				int serial_number;
 				cin >> serial_number;
-				Products* product = m_system->findProduct(serial_number);
+				Product* product = m_system->findProduct(serial_number);
 
 				while (!product)
 				{
@@ -533,7 +533,7 @@ void Menu::sellerMenu(Seller& seller)
 		switch (selection)
 		{
 			case 1: /*Add product to store - Question 3*/
-				Products* new_product = createProduct(seller.getUserName());
+				Product* new_product = createProduct(seller.getUserName());
 				if (!seller.addProduct(*new_product))
 				{
 					delete new_product;

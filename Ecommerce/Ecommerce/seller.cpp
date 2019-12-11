@@ -79,7 +79,7 @@ void Seller::setAddress(const Address& address)
 	m_address.setStreetName(address.getStreetName());
 }
 //----------------------------------------------------------------------------------------//
-const Products** Seller::getStore() 
+const Product** Seller::getStore() 
 {
 	return m_store;
 }
@@ -113,13 +113,13 @@ const Address& Seller::getAddress() const
 	return m_address;
 }
 //----------------------------------------------------------------------------------------//
-bool Seller::addProduct(Products& new_product)
+bool Seller::addProduct(Product& new_product)
 {
 	if (m_store != nullptr)
 	{
 		if (!searchStore(new_product.getSerialNumber()))
 		{
-			Products** temp = new Products*[m_num_of_products + 1];	//allocate memory for new product list
+			Product** temp = new Product*[m_num_of_products + 1];	//allocate memory for new product list
 			for (int i = 0; i < m_num_of_products; i++)				//copy each existing product to new list
 				temp[i] = m_store[i];
 			temp[m_num_of_products] = &new_product;					//add the new product to the new list
@@ -134,7 +134,7 @@ bool Seller::addProduct(Products& new_product)
 	}
 	else
 	{
-		m_store = new Products*[m_num_of_products + 1];			//allocate memory for new product array in temporary pointer
+		m_store = new Product*[m_num_of_products + 1];			//allocate memory for new product array in temporary pointer
 		m_store[m_num_of_products] = &new_product;				//add the new product to the new array
 		m_num_of_products++;									//advance the counter for number of products
 		return true;

@@ -5,7 +5,7 @@
 #include "address.h"
 #include "seller.h"
 #include "feedback.h"
-#include "products.h"
+#include "product.h"
 
 class Seller
 {
@@ -28,16 +28,16 @@ public:
 	void setAddress(const Address& address);
 
 	//Getters 
-	inline const char* getUserName()				const;
-	inline const char* getPassword()				const;
-	inline const Address& getAddress()				const;
-	inline const Feedback** getFeedbackList();
-	inline const int getNumOfFeedbacks()			const;
-	inline const Products** getStore();
-	inline const int getNumOfProducts()				const;
+	const char* getUserName()				const;
+	const char* getPassword()				const;
+	const Address& getAddress()				const;
+	const Feedback** getFeedbackList();
+	const int getNumOfFeedbacks()			const;
+	const Product** getStore();
+	const int getNumOfProducts()			const;
 
 	//QUESTION 3
-	bool addProduct(Products& new_product);
+	bool addProduct(Product& new_product);
 	bool searchStore(unsigned int serial_number)	const;
 
 	//QUESTION 4
@@ -52,7 +52,7 @@ private:
 	Address m_address;
 	Feedback** m_feedback_list;
 	int m_num_of_feedbacks;				
-	Products** m_store;
+	Product** m_store;
 	int m_num_of_products;			
 };
 

@@ -149,8 +149,8 @@ All 1's will be moved to the order product list, and all 0's will stay in the sh
 void Buyer::createOrder(int num_of_selected_products, int* product_index_array, float total_price)
 {
 	int new_shopping_cart_size = m_shopping_cart.getNumProducts() - num_of_selected_products;
-	Products** new_shopping_cart = new Products*[new_shopping_cart_size];
-	Products** new_order_product_list = new Products*[num_of_selected_products];
+	Product** new_shopping_cart = new Product*[new_shopping_cart_size];
+	Product** new_order_product_list = new Product*[num_of_selected_products];
 	
 	int cart_index = 0, order_index = 0;
 
@@ -220,7 +220,7 @@ void Buyer::addOrderToHistory()
 Checks if feedback by this buyer already exists in seller's feedback list.
 If not, creates the feedback and adds it to list via a seller class method "addFeedback".
 */
-bool Buyer::newFeedback(Products* product, Seller* seller, const char* description, const Date& date)
+bool Buyer::newFeedback(Product* product, Seller* seller, const char* description, const Date& date)
 {
 	if (seller->getNumOfFeedbacks() != 0)
 	{

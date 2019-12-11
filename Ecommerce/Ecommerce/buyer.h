@@ -7,7 +7,7 @@ using namespace std;
 
 #include "validation.h"
 #include "address.h"
-#include "products.h"
+#include "product.h"
 #include "shopping_cart.h"
 #include "order.h"
 
@@ -35,14 +35,14 @@ public:
 	void setCurrentOrder(Order* order);
 
 	//Getters
-	inline const char* getUserName()		const;
-	inline const char* getPassword()		const;
-	inline const Address& getAddress()		const;
-	inline ShoppingCart& getShoppingCart();
-	inline Order* getCurrentOrder()			const;
-	inline double getWallet()				const;
-	inline Order** getOrderHistory()		const;
-	inline int getNumOrders()				const;
+	const char* getUserName()		const;
+	const char* getPassword()		const;
+	const Address& getAddress()		const;
+	ShoppingCart& getShoppingCart();
+    Order* getCurrentOrder()			const;
+	double getWallet()				const;
+    Order** getOrderHistory()		const;
+	int getNumOrders()				const;
 
 	//QUESTION 8
 	void printBuyerInfo()					const;
@@ -55,7 +55,7 @@ public:
 	void createOrder(int num_of_selected_products, int* product_index_array, float total_price);
 
 	//QUESTION 4
-	bool newFeedback(Products* product,Seller* seller, const char* description, const Date& date);
+	bool newFeedback(Product* product,Seller* seller, const char* description, const Date& date);
 
 private:
 	char*			m_username;

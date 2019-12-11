@@ -28,11 +28,11 @@ public:
 	bool setCountry(const char* country);
 
 	//Getters
-	inline const char*	getStreetName()		const;
-	inline int	getHouseNumber()			const;
-	inline int	getZipCode()				const;
-	inline const char*	getCity()			const;
-	inline const char*	getCountry()		const;
+	const char*	getStreetName()		const;
+    int	getHouseNumber()			const;
+	int	getZipCode()				const;
+    const char*	getCity()			const;
+    const char*	getCountry()		const;
 
 	//QUESTION 9
 	void printAddress()						const;

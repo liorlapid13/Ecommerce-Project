@@ -186,17 +186,17 @@ Buyer* System::findBuyer(const char* username) const
 	return nullptr;	//Buyer not found
 }
 //----------------------------------------------------------------------------------------//
-void System::newProduct(Products& new_product)
+void System::newProduct(Product& new_product)
 {
 	if (!m_product_list)	//If empty product list
 	{
 		m_num_of_sellers++;
-		m_product_list = new Products*[m_num_of_products];
+		m_product_list = new Product*[m_num_of_products];
 		m_product_list[0] = &new_product;
 	}
 	else
 	{
-		Products** temp = new Products*[m_num_of_products + 1];	//allocate memory for new product list
+		Product** temp = new Product*[m_num_of_products + 1];	//allocate memory for new product list
 		for (int i = 0; i < m_num_of_products; i++)				//copy each existing product to new list
 			temp[i] = m_product_list[i];
 		temp[m_num_of_products] = &new_product;					//add the new product to the new list
@@ -210,7 +210,7 @@ void System::newProduct(Products& new_product)
 /*
 Receives serial number from buyer menu, searches for item with matching serial number in the system's product list
 */
-Products* System::findProduct(int serial_number) const
+Product* System::findProduct(int serial_number) const
 {
 	for (int i = 0; i < m_num_of_products; i++)
 	{

@@ -5,8 +5,6 @@
 #include "buyer.h"
 #include "seller.h"
 #include "system.h"
-#include "products.h"
-#include "shopping_cart.h"
 
 class Menu
 {
@@ -23,7 +21,7 @@ public:
 	System* getSystem();
 	Seller* createSeller();
 	Buyer* createBuyer();
-	Products* createProduct(const char* seller_username);
+	Product* createProduct(const char* seller_username);
 	void newOrder(Buyer& buyer);
 	void completeOrder(Buyer& buyer);
 	void createFeedback(Buyer& buyer);

@@ -2,8 +2,6 @@
 #include <string.h>
 using namespace std;
 
-#pragma warning(disable: 4996)
-
 #include "menu.h"
 
 void main()
@@ -12,6 +10,4 @@ void main()
 	Menu menu(&system);
 
 	menu.mainMenu();
-
-
 }

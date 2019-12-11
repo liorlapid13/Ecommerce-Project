@@ -1,4 +1,5 @@
 #include "feedback.h"
+#include "buyer.h"
 //----------------------------------------------------------------------------------------//
 Feedback::Feedback(const Date& date, const char* description, Buyer& buyer, Product& product) :m_date(date)
 {
@@ -38,7 +39,7 @@ const char* Feedback::getDescription() const
 	return m_description;
 }
 //----------------------------------------------------------------------------------------//
-const Buyer* Feedback::getBuyer() const
+Buyer* Feedback::getBuyer()				const
 {
 	return m_buyer;
 }

@@ -35,7 +35,7 @@ System::~System()
 bool System::setName(const char* name)
 {
 	//check if name contains symbols/spaces/invalid characters
-	for (int i = 0; i < strlen(name); i++)
+/*	for (int i = 0; i < strlen(name); i++)
 	{
 		if (name[i] < '0' || (name[i] > 'z'
 			|| (name[i] > '9' && name[i] < 'A')
@@ -44,7 +44,7 @@ bool System::setName(const char* name)
 			cout << "Name of system can only contain alphanumeric characters (lower/uppercase letters A-Z, numbers 0-9)\n";
 			return false;
 		}
-	}
+	}*/
 
 	m_name = new char[strlen(name) + 1];
 	strcpy(m_name, name);
@@ -61,7 +61,7 @@ Buyer** System::getBuyerList()
 	return m_buyer_list;
 }
 //----------------------------------------------------------------------------------------//
-const int System::getNumOfBuyers() const
+int System::getNumOfBuyers() const
 {
 	return m_num_of_buyers;
 }
@@ -71,7 +71,7 @@ Seller** System::getSellerList()
 	return m_seller_list;
 }
 //----------------------------------------------------------------------------------------//
-const int System::getNumOfSellers() const
+int System::getNumOfSellers() const
 {
 	return m_num_of_sellers;
 }

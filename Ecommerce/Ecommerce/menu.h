@@ -2,8 +2,6 @@
 #define __MENU_H
 
 #include "validation.h"
-#include "buyer.h"
-#include "seller.h"
 #include "system.h"
 
 class Menu

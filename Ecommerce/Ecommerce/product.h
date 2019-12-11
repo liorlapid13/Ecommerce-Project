@@ -2,13 +2,14 @@
 #define __PRODUCT_H
 
 #include "validation.h"
-#include "seller.h"
+
+
 
 class Product
 {
 public:
 	enum eCategory { KIDS, ELECTRICAL, CLOTHING, OFFICE };
-	static constexpr char categoryStr[] = { "Kids","Electrical","Clothing","Office" };
+	static const char* categoryStr[];
 	static const int NUM_OF_CATEGORIES = 4;			//product categories
 	static const int MAX_SERIAL_NUMBER = 999999;	//Serial number contains maximum 6 digits 
 
@@ -16,15 +17,12 @@ public:
 	//C'tor
 	Product() = delete;
 	Product(const char* name, float price, Product::eCategory category, const char* seller_name);
-	Product(const Product& other); //copy c'tor
+	Product(const Product& other);	//copy c'tor
+	Product(Product&& other);		//move c'tor
 
 	//D'tor
 	~Product();
 
-private: //DELETED C'TORS
-	Product(Product&& other);
-
-public:
 	//Setters
 	bool setName(const char* name);
 	bool setPrice(float price);

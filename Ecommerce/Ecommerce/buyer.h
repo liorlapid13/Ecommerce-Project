@@ -6,10 +6,11 @@
 using namespace std;
 
 #include "validation.h"
-#include "address.h"
-#include "product.h"
-#include "shopping_cart.h"
 #include "order.h"
+#include "shopping_cart.h"
+#include "seller.h"
+
+
 
 class Buyer
 {
@@ -20,12 +21,7 @@ public:
 
 	//D'tors
 	~Buyer();
-
-private:
-	Buyer(const Buyer& other);	//copy c'tor
-	Buyer(Buyer&& other);		//move c'tor
-
-public:
+	
 	//Setters
 	bool setUsername(const char* username);
 	bool setPassword(const char* password);
@@ -66,6 +62,8 @@ private:
 	Order*			m_current_order;
 	Order**			m_order_history;
 	int				m_num_of_orders;
+
+	Buyer(const Buyer& other);	//copy c'tor
 };
 
 #endif // __BUYER_H

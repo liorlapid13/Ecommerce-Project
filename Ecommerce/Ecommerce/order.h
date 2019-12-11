@@ -2,8 +2,8 @@
 #define __ORDER_H
 
 #include "validation.h"
-#include "shopping_cart.h"
-#include "products.h"
+#include "product.h"
+
 
 class Order
 {
@@ -15,15 +15,10 @@ public:
 	//D'tors
 	~Order();
 
-private:
-	Order(const Order& other);	//copy c'tor
-	Order(Order&& other);		//move c'tor
-
 public:
 	//Setters
-	/* bool setProductList(Products** product_list, const int list_size); */
-	bool setTotalPrice(const float total_price);
-	bool setListSize(const int list_size);
+	void setTotalPrice(const float total_price);
+    void setListSize(const int list_size);
 
 	//Getters
 	Product** getProductList()	const;
@@ -34,6 +29,8 @@ private:
 	Product**	m_product_list;
 	int			m_list_size;
 	float		m_total_price;
+
+	Order(const Order& other);	//copy c'tor
 };
 
 #endif // !__ORDER_H

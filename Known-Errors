@@ -4,3 +4,10 @@ Q10 -> 	We scan the product list twice.
 	Once to print all products.
 	Second time to let buyer select product.
 Location: menu.cpp
+
+C'tors -> In classes which have dynamic fields, we initialized
+	these fields with nullptr for the setters.
+	Our setters delete the field to make sure no memory is lost
+	in case of setters being used to change an existing value.
+	When the c'tor calls the setters, if the fields are not initialized,
+	then the program would crash.

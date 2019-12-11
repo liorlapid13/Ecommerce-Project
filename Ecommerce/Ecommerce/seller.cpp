@@ -1,6 +1,6 @@
 #include "seller.h"
 //----------------------------------------------------------------------------------------//
-Seller::Seller(const char* username, const char* password, const Address& address):m_address(address)
+Seller::Seller(const char* username, const char* password, const Address& address) :m_address(address), m_username(nullptr), m_password(nullptr)
 {
 	setUsername(username);
 	setPassword(password);
@@ -51,6 +51,7 @@ bool Seller::setUsername(const char* username)
 		return false;
 	else
 	{
+		delete[] m_username;
 		m_username = new char[strlen(username) + 1];
 		strcpy(m_username, username);
 		return true;
@@ -64,6 +65,7 @@ bool Seller::setPassword(const char* password)
 		return false;
 	else
 	{
+		delete[] m_password;
 		m_password = new char[strlen(password) + 1];
 		strcpy(m_password, password);
 		return true;
@@ -79,21 +81,21 @@ void Seller::setAddress(const Address& address)
 	m_address.setStreetName(address.getStreetName());
 }
 //----------------------------------------------------------------------------------------//
-const Product** Seller::getStore() 
+Product** Seller::getStore() 
 {
 	return m_store;
 }
 //----------------------------------------------------------------------------------------//
-const int Seller::getNumOfProducts() const
+int Seller::getNumOfProducts() const
 {
 	return m_num_of_products;
 }
 //----------------------------------------------------------------------------------------//
-const Feedback** Seller::getFeedbackList()  
+Feedback** Seller::getFeedbackList()  
 {
 	return m_feedback_list;
 }
-const int Seller::getNumOfFeedbacks() const
+int Seller::getNumOfFeedbacks() const
 {
 	return m_num_of_feedbacks;
 }
@@ -117,7 +119,7 @@ bool Seller::addProduct(Product& new_product)
 {
 	if (m_store != nullptr)
 	{
-		if (!searchStore(new_product.getSerialNumber()))
+		if (!searchStore(new_product.getName()))
 		{
 			Product** temp = new Product*[m_num_of_products + 1];	//allocate memory for new product list
 			for (int i = 0; i < m_num_of_products; i++)				//copy each existing product to new list
@@ -141,14 +143,17 @@ bool Seller::addProduct(Product& new_product)
 	}
 }
 //----------------------------------------------------------------------------------------//
-bool Seller::searchStore(unsigned int serial_number) const
+/*
+Checks if product already exists in seller's store by name
+*/
+bool Seller::searchStore(const char* product_name) const
 {
 	for (int i = 0; i < m_num_of_products; i++)
 	{
-		if ((m_store[i]->getSerialNumber()) == serial_number)
-			return false;
+		if (strcmp(m_store[i]->getName(), product_name) == 0)
+			return true;
 	}
-	return true;
+	return false;
 }
 //----------------------------------------------------------------------------------------//
 void Seller::printSellerInfo() const

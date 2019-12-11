@@ -23,9 +23,9 @@ public:
 	bool setYear(const unsigned int year);
 		
 	//Getters
-	const unsigned int getDay() const;
-	const unsigned int getMonth() const;
-	const unsigned int getYear() const;
+	unsigned int getDay() const;
+	unsigned int getMonth() const;
+	unsigned int getYear() const;
 
 	//Input Checks
 	bool isLeapYear(const unsigned int year);

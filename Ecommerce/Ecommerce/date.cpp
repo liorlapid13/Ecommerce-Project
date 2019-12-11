@@ -9,7 +9,7 @@ Date::Date(const unsigned int day, const unsigned int month, const unsigned int 
 //----------------------------------------------------------------------------------------//
 Date::~Date()
 {
-	//No memory allocation, why have a destructor?
+	
 }
 //----------------------------------------------------------------------------------------//
 bool Date::setYear(const unsigned int year)
@@ -65,17 +65,17 @@ bool Date::isLeapYear(unsigned int year)
 	return (((year % 4 == 0) &&	(year % 100 != 0)) || (year % 400 == 0));
 }
 //----------------------------------------------------------------------------------------//
-const unsigned int Date::getDay() const
+unsigned int Date::getDay() const
 {
 	return m_day;
 }
 //----------------------------------------------------------------------------------------//
-const unsigned int Date::getMonth() const
+unsigned int Date::getMonth() const
 {
 	return m_month;
 }
 //----------------------------------------------------------------------------------------//
-const unsigned int Date::getYear() const
+unsigned int Date::getYear() const
 {
 	return m_year;
 }

@@ -1,7 +1,7 @@
 #include "buyer.h"
 //----------------------------------------------------------------------------------------//
-Buyer::Buyer(const char* username, const char* password, 
-	const Address& address) : m_address(address), m_shopping_cart()
+Buyer::Buyer(const char* username, const char* password,
+	const Address& address) : m_address(address), m_shopping_cart(), m_username(nullptr), m_password(nullptr)
 {
 	setUsername(username);
 	setPassword(password);
@@ -12,37 +12,24 @@ Buyer::Buyer(const char* username, const char* password,
 	
 }
 //----------------------------------------------------------------------------------------//
-/*
-Buyer::Buyer(const Buyer& other) : m_address(other.m_address), m_shoppingCart(other.m_shoppingCart)	//copy c'tor
-{
-	setUsername(other.m_username);
-	setPassword(other.m_password);
-}
-//----------------------------------------------------------------------------------------//
-Buyer::Buyer(Buyer&& other) : m_address(other.m_address), m_shoppingCart(other.m_shoppingCart)	//move c'tor
-{
-	m_username = other.m_username;
-	other.m_username = nullptr;
-	m_password = other.m_password;
-	other.m_password = nullptr;
-}
-*/
-//----------------------------------------------------------------------------------------//
 Buyer::~Buyer()
 {
 	delete[] m_username;
 	delete[] m_password;
+	delete m_current_order;
+
+	for (int i = 0; i < m_num_of_orders; i++)
+		delete m_order_history[i];
+
+	delete[] m_order_history;
 }
 //----------------------------------------------------------------------------------------//
 bool Buyer::setWallet(const double funds)
 {
-	if (funds < 0)
-	{
-		cout << "Cannot top-up wallet with negative funds\n";
+	if (funds <= 0)
 		return false;
-	}
 
-	m_wallet = funds;
+	m_wallet += funds;
 	return true;
 }
 //----------------------------------------------------------------------------------------//

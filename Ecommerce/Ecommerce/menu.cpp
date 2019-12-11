@@ -19,40 +19,33 @@ Seller* Menu::createSeller()
 	char username[MAX_USERNAME_LENGTH];
 	do
 	{
-		cout << "Please enter username: ";
+		cout << "Please enter username (If username exists you will be asked again): ";
 		cin.ignore();
 		cin.getline(username, MAX_USERNAME_LENGTH);
 	} while (m_system->searchUsername(username));
-	//is this how to call a system class function to search buyer/seller list for the inputted username?
 
 	char password[MAX_PASSWORD_LENGTH];
 	cout << "Please enter password: ";
-	cin.ignore();
 	cin.getline(password, MAX_PASSWORD_LENGTH);
 
 	char country[MAX_COUNTRY_LENGTH];
 	cout << "Please enter country: ";
-	cin.ignore();
 	cin.getline(country, MAX_COUNTRY_LENGTH);
 
 	char city[MAX_CITY_LENGTH];
 	cout << "Please enter city: ";
-	cin.ignore();
 	cin.getline(city, MAX_CITY_LENGTH);
 
 	char street_name[MAX_STREET_LENGTH];
 	cout << "Please enter street name: ";
-	cin.ignore();
 	cin.getline(street_name, MAX_STREET_LENGTH);
 
 	int house_number;
 	cout << "Please enter house number: ";
-	cin.ignore();
 	cin >> house_number;
 
 	int zip_code;
 	cout << "Please enter zip_code: ";
-	cin.ignore();
 	cin >> zip_code;
 
 	Address new_address(street_name, house_number, zip_code, city, country);
@@ -66,39 +59,33 @@ Buyer* Menu::createBuyer()
 	char username[MAX_USERNAME_LENGTH];
 	do
 	{
-		cout << "Enter username: ";
+		cout << "Enter username (If username exists you will be asked again): ";
 		cin.ignore();
 		cin.getline(username, MAX_USERNAME_LENGTH);
 	} while (m_system->searchUsername(username));
 
 	char password[MAX_PASSWORD_LENGTH];
 	cout << "Enter password: ";
-	cin.ignore();
 	cin.getline(password, MAX_PASSWORD_LENGTH);
 
 	char country[MAX_COUNTRY_LENGTH];
 	cout << "Enter country: ";
-	cin.ignore();
 	cin.getline(country, MAX_COUNTRY_LENGTH);
 
 	char city[MAX_CITY_LENGTH];
 	cout << "Enter city: ";
-	cin.ignore();
 	cin.getline(city, MAX_CITY_LENGTH);
 
 	char street_name[MAX_STREET_LENGTH];
 	cout << "Enter street name: ";
-	cin.ignore();
 	cin.getline(street_name, MAX_STREET_LENGTH);
 
 	int house_number;
 	cout << "Enter house number: ";
-	cin.ignore();
 	cin >> house_number;
 
 	int zip_code;
 	cout << "Enter zip_code: ";
-	cin.ignore();
 	cin >> zip_code;
 
 	Address new_address(street_name, house_number, zip_code, city, country);
@@ -149,7 +136,7 @@ void Menu::newOrder(Buyer& buyer)
 
 	for (int i = 0; i < cart_size; i++)
 	{
-		temp[i]->printProduct;
+		temp[i]->printProduct();
 		cout << "Enter " << i << " to add " << temp[i]->getName() << " to your order\n";
 	}
 
@@ -297,7 +284,7 @@ void Menu::mainMenu()
 		}
 
 		//Quit
-		if (user_input == 3) 
+		if (user_input == 4) 
 		{
 			quit_switch == 1;
 			break;
@@ -310,7 +297,7 @@ void Menu::mainMenu()
 
 		while (user_type != 1 && user_type != 2)
 		{
-			cout << "Invalid selection, please try again\n";
+			cout << "Invalid selection, please try again: ";
 			cin >> user_type;
 		}
 
@@ -422,17 +409,18 @@ void Menu::buyerMenu(Buyer& buyer)
 	int selection;
 	cin >> selection;
 
-	while (selection != 5)
+	while (selection != 6)
 	{
 		switch (selection)
 		{	
 			case 1:	/*Add item to shopping cart - Question 5*/
+			{
 				cout << "Enter name of product you wish to buy: ";
 				char product_name[MAX_PRODUCT_NAME];
 				cin.ignore();
 				cin.getline(product_name, MAX_PRODUCT_NAME);
 				m_system->printProductsByName(product_name);	//Question 10
-				
+
 				cout << "Enter serial number of product you wish to buy: ";
 				int serial_number;
 				cin >> serial_number;
@@ -448,8 +436,10 @@ void Menu::buyerMenu(Buyer& buyer)
 				buyer.getShoppingCart().addItemToShoppingCart(*product);
 				cout << product->getName() << " added to your shopping cart\n";
 				break;
+			}
 
 			case 2:	/*Create new order - Question 6*/
+			{
 				if (!buyer.getCurrentOrder())
 					newOrder(buyer);
 				else
@@ -471,15 +461,19 @@ void Menu::buyerMenu(Buyer& buyer)
 						buyer.setCurrentOrder(nullptr);
 						cout << "Items returned to your shopping cart\n";
 						newOrder(buyer);
-					}						
+					}
 				}
 				break;
-
+			}
+				
 			case 3: /*Pay for existing order - Question 7*/
+			{
 				completeOrder(buyer);
 				break;
+			}
 
 			case 4: /*Publish new feedback - Question 4*/
+			{
 				if (buyer.getNumOrders() == 0)
 				{
 					cout << "No products have been purchased\n";
@@ -488,10 +482,29 @@ void Menu::buyerMenu(Buyer& buyer)
 				else
 					createFeedback(buyer);
 				break;
-				
+
+			}
+
+			case 5: /*Charge your wallet*/
+			{
+				cout << "You currently have: $" << buyer.getWallet() << endl;
+				cout << "How much do you want to add? $";
+				double amount;
+				cin >> amount;
+
+				if (buyer.setWallet(amount))
+					cout << "Funds added successfully! Your wallet: $" << buyer.getWallet() << endl;
+				else
+					cout << "Invalid amount entered, top-up denied\n";
+				break;
+
+			}
+
 			default:
+			{
 				cout << "Invalid number entered\n";
 				break;
+			}
 		}
 
 		this->printBuyerMenu();
@@ -513,7 +526,8 @@ void Menu::printBuyerMenu() const
 	cout << "2\tCreate new order\n";				//Question 6
 	cout << "3\tPay for existing order\n";			//Question 7
 	cout << "4\tPublish a new feedback\n";			//Question 4
-	cout << "5\tLog-out\n";
+	cout << "5\tCharge wallet\n";
+	cout << "6\tLog-out\n";
 	cout << "--------------------------------------------------\n";
 	cout << "Enter number of what you would like to do: ";
 }
@@ -533,6 +547,7 @@ void Menu::sellerMenu(Seller& seller)
 		switch (selection)
 		{
 			case 1: /*Add product to store - Question 3*/
+			{
 				Product* new_product = createProduct(seller.getUserName());
 				if (!seller.addProduct(*new_product))
 				{
@@ -546,18 +561,23 @@ void Menu::sellerMenu(Seller& seller)
 					cout << new_product->getName() << " added to your store successfully!\n";
 				}
 				break;
+			}
 
 			case 2: /*Search product by name - Question 10*/
+			{
 				cout << "Enter name of product: ";
 				char product_name[MAX_PRODUCT_NAME];
 				cin.ignore();
 				cin.getline(product_name, MAX_PRODUCT_NAME);
 				m_system->printProductsByName(product_name);	//Question 10
 				break;
+			}
 
 			default:
+			{
 				cout << "Invalid number entered\n";
 				break;
+			}
 		}
 
 		this->printSellerMenu();

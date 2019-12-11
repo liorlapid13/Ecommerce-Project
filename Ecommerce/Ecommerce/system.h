@@ -3,7 +3,7 @@
 
 #include "validation.h"
 #include "buyer.h"
-#include "seller.h"
+
 
 class System
 {
@@ -21,9 +21,9 @@ public:
 	//Getters
 	const char* getName()					const;
 	Buyer** getBuyerList();
-	const int getNumOfBuyers()				const;
+	int getNumOfBuyers()					const;
 	Seller** getSellerList();
-	const int getNumOfSellers()				const;
+	int getNumOfSellers()					const;
 
 	//QUESTIONS 1,2
 	void addSeller(Seller& new_seller);

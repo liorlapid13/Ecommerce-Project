@@ -34,8 +34,8 @@ public:
     const char*	getCity()			const;
     const char*	getCountry()		const;
 
-	//QUESTION 9
-	void printAddress()						const;
+	//QUESTION 8&9
+	void printAddress()				const;
 
 private:
 	char*	m_street_name;

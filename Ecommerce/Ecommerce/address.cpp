@@ -1,8 +1,9 @@
 #include "address.h"
 //----------------------------------------------------------------------------------------//
 Address::Address(const char* street_name, int	house_number,
-	 int zip_code, const char* city, const char* country)
+	int zip_code, const char* city, const char* country) : m_street_name(nullptr), m_city(nullptr), m_country(nullptr)
 {
+
 	setStreetName(street_name);		//Street name
 	setHouseNumber(house_number);	//House number
 	setZipCode(zip_code);			//Zip code
@@ -14,6 +15,7 @@ Address::Address(const Address& other)	//Copy C'tor
 {
 	//Street name
 	setStreetName(other.m_street_name);
+
 	//House number & Zip code
 	setHouseNumber(other.m_house_number);
 	setZipCode(other.m_zip_code);
@@ -42,7 +44,6 @@ Address::Address(Address&& other)	//Move C'tor
 	//Country
 	m_country = other.m_country;
 	other.m_country = nullptr;
-
 }
 //----------------------------------------------------------------------------------------//
 Address::~Address()

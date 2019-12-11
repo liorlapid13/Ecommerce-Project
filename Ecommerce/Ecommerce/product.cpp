@@ -1,5 +1,7 @@
 #include "product.h"
 
+const char* Product::categoryStr[] = { "Kids","Electrical","Clothing","Office" };
+
 int Product::serial_num_generator = 1000000;	//Serial number contains 7 digits (starting at 1,000,000)
 //----------------------------------------------------------------------------------------//
 Product::Product(const char* name, float price, Product::eCategory category, const char* seller_name)
@@ -20,18 +22,17 @@ Product::Product(const Product& other) //copy c'tor
 	setSellerName(other.m_seller);
 }
 //----------------------------------------------------------------------------------------//
-/*
 Product::Product(Product&&other) //move c'tor
 {
 	m_name = other.m_name;
 	other.m_name = nullptr;
 	m_price = other.m_price;
-	m_serialNumber = other.m_serialNumber;
+	m_serial_number = other.m_serial_number;
 	m_category = other.m_category;
 	m_seller = other.m_seller;
 	other.m_seller = nullptr;
 }
-*/
+
 //----------------------------------------------------------------------------------------//
 Product::~Product()
 {

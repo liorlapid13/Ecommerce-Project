@@ -12,6 +12,7 @@ public:
 	static const char* categoryStr[];
 	static const int NUM_OF_CATEGORIES = 4;			//product categories
 	static const int MAX_SERIAL_NUMBER = 999999;	//Serial number contains maximum 6 digits 
+	static const int MAX_PRODUCT_NAME = 60;
 
 public:
 	//C'tor

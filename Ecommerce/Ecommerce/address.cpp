@@ -55,7 +55,7 @@ Address::~Address()
 //----------------------------------------------------------------------------------------//
 bool Address::setStreetName(const char* street_name)
 {
-	if (!checkString(strlen(street_name), street_name))
+	if (!Validation::checkString(strlen(street_name), street_name))
 	{
 		cout << "Invalid street name, please try again\n";
 		return false;
@@ -64,6 +64,7 @@ bool Address::setStreetName(const char* street_name)
 	{
 		delete[] m_street_name;
 		m_street_name = new char[strlen(street_name) + 1];
+		Validation::checkAllocation(m_street_name);
 		strcpy(m_street_name, street_name);
 		return true;
 	}
@@ -100,7 +101,7 @@ bool Address::setZipCode(const int zip_code)
 //----------------------------------------------------------------------------------------//
 bool Address::setCity(const char* city)
 {
-	if (!checkString(strlen(city), city))
+	if (!Validation::checkString(strlen(city), city))
 	{
 		cout << "City can only contain letters\n";
 		return false;
@@ -109,6 +110,7 @@ bool Address::setCity(const char* city)
 	{
 		delete[] m_city;
 		m_city = new char[strlen(city) + 1];
+		Validation::checkAllocation(m_city);
 		strcpy(m_city, city);
 		return true;
 	}
@@ -116,7 +118,7 @@ bool Address::setCity(const char* city)
 //----------------------------------------------------------------------------------------//
 bool Address::setCountry(const char* country)
 {
-	if (!checkString(strlen(country), country))
+	if (!Validation::checkString(strlen(country), country))
 	{
 		cout << "Country can only contain letters\n";
 		return false;
@@ -125,6 +127,7 @@ bool Address::setCountry(const char* country)
 	{
 		delete[] m_country;
 		m_country = new char[strlen(country) + 1];
+		Validation::checkAllocation(m_country);
 		strcpy(m_country, country);
 		return true;
 	}

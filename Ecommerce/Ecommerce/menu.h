@@ -8,7 +8,6 @@ class Menu
 {
 
 public:
-	static const int MAX_PRODUCT_NAME = 30;
 	static const int MAX_FEEDBACK_LENGTH = 250;
 
 	//Setters

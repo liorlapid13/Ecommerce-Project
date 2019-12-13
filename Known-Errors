@@ -11,3 +11,10 @@ C'tors -> In classes which have dynamic fields, we initialized
 	in case of setters being used to change an existing value.
 	When the c'tor calls the setters, if the fields are not initialized,
 	then the program would crash.
+
+Input Parameters -> When receiving an input from user for parameters,
+		we set a static max-length for each parameter.
+		As instructed by our Professors, 
+		we assume that the user does not input anything longer than
+		the set max-length.
+		For example: username, password, product name, etc...

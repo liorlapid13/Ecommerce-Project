@@ -19,6 +19,7 @@ bool Feedback::setDescription(const char* description)
 	{
 		delete[] m_description;
 		m_description = new char[strlen(description) + 1];
+		Validation::checkAllocation(m_description);
 		strcpy(m_description, description);
 		return true;
 	}

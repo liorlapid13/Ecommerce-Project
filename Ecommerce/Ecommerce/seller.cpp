@@ -8,27 +8,9 @@ Seller::Seller(const char* username, const char* password, const Address& addres
 	m_num_of_products = 0;
 	m_feedback_list = nullptr;
 	m_store = nullptr;
+
+	cout << "In Seller C'tor -> " << username << endl;
 }
-//----------------------------------------------------------------------------------------//
-/*
-Seller::Seller(const Seller& other):m_address(other.m_address)
-{
-	setUsername(other.m_username);
-	setPassword(other.m_password);
-	m_feedback_list = other.m_feedback_list;
-	m_product_list = other.m_product_list;
-}
-Seller::Seller(Seller&& other):m_address(other.m_address)
-{
-	m_username = other.m_username;
-	other.m_username = nullptr;
-	m_password = other.m_password;
-	other.m_password = nullptr;
-	m_feedback_list = other.m_feedback_list;
-	other.m_feedback_list = nullptr;
-	m_product_list = other.m_product_list;
-	other.m_product_list = nullptr;
-}*/
 //----------------------------------------------------------------------------------------//
 Seller::~Seller()
 {
@@ -47,12 +29,13 @@ Seller::~Seller()
 bool Seller::setUsername(const char* username)
 {
 	//check validity of username
-	if (!usernameCheck(username))
+	if (!Validation::usernameCheck(username))
 		return false;
 	else
 	{
 		delete[] m_username;
 		m_username = new char[strlen(username) + 1];
+		Validation::checkAllocation(m_username);
 		strcpy(m_username, username);
 		return true;
 	}
@@ -61,12 +44,13 @@ bool Seller::setUsername(const char* username)
 bool Seller::setPassword(const char* password)
 {
 	//check validity of password
-	if (!passwordCheck(password))
+	if (!Validation::passwordCheck(password))
 		return false;
 	else
 	{
 		delete[] m_password;
 		m_password = new char[strlen(password) + 1];
+		Validation::checkAllocation(m_password);
 		strcpy(m_password, password);
 		return true;
 	}
@@ -122,6 +106,7 @@ bool Seller::addProduct(Product& new_product)
 		if (!searchStore(new_product.getName()))
 		{
 			Product** temp = new Product*[m_num_of_products + 1];	//allocate memory for new product list
+			Validation::checkAllocation(temp);
 			for (int i = 0; i < m_num_of_products; i++)				//copy each existing product to new list
 				temp[i] = m_store[i];
 			temp[m_num_of_products] = &new_product;					//add the new product to the new list
@@ -137,6 +122,7 @@ bool Seller::addProduct(Product& new_product)
 	else
 	{
 		m_store = new Product*[m_num_of_products + 1];			//allocate memory for new product array in temporary pointer
+		Validation::checkAllocation(m_store);
 		m_store[m_num_of_products] = &new_product;				//add the new product to the new array
 		m_num_of_products++;									//advance the counter for number of products
 		return true;
@@ -169,11 +155,13 @@ void Seller::addFeedback(Feedback& new_feedback)
 	{
 		m_num_of_feedbacks++;
 		m_feedback_list = new Feedback*[m_num_of_feedbacks];
+		Validation::checkAllocation(m_feedback_list);
 		m_feedback_list[0] = &new_feedback;
 	}
 	else
 	{
 		Feedback** temp = new Feedback*[m_num_of_feedbacks + 1];	//allocate memory for new feedback list
+		Validation::checkAllocation(temp);
 		for (int i = 0; i < m_num_of_feedbacks; i++)				//copy each existing feedback to new list
 			temp[i] = m_feedback_list[i];
 		temp[m_num_of_feedbacks] = &new_feedback;					//add the new feedback to the new list

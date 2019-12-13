@@ -45,10 +45,11 @@ bool Product::setName(const char* name)
 	//check if name contains symbols/spaces/invalid characters
 	for (int i = 0; i < strlen(name); i++)
 	{
-		if (name[i] < '0' || (name[i] > 'z'
-			|| (name[i] > '9' && name[i] < 'A')
-			|| (name[i] > 'Z' && name[i] < 'a' || name[i] != ' ')))
-		{
+		if ((name[i] < '0' || (name[i] > 'z' 
+			|| (name[i] > '9' && name[i] < 'A')	
+			|| (name[i] > 'Z' && name[i] < 'a')) 
+			&& ( name[i] != ' ')))
+		{ 
 			cout << "Name of products can only contain alphanumeric characters (lower/uppercase letters A-Z, numbers 0-9)\n";
 			return false;
 		}
@@ -56,6 +57,7 @@ bool Product::setName(const char* name)
 
 	delete[] m_name;
 	m_name = new char[strlen(name) + 1];
+	Validation::checkAllocation(m_name);
 	strcpy(m_name, name);
 	return true;
 }
@@ -90,6 +92,7 @@ bool Product::setCategory(Product::eCategory category)
 void Product::setSellerName(const char* seller_name)
 {
 	m_seller = new char[strlen(seller_name) + 1];
+	Validation::checkAllocation(m_seller);
 	strcpy(m_seller, seller_name);
 }
 //----------------------------------------------------------------------------------------//

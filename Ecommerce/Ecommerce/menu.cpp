@@ -16,99 +16,110 @@ System* Menu::getSystem()
 //----------------------------------------------------------------------------------------//
 Seller* Menu::createSeller()
 {
-	char username[MAX_USERNAME_LENGTH];
+	char username[Validation::MAX_USERNAME_LENGTH];
+	cin.ignore();
 	do
 	{
-		cout << "Please enter username (If username exists you will be asked again): ";
-		cin.ignore();
-		cin.getline(username, MAX_USERNAME_LENGTH);
-	} while (m_system->searchUsername(username));
+		cout << "Enter username(If username exists you will be asked again):\n";
+		cout << "Username must contain 6-15 alphanumeric characters (lower/uppercase letters A-Z, numbers 0-9)\n";
+		cin.getline(username, Validation::MAX_USERNAME_LENGTH);
+	} while (!(m_system->searchUsername(username)));
 
-	char password[MAX_PASSWORD_LENGTH];
-	cout << "Please enter password: ";
-	cin.getline(password, MAX_PASSWORD_LENGTH);
+	char password[Validation::MAX_PASSWORD_LENGTH];
+	cout << "Enter password\n";
+	cout << "Password must contain 6-15 characters and atleast one of each of the following:\n";
+	cout << "-Lowercase letter\n";
+	cout << "-Uppercase letter\n";
+	cout << "-Number\n";
+	cin.getline(password, Validation::MAX_PASSWORD_LENGTH);
 
-	char country[MAX_COUNTRY_LENGTH];
+	char country[Validation::MAX_COUNTRY_LENGTH];
 	cout << "Please enter country: ";
-	cin.getline(country, MAX_COUNTRY_LENGTH);
+	cin.getline(country, Validation::MAX_COUNTRY_LENGTH);
 
-	char city[MAX_CITY_LENGTH];
+	char city[Validation::MAX_CITY_LENGTH];
 	cout << "Please enter city: ";
-	cin.getline(city, MAX_CITY_LENGTH);
+	cin.getline(city, Validation::MAX_CITY_LENGTH);
 
-	char street_name[MAX_STREET_LENGTH];
+	char street_name[Validation::MAX_STREET_LENGTH];
 	cout << "Please enter street name: ";
-	cin.getline(street_name, MAX_STREET_LENGTH);
+	cin.getline(street_name, Validation::MAX_STREET_LENGTH);
 
 	int house_number;
 	cout << "Please enter house number: ";
 	cin >> house_number;
 
 	int zip_code;
-	cout << "Please enter zip_code: ";
+	cout << "Please enter zip_code (7 digits): ";
 	cin >> zip_code;
 
 	Address new_address(street_name, house_number, zip_code, city, country);
 	Seller* new_seller = new Seller(username, password, new_address);
+	Validation::checkAllocation(new_seller);
 	m_system->addSeller(*new_seller);
 	return new_seller;
 }
 //----------------------------------------------------------------------------------------//
 Buyer* Menu::createBuyer()
 {
-	char username[MAX_USERNAME_LENGTH];
+	cin.ignore();
+	char username[Validation::MAX_USERNAME_LENGTH];
 	do
 	{
-		cout << "Enter username (If username exists you will be asked again): ";
-		cin.ignore();
-		cin.getline(username, MAX_USERNAME_LENGTH);
-	} while (m_system->searchUsername(username));
+		cout << "Enter username(If username exists you will be asked again):\n";
+		cout << "Username must contain 6-15 alphanumeric characters (lower/uppercase letters A-Z, numbers 0-9)\n";
+		cin.getline(username, Validation::MAX_USERNAME_LENGTH);
+	} while (!(m_system->searchUsername(username)));
 
-	char password[MAX_PASSWORD_LENGTH];
-	cout << "Enter password: ";
-	cin.getline(password, MAX_PASSWORD_LENGTH);
+	char password[Validation::MAX_PASSWORD_LENGTH];
+	cout << "Enter password\n";
+	cout << "Password must contain 6-15 characters and atleast one of each of the following:\n";
+	cout << "-Lowercase letter\n";
+	cout << "-Uppercase letter\n";
+	cout << "-Number\n";
+	cin.getline(password, Validation::MAX_PASSWORD_LENGTH);
 
-	char country[MAX_COUNTRY_LENGTH];
+	char country[Validation::MAX_COUNTRY_LENGTH];
 	cout << "Enter country: ";
-	cin.getline(country, MAX_COUNTRY_LENGTH);
+	cin.getline(country, Validation::MAX_COUNTRY_LENGTH);
 
-	char city[MAX_CITY_LENGTH];
+	char city[Validation::MAX_CITY_LENGTH];
 	cout << "Enter city: ";
-	cin.getline(city, MAX_CITY_LENGTH);
+	cin.getline(city, Validation::MAX_CITY_LENGTH);
 
-	char street_name[MAX_STREET_LENGTH];
+	char street_name[Validation::MAX_STREET_LENGTH];
 	cout << "Enter street name: ";
-	cin.getline(street_name, MAX_STREET_LENGTH);
+	cin.getline(street_name, Validation::MAX_STREET_LENGTH);
 
 	int house_number;
 	cout << "Enter house number: ";
 	cin >> house_number;
 
 	int zip_code;
-	cout << "Enter zip_code: ";
+	cout << "Enter zip_code (7 digits): ";
 	cin >> zip_code;
 
 	Address new_address(street_name, house_number, zip_code, city, country);
 	Buyer* new_buyer = new Buyer(username, password, new_address);
+	Validation::checkAllocation(new_buyer);
 	m_system->addBuyer(*new_buyer);
 	return new_buyer;
 }
 //----------------------------------------------------------------------------------------//
 Product* Menu::createProduct(const char* seller_username)
 {
-	char product_name[MAX_PRODUCT_NAME];
-	cout << "Enter product name: ";
+	char product_name[Product::MAX_PRODUCT_NAME];
+	cout << "Enter product name\n";
+	cout << "Product name can only contain alphanumeric characters (lower/uppercase letters A-Z, numbers 0-9) and spaces\n";
 	cin.ignore();
-	cin.getline(product_name, MAX_PRODUCT_NAME);
+	cin.getline(product_name, Product::MAX_PRODUCT_NAME);
 
 	float price;
 	cout << "Enter product item: ";
-	cin.ignore();
 	cin >> price;
 
 	int category;
 	cout << "Enter product category (0=KIDS, 1=ELECTRICAL, 2=CLOTHING, 4=OFFICE): ";
-	cin.ignore();
 	cin >> category;
 
 	return (new Product(product_name, price, (Product::eCategory)category, seller_username));
@@ -126,6 +137,7 @@ void Menu::newOrder(Buyer& buyer)
 {
 	int cart_size = buyer.getShoppingCart().getNumProducts();
 	int* product_index_array = new int[cart_size];
+	Validation::checkAllocation(product_index_array);
 	for (int i = 0; i < cart_size; i++)
 		product_index_array[i] = 0;
 
@@ -175,6 +187,9 @@ void Menu::newOrder(Buyer& buyer)
 	delete[] product_index_array;
 }
 //----------------------------------------------------------------------------------------//
+/*
+Receives a buyer from buyer menu, if an order exists, lets him pay for the order.
+*/
 void Menu::completeOrder(Buyer& buyer)
 {
 	if (buyer.getCurrentOrder() != nullptr)
@@ -343,25 +358,23 @@ void Menu::logIn(int user_type)
 	cout << "Log-In\n";
 
 	bool logged_in = 0;
-
+	
 	while (!logged_in)
 	{
-		cout << "Enter username: ";
-		char username[MAX_USERNAME_LENGTH];
 		cin.ignore();
-		cin >> username;
+		cout << "Enter username: ";
+		char username[Validation::MAX_USERNAME_LENGTH];
+		cin.getline(username, Validation::MAX_USERNAME_LENGTH);
+		
 
 		cout << "Enter password: ";
-		char password[MAX_PASSWORD_LENGTH];
-		cin.ignore();
-		cin >> password;
+		char password[Validation::MAX_PASSWORD_LENGTH];
+		cin.getline(password, Validation::MAX_PASSWORD_LENGTH);
 
 		if (user_type == 1)
 		{
 			Buyer* buyer = m_system->findBuyer(username);
-			if (!buyer)
-				break;
-			else if (strcmp(buyer->getPassword(), password) == 0)
+			if (buyer && (strcmp(buyer->getPassword(), password) == 0))
 			{
 				logged_in = 1;
 				this->buyerMenu(*buyer);
@@ -370,9 +383,7 @@ void Menu::logIn(int user_type)
 		else
 		{
 			Seller* seller = m_system->findSeller(username);
-			if (!seller)
-				break;
-			else if (strcmp(seller->getPassword(), password) == 0)
+			if (seller && (strcmp(seller->getPassword(), password) == 0))
 			{
 				logged_in = 1;
 				this->sellerMenu(*seller);
@@ -395,6 +406,7 @@ void Menu::logIn(int user_type)
 			{
 				logged_in = 1;
 			}
+			
 		}
 	}
 }
@@ -416,9 +428,9 @@ void Menu::buyerMenu(Buyer& buyer)
 			case 1:	/*Add item to shopping cart - Question 5*/
 			{
 				cout << "Enter name of product you wish to buy: ";
-				char product_name[MAX_PRODUCT_NAME];
+				char product_name[Product::MAX_PRODUCT_NAME];
 				cin.ignore();
-				cin.getline(product_name, MAX_PRODUCT_NAME);
+				cin.getline(product_name, Product::MAX_PRODUCT_NAME);
 				m_system->printProductsByName(product_name);	//Question 10
 
 				cout << "Enter serial number of product you wish to buy: ";
@@ -566,9 +578,9 @@ void Menu::sellerMenu(Seller& seller)
 			case 2: /*Search product by name - Question 10*/
 			{
 				cout << "Enter name of product: ";
-				char product_name[MAX_PRODUCT_NAME];
+				char product_name[Product::MAX_PRODUCT_NAME];
 				cin.ignore();
-				cin.getline(product_name, MAX_PRODUCT_NAME);
+				cin.getline(product_name, Product::MAX_PRODUCT_NAME);
 				m_system->printProductsByName(product_name);	//Question 10
 				break;
 			}

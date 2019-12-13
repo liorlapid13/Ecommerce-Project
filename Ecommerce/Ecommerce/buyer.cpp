@@ -10,6 +10,7 @@ Buyer::Buyer(const char* username, const char* password,
 	setCurrentOrder(nullptr);
 	m_order_history = nullptr;
 	
+	cout << "In Buyer C'tor -> " << username << endl;
 }
 //----------------------------------------------------------------------------------------//
 Buyer::~Buyer()
@@ -36,12 +37,13 @@ bool Buyer::setWallet(const double funds)
 bool Buyer::setUsername(const char* username)
 {
 	//check validity of username
-	if (!usernameCheck(username))
+	if (!Validation::usernameCheck(username))
 		return false;
 	else
 	{
 		delete[] m_username;
 		m_username = new char[strlen(username) + 1];
+		Validation::checkAllocation(m_username);
 		strcpy(m_username, username);
 		return true;
 	}
@@ -50,12 +52,13 @@ bool Buyer::setUsername(const char* username)
 bool Buyer::setPassword(const char* password)
 {
 	//check validity of password
-	if (!passwordCheck(password))
+	if (!Validation::passwordCheck(password))
 		return false;
 	else
 	{
 		delete[] m_password;
 		m_password = new char[strlen(password) + 1];
+		Validation::checkAllocation(m_password);
 		strcpy(m_password, password);
 		return true;
 	}
@@ -124,7 +127,7 @@ int Buyer::getNumOrders() const
 void Buyer::printBuyerInfo() const
 {
 	cout << "Username: " << m_username << endl;
-	cout << "Address: "; 
+	cout << "\tAddress: "; 
 	m_address.printAddress();
 }
 //----------------------------------------------------------------------------------------//
@@ -137,7 +140,9 @@ void Buyer::createOrder(int num_of_selected_products, int* product_index_array, 
 {
 	int new_shopping_cart_size = m_shopping_cart.getNumProducts() - num_of_selected_products;
 	Product** new_shopping_cart = new Product*[new_shopping_cart_size];
+	Validation::checkAllocation(new_shopping_cart);
 	Product** new_order_product_list = new Product*[num_of_selected_products];
+	Validation::checkAllocation(new_order_product_list);
 	
 	int cart_index = 0, order_index = 0;
 
@@ -162,6 +167,7 @@ void Buyer::createOrder(int num_of_selected_products, int* product_index_array, 
 
 	//Create new order
 	m_current_order = new Order(new_order_product_list, num_of_selected_products, total_price);
+	Validation::checkAllocation(m_current_order);
 }
 //----------------------------------------------------------------------------------------//
 /*
@@ -186,11 +192,13 @@ void Buyer::addOrderToHistory()
 	{
 		m_num_of_orders++;
 		m_order_history = new Order*[m_num_of_orders];
+		Validation::checkAllocation(m_order_history);
 		m_order_history[0] = m_current_order;
 	}
 	else
 	{
 		Order** temp = new Order*[m_num_of_orders + 1];		//allocate memory for new order list
+		Validation::checkAllocation(temp);
 		for (int i = 0; i < m_num_of_orders; i++)			//copy each existing order to new list
 			temp[i] = m_order_history[i];
 		temp[m_num_of_orders] = m_current_order;			//add the new order to the new list

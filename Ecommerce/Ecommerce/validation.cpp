@@ -1,6 +1,6 @@
 #include "validation.h"
 //----------------------------------------------------------------------------------------//
-bool checkString(const int length, const char* string)
+bool Validation::checkString(const int length, const char* string)
 {
 	//scan string for any characters that are not a space or letter
 	for (int i = 0; i < length; i++)
@@ -16,7 +16,7 @@ bool checkString(const int length, const char* string)
 	return true;
 }
 //----------------------------------------------------------------------------------------//
-bool passwordCheck(const char* password)
+bool Validation::passwordCheck(const char* password)
 {
 	//check if length of password is valid
 	if (strlen(password) < MIN_PASSWORD_LENGTH || strlen(password) > MAX_PASSWORD_LENGTH)
@@ -60,7 +60,7 @@ bool passwordCheck(const char* password)
 	}
 }
 //----------------------------------------------------------------------------------------//
-bool usernameCheck(const char* username)
+bool Validation::usernameCheck(const char* username)
 {
 	//check if username length is valid
 	if (strlen(username) < MIN_USERNAME_LENGTH || strlen(username) > MAX_USERNAME_LENGTH)
@@ -73,10 +73,9 @@ bool usernameCheck(const char* username)
 		//check if name contains symbols/spaces/invalid characters
 		for (int i = 0; i < strlen(username); i++)
 		{
-			if (username[i] < '0' || (username[i] > 'z'
+			if (username[i] < '0' || username[i] > 'z'
 				|| (username[i] > '9' && username[i] < 'A')
-				|| (username[i] > 'Z' && username[i] < 'a')
-				))
+				|| (username[i] > 'Z' && username[i] < 'a'))
 			{
 				cout << "Username can only contain alphanumeric characters (lower/uppercase letters A-Z, numbers 0-9)\n";
 				return false;
@@ -86,11 +85,14 @@ bool usernameCheck(const char* username)
 	}
 }
 //----------------------------------------------------------------------------------------//
-bool checkAllocation(void* ptr)
+void Validation::checkAllocation(void* ptr)
 {
-	return(ptr != nullptr);
+	if (!ptr)
+	{
+		cout << "Memory allocation error! Exiting program!\n";
+		exit(1);
+	}
 }
 //----------------------------------------------------------------------------------------//
 
-//----------------------------------------------------------------------------------------//
 

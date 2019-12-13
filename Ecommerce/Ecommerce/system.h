@@ -16,7 +16,7 @@ public:
 	~System();
 
 	//Setters
-	bool setName(const char* name);
+	void setName(const char* name);
 
 	//Getters
 	const char* getName()					const;

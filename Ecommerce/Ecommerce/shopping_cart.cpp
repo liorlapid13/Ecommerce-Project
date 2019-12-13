@@ -39,11 +39,13 @@ void ShoppingCart::addItemToShoppingCart(Product& product)
 	{
 		m_num_of_products++;
 		m_product_list = new Product*[m_num_of_products];
+		Validation::checkAllocation(m_product_list);
 		m_product_list[0] = &product;
 	}
 	else
 	{
 		Product** temp = new Product*[m_num_of_products + 1];	//allocate memory for new product list
+		Validation::checkAllocation(temp);
 		for (int i = 0; i < m_num_of_products; i++)				//copy each existing product to new list
 			temp[i] = m_product_list[i];
 		temp[m_num_of_products] = &product;						//add the new product to the new list

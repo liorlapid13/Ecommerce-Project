@@ -32,23 +32,10 @@ System::~System()
 	delete[] m_seller_list;			//Delete the list itself
 }
 //----------------------------------------------------------------------------------------//
-bool System::setName(const char* name)
+void System::setName(const char* name)
 {
-	//check if name contains symbols/spaces/invalid characters
-/*	for (int i = 0; i < strlen(name); i++)
-	{
-		if (name[i] < '0' || (name[i] > 'z'
-			|| (name[i] > '9' && name[i] < 'A')
-			|| (name[i] > 'Z' && name[i] < 'a' || name[i] != ' ')))
-		{
-			cout << "Name of system can only contain alphanumeric characters (lower/uppercase letters A-Z, numbers 0-9)\n";
-			return false;
-		}
-	}*/
-
 	m_name = new char[strlen(name) + 1];
 	strcpy(m_name, name);
-	return true;
 }
 //----------------------------------------------------------------------------------------//
 const char* System::getName() const
@@ -82,11 +69,13 @@ void System::addBuyer(Buyer& new_buyer)
 	{
 		m_num_of_buyers++;
 		m_buyer_list = new Buyer*[m_num_of_buyers];
+		Validation::checkAllocation(m_buyer_list);
 		m_buyer_list[0] = &new_buyer;
 	}
 	else
 	{
 		Buyer** temp = new Buyer*[m_num_of_buyers + 1];	//allocate memory for new buyer list
+		Validation::checkAllocation(temp);
 		for (int i = 0; i < m_num_of_buyers; i++)		//copy each existing buyer to new list
 			temp[i] = m_buyer_list[i];
 		temp[m_num_of_buyers] = &new_buyer;				//add the new buyer to the new list
@@ -103,11 +92,13 @@ void System::addSeller(Seller& new_seller)
 	{
 		m_num_of_sellers++;
 		m_seller_list = new Seller*[m_num_of_sellers];
+		Validation::checkAllocation(m_seller_list);
 		m_seller_list[0] = &new_seller;
 	}
 	else
 	{
 		Seller** temp = new Seller*[m_num_of_sellers + 1];	//allocate memory for new seller array in temporary parameter
+		Validation::checkAllocation(temp);
 		for (int i = 0; i < m_num_of_sellers; i++)			//copy each existing seller to new array
 			temp[i] = m_seller_list[i];
 		temp[m_num_of_sellers] = &new_seller;				//add the new seller to the new array
@@ -133,26 +124,39 @@ bool System::searchUsername(char* username)	const
 		//search for username in seller list
 		for (int i = 0; i < m_num_of_sellers; i++)
 		{
-			if (strcmp(m_buyer_list[i]->getUserName(), username) == 0)
+			if (strcmp(m_seller_list[i]->getUserName(), username) == 0)
 				return false;
 		}
-
 
 	return true;
 }
 //----------------------------------------------------------------------------------------//
 void System::printBuyerList() const
 {
-	cout << "Buyer List\n";
+	cout << " _________________\n";
+	cout << "|                 |\n";
+	cout << "|   Buyer List    |\n";
+	cout << "|_________________|\n\n";
+
 	for (int i = 0; i < m_num_of_buyers; i++)
+	{
+		cout << i+1 << "\t";
 		m_buyer_list[i]->printBuyerInfo();
+	}
 }
 //----------------------------------------------------------------------------------------//
 void System::printSellerList() const
 {
-	cout << "Seller List\n";
+	cout << " __________________\n";
+	cout << "|                  |\n";
+	cout << "|   Seller List    |\n";
+	cout << "|__________________|\n\n";
+
 	for (int i = 0; i < m_num_of_sellers; i++)
+	{
+		cout << i + 1 << "\t";
 		m_seller_list[i]->printSellerInfo();
+	}
 }
 //----------------------------------------------------------------------------------------//
 void System::printProductsByName(char* product_name) const
@@ -192,11 +196,13 @@ void System::newProduct(Product& new_product)
 	{
 		m_num_of_sellers++;
 		m_product_list = new Product*[m_num_of_products];
+		Validation::checkAllocation(m_product_list);
 		m_product_list[0] = &new_product;
 	}
 	else
 	{
 		Product** temp = new Product*[m_num_of_products + 1];	//allocate memory for new product list
+		Validation::checkAllocation(temp);
 		for (int i = 0; i < m_num_of_products; i++)				//copy each existing product to new list
 			temp[i] = m_product_list[i];
 		temp[m_num_of_products] = &new_product;					//add the new product to the new list

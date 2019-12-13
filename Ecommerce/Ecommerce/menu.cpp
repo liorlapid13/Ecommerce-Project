@@ -115,7 +115,7 @@ Product* Menu::createProduct(const char* seller_username)
 	cin.getline(product_name, Product::MAX_PRODUCT_NAME);
 
 	float price;
-	cout << "Enter product item: ";
+	cout << "Enter product price (in dolars):$";
 	cin >> price;
 
 	int category;
@@ -561,6 +561,7 @@ void Menu::sellerMenu(Seller& seller)
 			case 1: /*Add product to store - Question 3*/
 			{
 				Product* new_product = createProduct(seller.getUserName());
+				Validation::checkAllocation(new_product);
 				if (!seller.addProduct(*new_product))
 				{
 					delete new_product;

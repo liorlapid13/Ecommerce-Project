@@ -11,6 +11,8 @@ Product::Product(const char* name, float price, Product::eCategory category, con
 	setPrice(price);
 	setCategory(category);
 	setSellerName(seller_name);
+
+	cout << "In Product c'tor" << endl;
 }
 //----------------------------------------------------------------------------------------//
 Product::Product(const Product& other) //copy c'tor
@@ -45,10 +47,9 @@ bool Product::setName(const char* name)
 	//check if name contains symbols/spaces/invalid characters
 	for (int i = 0; i < strlen(name); i++)
 	{
-		if ((name[i] < '0' || (name[i] > 'z' 
-			|| (name[i] > '9' && name[i] < 'A')	
-			|| (name[i] > 'Z' && name[i] < 'a')) 
-			&& ( name[i] != ' ')))
+		if ((name[i] < '0' || name[i] > 'z' 
+		|| (name[i] > '9' && name[i] < 'A')
+		|| (name[i] > 'Z' && name[i] < 'a') )&& ( name[i] != ' '))
 		{ 
 			cout << "Name of products can only contain alphanumeric characters (lower/uppercase letters A-Z, numbers 0-9)\n";
 			return false;

@@ -194,7 +194,7 @@ void System::newProduct(Product& new_product)
 {
 	if (!m_product_list)	//If empty product list
 	{
-		m_num_of_sellers++;
+		m_num_of_products++;
 		m_product_list = new Product*[m_num_of_products];
 		Validation::checkAllocation(m_product_list);
 		m_product_list[0] = &new_product;

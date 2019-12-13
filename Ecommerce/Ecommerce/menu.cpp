@@ -115,11 +115,11 @@ Product* Menu::createProduct(const char* seller_username)
 	cin.getline(product_name, Product::MAX_PRODUCT_NAME);
 
 	float price;
-	cout << "Enter product price (in dolars):$";
+	cout << "Enter product price (in dollars):$";
 	cin >> price;
 
 	int category;
-	cout << "Enter product category (0=KIDS, 1=ELECTRICAL, 2=CLOTHING, 4=OFFICE): ";
+	cout << "Enter product category (0=KIDS, 1=ELECTRICAL, 2=CLOTHING, 3=OFFICE): ";
 	cin >> category;
 
 	return (new Product(product_name, price, (Product::eCategory)category, seller_username));

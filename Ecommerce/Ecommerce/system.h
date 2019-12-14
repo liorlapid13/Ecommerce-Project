@@ -48,7 +48,7 @@ public:
 
 	//QUESTION 5
 	Product* findProduct(int serial_number)			const;
-	bool serachProduct(const char* product_name)    const;
+	bool productExist(const char* product_name)    const;
 	
 
 private:

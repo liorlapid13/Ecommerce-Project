@@ -40,7 +40,7 @@ const char* Feedback::getDescription() const
 	return m_description;
 }
 //----------------------------------------------------------------------------------------//
-Buyer* Feedback::getBuyer()				const
+Buyer* Feedback::getBuyer() const
 {
 	return m_buyer;
 }

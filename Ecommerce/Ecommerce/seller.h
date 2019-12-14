@@ -5,6 +5,8 @@
 #include "address.h"
 #include "feedback.h"
 
+class Buyer;
+
 class Seller
 {
 public:
@@ -38,6 +40,8 @@ public:
 
 	//QUESTION 9
 	void printSellerInfo()							const;
+
+	void printFeedbackList();
 
 private:
 	char* m_username;

@@ -23,7 +23,7 @@ public:
 	//Getters
 	const Date& getDate()		 const;
 	const char* getDescription() const;
-	Buyer* getBuyer()		 const;
+	Buyer* getBuyer()			 const;
 	const Product* getProduct()	 const;
 
 private:

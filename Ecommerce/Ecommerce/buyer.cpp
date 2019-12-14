@@ -226,8 +226,8 @@ bool Buyer::newFeedback(Product* product, Seller* seller, const char* descriptio
 		}
 	}
 
-	Feedback new_feedback(date, description, *this, *product);
-	seller->addFeedback(new_feedback);
+	Feedback* new_feedback= new Feedback(date, description, *this, *product);
+	seller->addFeedback(*new_feedback);
 	return true;
 }
 //----------------------------------------------------------------------------------------//

@@ -1,9 +1,2 @@
-﻿  main.cpp
-d:\שנה ב\סמסטר א\תכנות c++\ecommerce-project\ecommerce\ecommerce\main.cpp(8): warning C4326: return type of 'main' should be 'int' instead of 'void'
-  menu.cpp
-d:\שנה ב\סמסטר א\תכנות c++\ecommerce-project\ecommerce\ecommerce\menu.cpp(304): warning C4553: '==': result of expression not used; did you intend '='?
-  system.cpp
-  Generating Code...
-d:\שנה ב\סמסטר א\תכנות c++\ecommerce-project\ecommerce\ecommerce\system.cpp(239): warning C4715: 'System::serachProduct': not all control paths return a value
-  LINK : D:\שנה ב\סמסטר א\תכנות C++\Ecommerce-Project\Ecommerce\x64\Debug\Ecommerce.exe not found or not built by the last incremental link; performing full link
-  Ecommerce.vcxproj -> D:\שנה ב\סמסטר א\תכנות C++\Ecommerce-Project\Ecommerce\x64\Debug\Ecommerce.exe
+﻿  buyer.cpp
+  Ecommerce.vcxproj -> C:\Users\Lior\Documents\Ecommerce-Project\Ecommerce\x64\Debug\Ecommerce.exe

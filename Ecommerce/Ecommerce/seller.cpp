@@ -1,4 +1,5 @@
 #include "seller.h"
+#include "buyer.h"
 //----------------------------------------------------------------------------------------//
 Seller::Seller(const char* username, const char* password, const Address& address) :m_address(address), m_username(nullptr), m_password(nullptr)
 {
@@ -172,3 +173,18 @@ void Seller::addFeedback(Feedback& new_feedback)
 	}
 }
 //----------------------------------------------------------------------------------------//
+void Seller::printFeedbackList()
+{
+	cout << "--------------------------------------------------\n";
+
+	for (int i = 0; i < m_num_of_feedbacks; i++)
+	{
+		cout << m_feedback_list[i]->getBuyer()->getUserName() << endl;
+		m_feedback_list[i]->getProduct()->printProduct();
+		cout << m_feedback_list[i]->getDescription() << endl;
+		m_feedback_list[i]->getDate().printDate();
+
+		cout << "--------------------------------------------------\n";
+
+	}
+}

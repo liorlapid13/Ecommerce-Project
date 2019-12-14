@@ -30,6 +30,8 @@ System::~System()
 	for (i = 0; i < m_num_of_sellers; i++)
 		delete m_seller_list[i];	//Delete each seller
 	delete[] m_seller_list;			//Delete the list itself
+
+	cout << "in d'tor system\n";
 }
 //----------------------------------------------------------------------------------------//
 void System::setName(const char* name)
@@ -215,6 +217,7 @@ void System::newProduct(Product& new_product)
 //----------------------------------------------------------------------------------------//
 /*
 Receives serial number from buyer menu, searches for item with matching serial number in the system's product list
+and returns the product if found.
 */
 Product* System::findProduct(int serial_number) const
 {
@@ -227,13 +230,16 @@ Product* System::findProduct(int serial_number) const
 	return nullptr;
 }
 //----------------------------------------------------------------------------------------//
-bool System::serachProduct(const char* product_name) const
+/*
+Receives product name, returns true if any products with this name exist in the system, else false.
+*/
+bool System::productExist(const char* product_name) const
 {
 	for (int i = 0; i < m_num_of_products; i++)
 	{
 		if (strcmp(m_product_list[i]->getName(), product_name) == 0)
 			return true;
-
-		return false;
 	}
+
+	return false;
 }

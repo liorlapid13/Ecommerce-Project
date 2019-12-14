@@ -227,3 +227,13 @@ Product* System::findProduct(int serial_number) const
 	return nullptr;
 }
 //----------------------------------------------------------------------------------------//
+bool System::serachProduct(const char* product_name) const
+{
+	for (int i = 0; i < m_num_of_products; i++)
+	{
+		if (strcmp(m_product_list[i]->getName(), product_name) == 0)
+			return true;
+
+		return false;
+	}
+}

@@ -47,7 +47,8 @@ public:
 	void printProductsByName(char* product_name)	const;	//->Products.printProduct
 
 	//QUESTION 5
-	Product* findProduct(int serial_number)		const;
+	Product* findProduct(int serial_number)			const;
+	bool serachProduct(const char* product_name)    const;
 	
 
 private:

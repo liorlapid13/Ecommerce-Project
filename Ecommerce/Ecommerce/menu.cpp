@@ -431,7 +431,11 @@ void Menu::buyerMenu(Buyer& buyer)
 				char product_name[Product::MAX_PRODUCT_NAME];
 				cin.ignore();
 				cin.getline(product_name, Product::MAX_PRODUCT_NAME);
-				m_system->printProductsByName(product_name);	//Question 10
+				if (!(m_system->serachProduct(product_name)))
+					cout << "there is no " << product_name << " for sell in the system\n"; 
+				else
+					m_system->printProductsByName(product_name);	//Question 10
+				
 
 				cout << "Enter serial number of product you wish to buy: ";
 				int serial_number;

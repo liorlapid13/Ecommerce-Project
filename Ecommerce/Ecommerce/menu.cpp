@@ -10,7 +10,7 @@ Menu::~Menu()
 	cout << "in d'tor menu\n";
 }
 //----------------------------------------------------------------------------------------//
-System* Menu::getSystem()
+System* Menu::getSystem() const
 {
 	return m_system;
 }
@@ -196,7 +196,7 @@ void Menu::newOrder(Buyer& buyer)
 		if (selection >= cart_size || selection < 0)
 			cout << "Invalid product number, please try again: ";
 		else if (product_index_array[selection] == 1)
-			cout << "Product already selected\n";
+			cout << "Product already selected, please try again: ";
 		else
 		{
 			product_index_array[selection] = 1;
@@ -515,6 +515,7 @@ void Menu::buyerMenu(Buyer& buyer)
 					else
 					{
 						product_found = 1;
+						cout << "--------------------------------------------------\n";
 						m_system->printProductsByName(product_name);	//Question 10
 					}
 				}
@@ -541,7 +542,12 @@ void Menu::buyerMenu(Buyer& buyer)
 
 			case 2:	/*Create new order - Question 6*/
 			{
-				if (!buyer.getCurrentOrder())
+				if (!buyer.getShoppingCart().getNumProducts())
+				{
+					cout << "Error creating new order\n";
+					cout << "You must first add products to your Shopping Cart\n";
+				}
+				else if (!buyer.getCurrentOrder())
 					newOrder(buyer);
 				else
 				{

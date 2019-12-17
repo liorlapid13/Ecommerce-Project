@@ -8,8 +8,7 @@ Date::Date(const unsigned int day, const unsigned int month, const unsigned int 
 }
 //----------------------------------------------------------------------------------------//
 Date::~Date()
-{
-	
+{	
 }
 //----------------------------------------------------------------------------------------//
 bool Date::setYear(const unsigned int year)
@@ -58,7 +57,7 @@ bool Date::setDay(const unsigned int day, const unsigned int month, const unsign
 	return true;
 }
 //----------------------------------------------------------------------------------------//
-bool Date::isLeapYear(unsigned int year)
+bool Date::isLeapYear(unsigned int year) const
 {
 	//If year is divisable by 400 then it is a leap year
 	//Else if year is divisable by 4 and not by 100 then it is a leap year

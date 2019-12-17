@@ -1,7 +1,6 @@
 #ifndef __FEEDBACK_H
 #define __FEEDBACK_H
 
-
 #include "date.h"
 #include "product.h"
 
@@ -11,7 +10,7 @@ class Feedback
 {
 public:
 	//C'tors
-	Feedback() = default;
+	Feedback() = delete;
 	Feedback(const Date& date, const char* description, Buyer& buyer, Product& product);
 	
 	//D'tor
@@ -21,10 +20,10 @@ public:
 	bool setDescription(const char* description);
 
 	//Getters
-	const Date& getDate()		 const;
-	const char* getDescription() const;
-	Buyer* getBuyer()			 const;
-	const Product* getProduct()	 const;
+	const Date& getDate()			const;
+	const char* getDescription()	const;
+	Buyer* getBuyer()				const;
+	const Product* getProduct()		const;
 
 private:
 	Date		m_date;

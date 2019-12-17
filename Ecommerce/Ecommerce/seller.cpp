@@ -146,7 +146,7 @@ bool Seller::searchStore(const char* product_name) const
 void Seller::printSellerInfo() const
 {
 	cout << "Username: " << m_username << endl;
-	cout << "Address: ";
+	cout << "\tAddress: ";
 	m_address.printAddress();
 }
 //----------------------------------------------------------------------------------------//

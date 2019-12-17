@@ -31,14 +31,14 @@ public:
 	void setCurrentOrder(Order* order);
 
 	//Getters
-	const char* getUserName()		const;
-	const char* getPassword()		const;
-	const Address& getAddress()		const;
-	ShoppingCart& getShoppingCart();
-    Order* getCurrentOrder()			const;
-	double getWallet()				const;
-    Order** getOrderHistory()		const;
-	int getNumOrders()				const;
+	const char*		getUserName()			const;
+	const char*		getPassword()			const;
+	const Address&	getAddress()			const;
+	ShoppingCart&	getShoppingCart();
+    Order*			getCurrentOrder()		const;
+	double			getWallet()				const;
+    Order**			getOrderHistory()		const;
+	int				getNumOrders()			const;
 
 	//QUESTION 8
 	void printBuyerInfo()					const;

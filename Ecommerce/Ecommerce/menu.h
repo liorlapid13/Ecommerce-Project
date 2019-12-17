@@ -6,16 +6,21 @@
 
 class Menu
 {
-
 public:
+	//Constants
 	static const int MAX_FEEDBACK_LENGTH = 250;
 
-	//Setters
-
+	//C'tors
+	Menu() = delete;
 	Menu(System* system);
+
+	//D'tor
 	~Menu();
 	
-	System* getSystem();
+	//Getters
+	System* getSystem()	const;
+
+	//Methods
 	Seller* createSeller();
 	Buyer* createBuyer();
 	Product* createProduct(const char* seller_username);
@@ -32,6 +37,7 @@ public:
 
 private:
 	System* m_system;
-	Menu(const Menu& other);
+
+	Menu(const Menu& other); //copy c'tor
 };
 #endif // !__MENU_H

@@ -6,7 +6,7 @@
 class Date
 {
 public:
-	static const int MAX_YEAR = 2019;
+	static const int MAX_YEAR = 2020;
 	static const int MIN_YEAR = 2019;
 
 public:
@@ -23,15 +23,15 @@ public:
 	bool setYear(const unsigned int year);
 		
 	//Getters
-	unsigned int getDay() const;
+	unsigned int getDay()	const;
 	unsigned int getMonth() const;
-	unsigned int getYear() const;
+	unsigned int getYear()	const;
 
 	//Input Checks
-	bool isLeapYear(const unsigned int year);
+	bool isLeapYear(const unsigned int year) const;
 
 	//Tests
-	void printDate() const;
+	void printDate()		const;
 
 private:
 	unsigned int m_day;

@@ -8,19 +8,18 @@ class ShoppingCart
 {
 public:
 	//C'tors
-	ShoppingCart();								//default c'tor
+	ShoppingCart();
 	
 	//D'tors
 	~ShoppingCart();
 	
-public:
 	//Setters
 	void setNumProducts(int num_of_products);
 	void setProductList(Product** product_list);
 
 	//Getters
-	Product** getProductList()			const;
-	int getNumProducts()		        const;
+	Product**	getProductList()	const;
+	int			getNumProducts()	const;
 
 	//QUESTION 5
 	void addItemToShoppingCart(Product& product);
@@ -29,10 +28,10 @@ public:
 	void returnItemsToShoppingCart(Order& order);
 
 private:
-	int	            m_num_of_products;
-	Product**		m_product_list;
+	int	        m_num_of_products;
+	Product**	m_product_list;
 
-	ShoppingCart(const ShoppingCart& other);	//copy c'tor
+	ShoppingCart(const ShoppingCart& other); //copy c'tor
 };
 
 #endif // !__SHOPPING_CART_H

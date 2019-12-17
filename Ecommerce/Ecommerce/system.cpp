@@ -65,6 +65,16 @@ int System::getNumOfSellers() const
 	return m_num_of_sellers;
 }
 //----------------------------------------------------------------------------------------//
+Product** System::getProductList()
+{
+	return m_product_list;
+}
+//----------------------------------------------------------------------------------------//
+int System::getNumOfProducts() const
+{
+	return m_num_of_products;
+}
+//----------------------------------------------------------------------------------------//
 void System::addBuyer(Buyer& new_buyer)
 {
 	if (!m_buyer_list)	//If empty buyer list
@@ -135,29 +145,35 @@ bool System::searchUsername(char* username)	const
 //----------------------------------------------------------------------------------------//
 void System::printBuyerList() const
 {
-	cout << " _________________\n";
-	cout << "|                 |\n";
-	cout << "|   Buyer List    |\n";
-	cout << "|_________________|\n\n";
+	cout << "\t _________________\n";
+	cout << "\t|                 |\n";
+	cout << "\t|   Buyer List    |\n";
+	cout << "\t|_________________|\n\n";
+
+	cout << "--------------------------------------------------\n";
 
 	for (int i = 0; i < m_num_of_buyers; i++)
 	{
 		cout << i+1 << "\t";
 		m_buyer_list[i]->printBuyerInfo();
+		cout << "--------------------------------------------------\n";
 	}
 }
 //----------------------------------------------------------------------------------------//
 void System::printSellerList() const
 {
-	cout << " __________________\n";
-	cout << "|                  |\n";
-	cout << "|   Seller List    |\n";
-	cout << "|__________________|\n\n";
+	cout << "\t __________________\n";
+	cout << "\t|                  |\n";
+	cout << "\t|   Seller List    |\n";
+	cout << "\t|__________________|\n\n";
+
+	cout << "--------------------------------------------------\n";
 
 	for (int i = 0; i < m_num_of_sellers; i++)
 	{
 		cout << i + 1 << "\t";
 		m_seller_list[i]->printSellerInfo();
+		cout << "--------------------------------------------------\n";
 	}
 }
 //----------------------------------------------------------------------------------------//

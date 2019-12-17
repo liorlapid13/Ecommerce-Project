@@ -4,11 +4,10 @@
 #include "validation.h"
 #include "buyer.h"
 
-
 class System
 {
 public:
-	//C'tor
+	//C'tors
 	System() = delete;
 	System(const char* name);
 
@@ -19,36 +18,39 @@ public:
 	void setName(const char* name);
 
 	//Getters
-	const char* getName()					const;
-	Buyer** getBuyerList();
-	int getNumOfBuyers()					const;
-	Seller** getSellerList();
-	int getNumOfSellers()					const;
+	const char* getName()			const;
+	Buyer**		getBuyerList();
+	int			getNumOfBuyers()	const;
+	Seller**	getSellerList();
+	int			getNumOfSellers()	const;
+	Product**	getProductList();
+	int			getNumOfProducts()	const;
+
 
 	//QUESTIONS 1,2
 	void addSeller(Seller& new_seller);
 	void addBuyer(Buyer& new_buyer);
-	bool searchUsername(char* username)				const;
+	bool searchUsername(char* username)			const;
 
 	//QUESTION 3
 	void newProduct(Product& new_product);
 
 	//QUESTION 4
-	Seller* findSeller(const char* username)		const;
+	Seller* findSeller(const char* username)	const;
 
 	//Log-In
-	Buyer* findBuyer(const char* username)			const;
+	Buyer* findBuyer(const char* username)		const;
 
 	//QUESTIONS 8,9
-	void printSellerList()							const;	//->Seller.printSellerInfo
-	void printBuyerList()							const;	//->Buyer.printBuyerInfo
+	void printSellerList()						const;	//->Seller.printSellerInfo
+	void printBuyerList()						const;	//->Buyer.printBuyerInfo
 
 	//QUESTION 10
-	void printProductsByName(char* product_name)	const;	//->Products.printProduct
+	void printProductsByName(char* product_name) const;	//->Products.printProduct
 
 	//QUESTION 5
-	Product* findProduct(int serial_number)			const;
-	bool productExist(const char* product_name)    const;
+	Product* findProduct(int serial_number)		const;
+	bool productExist(const char* product_name) const;
 	
 
 private:

@@ -9,7 +9,7 @@ using namespace std;
 void main()
 {
 	System system("ECOM");
-
+	/*
 	Address ab1("Haamoraim", 8, 4671234, "Tel-Aviv", "Israel");
 
 	Buyer b1("buyer1", "Aa1234", ab1);
@@ -21,10 +21,8 @@ void main()
 	system.addSeller(s2);
 	system.addBuyer(b1);
 	system.addBuyer(b2);
-	 
+	 */
 	
-
-
 	Menu menu(&system);
 
 	menu.mainMenu();

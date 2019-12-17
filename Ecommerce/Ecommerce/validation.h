@@ -11,6 +11,7 @@ using namespace std;
 class Validation
 {
 public:
+	//Constants
 	static const int MIN_USERNAME_LENGTH = 6;
 	static const int MAX_USERNAME_LENGTH = 15;
 	static const int MIN_PASSWORD_LENGTH = 6;
@@ -19,6 +20,7 @@ public:
 	static const int MAX_COUNTRY_LENGTH = 30;
 	static const int MAX_CITY_LENGTH = 30;
 
+	//Methods
 	static bool passwordCheck(const char* password);
 	static bool usernameCheck(const char* username);
 	static bool checkString(const int length, const char* string);

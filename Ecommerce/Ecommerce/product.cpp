@@ -1,7 +1,6 @@
 #include "product.h"
-
 const char* Product::categoryStr[] = { "Kids","Electrical","Clothing","Office" };
-
+//----------------------------------------------------------------------------------------//
 int Product::serial_num_generator = 1000;	//Serial number contains 7 digits (starting at 1,000,000)
 //----------------------------------------------------------------------------------------//
 Product::Product(const char* name, float price, Product::eCategory category, const char* seller_name)
@@ -107,24 +106,23 @@ const char* Product::getSeller() const
 	return m_seller;
 }
 //----------------------------------------------------------------------------------------//
-const float Product::getPrice() const
+float Product::getPrice() const
 {
 	return m_price;
 }
 //----------------------------------------------------------------------------------------//
-const int Product::getSerialNumber() const
+int Product::getSerialNumber() const
 {
 	return m_serial_number;
 }
 //----------------------------------------------------------------------------------------//
-const Product::eCategory Product::getCategory() const
+Product::eCategory Product::getCategory() const
 {
 	return m_category;
 }
 //----------------------------------------------------------------------------------------//
 void Product::printProduct() const
 {
-	cout << "--------------------------------------------------\n";
 	cout << "Product name: " << m_name << endl;
 	cout << "Serial number: " << m_serial_number << endl;
 	cout << "Price: $" << m_price << " " << endl;

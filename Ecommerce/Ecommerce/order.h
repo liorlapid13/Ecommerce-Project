@@ -15,7 +15,6 @@ public:
 	//D'tors
 	~Order();
 
-public:
 	//Setters
 	void setTotalPrice(const float total_price);
     void setListSize(const int list_size);

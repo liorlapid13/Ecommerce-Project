@@ -10,7 +10,7 @@ class Buyer;
 class Seller
 {
 public:
-	//C'tor
+	//C'tors
 	Seller() = delete;
 	Seller(const char* username, const char* password, const Address& address);
 
@@ -23,13 +23,13 @@ public:
 	void setAddress(const Address& address);
 
 	//Getters 
-	const char* getUserName()					const;
-	const char* getPassword()					const;
-	const Address& getAddress()					const;
-	Feedback** getFeedbackList();
-	int getNumOfFeedbacks()						const;
-	Product** getStore();
-	int getNumOfProducts()						const;
+	const char*		getUserName()			const;
+	const char*		getPassword()			const;
+	const Address&	getAddress()			const;
+	Feedback**		getFeedbackList();
+	int				getNumOfFeedbacks()		const;
+	Product**		getStore();
+	int				getNumOfProducts()		const;
 
 	//QUESTION 3
 	bool addProduct(Product& new_product);
@@ -39,20 +39,21 @@ public:
 	void addFeedback(Feedback& new_feedback);
 
 	//QUESTION 9
-	void printSellerInfo()							const;
-
+	void printSellerInfo() const;
+	
+	//TESTS
 	void printFeedbackList();
 
 private:
-	char* m_username;
-	char* m_password;
-	Address m_address;
-	Feedback** m_feedback_list;
-	int m_num_of_feedbacks;				
-	Product** m_store;
-	int m_num_of_products;
+	char*		m_username;
+	char*		m_password;
+	Address		m_address;
+	Feedback**	m_feedback_list;
+	int			m_num_of_feedbacks;				
+	Product**	m_store;
+	int			m_num_of_products;
 
-	Seller(const Seller& other);
+	Seller(const Seller& other); //copy c'tor
 };
 
 #endif // !__SELLER_H

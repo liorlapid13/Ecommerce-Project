@@ -235,11 +235,11 @@ void System::newProduct(Product& new_product)
 Receives serial number from buyer menu, searches for item with matching serial number in the system's product list
 and returns the product if found.
 */
-Product* System::findProduct(int serial_number) const
+Product* System::findProduct(int serial_number, char* name) const
 {
 	for (int i = 0; i < m_num_of_products; i++)
 	{
-		if (m_product_list[i]->getSerialNumber() == serial_number)
+		if ((m_product_list[i]->getSerialNumber() == serial_number) && (strcmp(m_product_list[i]->getName(),name)==0))
 			return m_product_list[i];
 	}
 

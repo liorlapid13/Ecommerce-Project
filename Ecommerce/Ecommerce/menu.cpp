@@ -489,11 +489,11 @@ void Menu::buyerMenu(Buyer& buyer)
 		{	
 			case 1:	/*Add item to shopping cart - Question 5*/
 			{
+				char product_name[Product::MAX_PRODUCT_NAME];
 				bool product_found = 0;
 				while (!product_found)
 				{
 					cout << "Enter name of product you wish to buy: ";
-					char product_name[Product::MAX_PRODUCT_NAME];
 					cin.ignore();
 					cin.getline(product_name, Product::MAX_PRODUCT_NAME);
 					if (!(m_system->productExist(product_name)))
@@ -526,13 +526,14 @@ void Menu::buyerMenu(Buyer& buyer)
 				cout << "Enter serial number of product you wish to buy: ";
 				int serial_number;
 				cin >> serial_number;
-				Product* product = m_system->findProduct(serial_number);
+
+				Product* product = m_system->findProduct(serial_number, product_name);
 
 				while (!product)
 				{
 					cout << "Invalid serial number, please try again:";
 					cin >> serial_number;
-					product = m_system->findProduct(serial_number);
+					product = m_system->findProduct(serial_number, product_name);
 				}
 
 				buyer.getShoppingCart().addItemToShoppingCart(*product);
@@ -674,11 +675,33 @@ void Menu::sellerMenu(Seller& seller)
 
 			case 2: /*Search product by name - Question 10*/
 			{
-				cout << "Enter name of product: ";
-				char product_name[Product::MAX_PRODUCT_NAME];
-				cin.ignore();
-				cin.getline(product_name, Product::MAX_PRODUCT_NAME);
-				m_system->printProductsByName(product_name);	//Question 10
+				int search = 1;
+
+				while (search == 1)
+				{
+					cout << "Enter name of product: ";
+					char product_name[Product::MAX_PRODUCT_NAME];
+					cin.ignore();
+					cin.getline(product_name, Product::MAX_PRODUCT_NAME);
+					if (!(m_system->productExist(product_name)))
+					{
+						cout << "There is no " << product_name << " for sale in the system\n";
+						cout << "Would you like to try again?\n";
+						cout << "1 = Try again, 2 = Back to main menu\n";
+						cin >> search;
+						while (search != 1 && search != 2)
+						{
+							cout << "Invalid input\n";
+							cin >> search;
+						}
+					}
+					else
+					{
+						search = 0;
+						cout << "--------------------------------------------------\n";
+						m_system->printProductsByName(product_name);
+					}
+				}
 				break;
 			}
 

@@ -30,27 +30,27 @@ public:
 	//QUESTIONS 1,2
 	void addSeller(Seller& new_seller);
 	void addBuyer(Buyer& new_buyer);
-	bool searchUsername(char* username)			const;
+	bool searchUsername(char* username)						const;
 
 	//QUESTION 3
 	void newProduct(Product& new_product);
 
 	//QUESTION 4
-	Seller* findSeller(const char* username)	const;
+	Seller* findSeller(const char* username)				const;
 
 	//Log-In
-	Buyer* findBuyer(const char* username)		const;
+	Buyer* findBuyer(const char* username)					const;
 
 	//QUESTIONS 8,9
-	void printSellerList()						const;	//->Seller.printSellerInfo
-	void printBuyerList()						const;	//->Buyer.printBuyerInfo
+	void printSellerList()									const;	//->Seller.printSellerInfo
+	void printBuyerList()									const;	//->Buyer.printBuyerInfo
 
 	//QUESTION 10
-	void printProductsByName(char* product_name) const;	//->Products.printProduct
+	void printProductsByName(char* product_name)			const;	//->Products.printProduct
 
 	//QUESTION 5
-	Product* findProduct(int serial_number)		const;
-	bool productExist(const char* product_name) const;
+	Product* findProduct(int serial_number, char* name)		const;
+	bool productExist(const char* product_name)				const;
 	
 
 private:

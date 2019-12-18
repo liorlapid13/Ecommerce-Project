@@ -30,7 +30,6 @@ public:
 	//Input Checks
 	bool isLeapYear(const unsigned int year) const;
 
-
 private:
 	unsigned int m_day;
 	unsigned int m_month;

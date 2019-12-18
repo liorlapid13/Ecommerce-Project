@@ -41,8 +41,6 @@ public:
 	//QUESTION 9
 	void printSellerInfo() const;
 	
-
-
 private:
 	char*		m_username;
 	char*		m_password;

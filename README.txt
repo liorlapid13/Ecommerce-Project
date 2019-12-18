@@ -1,32 +1,18 @@
-Known Errors File
+# Ecommerce-Project
+# Excersize 1
 
-Q10 -> 	We scan the product list twice. 
-	Once to print all products.
-	Second time to let buyer select product.
-Location: menu.cpp
+# Project created by:
+Shahar Chalfon
+ID: 204351845
+Group: א
+Proffessor: Keren Kalif
 
-C'tors -> In classes which have dynamic fields, we initialized
-	these fields with nullptr for the setters.
-	Our setters delete the field to make sure no memory is lost
-	in case of setters being used to change an existing value.
-	When the c'tor calls the setters, if the fields are not initialized,
-	then the program would crash.
+Lior Lapid
+ID: 316266055
+Group: א
+Proffessor: Keren Kalif
 
-Input Parameters -> In the constructors, we call setter methods which have
-	input checks that only create objects if all fields meet the requirements.
-	Therefore if any field is entered incorectly then the object will not
-	be created but the program will not exit. We require correct inputs
-	in order for the program to work correctly.
-	All prerequisites are mentioned below in the detailed user guide.
-
-Input Parameters -> When receiving an input from user for parameters,
-		we set a static max-length for each parameter.
-		As instructed by our Professors, 
-		we assume that the user does not input anything longer than
-		the set max-length.
-		For example: username, password, product name, etc...
-		
->>>>User Guide
+# User Guide/Testing Clarifications
 >>Introduction
 Our E-Commerce system is designed as a user-based platform.
 Meaning in order to use the program, you must sign-up/log-in to the system with a buyer/seller account.

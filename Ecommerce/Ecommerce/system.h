@@ -62,7 +62,7 @@ private:
 	Product**	m_product_list;
 	int			m_num_of_products;
 	
-	System(const System& other);	//remove copy c'tor
+	System(const System& other);	//copy c'tor removed
 };
 
 

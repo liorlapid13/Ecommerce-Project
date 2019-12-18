@@ -76,6 +76,9 @@ int System::getNumOfProducts() const
 	return m_num_of_products;
 }
 //----------------------------------------------------------------------------------------//
+/*
+Receives a new buyer and adds it to the system buyer list
+*/
 void System::addBuyer(Buyer& new_buyer)
 {
 	if (!m_buyer_list)	//If empty buyer list
@@ -99,6 +102,9 @@ void System::addBuyer(Buyer& new_buyer)
 	}
 }
 //----------------------------------------------------------------------------------------//
+/*
+Receives a new seller and adds it to the system seller list
+*/
 void System::addSeller(Seller& new_seller)
 {
 	if (!m_seller_list)	//If empty seller list
@@ -144,6 +150,9 @@ bool System::searchUsername(char* username)	const
 	return true;
 }
 //----------------------------------------------------------------------------------------//
+/*
+Print list of all buyers in system
+*/
 void System::printBuyerList() const
 {
 	cout << "\t _________________\n";
@@ -161,6 +170,8 @@ void System::printBuyerList() const
 	}
 }
 //----------------------------------------------------------------------------------------//
+/*Print list of all sellers in system
+*/
 void System::printSellerList() const
 {
 	cout << "\t __________________\n";
@@ -178,6 +189,9 @@ void System::printSellerList() const
 	}
 }
 //----------------------------------------------------------------------------------------//
+/*
+Receives a product name and prints all products in the system with that name
+*/
 void System::printProductsByName(char* product_name) const
 {
 	for (int i = 0; i < m_num_of_products; i++)
@@ -187,6 +201,10 @@ void System::printProductsByName(char* product_name) const
 	}
 }	
 //----------------------------------------------------------------------------------------//
+/*
+Receives a username and searches the system's seller list to find a seller with the given name.
+Returns a pointer to that seller
+*/
 Seller* System::findSeller(const char* username) const
 {
 	for (int i = 0; i < m_num_of_sellers; i++)
@@ -198,6 +216,10 @@ Seller* System::findSeller(const char* username) const
 	return nullptr;	//Seller not found
 }
 //----------------------------------------------------------------------------------------//
+/*
+Receives a username and searches the system's buyer list to find a buyer with the given name.
+Returns a pointer to that buyer
+*/
 Buyer* System::findBuyer(const char* username) const
 {
 	for (int i = 0; i < m_num_of_buyers; i++)
@@ -209,6 +231,9 @@ Buyer* System::findBuyer(const char* username) const
 	return nullptr;	//Buyer not found
 }
 //----------------------------------------------------------------------------------------//
+/*
+Receives a product and adds it to the system's product list
+*/
 void System::newProduct(Product& new_product)
 {
 	if (!m_product_list)	//If empty product list

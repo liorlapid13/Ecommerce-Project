@@ -31,7 +31,7 @@ private:
 	int	        m_num_of_products;
 	Product**	m_product_list;
 
-	ShoppingCart(const ShoppingCart& other); //copy c'tor
+	ShoppingCart(const ShoppingCart& other); //copy c'tor removed
 };
 
 #endif // !__SHOPPING_CART_H

@@ -29,8 +29,8 @@ public:
 
 	//Getters
 	const char*	getStreetName()		const;
-    int	getHouseNumber()			const;
-	int	getZipCode()				const;
+    int			getHouseNumber()	const;
+	int			getZipCode()		const;
     const char*	getCity()			const;
     const char*	getCountry()		const;
 

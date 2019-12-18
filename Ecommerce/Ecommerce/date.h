@@ -6,10 +6,10 @@
 class Date
 {
 public:
+	//Constants
 	static const int MAX_YEAR = 2020;
 	static const int MIN_YEAR = 2019;
 
-public:
 	//C'tors
 	Date() = delete;
 	Date(const unsigned int day, const unsigned int month, const unsigned int year);

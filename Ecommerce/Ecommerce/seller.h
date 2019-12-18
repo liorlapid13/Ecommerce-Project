@@ -50,7 +50,7 @@ private:
 	Product**	m_store;
 	int			m_num_of_products;
 
-	Seller(const Seller& other); //copy c'tor
+	Seller(const Seller& other); //copy c'tor removed
 };
 
 #endif // !__SELLER_H

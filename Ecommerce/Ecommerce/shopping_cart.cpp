@@ -33,6 +33,9 @@ Product** ShoppingCart::getProductList() const
 	return m_product_list;
 }
 //----------------------------------------------------------------------------------------//
+/*
+Receives a new product and adds it to the buyer's shopping cart
+*/
 void ShoppingCart::addItemToShoppingCart(Product& product)
 {
 	if (!m_product_list)	//If empty shopping cart

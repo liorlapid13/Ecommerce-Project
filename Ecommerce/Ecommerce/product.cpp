@@ -1,6 +1,5 @@
 #include "product.h"
 const char* Product::categoryStr[] = { "Kids","Electrical","Clothing","Office" };
-//----------------------------------------------------------------------------------------//
 int Product::serial_num_generator = 1000;	//Serial number starting at 1,000
 //----------------------------------------------------------------------------------------//
 Product::Product(const char* name, float price, Product::eCategory category, const char* seller_name)
@@ -87,6 +86,7 @@ bool Product::setCategory(Product::eCategory category)
 		return true;
 	}
 }
+//----------------------------------------------------------------------------------------//
 void Product::setSellerName(const char* seller_name)
 {
 	m_seller = new char[strlen(seller_name) + 1];

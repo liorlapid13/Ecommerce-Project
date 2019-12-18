@@ -54,6 +54,7 @@ bool Seller::setPassword(const char* password)
 		return true;
 	}
 }
+//----------------------------------------------------------------------------------------//
 void Seller::setAddress(const Address& address)
 {
 
@@ -78,6 +79,7 @@ Feedback** Seller::getFeedbackList()
 {
 	return m_feedback_list;
 }
+//----------------------------------------------------------------------------------------//
 int Seller::getNumOfFeedbacks() const
 {
 	return m_num_of_feedbacks;
@@ -98,6 +100,9 @@ const Address& Seller::getAddress() const
 	return m_address;
 }
 //----------------------------------------------------------------------------------------//
+/*
+Receives a new product and adds it to the seller's store
+*/
 bool Seller::addProduct(Product& new_product)
 {
 	if (m_store != nullptr)
@@ -148,6 +153,9 @@ void Seller::printSellerInfo() const
 	m_address.printAddress();
 }
 //----------------------------------------------------------------------------------------//
+/*
+Receives a new feedback and adds it to the seller's feedback list
+*/
 void Seller::addFeedback(Feedback& new_feedback)
 {
 	if (!m_feedback_list)	//If empty feedback list

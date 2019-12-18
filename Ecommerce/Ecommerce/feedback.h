@@ -20,10 +20,10 @@ public:
 	bool setDescription(const char* description);
 
 	//Getters
-	const Date& getDate()			const;
-	const char* getDescription()	const;
-	Buyer* getBuyer()				const;
-	const Product* getProduct()		const;
+	const Date&		getDate()			const;
+	const char*		getDescription()	const;
+	Buyer*			getBuyer()			const;
+	const Product*	getProduct()		const;
 
 private:
 	Date		m_date;
@@ -31,7 +31,7 @@ private:
 	Buyer*		m_buyer;
 	Product*	m_product;
 
-	Feedback(const Feedback& other);	//remove copy c'tor
+	Feedback(const Feedback& other); //copy c'tor removed
 };
 
 #endif // !__FEEDBACK_H

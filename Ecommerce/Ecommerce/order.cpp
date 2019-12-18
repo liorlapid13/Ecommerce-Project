@@ -27,12 +27,12 @@ void Order::setListSize(const int list_size)
 	return m_product_list;
 }
 //----------------------------------------------------------------------------------------//
-const float Order::getTotalPrice() const
+float Order::getTotalPrice() const
 {
 	return m_total_price;
 }
 //----------------------------------------------------------------------------------------//
-const int Order::getListSize() const
+int Order::getListSize() const
 {
 	return m_list_size;
 }

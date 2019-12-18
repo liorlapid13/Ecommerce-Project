@@ -184,6 +184,9 @@ bool Buyer::payOrder()
 	}
 }
 //----------------------------------------------------------------------------------------//
+/*
+After current order has been paid for, this method moves the order into the buyer's order history.
+*/
 void Buyer::addOrderToHistory()
 {
 	if (!m_order_history)	//If empty order list

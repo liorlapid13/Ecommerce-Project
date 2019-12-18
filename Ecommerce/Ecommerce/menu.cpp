@@ -15,6 +15,9 @@ System* Menu::getSystem() const
 	return m_system;
 }
 //----------------------------------------------------------------------------------------//
+/*
+Asks the user to input details and creates a new seller
+*/
 Seller* Menu::createSeller()
 {
 	char username[Validation::MAX_USERNAME_LENGTH + 1];
@@ -75,6 +78,9 @@ Seller* Menu::createSeller()
 	return new_seller;
 }
 //----------------------------------------------------------------------------------------//
+/*
+Asks the user to input details and creates a new buyer
+*/
 Buyer* Menu::createBuyer()
 {
 	cin.ignore();
@@ -135,6 +141,9 @@ Buyer* Menu::createBuyer()
 	return new_buyer;
 }
 //----------------------------------------------------------------------------------------//
+/*
+Asks the user to input details and creates a new product
+*/
 Product* Menu::createProduct(const char* seller_username)
 {
 	char product_name[Product::MAX_PRODUCT_NAME + 1];
@@ -389,6 +398,9 @@ void Menu::mainMenu()
 	}
 }
 //----------------------------------------------------------------------------------------//
+/*
+Receives user type (1=buyer,2=seller) and forwards user to the relevant user creation method
+*/
 void Menu::signUp(int user_type)
 {
 	cout << " _____________\n";

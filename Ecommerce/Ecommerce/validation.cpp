@@ -1,5 +1,8 @@
 #include "validation.h"
 //----------------------------------------------------------------------------------------//
+/*
+Checks that received string has only letters/spaces/hyphens
+*/
 bool Validation::checkString(const int length, const char* string)
 {
 	//scan string for any characters that are not a space or letter
@@ -16,6 +19,9 @@ bool Validation::checkString(const int length, const char* string)
 	return true;
 }
 //----------------------------------------------------------------------------------------//
+/*
+Checks validy of password
+*/
 bool Validation::passwordCheck(const char* password)
 {
 	//check if length of password is valid
@@ -60,6 +66,9 @@ bool Validation::passwordCheck(const char* password)
 	}
 }
 //----------------------------------------------------------------------------------------//
+/*
+Checks validity of username
+*/
 bool Validation::usernameCheck(const char* username)
 {
 	//check if username length is valid
@@ -85,6 +94,9 @@ bool Validation::usernameCheck(const char* username)
 	}
 }
 //----------------------------------------------------------------------------------------//
+/*
+Checks memory allocations
+*/
 void Validation::checkAllocation(void* ptr)
 {
 	if (!ptr)
@@ -94,5 +106,3 @@ void Validation::checkAllocation(void* ptr)
 	}
 }
 //----------------------------------------------------------------------------------------//
-
-

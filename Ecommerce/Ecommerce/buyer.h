@@ -10,8 +10,6 @@ using namespace std;
 #include "shopping_cart.h"
 #include "seller.h"
 
-
-
 class Buyer
 {
 public:
@@ -63,7 +61,7 @@ private:
 	Order**			m_order_history;
 	int				m_num_of_orders;
 
-	Buyer(const Buyer& other);	//copy c'tor
+	Buyer(const Buyer& other);	//copy c'tor removed
 };
 
 #endif // __BUYER_H

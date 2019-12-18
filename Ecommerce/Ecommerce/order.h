@@ -4,7 +4,6 @@
 #include "validation.h"
 #include "product.h"
 
-
 class Order
 {
 public:
@@ -20,16 +19,16 @@ public:
     void setListSize(const int list_size);
 
 	//Getters
-	Product** getProductList()	const;
-	const int getListSize()		const;
-	const float getTotalPrice()	const;
+	Product**	getProductList()	const;
+	int			getListSize()		const;
+	float		getTotalPrice()		const;
 
 private:
 	Product**	m_product_list;
 	int			m_list_size;
 	float		m_total_price;
 
-	Order(const Order& other);	//copy c'tor
+	Order(const Order& other);	//copy c'tor removed
 };
 
 #endif // !__ORDER_H

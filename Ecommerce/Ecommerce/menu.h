@@ -38,6 +38,6 @@ public:
 private:
 	System* m_system;
 
-	Menu(const Menu& other); //copy c'tor
+	Menu(const Menu& other); //copy c'tor removed
 };
 #endif // !__MENU_H

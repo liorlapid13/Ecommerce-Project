@@ -1,4 +1,4 @@
-# Known Errors File
+# Known Issues
 
 Question 10 -> 	We scan the product list twice. 
 	Once to print all products.
@@ -20,9 +20,27 @@ Input Parameters -> In the constructors, we call setter methods which have
 	All prerequisites are mentioned in the detailed user guide located in the README file.
 
 Input Parameters -> When receiving an input from user for parameters,
-		we set a static max-length for each parameter.
-		As instructed by our Professors, 
-		we assume that the user does not input anything longer than
-		the set max-length.
+	we set a static max-length for each parameter.
+	As instructed by our Professors, 
+	we assume that the user does not input anything longer than
+	the set max-length.
 		For example: username, password, product name, etc...
+
+Shopping Cart -> Our system does not manage product quantity.
+	Therefore you can add multiple copies of the same item
+ 	to your shopping cart.
+
+Date in feedbacks -> Our only requirements for date in feedback are for a 
+	valid date to be entered.
+	We also set a minimum/maximum valid year range as constants.
+	The reason for this being our lack of knowledge on how to get
+	the current time from the system.
+
+Creating feedbacks -> In the feedback creation process, we first ask
+	the user to enter his feedback details.
+	Those details are then sent to a different method to check if
+	a feedback for the selected product has already been submitted.
+	Therefore, in case of a previously submitted feedback, we could
+	have avoided creating the feedback details as they are deleted
+	shortly after creation without use.
 		

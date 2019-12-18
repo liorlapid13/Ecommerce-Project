@@ -9,8 +9,6 @@ Buyer::Buyer(const char* username, const char* password,
 	setNumOrders(0);
 	setCurrentOrder(nullptr);
 	m_order_history = nullptr;
-	
-	cout << "In Buyer C'tor -> " << username << endl;
 }
 //----------------------------------------------------------------------------------------//
 Buyer::~Buyer()

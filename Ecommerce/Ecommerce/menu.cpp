@@ -179,9 +179,8 @@ void Menu::newOrder(Buyer& buyer)
 	{
 		temp[i]->printProduct();
 		cout << "Enter " << i << " to add " << temp[i]->getName() << " to your order\n";
+		cout << "--------------------------------------------------\n";
 	}
-
-	cout << "--------------------------------------------------\n";
 
 	cout << "Please enter the code/s of the product/s you wish to purchase (one by one)\n";
 	cout << "If you wish to cancel press -1\n";
@@ -203,7 +202,7 @@ void Menu::newOrder(Buyer& buyer)
 			num_of_selected_products++;
 			total_price += temp[selection]->getPrice();
 			cout << temp[selection]->getName() << " added to order\n";
-			cout << "Total price: " << total_price << endl;
+			cout << "Total price: $" << total_price << endl;
 			cout << "--------------------------------------------------\n";
 			cout << "Enter the next product code or enter -1 to finish: ";
 		}
@@ -279,9 +278,8 @@ void Menu::createFeedback(Buyer& buyer)
 		{
 			buyer.getOrderHistory()[i]->getProductList()[j]->printProduct();
 			cout << "Enter " << j << " to publish a feedback for this product\n";
+			cout << "--------------------------------------------------\n";
 		}
-
-		cout << "--------------------------------------------------\n";
 
 		cout << "Please select a product or enter -1 for next order: ";
 		int selection;
@@ -568,6 +566,7 @@ void Menu::buyerMenu(Buyer& buyer)
 						buyer.getShoppingCart().returnItemsToShoppingCart(*buyer.getCurrentOrder());
 						buyer.setCurrentOrder(nullptr);
 						cout << "Items returned to your shopping cart\n";
+						cout << "--------------------------------------------------\n";
 						newOrder(buyer);
 					}
 				}

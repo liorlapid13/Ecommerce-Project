@@ -31,7 +31,8 @@ System::~System()
 		delete m_seller_list[i];	//Delete each seller
 	delete[] m_seller_list;			//Delete the list itself
 
-	cout << "in d'tor system\n";
+	//Product List
+	delete[] m_product_list;		//Delete the list itself (products deleted in sellers' d'tor)
 }
 //----------------------------------------------------------------------------------------//
 void System::setName(const char* name)

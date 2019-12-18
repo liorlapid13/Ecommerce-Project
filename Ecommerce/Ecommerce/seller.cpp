@@ -9,8 +9,6 @@ Seller::Seller(const char* username, const char* password, const Address& addres
 	m_num_of_products = 0;
 	m_feedback_list = nullptr;
 	m_store = nullptr;
-
-	cout << "In Seller C'tor -> " << username << endl;
 }
 //----------------------------------------------------------------------------------------//
 Seller::~Seller()
@@ -173,18 +171,3 @@ void Seller::addFeedback(Feedback& new_feedback)
 	}
 }
 //----------------------------------------------------------------------------------------//
-void Seller::printFeedbackList()
-{
-	cout << "--------------------------------------------------\n";
-
-	for (int i = 0; i < m_num_of_feedbacks; i++)
-	{
-		cout << m_feedback_list[i]->getBuyer()->getUserName() << endl;
-		m_feedback_list[i]->getProduct()->printProduct();
-		cout << m_feedback_list[i]->getDescription() << endl;
-		m_feedback_list[i]->getDate().printDate();
-
-		cout << "--------------------------------------------------\n";
-
-	}
-}

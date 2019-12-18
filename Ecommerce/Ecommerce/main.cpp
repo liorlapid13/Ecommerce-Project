@@ -3,13 +3,14 @@
 using namespace std;
 
 #include "menu.h"
+#include <crtdbg.h>
 
 #pragma warning(disable: 4996)
 
 void main()
 {
 	System system("ECOM");
-	
+	/*
 	Address ab1("Haamoraim", 8, 4671234, "Tel-Aviv", "Israel");
 
 	Buyer b1("buyer1", "Aa1234", ab1);
@@ -21,12 +22,12 @@ void main()
 	system.addSeller(s2);
 	system.addBuyer(b1);
 	system.addBuyer(b2);
-	 
-	
+	 */
+
 	Menu menu(&system);
 
 	menu.mainMenu();
-
+	cout << _CrtDumpMemoryLeaks();
 	std::system("pause");
 
 }

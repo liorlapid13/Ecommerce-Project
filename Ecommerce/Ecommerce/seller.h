@@ -41,8 +41,7 @@ public:
 	//QUESTION 9
 	void printSellerInfo() const;
 	
-	//TESTS
-	void printFeedbackList();
+
 
 private:
 	char*		m_username;

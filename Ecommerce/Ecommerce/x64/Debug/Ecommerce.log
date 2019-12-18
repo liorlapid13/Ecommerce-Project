@@ -1,3 +1,8 @@
-﻿  main.cpp
-d:\שנה ב\סמסטר א\תכנות c++\ecommerce-project\ecommerce\ecommerce\main.cpp(10): warning C4326: return type of 'main' should be 'int' instead of 'void'
+﻿  buyer.cpp
+  main.cpp
+d:\שנה ב\סמסטר א\תכנות c++\ecommerce-project\ecommerce\ecommerce\main.cpp(11): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  product.cpp
+  seller.cpp
+  system.cpp
+  Generating Code...
   Ecommerce.vcxproj -> D:\שנה ב\סמסטר א\תכנות C++\Ecommerce-Project\Ecommerce\x64\Debug\Ecommerce.exe

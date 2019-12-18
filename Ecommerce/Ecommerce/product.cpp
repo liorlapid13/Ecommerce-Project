@@ -1,7 +1,7 @@
 #include "product.h"
 const char* Product::categoryStr[] = { "Kids","Electrical","Clothing","Office" };
 //----------------------------------------------------------------------------------------//
-int Product::serial_num_generator = 1000;	//Serial number contains 7 digits (starting at 1,000,000)
+int Product::serial_num_generator = 1000;	//Serial number starting at 1,000
 //----------------------------------------------------------------------------------------//
 Product::Product(const char* name, float price, Product::eCategory category, const char* seller_name)
 {
@@ -10,8 +10,6 @@ Product::Product(const char* name, float price, Product::eCategory category, con
 	setPrice(price);
 	setCategory(category);
 	setSellerName(seller_name);
-
-	cout << "In Product c'tor" << endl;
 }
 //----------------------------------------------------------------------------------------//
 Product::Product(const Product& other) //copy c'tor

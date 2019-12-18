@@ -17,42 +17,42 @@ System* Menu::getSystem() const
 //----------------------------------------------------------------------------------------//
 Seller* Menu::createSeller()
 {
-	char username[Validation::MAX_USERNAME_LENGTH];
+	char username[Validation::MAX_USERNAME_LENGTH + 1];
 	cin.ignore();
 	do
 	{
 		cout << "Enter username(If username exists you will be asked again):\n";
 		cout << "Username must contain 6-15 alphanumeric characters (lower/uppercase letters A-Z, numbers 0-9)\n";
-		cin.getline(username, Validation::MAX_USERNAME_LENGTH);
+		cin.getline(username, Validation::MAX_USERNAME_LENGTH + 1);
 	} while (!(m_system->searchUsername(username)));
 
 	cout << "--------------------------------------------------\n";
 
-	char password[Validation::MAX_PASSWORD_LENGTH];
+	char password[Validation::MAX_PASSWORD_LENGTH + 1];
 	cout << "Enter password\n";
 	cout << "Password must contain 6-15 characters and atleast one of each of the following:\n";
 	cout << "-Lowercase letter\n";
 	cout << "-Uppercase letter\n";
 	cout << "-Number\n";
-	cin.getline(password, Validation::MAX_PASSWORD_LENGTH);
+	cin.getline(password, Validation::MAX_PASSWORD_LENGTH + 1);
 
 	cout << "--------------------------------------------------\n";
 
-	char country[Validation::MAX_COUNTRY_LENGTH];
+	char country[Validation::MAX_COUNTRY_LENGTH + 1];
 	cout << "Please enter country: ";
-	cin.getline(country, Validation::MAX_COUNTRY_LENGTH);
+	cin.getline(country, Validation::MAX_COUNTRY_LENGTH + 1);
 
 	cout << "--------------------------------------------------\n";
 
-	char city[Validation::MAX_CITY_LENGTH];
+	char city[Validation::MAX_CITY_LENGTH + 1];
 	cout << "Please enter city: ";
-	cin.getline(city, Validation::MAX_CITY_LENGTH);
+	cin.getline(city, Validation::MAX_CITY_LENGTH + 1);
 
 	cout << "--------------------------------------------------\n";
 
-	char street_name[Validation::MAX_STREET_LENGTH];
+	char street_name[Validation::MAX_STREET_LENGTH + 1];
 	cout << "Please enter street name: ";
-	cin.getline(street_name, Validation::MAX_STREET_LENGTH);
+	cin.getline(street_name, Validation::MAX_STREET_LENGTH + 1);
 
 	cout << "--------------------------------------------------\n";
 
@@ -78,41 +78,41 @@ Seller* Menu::createSeller()
 Buyer* Menu::createBuyer()
 {
 	cin.ignore();
-	char username[Validation::MAX_USERNAME_LENGTH];
+	char username[Validation::MAX_USERNAME_LENGTH + 1];
 	do
 	{
 		cout << "Enter username(If username exists you will be asked again):\n";
 		cout << "Username must contain 6-15 alphanumeric characters (lower/uppercase letters A-Z, numbers 0-9)\n";
-		cin.getline(username, Validation::MAX_USERNAME_LENGTH);
+		cin.getline(username, Validation::MAX_USERNAME_LENGTH + 1);
 	} while (!(m_system->searchUsername(username)));
 
 	cout << "--------------------------------------------------\n";
 
-	char password[Validation::MAX_PASSWORD_LENGTH];
+	char password[Validation::MAX_PASSWORD_LENGTH + 1];
 	cout << "Enter password\n";
 	cout << "Password must contain 6-15 characters and atleast one of each of the following:\n";
 	cout << "-Lowercase letter\n";
 	cout << "-Uppercase letter\n";
 	cout << "-Number\n";
-	cin.getline(password, Validation::MAX_PASSWORD_LENGTH);
+	cin.getline(password, Validation::MAX_PASSWORD_LENGTH + 1);
 
 	cout << "--------------------------------------------------\n";
 
-	char country[Validation::MAX_COUNTRY_LENGTH];
+	char country[Validation::MAX_COUNTRY_LENGTH + 1];
 	cout << "Enter country: ";
-	cin.getline(country, Validation::MAX_COUNTRY_LENGTH);
+	cin.getline(country, Validation::MAX_COUNTRY_LENGTH + 1);
 
 	cout << "--------------------------------------------------\n";
 
-	char city[Validation::MAX_CITY_LENGTH];
+	char city[Validation::MAX_CITY_LENGTH + 1];
 	cout << "Enter city: ";
-	cin.getline(city, Validation::MAX_CITY_LENGTH);
+	cin.getline(city, Validation::MAX_CITY_LENGTH + 1);
 
 	cout << "--------------------------------------------------\n";
 
-	char street_name[Validation::MAX_STREET_LENGTH];
+	char street_name[Validation::MAX_STREET_LENGTH + 1];
 	cout << "Enter street name: ";
-	cin.getline(street_name, Validation::MAX_STREET_LENGTH);
+	cin.getline(street_name, Validation::MAX_STREET_LENGTH + 1);
 
 	cout << "--------------------------------------------------\n";
 
@@ -137,11 +137,11 @@ Buyer* Menu::createBuyer()
 //----------------------------------------------------------------------------------------//
 Product* Menu::createProduct(const char* seller_username)
 {
-	char product_name[Product::MAX_PRODUCT_NAME];
+	char product_name[Product::MAX_PRODUCT_NAME + 1];
 	cout << "Enter product name\n";
 	cout << "Product name can only contain alphanumeric characters (lower/uppercase letters A-Z, numbers 0-9) and spaces\n";
 	cin.ignore();
-	cin.getline(product_name, Product::MAX_PRODUCT_NAME);
+	cin.getline(product_name, Product::MAX_PRODUCT_NAME + 1);
 
 	float price;
 	cout << "Enter product price (in dollars):$";
@@ -297,8 +297,8 @@ void Menu::createFeedback(Buyer& buyer)
 		{
 			cin.ignore();
 			cout << "Product selected, please enter feedback description (Max 250 letters):\n";
-			char description[MAX_FEEDBACK_LENGTH];
-			cin.getline(description, MAX_FEEDBACK_LENGTH);
+			char description[MAX_FEEDBACK_LENGTH + 1];
+			cin.getline(description, MAX_FEEDBACK_LENGTH + 1);
 
 			cout << "--------------------------------------------------\n";
 
@@ -423,13 +423,13 @@ void Menu::logIn(int user_type)
 	{
 		cin.ignore();
 		cout << "Enter username: ";
-		char username[Validation::MAX_USERNAME_LENGTH];
-		cin.getline(username, Validation::MAX_USERNAME_LENGTH);
+		char username[Validation::MAX_USERNAME_LENGTH + 1];
+		cin.getline(username, Validation::MAX_USERNAME_LENGTH + 1);
 		
 
 		cout << "Enter password: ";
-		char password[Validation::MAX_PASSWORD_LENGTH];
-		cin.getline(password, Validation::MAX_PASSWORD_LENGTH);
+		char password[Validation::MAX_PASSWORD_LENGTH + 1];
+		cin.getline(password, Validation::MAX_PASSWORD_LENGTH + 1);
 
 		if (user_type == 1)
 		{
@@ -489,13 +489,13 @@ void Menu::buyerMenu(Buyer& buyer)
 		{	
 			case 1:	/*Add item to shopping cart - Question 5*/
 			{
-				char product_name[Product::MAX_PRODUCT_NAME];
+				char product_name[Product::MAX_PRODUCT_NAME + 1];
 				bool product_found = 0;
 				while (!product_found)
 				{
 					cout << "Enter name of product you wish to buy: ";
 					cin.ignore();
-					cin.getline(product_name, Product::MAX_PRODUCT_NAME);
+					cin.getline(product_name, Product::MAX_PRODUCT_NAME + 1);
 					if (!(m_system->productExist(product_name)))
 					{
 						cout << "There is no " << product_name << " for sale in the system\n";
@@ -680,9 +680,9 @@ void Menu::sellerMenu(Seller& seller)
 				while (search == 1)
 				{
 					cout << "Enter name of product: ";
-					char product_name[Product::MAX_PRODUCT_NAME];
+					char product_name[Product::MAX_PRODUCT_NAME + 1];
 					cin.ignore();
-					cin.getline(product_name, Product::MAX_PRODUCT_NAME);
+					cin.getline(product_name, Product::MAX_PRODUCT_NAME + 1);
 					if (!(m_system->productExist(product_name)))
 					{
 						cout << "There is no " << product_name << " for sale in the system\n";

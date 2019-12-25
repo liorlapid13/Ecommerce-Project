@@ -160,6 +160,12 @@ const char* Address::getCountry() const
 //----------------------------------------------------------------------------------------//
 void Address::printAddress() const
 {
-	cout << m_street_name << " " << m_house_number << ", " << m_city << ", " << m_country << ", " << m_zip_code << endl;
+	cout << *this;
 }
 //----------------------------------------------------------------------------------------//
+ostream& operator<<(ostream& os, const Address& address)
+{
+	os << address.m_street_name << " " << address.m_house_number << ", " << address.m_city << ", " 
+		<< address.m_country << ", " << address.m_zip_code << endl;
+	return os;
+}

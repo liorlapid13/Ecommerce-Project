@@ -38,6 +38,9 @@ public:
 	//QUESTION 10
 	void printProduct()				const;
 
+	//Operators
+	friend ostream& operator<<(ostream& os, const Product& product);
+
 private:
 	static int		serial_num_generator;
 	int				m_serial_number;

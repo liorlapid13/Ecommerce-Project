@@ -1,10 +1,7 @@
 #include "buyer.h"
 //----------------------------------------------------------------------------------------//
-Buyer::Buyer(const char* username, const char* password,
-	const Address& address) : m_address(address), m_shopping_cart(), m_username(nullptr), m_password(nullptr)
+Buyer::Buyer(const char* username, const char* password, const Address& address) :User(username, password, address), m_shopping_cart()
 {
-	setUsername(username);
-	setPassword(password);
 	setWallet(0);
 	setNumOrders(0);
 	setCurrentOrder(nullptr);
@@ -13,8 +10,6 @@ Buyer::Buyer(const char* username, const char* password,
 //----------------------------------------------------------------------------------------//
 Buyer::~Buyer()
 {
-	delete[] m_username;
-	delete[] m_password;
 	delete m_current_order;
 
 	for (int i = 0; i < m_num_of_orders; i++)
@@ -30,46 +25,6 @@ bool Buyer::setWallet(const double funds)
 
 	m_wallet += funds;
 	return true;
-}
-//----------------------------------------------------------------------------------------//
-bool Buyer::setUsername(const char* username)
-{
-	//check validity of username
-	if (!Validation::usernameCheck(username))
-		return false;
-	else
-	{
-		delete[] m_username;
-		m_username = new char[strlen(username) + 1];
-		Validation::checkAllocation(m_username);
-		strcpy(m_username, username);
-		return true;
-	}
-}
-//----------------------------------------------------------------------------------------//
-bool Buyer::setPassword(const char* password)
-{
-	//check validity of password
-	if (!Validation::passwordCheck(password))
-		return false;
-	else
-	{
-		delete[] m_password;
-		m_password = new char[strlen(password) + 1];
-		Validation::checkAllocation(m_password);
-		strcpy(m_password, password);
-		return true;
-	}
-}
-//----------------------------------------------------------------------------------------//
-void Buyer::setAddress(const Address& address)
-{
-	
-	m_address.setCity(address.getCity());
-	m_address.setCountry(address.getCountry());
-	m_address.setHouseNumber(address.getHouseNumber());
-	m_address.setZipCode(address.getZipCode());
-	m_address.setStreetName(address.getStreetName());
 }
 //----------------------------------------------------------------------------------------//
 void Buyer::setNumOrders(const int num_of_orders)
@@ -97,14 +52,14 @@ const char* Buyer::getPassword() const
 	return m_password;
 }
 //----------------------------------------------------------------------------------------//
-Order* Buyer::getCurrentOrder() const
-{
-	return m_current_order;
-}
-//----------------------------------------------------------------------------------------//
 const Address& Buyer::getAddress() const
 {
 	return m_address;
+}
+//----------------------------------------------------------------------------------------//
+Order* Buyer::getCurrentOrder() const
+{
+	return m_current_order;
 }
 //----------------------------------------------------------------------------------------//
 double Buyer::getWallet() const
@@ -122,11 +77,9 @@ int Buyer::getNumOrders() const
 	return m_num_of_orders;
 }
 //----------------------------------------------------------------------------------------//
-void Buyer::printBuyerInfo() const
+void Buyer::show() const
 {
-	cout << "Username: " << m_username << endl;
-	cout << "\tAddress: "; 
-	m_address.printAddress();
+	User::show();
 }
 //----------------------------------------------------------------------------------------//
 /*

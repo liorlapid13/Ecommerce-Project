@@ -37,6 +37,9 @@ public:
 	//QUESTION 8&9
 	void printAddress()				const;
 
+	//Operators
+	friend ostream& operator<<(ostream& os, const Address& address);
+
 private:
 	char*	m_street_name;
 	int		m_house_number;

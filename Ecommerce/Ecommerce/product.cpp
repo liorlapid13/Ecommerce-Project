@@ -121,11 +121,15 @@ Product::eCategory Product::getCategory() const
 //----------------------------------------------------------------------------------------//
 void Product::printProduct() const
 {
-	cout << "Product name: " << m_name << endl;
-	cout << "Serial number: " << m_serial_number << endl;
-	cout << "Price: $" << m_price << " " << endl;
-	cout << "Product type: " << categoryStr[m_category] << endl;
-	cout << "Seller name: " << m_seller << endl;
-	cout << "--------------------------------------------------\n";
+	cout << *this;
 }
 //----------------------------------------------------------------------------------------//
+ostream& operator<<(ostream& os, const Product& product)
+{
+	os << "Product name: " << product.m_name << endl 
+		<< "Serial number: " << product.m_serial_number << endl
+		<< "Price: $" << product.m_price << endl 
+		<< "Product type: " << product.categoryStr[product.m_category] << endl
+		<< "Seller name: " << product.m_seller << endl 
+		<< "--------------------------------------------------\n";
+}

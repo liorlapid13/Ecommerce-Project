@@ -79,3 +79,8 @@ unsigned int Date::getYear() const
 	return m_year;
 }
 //----------------------------------------------------------------------------------------//
+ostream& operator<<(ostream& os, const Date& date)
+{
+	os << date.m_day << "/" << date.m_month << "/" << date.m_year << endl;
+	return os;
+}

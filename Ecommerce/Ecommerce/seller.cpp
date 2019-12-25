@@ -1,10 +1,8 @@
 #include "seller.h"
 #include "buyer.h"
 //----------------------------------------------------------------------------------------//
-Seller::Seller(const char* username, const char* password, const Address& address) :m_address(address), m_username(nullptr), m_password(nullptr)
+Seller::Seller(const char* username, const char* password, const Address& address) :User(username, password, address)
 {
-	setUsername(username);
-	setPassword(password);
 	m_num_of_feedbacks = 0;
 	m_num_of_products = 0;
 	m_feedback_list = nullptr;
@@ -15,54 +13,12 @@ Seller::~Seller()
 {
 	int i;
 
-	delete[] m_username;
-	delete[] m_password;
 	for ( i = 0; i < m_num_of_products; i++)
 		delete m_store[i];
 	delete[] m_store;
 	for (i = 0; i < m_num_of_feedbacks; i++)
 		delete m_feedback_list[i];
 	delete[] m_feedback_list;
-}
-//----------------------------------------------------------------------------------------//
-bool Seller::setUsername(const char* username)
-{
-	//check validity of username
-	if (!Validation::usernameCheck(username))
-		return false;
-	else
-	{
-		delete[] m_username;
-		m_username = new char[strlen(username) + 1];
-		Validation::checkAllocation(m_username);
-		strcpy(m_username, username);
-		return true;
-	}
-}
-//----------------------------------------------------------------------------------------//
-bool Seller::setPassword(const char* password)
-{
-	//check validity of password
-	if (!Validation::passwordCheck(password))
-		return false;
-	else
-	{
-		delete[] m_password;
-		m_password = new char[strlen(password) + 1];
-		Validation::checkAllocation(m_password);
-		strcpy(m_password, password);
-		return true;
-	}
-}
-//----------------------------------------------------------------------------------------//
-void Seller::setAddress(const Address& address)
-{
-
-	m_address.setCity(address.getCity());
-	m_address.setCountry(address.getCountry());
-	m_address.setHouseNumber(address.getHouseNumber());
-	m_address.setZipCode(address.getZipCode());
-	m_address.setStreetName(address.getStreetName());
 }
 //----------------------------------------------------------------------------------------//
 Product** Seller::getStore() 
@@ -146,11 +102,9 @@ bool Seller::searchStore(const char* product_name) const
 	return false;
 }
 //----------------------------------------------------------------------------------------//
-void Seller::printSellerInfo() const
+void Seller::show() const
 {
-	cout << "Username: " << m_username << endl;
-	cout << "\tAddress: ";
-	m_address.printAddress();
+	User::show();
 }
 //----------------------------------------------------------------------------------------//
 /*

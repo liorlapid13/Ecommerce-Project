@@ -30,6 +30,9 @@ public:
 	//Input Checks
 	bool isLeapYear(const unsigned int year) const;
 
+	//Operators
+	friend ostream& operator<<(ostream& os, const Date& date);
+
 private:
 	unsigned int m_day;
 	unsigned int m_month;

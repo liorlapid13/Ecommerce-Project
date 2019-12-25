@@ -4,10 +4,11 @@
 #include "validation.h"
 #include "address.h"
 #include "feedback.h"
+#include "user.h"
 
 class Buyer;
 
-class Seller
+class Seller : virtual protected User
 {
 public:
 	//C'tors
@@ -15,42 +16,34 @@ public:
 	Seller(const char* username, const char* password, const Address& address);
 
 	//D'tor
-	~Seller();
+	virtual ~Seller();
 
 	//Setters
-	bool setUsername(const char* username);
-	bool setPassword(const char* password);
-	void setAddress(const Address& address);
+	
 
 	//Getters 
-	const char*		getUserName()			const;
-	const char*		getPassword()			const;
-	const Address&	getAddress()			const;
-	Feedback**		getFeedbackList();
-	int				getNumOfFeedbacks()		const;
-	Product**		getStore();
-	int				getNumOfProducts()		const;
+	virtual const char*		getUserName()			const override;
+	virtual const char*		getPassword()			const override;
+	virtual const Address&	getAddress()			const override;
+	virtual Feedback**		getFeedbackList();
+	virtual int				getNumOfFeedbacks()		const;
+	virtual Product**		getStore();
+	virtual int				getNumOfProducts()		const;
 
-	//QUESTION 3
+	//Methods
+	virtual void show()								const override;
 	bool addProduct(Product& new_product);
-	bool searchStore(const char* product_name)	const;
-
-	//QUESTION 4
+	bool searchStore(const char* product_name)		const;
 	void addFeedback(Feedback& new_feedback);
-
-	//QUESTION 9
-	void printSellerInfo() const;
 	
-private:
-	char*		m_username;
-	char*		m_password;
-	Address		m_address;
+protected:
 	Feedback**	m_feedback_list;
 	int			m_num_of_feedbacks;				
 	Product**	m_store;
 	int			m_num_of_products;
 
-	Seller(const Seller& other); //copy c'tor removed
+private:
+	
 };
 
 #endif // !__SELLER_H

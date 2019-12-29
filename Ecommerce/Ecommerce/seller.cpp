@@ -105,6 +105,13 @@ bool Seller::searchStore(const char* product_name) const
 void Seller::show() const
 {
 	User::show();
+	showMe();
+}
+//----------------------------------------------------------------------------------------//
+void Seller::showMe() const
+{
+	cout << "\tNumber of products: " << m_num_of_products << endl;
+	cout << "\tNumber of feedbacks: " << m_num_of_feedbacks << endl;
 }
 //----------------------------------------------------------------------------------------//
 /*

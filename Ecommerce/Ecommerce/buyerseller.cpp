@@ -29,6 +29,8 @@ const Address& BuyerSeller::getAddress() const
 void BuyerSeller::show() const
 {
 	User::show();
+	Buyer::showMe();
+	Seller::showMe();
 }
 //----------------------------------------------------------------------------------------//
 

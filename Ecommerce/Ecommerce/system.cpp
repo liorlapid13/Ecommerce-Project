@@ -5,13 +5,9 @@ System::System(const char* name)
 	//System Name
 	setName(name);
 
-	//Buyer List
-	m_buyer_list = nullptr;
-	m_num_of_buyers = 0;
-
-	//Seller List
-	m_seller_list = nullptr;
-	m_num_of_buyers = 0;
+	//User List
+	m_user_list = nullptr;
+	m_num_of_users = 0;
 }
 //----------------------------------------------------------------------------------------//
 System::~System()
@@ -21,18 +17,13 @@ System::~System()
 	//System Name
 	delete[] m_name;
 
-	//Buyer List
-	for (i = 0; i < m_num_of_buyers; i++)
-		delete m_buyer_list[i];		//Delete each buyer
-	delete[] m_buyer_list;			//Delete the list itself
-
-	//Seller List
-	for (i = 0; i < m_num_of_sellers; i++)
-		delete m_seller_list[i];	//Delete each seller
-	delete[] m_seller_list;			//Delete the list itself
+	//User List
+	for (i = 0; i < m_num_of_users; i++)
+		delete m_user_list[i];		//Delete each user
+	delete[] m_user_list;			//Delete list
 
 	//Product List
-	delete[] m_product_list;		//Delete the list itself (products deleted in sellers' d'tor)
+	delete[] m_product_list;		//Delete list (products deleted in sellers' d'tor)
 }
 //----------------------------------------------------------------------------------------//
 void System::setName(const char* name)
@@ -46,24 +37,14 @@ const char* System::getName() const
 	return m_name;
 }
 //----------------------------------------------------------------------------------------//
-Buyer** System::getBuyerList()
+User** System::getUserList()
 {
-	return m_buyer_list;
+	return m_user_list;
 }
 //----------------------------------------------------------------------------------------//
-int System::getNumOfBuyers() const
+int System::getNumOfUsers() const
 {
-	return m_num_of_buyers;
-}
-//----------------------------------------------------------------------------------------//
-Seller** System::getSellerList()
-{
-	return m_seller_list;
-}
-//----------------------------------------------------------------------------------------//
-int System::getNumOfSellers() const
-{
-	return m_num_of_sellers;
+	return m_num_of_users;
 }
 //----------------------------------------------------------------------------------------//
 Product** System::getProductList()
@@ -77,73 +58,40 @@ int System::getNumOfProducts() const
 }
 //----------------------------------------------------------------------------------------//
 /*
-Receives a new buyer and adds it to the system buyer list
+Receives a new user and adds it to the system user list
 */
-void System::addBuyer(Buyer& new_buyer)
+void System::addUser(User& new_user)
 {
-	if (!m_buyer_list)	//If empty buyer list
+	if (!m_user_list)	//If empty user list
 	{
-		m_num_of_buyers++;
-		m_buyer_list = new Buyer*[m_num_of_buyers];
-		Validation::checkAllocation(m_buyer_list);
-		m_buyer_list[0] = &new_buyer;
+		m_num_of_users++;
+		m_user_list = new User*[m_num_of_users];
+		Validation::checkAllocation(m_user_list);
+		m_user_list[0] = &new_user;
 	}
 	else
 	{
-		Buyer** temp = new Buyer*[m_num_of_buyers + 1];	//allocate memory for new buyer list
+		User** temp = new User*[m_num_of_users + 1];	//allocate memory for new user list
 		Validation::checkAllocation(temp);
-		for (int i = 0; i < m_num_of_buyers; i++)		//copy each existing buyer to new list
-			temp[i] = m_buyer_list[i];
-		temp[m_num_of_buyers] = &new_buyer;				//add the new buyer to the new list
-		m_num_of_buyers++;								//advance the counter for number of buyers
-		delete[] m_buyer_list;							//delete the old buyer list
-		m_buyer_list = temp;							//assign the new buyer list
+		for (int i = 0; i < m_num_of_users; i++)		//copy each existing user to new list
+			temp[i] = m_user_list[i];
+		temp[m_num_of_users] = &new_user;				//add the new user to the new list
+		m_num_of_users++;								//advance the counter for number of users
+		delete[] m_user_list;							//delete the old user list
+		m_user_list = temp;								//assign the new user list
 		temp = nullptr;									//remove the temporary pointer
 	}
 }
 //----------------------------------------------------------------------------------------//
 /*
-Receives a new seller and adds it to the system seller list
-*/
-void System::addSeller(Seller& new_seller)
-{
-	if (!m_seller_list)	//If empty seller list
-	{
-		m_num_of_sellers++;
-		m_seller_list = new Seller*[m_num_of_sellers];
-		Validation::checkAllocation(m_seller_list);
-		m_seller_list[0] = &new_seller;
-	}
-	else
-	{
-		Seller** temp = new Seller*[m_num_of_sellers + 1];	//allocate memory for new seller array in temporary parameter
-		Validation::checkAllocation(temp);
-		for (int i = 0; i < m_num_of_sellers; i++)			//copy each existing seller to new array
-			temp[i] = m_seller_list[i];
-		temp[m_num_of_sellers] = &new_seller;				//add the new seller to the new array
-		m_num_of_sellers++;									//advance the counter for number of sellers
-		delete[] m_seller_list;								//delete the old seller list
-		m_seller_list = temp;								//assign the new seller array
-		temp = nullptr;										//remove the temporary pointer
-	}
-}
-//----------------------------------------------------------------------------------------//
-/*
-Search for username in system user lists.
+Search for username in system user list.
 */
 bool System::searchUsername(char* username)	const
 {
-		//search for username in buyer list
-		for (int i = 0; i < m_num_of_buyers; i++)
+		//search for username in user list
+		for (int i = 0; i < m_num_of_users; i++)
 		{
-			if (strcmp(m_buyer_list[i]->getUserName(), username) == 0)
-				return false;
-		}
-
-		//search for username in seller list
-		for (int i = 0; i < m_num_of_sellers; i++)
-		{
-			if (strcmp(m_seller_list[i]->getUserName(), username) == 0)
+			if (strcmp(m_user_list[i]->getUserName(), username) == 0)
 				return false;
 		}
 
@@ -162,11 +110,17 @@ void System::printBuyerList() const
 
 	cout << "--------------------------------------------------\n";
 
-	for (int i = 0; i < m_num_of_buyers; i++)
+	int counter = 0;
+
+	for (int i = 0; i < m_num_of_users; i++)
 	{
-		cout << i+1 << "\t";
-		m_buyer_list[i]->printBuyerInfo();
-		cout << "--------------------------------------------------\n";
+		Buyer* temp = dynamic_cast<Buyer*>(m_user_list[i]);
+		if (temp)
+		{
+			cout << ++counter << "\t";
+			m_user_list[i]->show();
+			cout << "--------------------------------------------------\n";
+		}
 	}
 }
 //----------------------------------------------------------------------------------------//
@@ -181,11 +135,40 @@ void System::printSellerList() const
 
 	cout << "--------------------------------------------------\n";
 
-	for (int i = 0; i < m_num_of_sellers; i++)
+	int counter = 0;
+
+	for (int i = 0; i < m_num_of_users; i++)
 	{
-		cout << i + 1 << "\t";
-		m_seller_list[i]->printSellerInfo();
-		cout << "--------------------------------------------------\n";
+		Seller* temp = dynamic_cast<Seller*>(m_user_list[i]);
+		if (temp)
+		{
+			cout << ++counter << "\t";
+			m_user_list[i]->show();
+			cout << "--------------------------------------------------\n";
+		}
+	}
+}
+//----------------------------------------------------------------------------------------//
+void System::printBuyerSellerList() const
+{
+	cout << "\t _______________________\n";
+	cout << "\t|				       |\n";
+	cout << "\t|    BuyerSeller List   |\n";
+	cout << "\t|_______________________|\n\n";
+
+	cout << "--------------------------------------------------\n";
+
+	int counter = 0;
+
+	for (int i = 0; i < m_num_of_users; i++)
+	{
+		BuyerSeller* temp = dynamic_cast<BuyerSeller*>(m_user_list[i]);
+		if (temp)
+		{
+			cout << ++counter << "\t";
+			m_user_list[i]->show();
+			cout << "--------------------------------------------------\n";
+		}
 	}
 }
 //----------------------------------------------------------------------------------------//
@@ -202,33 +185,60 @@ void System::printProductsByName(char* product_name) const
 }	
 //----------------------------------------------------------------------------------------//
 /*
-Receives a username and searches the system's seller list to find a seller with the given name.
+Receives a username and searches the system's user list to find a seller with the given name.
 Returns a pointer to that seller
 */
 Seller* System::findSeller(const char* username) const
 {
-	for (int i = 0; i < m_num_of_sellers; i++)
+	for (int i = 0; i < m_num_of_users; i++)
 	{
-		if (strcmp(m_seller_list[i]->getUserName(), username) == 0)
-			return m_seller_list[i];
+		Seller* temp = dynamic_cast<Seller*>(m_user_list[i]);
+		if (temp)
+		{
+			if (strcmp(temp->getUserName(), username) == 0)
+				return temp;
+		}
 	}
 
 	return nullptr;	//Seller not found
 }
 //----------------------------------------------------------------------------------------//
 /*
-Receives a username and searches the system's buyer list to find a buyer with the given name.
+Receives a username and searches the system's user list to find a buyer with the given name.
 Returns a pointer to that buyer
 */
 Buyer* System::findBuyer(const char* username) const
 {
-	for (int i = 0; i < m_num_of_buyers; i++)
+	for (int i = 0; i < m_num_of_users; i++)
 	{
-		if (strcmp(m_buyer_list[i]->getUserName(), username) == 0)
-			return m_buyer_list[i];
+		Buyer* temp = dynamic_cast<Buyer*>(m_user_list[i]);
+		if (temp)
+		{
+			if (strcmp(temp->getUserName(), username) == 0)
+				return temp;
+		}
 	}
 
 	return nullptr;	//Buyer not found
+}
+//----------------------------------------------------------------------------------------//
+/*
+Receives a username and searches the system's user list to find a buyerseller with the given name.
+Returns a pointer to that buyerseller
+*/
+BuyerSeller* System::findBuyerSeller(const char* username) const
+{
+	for (int i = 0; i < m_num_of_users; i++)
+	{
+		BuyerSeller* temp = dynamic_cast<BuyerSeller*>(m_user_list[i]);
+		if (temp)
+		{
+			if (strcmp(temp->getUserName(), username) == 0)
+				return temp;
+		}
+	}
+
+	return nullptr;	//BuyerSeller not found
 }
 //----------------------------------------------------------------------------------------//
 /*
@@ -285,3 +295,19 @@ bool System::productExist(const char* product_name) const
 
 	return false;
 }
+//----------------------------------------------------------------------------------------//
+void System::operator+=(Buyer& buyer)
+{
+	addUser(buyer);
+}
+//----------------------------------------------------------------------------------------//
+void System::operator+=(Seller& seller)
+{
+	addUser(seller);
+}
+//----------------------------------------------------------------------------------------//
+void System::operator+=(BuyerSeller& buyerseller)
+{
+	addUser(buyerseller);
+}
+//----------------------------------------------------------------------------------------//

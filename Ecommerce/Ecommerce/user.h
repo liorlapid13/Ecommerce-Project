@@ -8,7 +8,8 @@ class User
 public:
 	//C'tors
 	User() = delete;
-	
+	User(const char* username, const char* password, const Address& address);
+
 	//D'tor
 	virtual ~User();
 
@@ -31,7 +32,7 @@ protected:
 	Address m_address;
 
 	//Abstract class, only inheritors can access the c'tor
-	User(const char* username, const char* password, const Address& address); 
+	 
 
 private:
 	

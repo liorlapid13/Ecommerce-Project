@@ -16,20 +16,21 @@ public:
 	//Setters
 	void setNumProducts(int num_of_products);
 	void setProductList(Product** product_list);
+	void setTotalPrice(float total_price);
 
 	//Getters
 	Product**	getProductList()	const;
 	int			getNumProducts()	const;
-
-	//QUESTION 5
+	float		getTotalPrice()		const;
+	
+	//Methods
 	void addItemToShoppingCart(Product& product);
-
-	//QUESTION 6
 	void returnItemsToShoppingCart(Order& order);
 
 private:
 	int	        m_num_of_products;
 	Product**	m_product_list;
+	float		m_total_price;
 
 	ShoppingCart(const ShoppingCart& other); //copy c'tor removed
 };

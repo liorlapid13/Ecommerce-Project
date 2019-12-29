@@ -37,7 +37,7 @@ void Buyer::setCurrentOrder(Order* order)
 	m_current_order = order;
 }
 //----------------------------------------------------------------------------------------//
-ShoppingCart& Buyer::getShoppingCart()
+const ShoppingCart& Buyer::getShoppingCart() const
 {
 	return m_shopping_cart;
 }
@@ -80,6 +80,13 @@ int Buyer::getNumOrders() const
 void Buyer::show() const
 {
 	User::show();
+	showMe();
+}
+//----------------------------------------------------------------------------------------//
+void Buyer::showMe() const
+{
+	cout << "\tWallet: " << m_wallet << endl;
+	cout << "\tOrders completed: " << m_num_of_orders << endl;
 }
 //----------------------------------------------------------------------------------------//
 /*
@@ -115,6 +122,7 @@ void Buyer::createOrder(int num_of_selected_products, int* product_index_array, 
 	//Update shopping cart
 	m_shopping_cart.setNumProducts(new_shopping_cart_size);
 	m_shopping_cart.setProductList(new_shopping_cart);
+	m_shopping_cart.setTotalPrice(m_shopping_cart.getTotalPrice() - total_price);
 
 	//Create new order
 	m_current_order = new Order(new_order_product_list, num_of_selected_products, total_price);
@@ -183,5 +191,12 @@ bool Buyer::newFeedback(Product* product, Seller* seller, const char* descriptio
 	Feedback* new_feedback= new Feedback(date, description, *this, *product);
 	seller->addFeedback(*new_feedback);
 	return true;
+}
+//----------------------------------------------------------------------------------------//
+bool Buyer::operator>(const Buyer& other) const
+{
+	if (this->getShoppingCart().getTotalPrice() > other.getShoppingCart().getTotalPrice())
+		return true;
+	return false;
 }
 //----------------------------------------------------------------------------------------//

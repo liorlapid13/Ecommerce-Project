@@ -4,23 +4,12 @@ ShoppingCart::ShoppingCart()
 {
 	m_product_list = nullptr;
 	m_num_of_products = 0;
+	m_total_price = 0;
 }
 //----------------------------------------------------------------------------------------//
 ShoppingCart::~ShoppingCart()
 {
 	delete[] m_product_list;
-}
-//----------------------------------------------------------------------------------------//
-void ShoppingCart::setNumProducts(int num_of_products)
-{
-	m_num_of_products = num_of_products;
-}
-//----------------------------------------------------------------------------------------//
-void ShoppingCart::setProductList(Product** product_list)
-{
-	if (m_product_list)
-		delete[] m_product_list;
-	m_product_list = product_list;
 }
 //----------------------------------------------------------------------------------------//
 int ShoppingCart::getNumProducts()  const
@@ -31,6 +20,28 @@ int ShoppingCart::getNumProducts()  const
 Product** ShoppingCart::getProductList() const
 {
 	return m_product_list;
+}
+//----------------------------------------------------------------------------------------//
+float ShoppingCart::getTotalPrice() const
+{
+	return m_total_price;
+}
+//----------------------------------------------------------------------------------------//
+void ShoppingCart::setProductList(Product** product_list)
+{
+	if (m_product_list)
+		delete[] m_product_list;
+	m_product_list = product_list;
+}
+//----------------------------------------------------------------------------------------//
+void ShoppingCart::setNumProducts(int num_of_products)
+{
+	m_num_of_products = num_of_products;
+}
+//----------------------------------------------------------------------------------------//
+void ShoppingCart::setTotalPrice(float total_price)
+{
+	m_total_price = total_price;
 }
 //----------------------------------------------------------------------------------------//
 /*
@@ -44,6 +55,7 @@ void ShoppingCart::addItemToShoppingCart(Product& product)
 		m_product_list = new Product*[m_num_of_products];
 		Validation::checkAllocation(m_product_list);
 		m_product_list[0] = &product;
+		m_total_price += product.getPrice();
 	}
 	else
 	{
@@ -53,6 +65,7 @@ void ShoppingCart::addItemToShoppingCart(Product& product)
 			temp[i] = m_product_list[i];
 		temp[m_num_of_products] = &product;						//add the new product to the new list
 		m_num_of_products++;									//advance the counter for number of products
+		m_total_price += product.getPrice();					//update total price of shopping cart
 		delete[] m_product_list;								//delete the old product list
 		m_product_list = temp;									//assign the new product list
 		temp = nullptr;											//remove the temporary pointer

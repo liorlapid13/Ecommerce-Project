@@ -2,7 +2,7 @@
 #define __SYSTEM_H
 
 #include "validation.h"
-#include "buyer.h"
+#include "buyerseller.h"
 
 class System
 {
@@ -19,46 +19,36 @@ public:
 
 	//Getters
 	const char* getName()			const;
-	Buyer**		getBuyerList();
-	int			getNumOfBuyers()	const;
-	Seller**	getSellerList();
-	int			getNumOfSellers()	const;
+	User**		getUserList();
+	int			getNumOfUsers()		const;
 	Product**	getProductList();
 	int			getNumOfProducts()	const;
 
 
-	//QUESTIONS 1,2
-	void addSeller(Seller& new_seller);
-	void addBuyer(Buyer& new_buyer);
+	//Methods
+	void addUser(User& new_user);
 	bool searchUsername(char* username)						const;
-
-	//QUESTION 3
 	void newProduct(Product& new_product);
-
-	//QUESTION 4
+	void printBuyerSellerList()								const;
+	void printSellerList()									const;
+	void printBuyerList()									const;
 	Seller* findSeller(const char* username)				const;
-
-	//Log-In
 	Buyer* findBuyer(const char* username)					const;
+	BuyerSeller* findBuyerSeller(const char* username)		const;
 
-	//QUESTIONS 8,9
-	void printSellerList()									const;	//->Seller.printSellerInfo
-	void printBuyerList()									const;	//->Buyer.printBuyerInfo
-
-	//QUESTION 10
 	void printProductsByName(char* product_name)			const;	//->Products.printProduct
-
-	//QUESTION 5
 	Product* findProduct(int serial_number, char* name)		const;
 	bool productExist(const char* product_name)				const;
 	
+	//Operators
+	void operator+=(Buyer& buyer);
+	void operator+=(Seller& seller);
+	void operator+=(BuyerSeller& buyerseller);
 
 private:
 	char*		m_name;
-	Buyer**		m_buyer_list;
-	int			m_num_of_buyers;
-	Seller**	m_seller_list;
-	int			m_num_of_sellers;
+	User**		m_user_list;
+	int			m_num_of_users;
 	Product**	m_product_list;
 	int			m_num_of_products;
 	

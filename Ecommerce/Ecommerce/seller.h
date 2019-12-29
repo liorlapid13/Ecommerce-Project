@@ -2,13 +2,12 @@
 #define __SELLER_H
 
 #include "validation.h"
-#include "address.h"
 #include "feedback.h"
 #include "user.h"
 
 class Buyer;
 
-class Seller : virtual protected User
+class Seller : virtual public User
 {
 public:
 	//C'tors
@@ -32,6 +31,7 @@ public:
 
 	//Methods
 	virtual void show()								const override;
+	void showMe()									const;
 	bool addProduct(Product& new_product);
 	bool searchStore(const char* product_name)		const;
 	void addFeedback(Feedback& new_feedback);

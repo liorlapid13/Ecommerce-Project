@@ -44,3 +44,7 @@ Creating feedbacks -> In the feedback creation process, we first ask
 	have avoided creating the feedback details as they are deleted
 	shortly after creation without use.
 		
+Operators without consts -> Our operators do not include consts because most of
+	our objects have non-const getters which let them be editted in the program.
+	For example, shopping cart's getter is not const because after use, the
+	shopping cart may be changed (products may be added for example).

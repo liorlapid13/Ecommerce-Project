@@ -21,8 +21,8 @@ public:
 	System* getSystem()	const;
 
 	//Methods
-	Seller* createSeller();
-	Buyer* createBuyer();
+	User* createUser(int user_type);
+
 	Product* createProduct(const char* seller_username);
 	void newOrder(Buyer& buyer);
 	void completeOrder(Buyer& buyer);
@@ -34,6 +34,15 @@ public:
 	void printBuyerMenu()					const;
 	void sellerMenu(Seller& seller);
 	void printSellerMenu()					const;
+	void buyerSellerMenu(BuyerSeller& buyerseller);
+	void printBuyerSellerMenu()				const;
+
+	void addItemToShoppingCart(Buyer& buyer);
+	void createNewOrder(Buyer& buyer);
+	void publishNewFeedback(Buyer& buyer);
+	void chargeYourWallet(Buyer& buyer);
+	void addProductToStore(Seller& seller);
+	void searchProductByName();
 
 private:
 	System* m_system;

@@ -114,8 +114,7 @@ void System::printBuyerList() const
 
 	for (int i = 0; i < m_num_of_users; i++)
 	{
-		Buyer* temp = dynamic_cast<Buyer*>(m_user_list[i]);
-		if (temp)
+		if (strcmp(typeid(*m_user_list[i]).name(), typeid(Buyer).name()) == 0)
 		{
 			cout << ++counter << "\t";
 			m_user_list[i]->show();
@@ -139,8 +138,7 @@ void System::printSellerList() const
 
 	for (int i = 0; i < m_num_of_users; i++)
 	{
-		Seller* temp = dynamic_cast<Seller*>(m_user_list[i]);
-		if (temp)
+		if (strcmp(typeid(*m_user_list[i]).name(), typeid(Seller).name()) == 0)
 		{
 			cout << ++counter << "\t";
 			m_user_list[i]->show();
@@ -309,5 +307,38 @@ void System::operator+=(Seller& seller)
 void System::operator+=(BuyerSeller& buyerseller)
 {
 	addUser(buyerseller);
+}
+//----------------------------------------------------------------------------------------//
+Buyer* System::pickBuyer() const
+{
+	int selection;
+
+	cout << "Please pick a buyer\n";
+	cout << "--------------------------------------------------\n";
+
+	for (int i = 0; i < m_num_of_users; i++)
+	{
+		Buyer* temp = dynamic_cast<Buyer*>(m_user_list[i]);
+		if (temp)
+		{
+			temp->show();
+			cout << "Enter 1 to select this buyer or 2 for next: ";
+			cin >> selection;
+			cout << "--------------------------------------------------\n";
+
+			while (selection != 1 && selection != 2)
+			{
+				cout << "Invalid number entered, please try again: ";
+				cin >> selection;
+				cout << "--------------------------------------------------\n";
+			}
+
+			if (selection == 1)
+				return temp;
+		}
+	}
+
+	cout << "No more buyers left, returning to operator tests menu...\n";
+	return nullptr;
 }
 //----------------------------------------------------------------------------------------//

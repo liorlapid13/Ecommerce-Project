@@ -21,13 +21,10 @@ public:
 	
 
 	//Getters 
-	virtual const char*		getUserName()			const override;
-	virtual const char*		getPassword()			const override;
-	virtual const Address&	getAddress()			const override;
-	virtual Feedback**		getFeedbackList();
-	virtual int				getNumOfFeedbacks()		const;
-	virtual Product**		getStore();
-	virtual int				getNumOfProducts()		const;
+	Feedback**		getFeedbackList();
+	int				getNumOfFeedbacks()		const;
+	Product**		getStore();
+	int				getNumOfProducts()		const;
 
 	//Methods
 	virtual void show()								const override;

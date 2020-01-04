@@ -11,21 +11,6 @@ BuyerSeller::~BuyerSeller()
 
 }
 //----------------------------------------------------------------------------------------//
-const char* BuyerSeller::getUserName() const
-{
-	return m_username;
-}
-//----------------------------------------------------------------------------------------//
-const char* BuyerSeller::getPassword() const
-{
-	return m_password;
-}
-//----------------------------------------------------------------------------------------//
-const Address& BuyerSeller::getAddress() const
-{
-	return m_address;
-}
-//----------------------------------------------------------------------------------------//
 void BuyerSeller::show() const
 {
 	User::show();

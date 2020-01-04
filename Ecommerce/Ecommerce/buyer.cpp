@@ -37,24 +37,9 @@ void Buyer::setCurrentOrder(Order* order)
 	m_current_order = order;
 }
 //----------------------------------------------------------------------------------------//
-const ShoppingCart& Buyer::getShoppingCart() const
+ShoppingCart& Buyer::getShoppingCart()
 {
 	return m_shopping_cart;
-}
-//----------------------------------------------------------------------------------------//
-const char* Buyer::getUserName() const
-{
-	return m_username;
-}
-//----------------------------------------------------------------------------------------//
-const char* Buyer::getPassword() const
-{
-	return m_password;
-}
-//----------------------------------------------------------------------------------------//
-const Address& Buyer::getAddress() const
-{
-	return m_address;
 }
 //----------------------------------------------------------------------------------------//
 Order* Buyer::getCurrentOrder() const
@@ -195,7 +180,7 @@ bool Buyer::newFeedback(Product* product, Seller* seller, const char* descriptio
 //----------------------------------------------------------------------------------------//
 bool Buyer::operator>(const Buyer& other) const
 {
-	if (this->getShoppingCart().getTotalPrice() > other.getShoppingCart().getTotalPrice())
+	if (this->m_shopping_cart.getTotalPrice() > other.m_shopping_cart.getTotalPrice())
 		return true;
 	return false;
 }

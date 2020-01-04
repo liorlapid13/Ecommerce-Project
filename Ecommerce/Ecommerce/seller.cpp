@@ -41,21 +41,6 @@ int Seller::getNumOfFeedbacks() const
 	return m_num_of_feedbacks;
 }
 //----------------------------------------------------------------------------------------//
-const char* Seller::getUserName() const
-{
-	return m_username;
-}
-//----------------------------------------------------------------------------------------//
-const char* Seller::getPassword() const
-{
-	return m_password;
-}
-//----------------------------------------------------------------------------------------//
-const Address& Seller::getAddress() const
-{
-	return m_address;
-}
-//----------------------------------------------------------------------------------------//
 /*
 Receives a new product and adds it to the seller's store
 */

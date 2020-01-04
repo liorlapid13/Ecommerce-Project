@@ -169,3 +169,24 @@ ostream& operator<<(ostream& os, const Address& address)
 		<< address.m_country << ", " << address.m_zip_code << endl;
 	return os;
 }
+//----------------------------------------------------------------------------------------//
+const Address& Address::operator=(const Address& other)
+{
+	if (this != &other)
+	{
+		m_zip_code = other.m_zip_code;
+		m_house_number = other.m_house_number;
+
+		delete[] m_street_name;
+		m_street_name = strdup(other.m_street_name);
+
+		delete[] m_city;
+		m_city = strdup(other.m_street_name);
+
+		delete[] m_country;
+		m_country = strdup(other.m_country);
+	}
+
+	return *this;
+}
+//----------------------------------------------------------------------------------------//

@@ -9,6 +9,7 @@ public:
 	//C'tors
 	User() = delete;
 	User(const char* username, const char* password, const Address& address);
+	User(const User& other);
 
 	//D'tor
 	virtual ~User();
@@ -19,13 +20,16 @@ public:
 	void setAddress(const Address& address);
 
 	//Getters
-	virtual const char*		getUserName()	const = 0;
-	virtual const char*		getPassword()	const = 0;
-	virtual const Address&	getAddress()	const = 0;
+	const char*		getUserName()	const;
+	const char*		getPassword()	const;
+	const Address&	getAddress()	const;
 
-	//Functions
+	//Methods
 	virtual void show() const = 0;
 	
+	//Operators
+	const User& operator=(const User& other);
+
 protected:
 	char* m_username;
 	char* m_password;

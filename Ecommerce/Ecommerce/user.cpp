@@ -80,3 +80,19 @@ void User::show() const
 	m_address.printAddress();
 }
 //----------------------------------------------------------------------------------------//
+const User& User::operator=(const User& other)
+{
+	if (this != &other)
+	{
+		delete[] m_username;
+		m_username = strdup(other.m_username);
+
+		delete[] m_password;
+		m_password = strdup(other.m_password);
+
+		m_address = other.m_address;
+	}
+
+	return *this;
+}
+//----------------------------------------------------------------------------------------//

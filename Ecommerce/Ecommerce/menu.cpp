@@ -73,22 +73,22 @@ User* Menu::createUser(int user_type)
 
 	Address new_address(street_name, house_number, zip_code, city, country);
 
-	User* new_user;
+	User* new_user = nullptr;
 
 	switch (user_type)
 	{
-	case 1:
-		new_user = new Buyer(username, password, new_address);
-		Validation::checkAllocation(new_user);
-		break;
-	case 2:
-		new_user = new Seller(username, password, new_address);
-		Validation::checkAllocation(new_user);
-		break;
-	case 3:
-		new_user = new BuyerSeller(username, password, new_address);
-		Validation::checkAllocation(new_user);
-		break;
+		case 1:
+			new_user = new Buyer(username, password, new_address);
+			Validation::checkAllocation(new_user);
+			break;
+		case 2:
+			new_user = new Seller(username, password, new_address);
+			Validation::checkAllocation(new_user);
+			break;
+		case 3:
+			new_user = new BuyerSeller(username, password, new_address);
+			Validation::checkAllocation(new_user);
+			break;
 	}
 
 	m_system->addUser(*new_user);
@@ -133,7 +133,7 @@ void Menu::newOrder(Buyer& buyer)
 	for (int i = 0; i < cart_size; i++)
 		product_index_array[i] = 0;
 
-	int selection;
+	
 	Product** temp = buyer.getShoppingCart().getProductList();
 
 	cout << "Your Shopping Cart:\n";
@@ -148,6 +148,7 @@ void Menu::newOrder(Buyer& buyer)
 	cout << "Please enter the code/s of the product/s you wish to purchase (one by one)\n";
 	cout << "If you wish to cancel press -1\n";
 
+	int selection;
 	cin >> selection;
 
 	float total_price = 0;
@@ -763,55 +764,55 @@ void Menu::buyerSellerMenu(BuyerSeller& buyerseller)
 
 	cout << "--------------------------------------------------\n";
 
-	while (selection != 6)
+	while (selection != 8)
 	{
 		switch (selection)
 		{
-		case 1:	/*Add item to shopping cart*/
-		{
-			addItemToShoppingCart(buyerseller);
-			break;
-		}
-		case 2:	/*Create new order*/
-		{
-			createNewOrder(buyerseller);
-			break;
-		}
-		case 3: /*Pay for existing order*/
-		{
-			completeOrder(buyerseller);
-			break;
-		}
-		case 4: /*Publish new feedback*/
-		{
-			publishNewFeedback(buyerseller);
-			break;
+			case 1:	/*Add item to shopping cart*/
+			{
+				addItemToShoppingCart(buyerseller);
+				break;
+			}
+			case 2:	/*Create new order*/
+			{
+				createNewOrder(buyerseller);
+				break;
+			}
+			case 3: /*Pay for existing order*/
+			{
+				completeOrder(buyerseller);
+				break;
+			}
+			case 4: /*Publish new feedback*/
+			{
+				publishNewFeedback(buyerseller);
+				break;
 
-		}
-		case 5: /*Charge your wallet*/
-		{
-			chargeYourWallet(buyerseller);
-			break;
+			}
+			case 5: /*Charge your wallet*/
+			{
+				chargeYourWallet(buyerseller);
+				break;
 
-		}
-		case 6: /*Add product to store*/
-		{
-			addProductToStore(buyerseller);
-			break;
-		}
-		case 7: /*Search product by name*/
-		{
-			searchProductByName();
-			break;
-		}
-		default:
-		{
-			cout << "Invalid number entered\n";
-			break;
-		}
+			}
+			case 6: /*Add product to store*/
+			{
+				addProductToStore(buyerseller);
+				break;
+			}
+			case 7: /*Search product by name*/
+			{
+				searchProductByName();
+				break;
+			}
+			default:
+			{
+				cout << "Invalid number entered\n";
+				break;
+			}
 		}
 
-		this->printBuyerMenu();
+		this->printBuyerSellerMenu();
 		cin >> selection;
 	}
 
@@ -835,5 +836,154 @@ void Menu::printBuyerSellerMenu() const
 	cout << "8\tLog-out\n";
 	cout << "--------------------------------------------------\n";
 	cout << "Enter number of what you would like to do: ";
+}
+//----------------------------------------------------------------------------------------//
+void Menu::operatorTests()
+{
+	this->printOperatorTestsMenu();
+
+	int selection;
+	cin >> selection;
+
+	cout << "--------------------------------------------------\n";
+
+	while (selection != 4)
+	{
+		switch (selection)
+		{
+			case 1:
+				printOperatorTest();
+				break;
+
+			case 2:
+				addUserOperatorTest();
+				break;
+
+			case 3:
+				shoppingCartCompareOperatorTest();
+				break;
+
+			default:
+				cout << "Invalid number entered\n";
+				break;
+		}
+
+		this->printOperatorTestsMenu();
+		cin >> selection;
+	}
+
+	cout << "Returning to main menu...\n";
+}
+//----------------------------------------------------------------------------------------//
+void Menu::printOperatorTestsMenu() const
+{
+	cout << "\t\t _____________________\n";
+	cout << "\t\t|                     |\n";
+	cout << "\t\t| OPERATOR TESTS MENU |\n";
+	cout << "\t\t|_____________________|\n\n";
+	cout << "--------------------------------------------------\n";
+	cout << "1\t'<<' Operator\n";
+	cout << "2\t'+=' Operator\n";
+	cout << "3\t'<'	Operator\n";
+	cout << "4\tReturn to main menu\n";
+	cout << "--------------------------------------------------\n";
+	cout << "Enter number of what you would like to do: ";
+}
+//----------------------------------------------------------------------------------------//
+void Menu::printOperatorTest()
+{
+	cout << "Please select a class to test '<<' operator on:\n";
+	cout << "1\tProduct\n";
+	cout << "2\tDate\n";
+	cout << "3\tAddress\n";
+	cout << "4\tFeedback\n";
+	cout << "5\tReturn to operator testing menu\n";
+
+	int selection;
+	cin >> selection;
+
+	cout << "--------------------------------------------------\n";
+
+	while (selection != 5)
+	{
+		switch (selection)
+		{
+			case 1:
+			{
+				cout << "Let's create a temporary product for printing purposes\n";
+				Product *new_product = createProduct("Test Username");
+				cout << "Now printing the new product using the << operator\n";
+				cout << new_product;
+				delete[] new_product;
+				break;
+			}
+
+			case 2:
+			{
+				cout << "Let's create a temporary date for printing purposes\n";
+				cout << "Enter a date in format: DD MM YYYY\n";
+				int day, month, year;
+				cin >> day >> month >> year;
+				Date new_date(day, month, year);
+				cout << "Now printing the new date using the << operator\n";
+				cout << new_date;
+				break;
+			}
+
+			case 3:
+			{
+				cout << "Creating a temporary address for printing purposes\n";
+				Address new_address("Ezel", 9, 1234567, "Tel-Aviv", "Israel");
+				cout << "Now printing the new address using the << operator\n";
+				cout << new_address;
+				break;
+			}
+
+			case 4:
+			{
+				cout << "Creating a temporary feedback for printing purposes\n";
+				Date new_date(01, 01, 2020);
+				Address new_address("Ezel", 10, 1234567, "Tel-Aviv", "Israel");
+				Buyer new_buyer("Test Username", "Aa1234", new_address);
+				Product new_product("Iphone", 50, Product::eCategory(1), "Test Username");
+				Feedback new_feedback(new_date, "Very good product! Thank you very much.", new_buyer, new_product);
+				cout << "Now printing the new feedback using the << operator\n";
+				break;
+			}
+
+			default:
+				cout << "Invalid number entered\n";
+				break;
+		}
+
+		cout << "Please re-select an option from the menu: ";
+		cin >> selection;
+
+		cout << "--------------------------------------------------\n";
+	}
+
+	cout << "Returning to operator tests menu...\n";
+}
+//----------------------------------------------------------------------------------------//
+void Menu::shoppingCartCompareOperatorTest() const
+{
+	Buyer *buyer1, *buyer2;
+
+	buyer1 = m_system->pickBuyer();
+	buyer2 = m_system->pickBuyer();
+
+	if (buyer1 == nullptr || buyer2 == nullptr)
+		return;
+	
+	cout << "Buyer1 shopping cart value: " << buyer1->getShoppingCart().getTotalPrice() << endl;
+	cout << "Buyer2 shopping cart value: " << buyer2->getShoppingCart().getTotalPrice() << endl;
+	bool result = *buyer1 > *buyer2;
+	cout << "Result of Buyer1>Buyer2 is: " << result << endl;
+	cout << "--------------------------------------------------\n";
+}
+//----------------------------------------------------------------------------------------//
+void Menu::addUserOperatorTest()
+{
+
 }
 //----------------------------------------------------------------------------------------//

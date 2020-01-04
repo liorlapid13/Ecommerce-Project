@@ -28,14 +28,11 @@ public:
 	void setCurrentOrder(Order* order);
 
 	//Getters
-	virtual const char*			getUserName()			const override;
-	virtual const char*			getPassword()			const override;
-	virtual const Address&		getAddress()			const override;
-	virtual const ShoppingCart&	getShoppingCart()		const;
-    virtual Order*				getCurrentOrder()		const;
-	virtual double				getWallet()				const;
-    virtual Order**				getOrderHistory()		const;
-	virtual int					getNumOrders()			const;
+	ShoppingCart&		getShoppingCart();
+    Order*				getCurrentOrder()		const;
+	double				getWallet()				const;
+    Order**				getOrderHistory()		const;
+	int					getNumOrders()			const;
 
 	//Methods
 	virtual void show()									const override;

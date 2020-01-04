@@ -16,9 +16,6 @@ public:
 	//Setters
 
 	//Getters
-	const char*		getUserName()			const override;
-	const char*		getPassword()			const override;
-	const Address&	getAddress()			const override;
 
 	//Methods
 	void show()								const override;

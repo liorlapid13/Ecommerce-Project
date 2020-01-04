@@ -25,6 +25,9 @@ public:
 	Buyer*			getBuyer()			const;
 	const Product*	getProduct()		const;
 
+	//Operators
+	friend ostream& operator<<(ostream& os, const Feedback& feedback);
+
 private:
 	Date		m_date;
 	char*		m_description;

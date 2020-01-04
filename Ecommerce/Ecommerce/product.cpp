@@ -132,4 +132,6 @@ ostream& operator<<(ostream& os, const Product& product)
 		<< "Product type: " << product.categoryStr[product.m_category] << endl
 		<< "Seller name: " << product.m_seller << endl 
 		<< "--------------------------------------------------\n";
+
+	return os;
 }

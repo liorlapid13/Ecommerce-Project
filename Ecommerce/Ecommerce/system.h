@@ -35,11 +35,12 @@ public:
 	Seller* findSeller(const char* username)				const;
 	Buyer* findBuyer(const char* username)					const;
 	BuyerSeller* findBuyerSeller(const char* username)		const;
-
 	void printProductsByName(char* product_name)			const;	//->Products.printProduct
 	Product* findProduct(int serial_number, char* name)		const;
 	bool productExist(const char* product_name)				const;
 	
+	Buyer* pickBuyer() const;
+
 	//Operators
 	void operator+=(Buyer& buyer);
 	void operator+=(Seller& seller);

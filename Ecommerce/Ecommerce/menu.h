@@ -35,7 +35,7 @@ public:
 	void printSellerMenu()					const;
 	void buyerSellerMenu(BuyerSeller& buyerseller);
 	void printBuyerSellerMenu()				const;
-	void addItemToShoppingCart(Buyer& buyer);
+	void addProductToShoppingCart(Buyer& buyer);
 	void createNewOrder(Buyer& buyer);
 	void publishNewFeedback(Buyer& buyer);
 	void chargeYourWallet(Buyer& buyer);

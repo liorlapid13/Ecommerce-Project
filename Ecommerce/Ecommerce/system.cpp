@@ -86,7 +86,7 @@ void System::addUser(User& new_user)
 /*
 Search for username in system user list.
 */
-bool System::searchUsername(char* username)	const
+bool System::searchUsername(const char* username) const
 {
 		//search for username in user list
 		for (int i = 0; i < m_num_of_users; i++)
@@ -150,7 +150,7 @@ void System::printSellerList() const
 void System::printBuyerSellerList() const
 {
 	cout << "\t _______________________\n";
-	cout << "\t|				       |\n";
+	cout << "\t|                       |\n";
 	cout << "\t|    BuyerSeller List   |\n";
 	cout << "\t|_______________________|\n\n";
 
@@ -269,7 +269,7 @@ void System::newProduct(Product& new_product)
 Receives serial number from buyer menu, searches for item with matching serial number in the system's product list
 and returns the product if found.
 */
-Product* System::findProduct(int serial_number, char* name) const
+Product* System::findProduct(int serial_number, const char* name) const
 {
 	for (int i = 0; i < m_num_of_products; i++)
 	{
@@ -294,26 +294,41 @@ bool System::productExist(const char* product_name) const
 	return false;
 }
 //----------------------------------------------------------------------------------------//
+/*
+This operator adds a buyer to the system.
+*/
 void System::operator+=(Buyer& buyer)
 {
 	addUser(buyer);
 }
 //----------------------------------------------------------------------------------------//
+/*
+This operator adds a seller to the system.
+*/
 void System::operator+=(Seller& seller)
 {
 	addUser(seller);
 }
 //----------------------------------------------------------------------------------------//
+/*
+This operator adds a buyerseller to the system.
+*/
 void System::operator+=(BuyerSeller& buyerseller)
 {
 	addUser(buyerseller);
 }
 //----------------------------------------------------------------------------------------//
-Buyer* System::pickBuyer() const
+/*
+This method is called upon from the ">" operator test method in the Menu class.
+It asks the user to pick a buyer/buyerseller from the system's user list.
+The selected buyer/buyerseller is then returned.
+The use of dynamic cast is to allow buyers and buyersellers to be picked.
+*/
+Buyer* System::pickBuyer(int buyer_number) const
 {
 	int selection;
 
-	cout << "Please pick a buyer\n";
+	cout << "Please pick buyer no." << buyer_number << endl;
 	cout << "--------------------------------------------------\n";
 
 	for (int i = 0; i < m_num_of_users; i++)

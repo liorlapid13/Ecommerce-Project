@@ -24,9 +24,11 @@ using namespace std;
 
 void main()
 {
+
 	System system("ECOM");
 
 	Menu menu(&system);
 
 	menu.mainMenu();
+
 }

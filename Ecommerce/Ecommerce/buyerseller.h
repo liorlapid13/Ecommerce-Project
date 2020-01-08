@@ -13,12 +13,8 @@ public:
 	//D'tor
 	~BuyerSeller();
 
-	//Setters
-
-	//Getters
-
 	//Methods
-	void show()								const override;
+	void show()	const override;
 
 private:
 	BuyerSeller(const BuyerSeller& other); //remove copy c'tor

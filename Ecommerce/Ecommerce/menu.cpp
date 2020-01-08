@@ -7,7 +7,7 @@ Menu::Menu(System* system)
 //----------------------------------------------------------------------------------------//
 Menu::~Menu()
 {
-	cout << "in d'tor menu\n";
+	
 }
 //----------------------------------------------------------------------------------------//
 System* Menu::getSystem() const
@@ -20,42 +20,42 @@ Asks the user to input details and creates a new user according to the selected 
 */
 User* Menu::createUser(int user_type)
 {
-	char username[Validation::MAX_USERNAME_LENGTH + 1];
+	char username[Validation::MAX_STRING_LENGTH + 1];
 	cin.ignore();
 	do
 	{
 		cout << "Enter username(If username exists you will be asked again):\n";
-		cout << "Username must contain 6-15 alphanumeric characters (lower/uppercase letters A-Z, numbers 0-9)\n";
-		cin.getline(username, Validation::MAX_USERNAME_LENGTH + 1);
+		cout << "Username must contain 6-24 alphanumeric characters (lower/uppercase letters A-Z, numbers 0-9)\n";
+		cin.getline(username, Validation::MAX_STRING_LENGTH + 1);
 	} while (!(m_system->searchUsername(username)));
 
 	cout << "--------------------------------------------------\n";
 
-	char password[Validation::MAX_PASSWORD_LENGTH + 1];
+	char password[Validation::MAX_STRING_LENGTH + 1];
 	cout << "Enter password\n";
 	cout << "Password must contain 6-15 characters and atleast one of each of the following:\n";
 	cout << "-Lowercase letter\n";
 	cout << "-Uppercase letter\n";
 	cout << "-Number\n";
-	cin.getline(password, Validation::MAX_PASSWORD_LENGTH + 1);
+	cin.getline(password, Validation::MAX_STRING_LENGTH + 1);
 
 	cout << "--------------------------------------------------\n";
 
-	char country[Validation::MAX_COUNTRY_LENGTH + 1];
+	char country[Validation::MAX_STRING_LENGTH + 1];
 	cout << "Please enter country: ";
-	cin.getline(country, Validation::MAX_COUNTRY_LENGTH + 1);
+	cin.getline(country, Validation::MAX_STRING_LENGTH + 1);
 
 	cout << "--------------------------------------------------\n";
 
-	char city[Validation::MAX_CITY_LENGTH + 1];
+	char city[Validation::MAX_STRING_LENGTH + 1];
 	cout << "Please enter city: ";
-	cin.getline(city, Validation::MAX_CITY_LENGTH + 1);
+	cin.getline(city, Validation::MAX_STRING_LENGTH + 1);
 
 	cout << "--------------------------------------------------\n";
 
-	char street_name[Validation::MAX_STREET_LENGTH + 1];
+	char street_name[Validation::MAX_STRING_LENGTH + 1];
 	cout << "Please enter street name: ";
-	cin.getline(street_name, Validation::MAX_STREET_LENGTH + 1);
+	cin.getline(street_name, Validation::MAX_STRING_LENGTH + 1);
 
 	cout << "--------------------------------------------------\n";
 
@@ -182,7 +182,7 @@ void Menu::newOrder(Buyer& buyer)
 	else
 	{
 		buyer.createOrder(num_of_selected_products, product_index_array, total_price);
-		cout << "Order complete, to pay go to 3rd option in the buyer menu\n";
+		cout << "Order complete, to pay go to 3rd option in the menu\n";
 		cout << "--------------------------------------------------\n";
 	}
 
@@ -298,13 +298,14 @@ void Menu::mainMenu()
 		cout << "Enter 1 to Log-In\n";
 		cout << "Enter 2 to Sign-Up\n";
 		cout << "Enter 3 to view User Lists\n";
-		cout << "Enter 4 to Quit\n";
+		cout << "Enter 4 to test operators\n";
+		cout << "Enter 5 to Quit\n";
 		cout << "--------------------------------------------------\n";
 		cout << "Enter number of what you would like to do: ";
 
 		int user_input;
 		cin >> user_input;
-		while (user_input != 1 && user_input != 2 && user_input != 3 && user_input != 4)
+		while (user_input < 1 || user_input > 5)
 		{
 			cout << "Invalid selection, please try again\n";
 			cin >> user_input;
@@ -313,45 +314,54 @@ void Menu::mainMenu()
 		cout << "--------------------------------------------------\n";
 
 		//Quit
-		if (user_input == 4) 
+		if (user_input == 5) 
 		{
 			quit_switch == 1;
 			break;
 		}
 
-		cout << "Enter 1 for Buyer\n";
-		cout << "Enter 2 for Seller\n";
-		cout << "Enter 3 for BuyerSeller\n";
-		int user_type;
-		cin >> user_type;
-
-		cout << "--------------------------------------------------\n";
-
-		while (user_type != 1 && user_type != 2 && user_type != 3)
+		//Operator Tests
+		if (user_input == 4)
 		{
-			cout << "Invalid selection, please try again: ";
-			cin >> user_type;
-		}
-
-		if (user_input == 2)
-		{
-			//Sign-up method
-			this->signUp(user_type);
-		}
-		else if (user_input == 3)
-		{
-			//Print list of buyers/sellers/buyersellers
-			if (user_type == 1)
-				m_system->printBuyerList();
-			else if (user_type == 2)
-				m_system->printSellerList();
-			else
-				m_system->printBuyerSellerList();
+			operatorTests();
+			
 		}
 		else
 		{
-			//Log-in method
-			this->logIn(user_type);
+			cout << "Enter 1 for Buyer\n";
+			cout << "Enter 2 for Seller\n";
+			cout << "Enter 3 for BuyerSeller\n";
+			int user_type;
+			cin >> user_type;
+
+			cout << "--------------------------------------------------\n";
+
+			while (user_type != 1 && user_type != 2 && user_type != 3)
+			{
+				cout << "Invalid selection, please try again: ";
+				cin >> user_type;
+			}
+
+			if (user_input == 2)
+			{
+				//Sign-up method
+				this->signUp(user_type);
+			}
+			else if (user_input == 3)
+			{
+				//Print list of buyers/sellers/buyersellers
+				if (user_type == 1)
+					m_system->printBuyerList();
+				else if (user_type == 2)
+					m_system->printSellerList();
+				else
+					m_system->printBuyerSellerList();
+			}
+			else
+			{
+				//Log-in method
+				this->logIn(user_type);
+			}
 		}
 	}
 }
@@ -488,7 +498,7 @@ void Menu::buyerMenu(Buyer& buyer)
 		{	
 			case 1:	/*Add item to shopping cart - Question 5*/
 			{
-				addItemToShoppingCart(buyer);
+				addProductToShoppingCart(buyer);
 				break;
 			}
 			case 2:	/*Create new order - Question 6*/
@@ -544,7 +554,7 @@ void Menu::printBuyerMenu() const
 	cout << "Enter number of what you would like to do: ";
 }
 //----------------------------------------------------------------------------------------//
-void Menu::addItemToShoppingCart(Buyer& buyer)
+void Menu::addProductToShoppingCart(Buyer& buyer)
 {
 	char product_name[Product::MAX_PRODUCT_NAME + 1];
 	bool product_found = 0;
@@ -557,7 +567,7 @@ void Menu::addItemToShoppingCart(Buyer& buyer)
 		{
 			cout << "There is no " << product_name << " for sale in the system\n";
 			cout << "Would you like to try again?\n";
-			cout << "1 = Try again, 2 = Back to main menu\n";
+			cout << "1 = Try again, 2 = Back to menu\n";
 			int retry;
 			cin >> retry;
 			while (retry != 1 && retry != 2)
@@ -577,20 +587,26 @@ void Menu::addItemToShoppingCart(Buyer& buyer)
 		}
 	}
 
-	if (!product_found)
-		return;
-
 	cout << "Enter serial number of product you wish to buy: ";
 	int serial_number;
 	cin >> serial_number;
 
 	Product* product = m_system->findProduct(serial_number, product_name);
 
+	
+
 	while (!product)
 	{
 		cout << "Invalid serial number, please try again:";
 		cin >> serial_number;
 		product = m_system->findProduct(serial_number, product_name);
+	}
+
+	if (strcmp(product->getSeller(), buyer.getUserName()) == 0)
+	{
+		cout << "You cannot buy your own products, returning to menu\n";
+		cout << "--------------------------------------------------\n";
+		return;
 	}
 	
 	buyer.m_shopping_cart.addItemToShoppingCart(*product);
@@ -770,7 +786,7 @@ void Menu::buyerSellerMenu(BuyerSeller& buyerseller)
 		{
 			case 1:	/*Add item to shopping cart*/
 			{
-				addItemToShoppingCart(buyerseller);
+				addProductToShoppingCart(buyerseller);
 				break;
 			}
 			case 2:	/*Create new order*/
@@ -870,6 +886,8 @@ void Menu::operatorTests()
 
 		this->printOperatorTestsMenu();
 		cin >> selection;
+
+		cout << "--------------------------------------------------\n";
 	}
 
 	cout << "Returning to main menu...\n";
@@ -884,20 +902,26 @@ void Menu::printOperatorTestsMenu() const
 	cout << "--------------------------------------------------\n";
 	cout << "1\t'<<' Operator\n";
 	cout << "2\t'+=' Operator\n";
-	cout << "3\t'<'	Operator\n";
+	cout << "3\t'>' Operator\n";
 	cout << "4\tReturn to main menu\n";
 	cout << "--------------------------------------------------\n";
 	cout << "Enter number of what you would like to do: ";
 }
 //----------------------------------------------------------------------------------------//
+/*
+This function is a testing tool for the "<<" operator.
+The function creates a temporary object of your choice from the following list: product, date, address or feedback.
+The object is then printed using the "<<" operator and deleted promptly after.
+*/
 void Menu::printOperatorTest()
 {
-	cout << "Please select a class to test '<<' operator on:\n";
-	cout << "1\tProduct\n";
-	cout << "2\tDate\n";
-	cout << "3\tAddress\n";
-	cout << "4\tFeedback\n";
-	cout << "5\tReturn to operator testing menu\n";
+	cout << "Enter 1 to print a product\n";
+	cout << "Enter 2 to print a date\n";
+	cout << "Enter 3 to print an address\n";
+	cout << "Enter 4 to print a feedback\n";
+	cout << "Enter 5 to return to operator testing menu\n";
+	cout << "--------------------------------------------------\n";
+	cout << "Enter number of what you would like to do: ";
 
 	int selection;
 	cin >> selection;
@@ -910,21 +934,17 @@ void Menu::printOperatorTest()
 		{
 			case 1:
 			{
-				cout << "Let's create a temporary product for printing purposes\n";
-				Product *new_product = createProduct("Test Username");
+				cout << "Creating a temporary 'TestProduct'\n";
+				Product new_product("TestProduct", 50, (Product::eCategory)1, "TestSeller");
 				cout << "Now printing the new product using the << operator\n";
 				cout << new_product;
-				delete[] new_product;
 				break;
 			}
 
 			case 2:
 			{
-				cout << "Let's create a temporary date for printing purposes\n";
-				cout << "Enter a date in format: DD MM YYYY\n";
-				int day, month, year;
-				cin >> day >> month >> year;
-				Date new_date(day, month, year);
+				cout << "Creating a temporary date\n";
+				Date new_date(16, 12, 2019);
 				cout << "Now printing the new date using the << operator\n";
 				cout << new_date;
 				break;
@@ -932,7 +952,7 @@ void Menu::printOperatorTest()
 
 			case 3:
 			{
-				cout << "Creating a temporary address for printing purposes\n";
+				cout << "Creating a temporary address\n";
 				Address new_address("Ezel", 9, 1234567, "Tel-Aviv", "Israel");
 				cout << "Now printing the new address using the << operator\n";
 				cout << new_address;
@@ -941,13 +961,14 @@ void Menu::printOperatorTest()
 
 			case 4:
 			{
-				cout << "Creating a temporary feedback for printing purposes\n";
+				cout << "Creating a temporary feedback\n";
 				Date new_date(01, 01, 2020);
 				Address new_address("Ezel", 10, 1234567, "Tel-Aviv", "Israel");
-				Buyer new_buyer("Test Username", "Aa1234", new_address);
-				Product new_product("Iphone", 50, Product::eCategory(1), "Test Username");
+				Buyer new_buyer("TestBuyer", "Aa1234", new_address);
+				Product new_product("Iphone", 50, Product::eCategory(1), "TestSeller");
 				Feedback new_feedback(new_date, "Very good product! Thank you very much.", new_buyer, new_product);
 				cout << "Now printing the new feedback using the << operator\n";
+				cout << new_feedback;
 				break;
 			}
 
@@ -965,25 +986,110 @@ void Menu::printOperatorTest()
 	cout << "Returning to operator tests menu...\n";
 }
 //----------------------------------------------------------------------------------------//
+/*
+This funtion is a testing tool for the ">" operator which compares two buyers' shopping cart values.
+The user is presented with a list of all available buyers/buyersellers and is asked to pick two of them, one by one.
+If a buyer/buyerseller is not picked, the function will return you to the menu.
+If no buyers/buyersellers exist, you will also be returned to the menu.
+Else, assuming two buyers/buyersellers were picked, their shopping cart values will be compared and a result of the comparison will be printed.
+*/
 void Menu::shoppingCartCompareOperatorTest() const
 {
 	Buyer *buyer1, *buyer2;
 
-	buyer1 = m_system->pickBuyer();
-	buyer2 = m_system->pickBuyer();
+	buyer1 = m_system->pickBuyer(1);
 
-	if (buyer1 == nullptr || buyer2 == nullptr)
+	if (!buyer1)
+		return;
+
+	buyer2 = m_system->pickBuyer(2);
+
+	if (!buyer2)
 		return;
 	
-	cout << "Buyer1 shopping cart value: " << buyer1->getShoppingCart().getTotalPrice() << endl;
-	cout << "Buyer2 shopping cart value: " << buyer2->getShoppingCart().getTotalPrice() << endl;
+	cout << "Buyer no.1 shopping cart value: " << buyer1->getShoppingCart().getTotalPrice() << endl;
+	cout << "Buyer no.2 shopping cart value: " << buyer2->getShoppingCart().getTotalPrice() << endl;
 	bool result = *buyer1 > *buyer2;
 	cout << "Result of Buyer1>Buyer2 is: " << result << endl;
 	cout << "--------------------------------------------------\n";
 }
 //----------------------------------------------------------------------------------------//
+/*
+This function is a testing tool for the "+=" operator.
+The user is asked to select which user type to add to the system from the following list: buyer, seller, buyerseller.
+A test user will then be created of the relevant user type, and will be added permanently to the system.
+See known errors file regarding multiple uses of this method.
+*/
 void Menu::addUserOperatorTest()
 {
+	cout << "Enter 1 to add a buyer\n";
+	cout << "Enter 2 to add a seller\n";
+	cout << "Enter 3 to add a buyerseller\n";
+	cout << "Enter 4 to return to operator testing menu\n";
+	cout << "Enter number of what you woud like to do: ";
 
+	int selection;
+	cin >> selection;
+
+	cout << "--------------------------------------------------\n";
+
+	Address address("Vitosha", 23, 1234567, "Sofia", "Bulgaria");
+
+	switch (selection)
+	{
+		case 1:
+		{
+			cout << "Buyer List before new user:\n";
+			m_system->printBuyerList();
+
+			cout << "Creating Buyer 'TestBuyer'\n";
+			Buyer* new_user =  new Buyer("TestBuyer", "Aa1234", address);
+
+			*m_system += *new_user;
+			cout << "Buyer added, printing Buyer List:\n";
+			m_system->printBuyerList();
+			break;
+		}
+
+		case 2:
+		{
+			cout << "Seller List before new user:\n";
+			m_system->printSellerList();
+
+			cout << "Creating BuyerSeller 'TestSeller'\n";
+			Seller* new_user = new Seller("TestSeller", "Aa1234", address);
+
+			*m_system += *new_user;
+			cout << "Seller added, printing Seller List:\n";
+			m_system->printSellerList();
+			break;
+		}
+
+		case 3:
+		{
+			cout << "BuyerSeller List before new user\n";
+			m_system->printBuyerSellerList();
+
+			cout << "Creating BuyerSeller 'TestBuyerSeller'\n";
+			BuyerSeller* new_user = new BuyerSeller("TestBuyerSeller", "Aa1234", address);
+
+			*m_system += *new_user;
+			cout << "User added, printing BuyerSeller List:\n";
+			m_system->printBuyerSellerList();
+			break;
+		}
+
+		case 4:
+		{
+			cout << "Returning to operator tests menu...\n";
+			break;
+		}
+
+		default:
+		{
+			cout << "Invalid number entered, returning to operator tests menu...\n";
+			break;
+		}
+	}
 }
 //----------------------------------------------------------------------------------------//

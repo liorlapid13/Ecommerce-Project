@@ -52,9 +52,8 @@ const Product* Feedback::getProduct() const
 //----------------------------------------------------------------------------------------//
 ostream& operator<<(ostream& os, const Feedback& feedback)
 {
-	os << "Feedback date: " << feedback.m_date << endl << "Feedback Description:\n" << feedback.m_description << endl
-		<< "Buyer name: " << feedback.m_buyer->getUserName() << endl << "--------------------------------------------------\n" <<
-		feedback.m_product;
+	os << "Feedback date: " << feedback.m_date << "Feedback Description:\n" << feedback.m_description << endl
+		<< "Buyer name: " << feedback.m_buyer->getUserName() << endl << *feedback.m_product;
 	return os;
 }
 //----------------------------------------------------------------------------------------//

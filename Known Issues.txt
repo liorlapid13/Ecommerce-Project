@@ -14,9 +14,11 @@ C'tors -> In classes which have dynamic fields, we initialized
 
 Input Parameters -> In the constructors, we call setter methods which have
 	input checks that only create objects if all fields meet the requirements.
-	Therefore if any field is entered incorectly then the object will not
-	be created but the program will not exit. We require correct inputs
-	in order for the program to work correctly.
+	Therefore if any field is entered incorrectly then the object will be created
+ 	partially (some fields will be missing) but the program will not exit, as
+ 	we are not permitted use of Exceptions.
+	Therefore we require correct inputs from the user, in order for the program
+	to work correctly.
 	All prerequisites are mentioned in the detailed user guide located in the README file.
 
 Input Parameters -> When receiving an input from user for parameters,
@@ -48,3 +50,8 @@ Operators without consts -> Our operators do not include consts because most of
 	our objects have non-const getters which let them be editted in the program.
 	For example, shopping cart's getter is not const because after use, the
 	shopping cart may be changed (products may be added for example).
+
+Operator tests -> You can only test each '+=' option once, else multiple indentical
+	users will be added. This will happen because the system creates a buyer
+	with pre-defined inputs chosen by us, therefore skipping validation checks 
+	in the program.

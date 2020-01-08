@@ -23,8 +23,37 @@ When first opening the program, a main menu will be presented with the following
 - Log-in
 - Sign-up
 - View user lists
+- Operator tests
 - Exit
 After selecting any of the first three options, you will be asked to select between buyer/seller
+
+>>Operator tests
+A menu will be presented on screen, with the following options:
+- '<<'
+- '+='
+- '>'
+- Return
+
+The operator '<<' will present a menu of the following options:
+- product
+- date
+- address
+- feedback
+- Return
+Each option will create a temporary object of the corresponding class.
+That object will be printed using the << operator and then deleted.
+
+The operator '+=' will present a menu of the following options:
+- buyer
+- seller
+- buyerseller
+Each option will create a test user of the corresponding user type.
+The created user will then be added to the system permanently.
+
+The operator '>' will ask the user to pick 2 buyers/buyersellers that exist in the system.
+If a buyer is not picked for any reason, you will be returned to the operator testing menu.
+After a successful selection, their shopping cart values will be printed on screen.
+And then those values will be compared, whilst the result is printed on screen.
 
 >>Sign-up
 In order to create a user, there are some prerequisites that you must follow as our program requires

@@ -27,7 +27,7 @@ public:
 
 	//Methods
 	void addUser(User& new_user);
-	bool searchUsername(char* username)						const;
+	bool searchUsername(const char* username)				const;
 	void newProduct(Product& new_product);
 	void printBuyerSellerList()								const;
 	void printSellerList()									const;
@@ -36,10 +36,10 @@ public:
 	Buyer* findBuyer(const char* username)					const;
 	BuyerSeller* findBuyerSeller(const char* username)		const;
 	void printProductsByName(char* product_name)			const;	//->Products.printProduct
-	Product* findProduct(int serial_number, char* name)		const;
+	Product* findProduct(int serial_number, const char* name)		const;
 	bool productExist(const char* product_name)				const;
 	
-	Buyer* pickBuyer() const;
+	Buyer* pickBuyer(int buyer_number)						const;
 
 	//Operators
 	void operator+=(Buyer& buyer);

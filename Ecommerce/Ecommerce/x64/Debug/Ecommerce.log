@@ -1,7 +1,19 @@
-﻿  main.cpp
+﻿  address.cpp
+c:\users\lior\documents\שנה ב\cpp\ecommerce-project\ecommerce\ecommerce\address.cpp(58): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+c:\users\lior\documents\שנה ב\cpp\ecommerce-project\ecommerce\ecommerce\address.cpp(104): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+c:\users\lior\documents\שנה ב\cpp\ecommerce-project\ecommerce\ecommerce\address.cpp(121): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+  buyer.cpp
+  buyerseller.cpp
+  feedback.cpp
+  main.cpp
 c:\users\lior\documents\שנה ב\cpp\ecommerce-project\ecommerce\ecommerce\main.cpp(26): warning C4326: return type of 'main' should be 'int' instead of 'void'
   menu.cpp
-c:\users\lior\documents\שנה ב\cpp\ecommerce-project\ecommerce\ecommerce\menu.cpp(319): warning C4553: '==': result of expression not used; did you intend '='?
+c:\users\lior\documents\שנה ב\cpp\ecommerce-project\ecommerce\ecommerce\menu.cpp(324): warning C4553: '==': result of expression not used; did you intend '='?
+  order.cpp
+  product.cpp
+  seller.cpp
+  shopping_cart.cpp
   system.cpp
+  user.cpp
   Generating Code...
   Ecommerce.vcxproj -> C:\Users\Lior\Documents\שנה ב\cpp\Ecommerce-Project\Ecommerce\x64\Debug\Ecommerce.exe

@@ -190,3 +190,26 @@ const Address& Address::operator=(const Address& other)
 	return *this;
 }
 //----------------------------------------------------------------------------------------//
+const Address& Address::operator=(Address&& other)
+{
+	if (this != &other)
+	{
+		m_zip_code = other.m_zip_code;
+		m_house_number = other.m_house_number;
+
+		delete[] m_street_name;
+		m_street_name = other.m_street_name;
+		other.m_street_name = nullptr;
+
+		delete[] m_city;
+		m_city = other.m_street_name;
+		other.m_city = nullptr;
+
+		delete[] m_country;
+		m_country = other.m_country;
+		other.m_country = nullptr;
+	}
+
+	return *this;
+}
+//----------------------------------------------------------------------------------------//

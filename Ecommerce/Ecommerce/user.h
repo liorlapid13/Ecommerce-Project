@@ -34,12 +34,6 @@ protected:
 	char* m_username;
 	char* m_password;
 	Address m_address;
-
-	//Abstract class, only inheritors can access the c'tor
-	 
-
-private:
-	
 };
 
 #endif // !__USER_H

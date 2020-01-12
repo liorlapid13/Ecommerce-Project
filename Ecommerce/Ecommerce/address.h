@@ -40,6 +40,7 @@ public:
 	//Operators
 	friend ostream& operator<<(ostream& os, const Address& address);
 	const Address& operator=(const Address& other);
+	const Address& operator=(Address&& other);
 
 private:
 	char*	m_street_name;

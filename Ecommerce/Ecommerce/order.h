@@ -28,7 +28,8 @@ private:
 	int			m_list_size;
 	float		m_total_price;
 
-	Order(const Order& other);	//copy c'tor removed
+	Order(const Order& other);
+	const Order& operator=(const Order& other) = delete;
 };
 
 #endif // !__ORDER_H

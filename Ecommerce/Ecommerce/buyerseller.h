@@ -17,7 +17,8 @@ public:
 	void show()	const override;
 
 private:
-	BuyerSeller(const BuyerSeller& other); //remove copy c'tor
+	BuyerSeller(const BuyerSeller& other);
+	const BuyerSeller& operator=(const BuyerSeller& other) = delete;
 };
 
 #endif // !__BUYERSELLER_H

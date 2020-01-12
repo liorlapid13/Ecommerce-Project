@@ -109,6 +109,11 @@ Product* Menu::createProduct(const char* seller_username)
 	float price;
 	cout << "Enter product price (in dollars):$";
 	cin >> price;
+	if (price <= 0)
+	{
+		cout << "Invalid input, price must be a positive number" << endl;
+		return nullptr;
+	}
 
 	int category;
 	cout << "Enter product category (0=KIDS, 1=ELECTRICAL, 2=CLOTHING, 3=OFFICE): ";
@@ -726,7 +731,14 @@ void Menu::printSellerMenu() const
 void Menu::addProductToStore(Seller& seller)
 {
 	Product* new_product = createProduct(seller.getUserName());
+	if (!new_product)
+	{
+		cout << "Product not created\n";
+		return;
+	}
+
 	Validation::checkAllocation(new_product);
+
 	if (!seller.addProduct(*new_product))
 	{
 		delete new_product;

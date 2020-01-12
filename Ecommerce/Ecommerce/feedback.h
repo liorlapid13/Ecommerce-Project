@@ -34,7 +34,8 @@ private:
 	Buyer*		m_buyer;
 	Product*	m_product;
 
-	Feedback(const Feedback& other); //copy c'tor removed
+	Feedback(const Feedback& other);
+	const Feedback& operator=(const Feedback& other) = delete;
 };
 
 #endif // !__FEEDBACK_H

@@ -135,3 +135,44 @@ ostream& operator<<(ostream& os, const Product& product)
 
 	return os;
 }
+//----------------------------------------------------------------------------------------//
+const Product& Product::operator=(const Product& other)
+{
+	if (this != &other)
+	{
+		m_serial_number = other.m_serial_number;
+
+		delete[] m_name;
+		m_name = strdup(other.m_name);
+
+		m_price = other.m_price;
+		m_category = other.m_category;
+
+		delete[] m_seller;
+		m_seller = strdup(other.m_seller);
+	}
+
+	return *this;
+}
+//----------------------------------------------------------------------------------------//
+const Product& Product::operator=(Product&& other)
+{
+	if (this != &other)
+	{
+		m_serial_number = other.m_serial_number;
+
+		delete[] m_name;
+		m_name = other.m_name;
+		other.m_name = nullptr;
+
+		m_price = other.m_price;
+		m_category = other.m_category;
+
+		delete[] m_seller;
+		m_seller = other.m_seller;
+		other.m_seller = nullptr;
+	}
+
+	return *this;
+}
+//----------------------------------------------------------------------------------------//

@@ -43,7 +43,7 @@ public:
 	bool newFeedback(Product* product,Seller* seller, const char* description, const Date& date);
 
 	//Operators
-	bool operator>(const Buyer& other)					const;
+	bool operator>(const Buyer& other)			const;
 
 protected:
 	double			m_wallet;
@@ -51,6 +51,10 @@ protected:
 	Order*			m_current_order;
 	Order**			m_order_history;
 	int				m_num_of_orders;
+
+private:
+	Buyer(const Buyer& other);
+	const Buyer& operator=(const Buyer& other) = delete;
 };
 
 #endif // __BUYER_H

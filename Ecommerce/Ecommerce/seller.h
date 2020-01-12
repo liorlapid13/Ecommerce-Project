@@ -40,7 +40,8 @@ protected:
 	int			m_num_of_products;
 
 private:
-	
+	Seller(const Seller& other);
+	const Seller& operator=(const Seller& other) = delete;
 };
 
 #endif // !__SELLER_H

@@ -40,6 +40,8 @@ public:
 
 	//Operators
 	friend ostream& operator<<(ostream& os, const Product& product);
+	const Product& operator=(const Product& other);
+	const Product& operator=(Product&& other);
 
 private:
 	static int		serial_num_generator;

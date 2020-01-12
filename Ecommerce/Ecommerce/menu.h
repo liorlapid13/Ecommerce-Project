@@ -50,6 +50,7 @@ public:
 private:
 	System* m_system;
 
-	Menu(const Menu& other); //copy c'tor removed
+	Menu(const Menu& other);
+	const Menu& operator=(const Menu& other) = delete;
 };
 #endif // !__MENU_H

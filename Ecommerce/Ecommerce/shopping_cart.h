@@ -32,7 +32,8 @@ private:
 	Product**	m_product_list;
 	float		m_total_price;
 
-	ShoppingCart(const ShoppingCart& other); //copy c'tor removed
+	ShoppingCart(const ShoppingCart& other);
+	const ShoppingCart& operator=(const ShoppingCart& other) = delete;
 };
 
 #endif // !__SHOPPING_CART_H

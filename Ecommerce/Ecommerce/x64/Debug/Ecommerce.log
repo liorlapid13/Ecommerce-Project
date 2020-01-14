@@ -1,11 +1,2 @@
-﻿  buyer.cpp
-  buyerseller.cpp
-  feedback.cpp
-  main.cpp
-c:\users\lior\documents\שנה ב\cpp\ecommerce-project\ecommerce\ecommerce\main.cpp(26): warning C4326: return type of 'main' should be 'int' instead of 'void'
-  menu.cpp
-c:\users\lior\documents\שנה ב\cpp\ecommerce-project\ecommerce\ecommerce\menu.cpp(326): warning C4553: '==': result of expression not used; did you intend '='?
-  seller.cpp
-  system.cpp
-  Generating Code...
+﻿  system.cpp
   Ecommerce.vcxproj -> C:\Users\Lior\Documents\שנה ב\cpp\Ecommerce-Project\Ecommerce\x64\Debug\Ecommerce.exe

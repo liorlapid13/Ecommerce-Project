@@ -329,6 +329,12 @@ The use of dynamic cast is to allow buyers and buyersellers to be picked.
 */
 Buyer* System::pickBuyer(int buyer_number) const
 {
+	if (m_num_of_users == 0)
+	{
+		cout << "Please create buyers or buyersellers before testing the '>' operator\n";
+		return nullptr;
+	}
+
 	int selection;
 
 	cout << "Please pick buyer no." << buyer_number << endl;

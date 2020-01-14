@@ -9,6 +9,44 @@ Seller::Seller(const char* username, const char* password, const Address& addres
 	m_store = nullptr;
 }
 //----------------------------------------------------------------------------------------//
+Seller::Seller(const Seller& other) :User(other)
+{
+	m_num_of_products = other.m_num_of_products;
+
+	m_store = new Product*[other.m_num_of_products];
+	for (int i = 0; i < other.m_num_of_products; i++)
+		m_store[i] = new Product(*other.m_store[i]);
+
+	m_num_of_feedbacks = other.m_num_of_feedbacks;
+
+	m_feedback_list = new Feedback*[other.m_num_of_feedbacks];
+	for (int i = 0; i < other.m_num_of_feedbacks; i++)
+		m_feedback_list[i] = new Feedback(*other.m_feedback_list[i]);
+}
+//----------------------------------------------------------------------------------------//
+Seller::Seller(Seller&& other) : User(move(other))
+{
+	m_num_of_products = other.m_num_of_products;
+
+	m_store = other.m_store;
+	for (int i = 0; i < other.m_num_of_products; i++)
+	{
+		m_store[i] = other.m_store[i];
+		other.m_store[i] = nullptr;
+	}
+	other.m_store = nullptr;
+
+	m_num_of_feedbacks = other.m_num_of_feedbacks;
+
+	m_feedback_list = other.m_feedback_list;
+	for (int i = 0; i < other.m_num_of_feedbacks; i++)
+	{
+		m_feedback_list[i] = other.m_feedback_list[i];
+		other.m_feedback_list[i] = nullptr;
+	}
+	other.m_feedback_list = nullptr;
+}
+//----------------------------------------------------------------------------------------//
 Seller::~Seller()
 {
 	int i;
@@ -123,5 +161,75 @@ void Seller::addFeedback(Feedback& new_feedback)
 		m_feedback_list = temp;										//assign the new feedback list
 		temp = nullptr;												//initialize the temporary pointer
 	}
+}
+//----------------------------------------------------------------------------------------//
+const Seller& Seller::operator=(const Seller& other)
+{
+	if (this != &other)
+	{
+		User::operator=(other);
+
+		for (int i = 0; i < m_num_of_products; i++)
+			delete m_store[i];
+		delete[] m_store;
+
+		m_num_of_products = other.m_num_of_products;
+
+		m_store = new Product*[other.m_num_of_products];
+		for (int i = 0; i < other.m_num_of_products; i++)
+			m_store[i] = new Product(*other.m_store[i]);
+		
+		
+		for (int i = 0; i < m_num_of_feedbacks; i++)
+			delete m_feedback_list[i];
+		delete[] m_feedback_list;
+
+		m_num_of_feedbacks = other.m_num_of_feedbacks;
+
+		m_feedback_list = new Feedback*[other.m_num_of_feedbacks];
+		for (int i = 0; i < other.m_num_of_feedbacks; i++)
+			m_feedback_list[i] = new Feedback(*other.m_feedback_list[i]);
+
+	}
+
+	return *this;
+}
+//----------------------------------------------------------------------------------------//
+const Seller& Seller::operator=(Seller&& other)
+{
+	if (this != &other)
+	{
+		User::operator=(move(other));
+
+		for (int i = 0; i < m_num_of_products; i++)
+			delete m_store[i];
+		delete[] m_store;
+
+		m_num_of_products = other.m_num_of_products;
+
+		m_store = other.m_store;
+		for (int i = 0; i < other.m_num_of_products; i++)
+		{
+			m_store[i] = other.m_store[i];
+			other.m_store[i] = nullptr;
+		}
+		other.m_store = nullptr;
+
+		for (int i = 0; i < m_num_of_feedbacks; i++)
+			delete m_feedback_list[i];
+		delete[] m_feedback_list;
+
+		m_num_of_feedbacks = other.m_num_of_feedbacks;
+
+		m_feedback_list = other.m_feedback_list;
+		for (int i = 0; i < other.m_num_of_feedbacks; i++)
+		{
+			m_feedback_list[i] = other.m_feedback_list[i];
+			other.m_feedback_list[i] = nullptr;
+		}
+		other.m_feedback_list = nullptr;
+	}
+
+	return *this;
 }
 //----------------------------------------------------------------------------------------//

@@ -12,6 +12,15 @@ User::User(const User& other) :m_address(other.m_address), m_username(nullptr), 
 	setPassword(other.m_username);
 }
 //----------------------------------------------------------------------------------------//
+User::User(User&& other) :m_address(move(other.m_address))
+{
+	m_username = strdup(other.m_username);
+	other.m_username = nullptr;
+
+	m_password = strdup(other.m_password);
+	other.m_password = nullptr;
+}
+//----------------------------------------------------------------------------------------//
 User::~User()
 {
 	delete[] m_username;
@@ -93,6 +102,24 @@ const User& User::operator=(const User& other)
 		m_address = other.m_address;
 	}
 
+	return *this;
+}
+//----------------------------------------------------------------------------------------//
+const User& User::operator=(User&& other)
+{
+	if (this != &other)
+	{
+		delete[] m_username;
+		m_username = other.m_username;
+		other.m_username = nullptr;
+
+		delete[] m_password;
+		m_password = other.m_password;
+		other.m_password = nullptr;
+
+		m_address = move(other.m_address);
+	}
+	
 	return *this;
 }
 //----------------------------------------------------------------------------------------//

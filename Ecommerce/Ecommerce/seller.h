@@ -10,9 +10,12 @@ class Buyer;
 class Seller : virtual public User
 {
 public:
+	friend class System;
+
 	//C'tors
 	Seller() = delete;
 	Seller(const char* username, const char* password, const Address& address);
+	
 
 	//D'tor
 	virtual ~Seller();
@@ -33,15 +36,20 @@ public:
 	bool searchStore(const char* product_name)		const;
 	void addFeedback(Feedback& new_feedback);
 	
+	
+
 protected:
 	Feedback**	m_feedback_list;
 	int			m_num_of_feedbacks;				
 	Product**	m_store;
 	int			m_num_of_products;
 
-private:
 	Seller(const Seller& other);
-	const Seller& operator=(const Seller& other) = delete;
+	Seller(Seller&& other);
+	//Operators
+	const Seller& operator=(const Seller& other);
+	const Seller& operator=(Seller&& other);
+
 };
 
 #endif // !__SELLER_H

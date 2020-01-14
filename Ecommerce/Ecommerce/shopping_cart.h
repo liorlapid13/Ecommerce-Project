@@ -9,6 +9,8 @@ class ShoppingCart
 public:
 	//C'tors
 	ShoppingCart();
+	ShoppingCart(const ShoppingCart& other);
+	ShoppingCart(ShoppingCart&& other);
 	
 	//D'tors
 	~ShoppingCart();
@@ -27,13 +29,14 @@ public:
 	void addItemToShoppingCart(Product& product);
 	void returnItemsToShoppingCart(Order& order);
 
+	//Operators
+	const ShoppingCart& operator=(const ShoppingCart& other);
+	const ShoppingCart& operator=(ShoppingCart&& other);
+
 private:
 	int	        m_num_of_products;
 	Product**	m_product_list;
-	float		m_total_price;
-
-	ShoppingCart(const ShoppingCart& other);
-	const ShoppingCart& operator=(const ShoppingCart& other) = delete;
+	float		m_total_price;	
 };
 
 #endif // !__SHOPPING_CART_H

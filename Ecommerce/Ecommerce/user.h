@@ -8,8 +8,6 @@ class User
 public:
 	//C'tors
 	User() = delete;
-	User(const char* username, const char* password, const Address& address);
-	User(const User& other);
 
 	//D'tor
 	virtual ~User();
@@ -29,11 +27,17 @@ public:
 	
 	//Operators
 	const User& operator=(const User& other);
+	const User& operator=(User&& other);
 
 protected:
 	char* m_username;
 	char* m_password;
 	Address m_address;
+
+	//C'tors (abstract class)
+	User(const char* username, const char* password, const Address& address);
+	User(const User& other);
+	User(User&& other);
 };
 
 #endif // !__USER_H

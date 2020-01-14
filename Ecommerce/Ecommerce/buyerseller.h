@@ -6,10 +6,12 @@
 class BuyerSeller : public Buyer, public Seller
 {
 public:
+	friend class System;
+
 	//C'tors
 	BuyerSeller() = delete;
 	BuyerSeller(const char* username, const char* password, const Address& address);
-
+	
 	//D'tor
 	~BuyerSeller();
 
@@ -18,7 +20,11 @@ public:
 
 private:
 	BuyerSeller(const BuyerSeller& other);
-	const BuyerSeller& operator=(const BuyerSeller& other) = delete;
+	BuyerSeller(BuyerSeller&& other);
+
+	//Operators
+	const BuyerSeller& operator=(const BuyerSeller& other);
+	const BuyerSeller& operator=(BuyerSeller&& other);
 };
 
 #endif // !__BUYERSELLER_H

@@ -8,6 +8,38 @@ Buyer::Buyer(const char* username, const char* password, const Address& address)
 	m_order_history = nullptr;
 }
 //----------------------------------------------------------------------------------------//
+Buyer::Buyer(const Buyer& other) :User(other)
+{
+	m_wallet = other.m_wallet;
+	m_num_of_orders = other.m_num_of_orders;
+
+	if (other.m_current_order)
+		m_current_order = new Order(*other.m_current_order);
+	else
+		m_current_order = nullptr;
+
+	m_order_history = new Order*[other.m_num_of_orders];
+	for (int i = 0; i < m_num_of_orders; i++)
+		m_order_history[i] = new Order(*other.m_order_history[i]);
+
+	m_shopping_cart = other.m_shopping_cart;
+}
+//----------------------------------------------------------------------------------------//
+Buyer::Buyer(Buyer&& other) :User(move(other))
+{
+	m_wallet = other.m_wallet;
+	m_num_of_orders = other.m_num_of_orders;
+
+	m_current_order = other.m_current_order;
+	other.m_current_order = nullptr;
+
+	m_order_history = other.m_order_history;
+	other.m_order_history = nullptr;
+	other.m_num_of_orders = 0;
+
+	m_shopping_cart = other.m_shopping_cart;
+}
+//----------------------------------------------------------------------------------------//
 Buyer::~Buyer()
 {
 	delete m_current_order;
@@ -183,5 +215,65 @@ bool Buyer::operator>(const Buyer& other) const
 	if (this->m_shopping_cart.getTotalPrice() > other.m_shopping_cart.getTotalPrice())
 		return true;
 	return false;
+}
+//----------------------------------------------------------------------------------------//
+const Buyer& Buyer::operator=(const Buyer& other)
+{
+	if (this != &other)
+	{
+		User::operator=(other);
+		m_wallet = other.m_wallet;
+		m_num_of_orders = other.m_num_of_orders;
+
+		delete[] m_current_order;
+		if (other.m_current_order)
+			m_current_order = new Order(*other.m_current_order);
+		else
+			m_current_order = nullptr;
+
+		for (int i = 0; i < m_num_of_orders; i++)
+			delete[] m_order_history[i];
+		delete[] m_order_history;
+		
+		m_order_history = new Order*[other.m_num_of_orders];
+		for (int i = 0; i < m_num_of_orders; i++)
+			m_order_history[i] = new Order(*other.m_order_history[i]);
+
+		m_shopping_cart = other.m_shopping_cart;
+	}
+
+	return *this;
+}
+//----------------------------------------------------------------------------------------//
+const Buyer& Buyer::operator=(Buyer&& other)
+{
+	if (this != &other)
+	{
+		User::operator=(move(other));
+		m_wallet = other.m_wallet;
+		m_num_of_orders = other.m_num_of_orders;
+
+		delete[] m_current_order;
+		m_current_order = other.m_current_order;
+		other.m_current_order = nullptr;
+
+		for (int i = 0; i < m_num_of_orders; i++)
+			delete[] m_order_history[i];
+		delete[] m_order_history;
+
+		m_order_history = other.m_order_history;
+		for (int i = 0; i < other.m_num_of_orders; i++)
+		{
+			m_order_history[i] = other.m_order_history[i];
+			other.m_order_history[i] = nullptr;
+		}
+
+		other.m_num_of_orders = 0;
+		other.m_order_history = nullptr;
+
+		m_shopping_cart = move(other.m_shopping_cart);
+	}
+
+	return *this;
 }
 //----------------------------------------------------------------------------------------//

@@ -297,25 +297,28 @@ bool System::productExist(const char* product_name) const
 /*
 This operator adds a buyer to the system.
 */
-void System::operator+=(Buyer& buyer)
+void System::operator+=(const Buyer& buyer)
 {
-	addUser(buyer);
+	User *new_user = new Buyer(buyer);
+	addUser(*new_user);
 }
 //----------------------------------------------------------------------------------------//
 /*
 This operator adds a seller to the system.
 */
-void System::operator+=(Seller& seller)
+void System::operator+=(const Seller& seller)
 {
-	addUser(seller);
+	User *new_user = new Seller(seller);
+	addUser(*new_user);
 }
 //----------------------------------------------------------------------------------------//
 /*
 This operator adds a buyerseller to the system.
 */
-void System::operator+=(BuyerSeller& buyerseller)
+void System::operator+=(const BuyerSeller& buyerseller)
 {
-	addUser(buyerseller);
+	User *new_user = new BuyerSeller(buyerseller);
+	addUser(*new_user);
 }
 //----------------------------------------------------------------------------------------//
 /*

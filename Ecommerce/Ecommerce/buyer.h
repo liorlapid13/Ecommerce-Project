@@ -14,10 +14,12 @@ class Buyer : virtual public User
 {
 public:
 	friend class Menu;
+	friend class System;
 
 	//C'tor
 	Buyer() = delete;
 	Buyer(const char* username, const char* password, const Address& address);
+	
 
 	//D'tors
 	virtual ~Buyer();
@@ -44,6 +46,7 @@ public:
 
 	//Operators
 	bool operator>(const Buyer& other)			const;
+	
 
 protected:
 	double			m_wallet;
@@ -52,9 +55,10 @@ protected:
 	Order**			m_order_history;
 	int				m_num_of_orders;
 
-private:
+	const Buyer& operator=(const Buyer& other);
+	const Buyer& operator=(Buyer&& other);
 	Buyer(const Buyer& other);
-	const Buyer& operator=(const Buyer& other) = delete;
+	Buyer(Buyer&& other);
 };
 
 #endif // __BUYER_H

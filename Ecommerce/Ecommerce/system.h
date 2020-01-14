@@ -42,9 +42,9 @@ public:
 	Buyer* pickBuyer(int buyer_number)						const;
 
 	//Operators
-	void operator+=(Buyer& buyer);
-	void operator+=(Seller& seller);
-	void operator+=(BuyerSeller& buyerseller);
+	void operator+=(const Buyer& buyer);
+	void operator+=(const Seller& seller);
+	void operator+=(const BuyerSeller& buyerseller);
 
 private:
 	char*		m_name;

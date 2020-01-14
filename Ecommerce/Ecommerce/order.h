@@ -10,6 +10,8 @@ public:
 	//C'tors
 	Order() = delete;
 	Order(Product** product_list, const int list_size, const float total_price);
+	Order(const Order& other);
+	Order(Order&& other);
 
 	//D'tors
 	~Order();
@@ -23,13 +25,14 @@ public:
 	int			getListSize()		const;
 	float		getTotalPrice()		const;
 
+	//Operators
+	const Order& operator=(const Order& other);
+	const Order& operator=(Order&& other);
+
 private:
 	Product**	m_product_list;
 	int			m_list_size;
 	float		m_total_price;
-
-	Order(const Order& other);
-	const Order& operator=(const Order& other) = delete;
 };
 
 #endif // !__ORDER_H

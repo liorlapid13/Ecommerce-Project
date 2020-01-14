@@ -6,6 +6,16 @@ BuyerSeller::BuyerSeller(const char* username, const char* password, const Addre
 
 }
 //----------------------------------------------------------------------------------------//
+BuyerSeller::BuyerSeller(const BuyerSeller& other) :User(other), Buyer(other), Seller(other)
+{
+
+}
+//----------------------------------------------------------------------------------------//
+BuyerSeller::BuyerSeller(BuyerSeller&& other) :User(move(other)), Buyer(move(other)), Seller(move(other))
+{
+
+}
+//----------------------------------------------------------------------------------------//
 BuyerSeller::~BuyerSeller()
 {
 
@@ -18,7 +28,25 @@ void BuyerSeller::show() const
 	Seller::showMe();
 }
 //----------------------------------------------------------------------------------------//
+const BuyerSeller& BuyerSeller::operator=(const BuyerSeller& other)
+{
+	if (this != &other)
+	{
+		Buyer::operator=(other);
+		Seller::operator=(other);
+	}
 
+	return *this;
+}
 //----------------------------------------------------------------------------------------//
+const BuyerSeller& BuyerSeller::operator=(BuyerSeller&& other)
+{
+	if (this != &other)
+	{
+		Buyer::operator=(move(other));
+		Seller::operator=(move(other));
+	}
 
+	return *this;
+}
 //----------------------------------------------------------------------------------------//

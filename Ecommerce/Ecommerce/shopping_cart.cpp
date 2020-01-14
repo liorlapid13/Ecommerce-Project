@@ -7,6 +7,16 @@ ShoppingCart::ShoppingCart()
 	m_total_price = 0;
 }
 //----------------------------------------------------------------------------------------//
+ShoppingCart::ShoppingCart(const ShoppingCart& other)
+{
+	*this = other;
+}
+//----------------------------------------------------------------------------------------//
+ShoppingCart::ShoppingCart(ShoppingCart&& other)
+{
+	*this = move(other);
+}
+//----------------------------------------------------------------------------------------//
 ShoppingCart::~ShoppingCart()
 {
 	delete[] m_product_list;
@@ -83,5 +93,42 @@ void ShoppingCart::returnItemsToShoppingCart(Order& order)
 
 	delete[] order.getProductList();
 	order.setListSize(0);
+}
+//----------------------------------------------------------------------------------------//
+const ShoppingCart& ShoppingCart::operator=(const ShoppingCart& other)
+{
+	if (this != &other)
+	{
+		m_num_of_products = other.m_num_of_products;
+		m_total_price = other.m_total_price;
+
+		delete[] m_product_list;
+		m_product_list = new Product*[other.m_num_of_products];
+		for (int i = 0; i < other.m_num_of_products; i++)
+			m_product_list[i] = other.m_product_list[i];
+	}
+
+	return *this;
+}
+//----------------------------------------------------------------------------------------//
+const ShoppingCart& ShoppingCart::operator=(ShoppingCart&& other)
+{
+	if (this != &other)
+	{
+		m_num_of_products = other.m_num_of_products;
+		m_total_price = other.m_total_price;
+
+		delete[] m_product_list;
+		m_product_list = other.m_product_list;
+		for (int i = 0; i < other.m_num_of_products; i++)
+		{
+			m_product_list[i] = other.m_product_list[i];
+			other.m_product_list[i] = nullptr;
+		}
+		other.m_product_list = nullptr;
+		other.m_num_of_products = 0;
+	}
+
+	return *this;
 }
 //----------------------------------------------------------------------------------------//

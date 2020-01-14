@@ -11,7 +11,7 @@ Address::Address(const char* street_name, int	house_number,
 	setCountry(country);			//Country
 }
 //----------------------------------------------------------------------------------------//
-Address::Address(const Address& other)	//Copy C'tor
+Address::Address(const Address& other) :m_street_name(nullptr), m_city(nullptr), m_country(nullptr)	//Copy C'tor
 {
 	//Street name
 	setStreetName(other.m_street_name);

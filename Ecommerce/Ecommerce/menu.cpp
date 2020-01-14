@@ -73,7 +73,7 @@ User* Menu::createUser(int user_type)
 
 	Address new_address(street_name, house_number, zip_code, city, country);
 
-	User* new_user = nullptr;
+	User *new_user = nullptr;
 
 	switch (user_type)
 	{
@@ -81,10 +81,12 @@ User* Menu::createUser(int user_type)
 			new_user = new Buyer(username, password, new_address);
 			Validation::checkAllocation(new_user);
 			break;
+
 		case 2:
 			new_user = new Seller(username, password, new_address);
 			Validation::checkAllocation(new_user);
 			break;
+
 		case 3:
 			new_user = new BuyerSeller(username, password, new_address);
 			Validation::checkAllocation(new_user);
@@ -1055,9 +1057,8 @@ void Menu::addUserOperatorTest()
 			m_system->printBuyerList();
 
 			cout << "Creating Buyer 'TestBuyer'\n";
-			Buyer* new_user =  new Buyer("TestBuyer", "Aa1234", address);
-
-			*m_system += *new_user;
+			Buyer new_buyer("TestBuyer", "Aa1234", address);
+			*m_system += new_buyer;
 			cout << "Buyer added, printing Buyer List:\n";
 			m_system->printBuyerList();
 			break;
@@ -1069,9 +1070,8 @@ void Menu::addUserOperatorTest()
 			m_system->printSellerList();
 
 			cout << "Creating BuyerSeller 'TestSeller'\n";
-			Seller* new_user = new Seller("TestSeller", "Aa1234", address);
-
-			*m_system += *new_user;
+			Seller new_seller("TestSeller", "Aa1234", address);
+			*m_system += new_seller;
 			cout << "Seller added, printing Seller List:\n";
 			m_system->printSellerList();
 			break;
@@ -1083,9 +1083,8 @@ void Menu::addUserOperatorTest()
 			m_system->printBuyerSellerList();
 
 			cout << "Creating BuyerSeller 'TestBuyerSeller'\n";
-			BuyerSeller* new_user = new BuyerSeller("TestBuyerSeller", "Aa1234", address);
-
-			*m_system += *new_user;
+			BuyerSeller new_buyerseller("TestBuyerSeller", "Aa1234", address);
+			*m_system += new_buyerseller;
 			cout << "User added, printing BuyerSeller List:\n";
 			m_system->printBuyerSellerList();
 			break;

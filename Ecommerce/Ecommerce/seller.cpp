@@ -184,9 +184,14 @@ const Seller& Seller::operator=(const Seller& other)
 
 		m_num_of_products = other.m_num_of_products;
 
-		m_store = new Product*[other.m_num_of_products];
-		for (int i = 0; i < other.m_num_of_products; i++)
-			m_store[i] = new Product(*other.m_store[i]);
+		if (other.m_num_of_products != 0)
+		{
+			m_store = new Product*[other.m_num_of_products];
+			for (int i = 0; i < other.m_num_of_products; i++)
+				m_store[i] = new Product(*other.m_store[i]);
+		}
+		else
+			m_store = nullptr;
 		
 		
 		for (int i = 0; i < m_num_of_feedbacks; i++)
@@ -195,9 +200,14 @@ const Seller& Seller::operator=(const Seller& other)
 
 		m_num_of_feedbacks = other.m_num_of_feedbacks;
 
-		m_feedback_list = new Feedback*[other.m_num_of_feedbacks];
-		for (int i = 0; i < other.m_num_of_feedbacks; i++)
-			m_feedback_list[i] = new Feedback(*other.m_feedback_list[i]);
+		if (other.m_num_of_feedbacks != 0)
+		{
+			m_feedback_list = new Feedback*[other.m_num_of_feedbacks];
+			for (int i = 0; i < other.m_num_of_feedbacks; i++)
+				m_feedback_list[i] = new Feedback(*other.m_feedback_list[i]);
+		}
+		else
+			m_feedback_list = nullptr;
 
 	}
 

@@ -332,6 +332,7 @@ Buyer* System::pickBuyer(int buyer_number) const
 	if (m_num_of_users == 0)
 	{
 		cout << "Please create buyers or buyersellers before testing the '>' operator\n";
+		cout << "--------------------------------------------------\n";
 		return nullptr;
 	}
 

@@ -103,9 +103,14 @@ const ShoppingCart& ShoppingCart::operator=(const ShoppingCart& other)
 		m_total_price = other.m_total_price;
 
 		delete[] m_product_list;
-		m_product_list = new Product*[other.m_num_of_products];
-		for (int i = 0; i < other.m_num_of_products; i++)
-			m_product_list[i] = other.m_product_list[i];
+		if(other.m_num_of_products!=0)
+		{
+			m_product_list = new Product*[other.m_num_of_products];
+			for (int i = 0; i < other.m_num_of_products; i++)
+				m_product_list[i] = other.m_product_list[i];
+		}
+		else
+			m_product_list=nullptr;
 	}
 
 	return *this;

@@ -8,7 +8,7 @@ Buyer::Buyer(const char* username, const char* password, const Address& address)
 	m_order_history = nullptr;
 }
 //----------------------------------------------------------------------------------------//
-Buyer::Buyer(const Buyer& other) :User(other)
+Buyer::Buyer(const Buyer& other) :User(other), m_shopping_cart(other.m_shopping_cart)
 {
 	m_wallet = other.m_wallet;
 	m_num_of_orders = other.m_num_of_orders;
@@ -17,12 +17,16 @@ Buyer::Buyer(const Buyer& other) :User(other)
 		m_current_order = new Order(*other.m_current_order);
 	else
 		m_current_order = nullptr;
+	if (other.m_num_of_orders != 0)
+	{
+		m_order_history = new Order*[other.m_num_of_orders];
+		for (int i = 0; i < m_num_of_orders; i++)
+			m_order_history[i] = new Order(*other.m_order_history[i]);
+	}
+	else
+		m_order_history = nullptr;
 
-	m_order_history = new Order*[other.m_num_of_orders];
-	for (int i = 0; i < m_num_of_orders; i++)
-		m_order_history[i] = new Order(*other.m_order_history[i]);
-
-	m_shopping_cart = other.m_shopping_cart;
+	
 }
 //----------------------------------------------------------------------------------------//
 Buyer::Buyer(Buyer&& other) :User(move(other))

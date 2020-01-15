@@ -9,7 +9,7 @@ User::User(const char* username, const char* password, const Address& address) :
 User::User(const User& other) :m_address(other.m_address), m_username(nullptr), m_password(nullptr)
 {
 	setUsername(other.m_username);
-	setPassword(other.m_username);
+	setPassword(other.m_password);
 }
 //----------------------------------------------------------------------------------------//
 User::User(User&& other) :m_address(move(other.m_address))

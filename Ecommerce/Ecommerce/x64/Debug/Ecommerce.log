@@ -1,2 +1,3 @@
-﻿  system.cpp
-  Ecommerce.vcxproj -> C:\Users\Lior\Documents\שנה ב\cpp\Ecommerce-Project\Ecommerce\x64\Debug\Ecommerce.exe
+﻿  main.cpp
+d:\שנה ב\סמסטר א\תכנות c++\ecommerce-project\ecommerce\ecommerce\main.cpp(27): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  Ecommerce.vcxproj -> D:\שנה ב\סמסטר א\תכנות C++\Ecommerce-Project\Ecommerce\x64\Debug\Ecommerce.exe

@@ -4,6 +4,7 @@
 #include "validation.h"
 #include "feedback.h"
 #include "user.h"
+#include "array.h"
 
 class Buyer;
 
@@ -24,10 +25,10 @@ public:
 	
 
 	//Getters 
-	Feedback**		getFeedbackList();
-	int				getNumOfFeedbacks()		const;
-	Product**		getStore();
-	int				getNumOfProducts()		const;
+	Feedback**				getFeedbackList();
+	int						getNumOfFeedbacks()		const;
+	Array<Product *>&		getStore();
+	int						getNumOfProducts()		const;
 
 	//Methods
 	virtual void show()								const override;
@@ -39,10 +40,9 @@ public:
 	
 
 protected:
-	Feedback**	m_feedback_list;
-	int			m_num_of_feedbacks;				
-	Product**	m_store;
-	int			m_num_of_products;
+	Feedback**		m_feedback_list;
+	int				m_num_of_feedbacks;		
+	Array<Product*> m_store;
 
 	Seller(const Seller& other);
 	Seller(Seller&& other);

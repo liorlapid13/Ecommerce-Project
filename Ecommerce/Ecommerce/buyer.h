@@ -42,7 +42,7 @@ public:
 	bool payOrder();
 	void addOrderToHistory();
 	void createOrder(int num_of_selected_products, int* product_index_array, float total_price);
-	bool newFeedback(Product* product,Seller* seller, const char* description, const Date& date);
+	bool newFeedback(Product* product, Seller* seller, const char* description, const Date& date);
 
 	//Operators
 	bool operator>(const Buyer& other)			const;

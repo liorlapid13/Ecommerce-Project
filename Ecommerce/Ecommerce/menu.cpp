@@ -323,7 +323,7 @@ void Menu::mainMenu()
 		//Quit
 		if (user_input == 5) 
 		{
-			quit_switch == 1;
+			quit_switch = 1;
 			break;
 		}
 

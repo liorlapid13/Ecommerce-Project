@@ -1,57 +1,35 @@
 #include "buyer.h"
 //----------------------------------------------------------------------------------------//
-Buyer::Buyer(const char* username, const char* password, const Address& address) :User(username, password, address), m_shopping_cart()
+Buyer::Buyer(const string& username, const string& password, const Address& address) :User(username, password, address), m_shopping_cart()
 {
 	setWallet(0);
-	setNumOrders(0);
 	setCurrentOrder(nullptr);
-	m_order_history = nullptr;
 }
 //----------------------------------------------------------------------------------------//
 Buyer::Buyer(const Buyer& other) :User(other), m_shopping_cart(other.m_shopping_cart)
 {
 	m_wallet = other.m_wallet;
-	m_num_of_orders = other.m_num_of_orders;
+	m_order_history = other.m_order_history;
 
 	if (other.m_current_order)
 		m_current_order = new Order(*other.m_current_order);
 	else
-		m_current_order = nullptr;
-	if (other.m_num_of_orders != 0)
-	{
-		m_order_history = new Order*[other.m_num_of_orders];
-		for (int i = 0; i < m_num_of_orders; i++)
-			m_order_history[i] = new Order(*other.m_order_history[i]);
-	}
-	else
-		m_order_history = nullptr;
-
-	
+		m_current_order = nullptr;	
 }
 //----------------------------------------------------------------------------------------//
-Buyer::Buyer(Buyer&& other) :User(move(other))
+Buyer::Buyer(Buyer&& other) :User(move(other)), m_shopping_cart(move(other.m_shopping_cart))
 {
 	m_wallet = other.m_wallet;
-	m_num_of_orders = other.m_num_of_orders;
+	m_order_history = move(other.m_order_history);
 
 	m_current_order = other.m_current_order;
 	other.m_current_order = nullptr;
-
-	m_order_history = other.m_order_history;
-	other.m_order_history = nullptr;
-	other.m_num_of_orders = 0;
-
-	m_shopping_cart = other.m_shopping_cart;
 }
 //----------------------------------------------------------------------------------------//
 Buyer::~Buyer()
 {
 	delete m_current_order;
-
-	for (int i = 0; i < m_num_of_orders; i++)
-		delete m_order_history[i];
-
-	delete[] m_order_history;
+	m_order_history.clear();
 }
 //----------------------------------------------------------------------------------------//
 bool Buyer::setWallet(const double funds)
@@ -61,11 +39,6 @@ bool Buyer::setWallet(const double funds)
 
 	m_wallet += funds;
 	return true;
-}
-//----------------------------------------------------------------------------------------//
-void Buyer::setNumOrders(const int num_of_orders)
-{
-	m_num_of_orders = num_of_orders;
 }
 //----------------------------------------------------------------------------------------//
 void Buyer::setCurrentOrder(Order* order)
@@ -88,14 +61,14 @@ double Buyer::getWallet() const
 	return m_wallet;
 }
 //----------------------------------------------------------------------------------------//
- Order** Buyer::getOrderHistory() const
+ vector<Order*>& Buyer::getOrderHistory()
 {
 	return m_order_history;
 }
 //----------------------------------------------------------------------------------------//
 int Buyer::getNumOrders() const
 {
-	return m_num_of_orders;
+	return m_order_history.size();
 }
 //----------------------------------------------------------------------------------------//
 void Buyer::show() const
@@ -107,7 +80,7 @@ void Buyer::show() const
 void Buyer::showMe() const
 {
 	cout << "\tWallet: " << m_wallet << endl;
-	cout << "\tOrders completed: " << m_num_of_orders << endl;
+	cout << "\tOrders completed: " << m_order_history.size() << endl;
 }
 //----------------------------------------------------------------------------------------//
 /*
@@ -118,7 +91,7 @@ All 1's will be moved to the order product list, and all 0's will stay in the sh
 void Buyer::createOrder(int num_of_selected_products, int* product_index_array, float total_price)
 {
 	int new_shopping_cart_size = m_shopping_cart.getNumProducts() - num_of_selected_products;
-	Product** new_shopping_cart = new Product*[new_shopping_cart_size];
+	vector<Product*> new_shopping_cart = new Product*[new_shopping_cart_size];
 	Validation::checkAllocation(new_shopping_cart);
 	Product** new_order_product_list = new Product*[num_of_selected_products];
 	Validation::checkAllocation(new_order_product_list);

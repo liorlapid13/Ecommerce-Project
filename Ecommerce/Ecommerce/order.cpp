@@ -1,9 +1,8 @@
 #include "order.h"
 //----------------------------------------------------------------------------------------//
-Order::Order(Product** product_list, const int list_size, const float total_price)
+Order::Order(vector<Product*> product_list, const float total_price)
 {
 	m_product_list = product_list;
-	setListSize(list_size);
 	setTotalPrice(total_price);
 }
 //----------------------------------------------------------------------------------------//
@@ -19,7 +18,7 @@ Order::Order(Order&& other)
 //----------------------------------------------------------------------------------------//
 Order::~Order()
 {
-	delete[] m_product_list;
+	m_product_list.clear();
 }
 //----------------------------------------------------------------------------------------//
 void Order::setTotalPrice(const float total_price)
@@ -27,12 +26,7 @@ void Order::setTotalPrice(const float total_price)
 	m_total_price = total_price;
 }
 //----------------------------------------------------------------------------------------//
-void Order::setListSize(const int list_size)
-{
-	m_list_size = list_size;
-}
-//----------------------------------------------------------------------------------------//
- Product** Order::getProductList() const
+ vector<Product*>& Order::getProductList() 
 {
 	return m_product_list;
 }
@@ -44,20 +38,15 @@ float Order::getTotalPrice() const
 //----------------------------------------------------------------------------------------//
 int Order::getListSize() const
 {
-	return m_list_size;
+	return m_product_list.size();
 }
 //----------------------------------------------------------------------------------------//
 const Order& Order::operator=(const Order& other)
 {
 	if (this != &other)
 	{
-		m_list_size = other.m_list_size;
+		m_product_list = m_product_list;
 		m_total_price = other.m_total_price;
-
-		delete[] m_product_list;
-		m_product_list = new Product*[other.m_list_size];
-		for (int i = 0; i < other.m_list_size; i++)
-			m_product_list[i] = other.m_product_list[i];
 	}
 	
 	return *this;
@@ -67,18 +56,8 @@ const Order& Order::operator=(Order&& other)
 {
 	if (this != &other)
 	{
-		m_list_size = other.m_list_size;
+		m_product_list = move(m_product_list);
 		m_total_price = other.m_total_price;
-
-		delete[] m_product_list;
-		m_product_list = other.m_product_list;
-		for (int i = 0; i < other.m_list_size; i++)
-		{
-			m_product_list[i] = other.m_product_list[i];
-			other.m_product_list[i] = nullptr;
-		}
-		other.m_product_list = nullptr;
-		other.m_list_size = 0;
 	}
 
 	return *this;

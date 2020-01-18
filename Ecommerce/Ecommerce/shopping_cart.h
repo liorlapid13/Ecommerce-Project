@@ -4,6 +4,8 @@
 #include "order.h"
 #include "product.h"
 
+#include <vector>
+
 class ShoppingCart
 {
 public:
@@ -16,14 +18,13 @@ public:
 	~ShoppingCart();
 	
 	//Setters
-	void setNumProducts(int num_of_products);
-	void setProductList(Product** product_list);
+	void setProductList(vector<Product*> product_list);
 	void setTotalPrice(float total_price);
 
 	//Getters
-	Product**	getProductList()	const;
-	int			getNumProducts()	const;
-	float		getTotalPrice()		const;
+	vector<Product*>&	getProductList();
+	int					getNumProducts()	const;
+	float				getTotalPrice()		const;
 	
 	//Methods
 	void addItemToShoppingCart(Product& product);
@@ -34,9 +35,8 @@ public:
 	const ShoppingCart& operator=(ShoppingCart&& other);
 
 private:
-	int	        m_num_of_products;
-	Product**	m_product_list;
-	float		m_total_price;	
+	vector<Product*>	m_product_list;
+	float				m_total_price;	
 };
 
 #endif // !__SHOPPING_CART_H

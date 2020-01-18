@@ -2,6 +2,8 @@
 #define __VALIDATION_H
 
 #include <iostream>
+#include <vector>
+#include <string>
 #include <string.h>
 #include <stdlib.h>
 using namespace std;
@@ -22,9 +24,9 @@ public:
 	static const int MAX_CITY_LENGTH = 30;
 
 	//Methods
-	static bool passwordCheck(const char* password);
-	static bool usernameCheck(const char* username);
-	static bool checkString(const int length, const char* string);
+	static bool passwordCheck(const string& password);
+	static bool usernameCheck(const string& username);
+	static bool checkString(const int length, const string& string);
 	static void checkAllocation(void* ptr);
 };
 

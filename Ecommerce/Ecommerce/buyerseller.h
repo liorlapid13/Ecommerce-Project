@@ -10,7 +10,7 @@ public:
 
 	//C'tors
 	BuyerSeller() = delete;
-	BuyerSeller(const char* username, const char* password, const Address& address);
+	BuyerSeller(const string& username, const string& password, const Address& address);
 	
 	//D'tor
 	~BuyerSeller();

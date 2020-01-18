@@ -1,6 +1,6 @@
 #include "buyerseller.h"
 //----------------------------------------------------------------------------------------//
-BuyerSeller::BuyerSeller(const char* username, const char* password, const Address& address) : User(username, password, address),
+BuyerSeller::BuyerSeller(const string& username, const string& password, const Address& address) : User(username, password, address),
 	Buyer(username, password, address), Seller(username, password, address)
 {
 

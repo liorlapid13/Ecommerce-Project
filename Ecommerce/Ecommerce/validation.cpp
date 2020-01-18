@@ -3,7 +3,7 @@
 /*
 Checks that received string has only letters/spaces/hyphens
 */
-bool Validation::checkString(const int length, const char* string)
+bool Validation::checkString(const int length, const string& string)
 {
 	//scan string for any characters that are not a space or letter
 	for (int i = 0; i < length; i++)
@@ -22,10 +22,10 @@ bool Validation::checkString(const int length, const char* string)
 /*
 Checks validy of password
 */
-bool Validation::passwordCheck(const char* password)
+bool Validation::passwordCheck(const string& password)
 {
 	//check if length of password is valid
-	if (strlen(password) < MIN_PASSWORD_LENGTH || strlen(password) > MAX_PASSWORD_LENGTH)
+	if (password.length() < MIN_PASSWORD_LENGTH || password.length() > MAX_PASSWORD_LENGTH)
 	{
 		cout << "Password must contain 6-15 characters\n";
 		return false;
@@ -35,7 +35,7 @@ bool Validation::passwordCheck(const char* password)
 		bool uppercase_found = 0, lowercase_found = 0, number_found = 0;
 
 		//scans the password for lowercase/uppercase letters and numbers
-		for (int i = 0; i < strlen(password),
+		for (int i = 0; i < password.length(),
 			(uppercase_found == 0 || lowercase_found == 0 || number_found == 0); i++)
 		{
 			//check if password has spaces
@@ -69,10 +69,10 @@ bool Validation::passwordCheck(const char* password)
 /*
 Checks validity of username
 */
-bool Validation::usernameCheck(const char* username)
+bool Validation::usernameCheck(const string& username)
 {
 	//check if username length is valid
-	if (strlen(username) < MIN_USERNAME_LENGTH || strlen(username) > MAX_USERNAME_LENGTH)
+	if (username.length() < MIN_USERNAME_LENGTH || username.length() > MAX_USERNAME_LENGTH)
 	{
 		cout << "Username must contain 6-15 characters\n";
 		return false;
@@ -80,7 +80,7 @@ bool Validation::usernameCheck(const char* username)
 	else
 	{
 		//check if name contains symbols/spaces/invalid characters
-		for (int i = 0; i < strlen(username); i++)
+		for (int i = 0; i < username.length(); i++)
 		{
 			if (username[i] < '0' || username[i] > 'z'
 				|| (username[i] > '9' && username[i] < 'A')

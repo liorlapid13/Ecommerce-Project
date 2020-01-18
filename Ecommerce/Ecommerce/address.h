@@ -8,11 +8,11 @@ class Address
 public:
 	//C'tors
 	Address() = delete;
-	Address(const char* street_name,
+	Address(const string& street_name,
 			int	house_number,
 			int	zip_code,
-			const char* city,
-			const char* country);
+			const string& city,
+			const string& country);
 	Address(const Address& other);	//copy c'tor
 	Address(Address&& other);		//move c'tor
 
@@ -21,21 +21,21 @@ public:
 
 public:
 	//Setters
-	bool setStreetName(const char* street_name);
+	bool setStreetName(const string& street_name);
 	bool setHouseNumber(const int house_number);
 	bool setZipCode(const int zip_code);
-	bool setCity(const char* city);
-	bool setCountry(const char* country);
+	bool setCity(const string& city);
+	bool setCountry(const string& country);
 
 	//Getters
-	const char*	getStreetName()		const;
-    int			getHouseNumber()	const;
-	int			getZipCode()		const;
-    const char*	getCity()			const;
-    const char*	getCountry()		const;
+	const string&	getStreetName()		const;
+    int				getHouseNumber()	const;
+	int				getZipCode()		const;
+    const string&	getCity()			const;
+    const string&	getCountry()		const;
 
 	//QUESTION 8&9
-	void printAddress()				const;
+	void printAddress()					const;
 
 	//Operators
 	friend ostream& operator<<(ostream& os, const Address& address);
@@ -43,11 +43,11 @@ public:
 	const Address& operator=(Address&& other);
 
 private:
-	char*	m_street_name;
 	int		m_house_number;
 	int		m_zip_code;
-	char*	m_city;
-	char*	m_country;
+	string	m_street_name;
+	string	m_city;
+	string	m_country;
 };
 
 #endif // !__ADDRESS_H

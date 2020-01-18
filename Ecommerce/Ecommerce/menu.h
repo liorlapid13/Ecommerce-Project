@@ -1,6 +1,9 @@
 #ifndef __MENU_H
 #define __MENU_H
 
+#include <string>
+#include <vector>
+
 #include "validation.h"
 #include "system.h"
 

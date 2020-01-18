@@ -18,7 +18,7 @@ public:
 
 	//C'tor
 	Buyer() = delete;
-	Buyer(const char* username, const char* password, const Address& address);
+	Buyer(const string& username, const string& password, const Address& address);
 	
 
 	//D'tors
@@ -26,23 +26,22 @@ public:
 	
 	//Setters
 	bool setWallet(const double funds);
-	void setNumOrders(const int num_of_orders);
 	void setCurrentOrder(Order* order);
 
 	//Getters
 	ShoppingCart&		getShoppingCart();
     Order*				getCurrentOrder()		const;
 	double				getWallet()				const;
-    Order**				getOrderHistory()		const;
+    vector<Order*>&		getOrderHistory();
 	int					getNumOrders()			const;
 
 	//Methods
-	virtual void show()									const override;
-	void showMe()										const;
+	virtual void show()							const override;
+	void showMe()								const;
 	bool payOrder();
 	void addOrderToHistory();
 	void createOrder(int num_of_selected_products, int* product_index_array, float total_price);
-	bool newFeedback(Product* product, Seller* seller, const char* description, const Date& date);
+	bool newFeedback(Product* product, Seller* seller, const string& description, const Date& date);
 
 	//Operators
 	bool operator>(const Buyer& other)			const;
@@ -52,8 +51,7 @@ protected:
 	double			m_wallet;
 	ShoppingCart	m_shopping_cart;
 	Order*			m_current_order;
-	Order**			m_order_history;
-	int				m_num_of_orders;
+	vector<Order*>	m_order_history;
 
 	const Buyer& operator=(const Buyer& other);
 	const Buyer& operator=(Buyer&& other);

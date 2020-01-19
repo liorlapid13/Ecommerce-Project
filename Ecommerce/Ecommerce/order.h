@@ -11,8 +11,6 @@ public:
 	//C'tors
 	Order() = delete;
 	Order(vector<Product*> product_list, const float total_price);
-	Order(const Order& other);
-	Order(Order&& other);
 
 	//D'tors
 	~Order();
@@ -20,15 +18,10 @@ public:
 	//Setters
 	void setTotalPrice(const float total_price);
 
-
 	//Getters
 	vector<Product*>&	getProductList();
 	int					getListSize()		const;
 	float				getTotalPrice()		const;
-
-	//Operators
-	const Order& operator=(const Order& other);
-	const Order& operator=(Order&& other);
 
 private:
 	vector<Product*>	m_product_list;

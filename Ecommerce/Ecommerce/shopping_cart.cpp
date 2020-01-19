@@ -5,19 +5,9 @@ ShoppingCart::ShoppingCart()
 	m_total_price = 0;
 }
 //----------------------------------------------------------------------------------------//
-ShoppingCart::ShoppingCart(const ShoppingCart& other)
-{
-	*this = other;
-}
-//----------------------------------------------------------------------------------------//
-ShoppingCart::ShoppingCart(ShoppingCart&& other)
-{
-	*this = move(other);
-}
-//----------------------------------------------------------------------------------------//
 ShoppingCart::~ShoppingCart()
 {
-	m_product_list.clear();
+	//clear to prevent double deletion of products???
 }
 //----------------------------------------------------------------------------------------//
 int ShoppingCart::getNumProducts()  const
@@ -63,26 +53,5 @@ void ShoppingCart::returnItemsToShoppingCart(Order& order)
 		this->addItemToShoppingCart(*order.getProductList()[i]);
 
 	order.getProductList().clear();
-}
-//----------------------------------------------------------------------------------------//
-const ShoppingCart& ShoppingCart::operator=(const ShoppingCart& other)
-{
-	if (this != &other)
-	{
-		m_total_price = other.m_total_price;
-		m_product_list = other.m_product_list;
-	}
-	return *this;
-}
-//----------------------------------------------------------------------------------------//
-const ShoppingCart& ShoppingCart::operator=(ShoppingCart&& other)
-{
-	if (this != &other)
-	{
-		m_total_price = other.m_total_price;
-		m_product_list = move(other.m_product_list);
-	}
-
-	return *this;
 }
 //----------------------------------------------------------------------------------------//

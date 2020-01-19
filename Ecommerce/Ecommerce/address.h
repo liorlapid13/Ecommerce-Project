@@ -13,9 +13,7 @@ public:
 			int	zip_code,
 			const string& city,
 			const string& country);
-	Address(const Address& other);	//copy c'tor
-	Address(Address&& other);		//move c'tor
-
+	
 	//D'tors
 	~Address();
 
@@ -39,8 +37,6 @@ public:
 
 	//Operators
 	friend ostream& operator<<(ostream& os, const Address& address);
-	const Address& operator=(const Address& other);
-	const Address& operator=(Address&& other);
 
 private:
 	int		m_house_number;

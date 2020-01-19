@@ -17,8 +17,6 @@ public:
 	//C'tors
 	Product() = delete;
 	Product(const string& name, float price, Product::eCategory category, const string& seller_name);
-	Product(const Product& other);	//copy c'tor
-	Product(Product&& other);		//move c'tor
 
 	//D'tor
 	~Product();
@@ -41,8 +39,6 @@ public:
 
 	//Operators
 	friend ostream& operator<<(ostream& os, const Product& product);
-	const Product& operator=(const Product& other);
-	const Product& operator=(Product&& other);
 
 private:
 	static int		serial_num_generator;

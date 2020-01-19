@@ -3,17 +3,19 @@
 /*
 Checks that received string has only letters/spaces/hyphens
 */
-bool Validation::checkString(const int length, const string& string)
+bool Validation::checkString(const string& string)
 {
+	string::const_iterator itr = string.begin();
+	string::const_iterator itrEnd = string.end();
+
 	//scan string for any characters that are not a space or letter
-	for (int i = 0; i < length; i++)
+	for (; itr != itrEnd; ++itr)
 	{
 		//Check for invalid characters
-		if (string[i] != '-' && string[i] != ' ' && (string[i] < 'A' || string[i] > 'z'
-			|| (string[i] > 'Z' && string[i] < 'a'))) //KI#1,2
-		{
+		if (*itr != '-' && *itr != ' ' 
+			&& (*itr < 'A' || *itr > 'z' 
+			|| (*itr > 'Z' && *itr < 'a')))
 			return false;
-		}
 	}
 
 	return true;
@@ -34,24 +36,26 @@ bool Validation::passwordCheck(const string& password)
 	{
 		bool uppercase_found = 0, lowercase_found = 0, number_found = 0;
 
+		string::const_iterator itr = password.begin();
+		string::const_iterator itrEnd = password.end();
+
 		//scans the password for lowercase/uppercase letters and numbers
-		for (int i = 0; i < password.length(),
-			(uppercase_found == 0 || lowercase_found == 0 || number_found == 0); i++)
+		for (;itr != itrEnd, (uppercase_found == 0 || lowercase_found == 0 || number_found == 0); ++itr)
 		{
 			//check if password has spaces
-			if (password[i] == ' ')
+			if (*itr == ' ')
 			{
 				cout << "Invalid space in password\n";
 				return false;
 			}
 			//check for number
-			if (password[i] >= '0' && password[i] <= '9' && !number_found)
+			if (*itr >= '0' && *itr <= '9' && !number_found)
 				number_found = 1;
 			//check for lowercase letter
-			if (password[i] >= 'a' && password[i] <= 'z' && !lowercase_found)
+			if (*itr >= 'a' && *itr <= 'z' && !lowercase_found)
 				lowercase_found = 1;
 			//check for uppercase letter
-			if (password[i] >= 'A' && password[i] <= 'Z' && !uppercase_found)
+			if (*itr >= 'A' && *itr <= 'Z' && !uppercase_found)
 				uppercase_found = 1;
 		}
 
@@ -79,12 +83,15 @@ bool Validation::usernameCheck(const string& username)
 	}
 	else
 	{
+		string::const_iterator itr = username.begin();
+		string::const_iterator itrEnd = username.end();
+
 		//check if name contains symbols/spaces/invalid characters
-		for (int i = 0; i < username.length(); i++)
+		for (; itr != itrEnd; ++itr)
 		{
-			if (username[i] < '0' || username[i] > 'z'
-				|| (username[i] > '9' && username[i] < 'A')
-				|| (username[i] > 'Z' && username[i] < 'a'))
+			if (*itr < '0' || *itr > 'z'
+				|| (*itr > '9' && *itr < 'A')
+				|| (*itr > 'Z' && *itr < 'a'))
 			{
 				cout << "Username can only contain alphanumeric characters (lower/uppercase letters A-Z, numbers 0-9)\n";
 				return false;

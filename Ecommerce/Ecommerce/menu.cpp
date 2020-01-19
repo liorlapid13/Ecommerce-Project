@@ -134,21 +134,21 @@ the shopping cart.
 */
 void Menu::newOrder(Buyer& buyer)
 {
-	int cart_size = buyer.getShoppingCart().getNumProducts();
-	int* product_index_array = new int[cart_size];
-	Validation::checkAllocation(product_index_array);
-	for (int i = 0; i < cart_size; i++)
-		product_index_array[i] = 0;
+	int num_of_selected_products = 0;
+	vector<int> product_index_array;
+	vector<Product*>::iterator itr = buyer.m_shopping_cart.getProductList().begin();
+	vector<Product*>::iterator itrEnd = buyer.m_shopping_cart.getProductList().end();
 
-	
-	Product** temp = buyer.getShoppingCart().getProductList();
+	//Initialize product index array
+	for (int i = 0; i < buyer.m_shopping_cart.getNumProducts(); i++)
+		product_index_array.push_back(0);
 
 	cout << "Your Shopping Cart:\n";
 
-	for (int i = 0; i < cart_size; i++)
+	for (int i = 0; itr != itrEnd; ++itr, i++)
 	{
-		temp[i]->printProduct();
-		cout << "Enter " << i << " to add " << temp[i]->getName() << " to your order\n";
+		(*itr)->printProduct();
+		cout << "Enter " << i << " to add " << (*itr)->getName() << " to your order\n";
 		cout << "--------------------------------------------------\n";
 	}
 
@@ -159,11 +159,10 @@ void Menu::newOrder(Buyer& buyer)
 	cin >> selection;
 
 	float total_price = 0;
-	int	num_of_selected_products = 0;
 
 	while (selection != -1)
 	{
-		if (selection >= cart_size || selection < 0)
+		if (selection >= buyer.m_shopping_cart.getNumProducts() || selection < 0)
 			cout << "Invalid product number, please try again: ";
 		else if (product_index_array[selection] == 1)
 			cout << "Product already selected, please try again: ";
@@ -171,8 +170,8 @@ void Menu::newOrder(Buyer& buyer)
 		{
 			product_index_array[selection] = 1;
 			num_of_selected_products++;
-			total_price += temp[selection]->getPrice();
-			cout << temp[selection]->getName() << " added to order\n";
+			total_price += buyer.m_shopping_cart.getProductList()[selection]->getPrice();
+			cout << buyer.m_shopping_cart.getProductList()[selection]->getName() << " added to order\n";
 			cout << "Total price: $" << total_price << endl;
 			cout << "--------------------------------------------------\n";
 			cout << "Enter the next product code or enter -1 to finish: ";
@@ -188,13 +187,10 @@ void Menu::newOrder(Buyer& buyer)
 	}
 	else
 	{
-		buyer.createOrder(num_of_selected_products, product_index_array, total_price);
+		buyer.createOrder(product_index_array, total_price);
 		cout << "Order complete, to pay go to 3rd option in the menu\n";
 		cout << "--------------------------------------------------\n";
 	}
-
-	temp = nullptr;
-	delete[] product_index_array;
 }
 //----------------------------------------------------------------------------------------//
 /*

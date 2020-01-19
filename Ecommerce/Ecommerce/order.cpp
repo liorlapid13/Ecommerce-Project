@@ -6,16 +6,6 @@ Order::Order(vector<Product*> product_list, const float total_price)
 	setTotalPrice(total_price);
 }
 //----------------------------------------------------------------------------------------//
-Order::Order(const Order& other)
-{
-	*this = other;
-}
-//----------------------------------------------------------------------------------------//
-Order::Order(Order&& other)
-{
-	*this = move(other);
-}
-//----------------------------------------------------------------------------------------//
 Order::~Order()
 {
 	m_product_list.clear();
@@ -39,27 +29,5 @@ float Order::getTotalPrice() const
 int Order::getListSize() const
 {
 	return m_product_list.size();
-}
-//----------------------------------------------------------------------------------------//
-const Order& Order::operator=(const Order& other)
-{
-	if (this != &other)
-	{
-		m_product_list = m_product_list;
-		m_total_price = other.m_total_price;
-	}
-	
-	return *this;
-}
-//----------------------------------------------------------------------------------------//
-const Order& Order::operator=(Order&& other)
-{
-	if (this != &other)
-	{
-		m_product_list = move(m_product_list);
-		m_total_price = other.m_total_price;
-	}
-
-	return *this;
 }
 //----------------------------------------------------------------------------------------//

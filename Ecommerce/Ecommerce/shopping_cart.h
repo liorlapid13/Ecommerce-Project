@@ -9,10 +9,8 @@
 class ShoppingCart
 {
 public:
-	//C'tors
+	//C'tor
 	ShoppingCart();
-	ShoppingCart(const ShoppingCart& other);
-	ShoppingCart(ShoppingCart&& other);
 	
 	//D'tors
 	~ShoppingCart();
@@ -29,10 +27,6 @@ public:
 	//Methods
 	void addItemToShoppingCart(Product& product);
 	void returnItemsToShoppingCart(Order& order);
-
-	//Operators
-	const ShoppingCart& operator=(const ShoppingCart& other);
-	const ShoppingCart& operator=(ShoppingCart&& other);
 
 private:
 	vector<Product*>	m_product_list;

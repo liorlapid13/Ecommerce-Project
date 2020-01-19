@@ -6,30 +6,15 @@ Buyer::Buyer(const string& username, const string& password, const Address& addr
 	setCurrentOrder(nullptr);
 }
 //----------------------------------------------------------------------------------------//
-Buyer::Buyer(const Buyer& other) :User(other), m_shopping_cart(other.m_shopping_cart)
-{
-	m_wallet = other.m_wallet;
-	m_order_history = other.m_order_history;
-
-	if (other.m_current_order)
-		m_current_order = new Order(*other.m_current_order);
-	else
-		m_current_order = nullptr;	
-}
-//----------------------------------------------------------------------------------------//
-Buyer::Buyer(Buyer&& other) :User(move(other)), m_shopping_cart(move(other.m_shopping_cart))
-{
-	m_wallet = other.m_wallet;
-	m_order_history = move(other.m_order_history);
-
-	m_current_order = other.m_current_order;
-	other.m_current_order = nullptr;
-}
-//----------------------------------------------------------------------------------------//
 Buyer::~Buyer()
 {
 	delete m_current_order;
-	m_order_history.clear();
+
+	vector<Order*>::iterator itr = m_order_history.begin();
+	vector<Order*>::iterator itrEnd = m_order_history.end();
+
+	for (; itr != itrEnd; ++itr)
+		m_order_history.erase(itr);
 }
 //----------------------------------------------------------------------------------------//
 bool Buyer::setWallet(const double funds)
@@ -88,38 +73,34 @@ Receives a bucket array representing the index of items in the shopping cart, wi
 1=item selected for new order, 0=item not selected.
 All 1's will be moved to the order product list, and all 0's will stay in the shopping cart.
 */
-void Buyer::createOrder(int num_of_selected_products, int* product_index_array, float total_price)
+void Buyer::createOrder(vector<int> product_index_array, float total_price)
 {
-	int new_shopping_cart_size = m_shopping_cart.getNumProducts() - num_of_selected_products;
-	vector<Product*> new_shopping_cart = new Product*[new_shopping_cart_size];
-	Validation::checkAllocation(new_shopping_cart);
-	Product** new_order_product_list = new Product*[num_of_selected_products];
-	Validation::checkAllocation(new_order_product_list);
+	vector<Product*> new_shopping_cart;
+	vector<Product*> new_order_product_list;
 	
-	int cart_index = 0, order_index = 0;
+	vector<int>::iterator itrIndex = product_index_array.begin();
+	vector<Product*>::iterator itr = m_shopping_cart.getProductList().begin();
+	vector<Product*>::iterator itrEnd = m_shopping_cart.getProductList().end();
 
-	for (int i = 0; i < m_shopping_cart.getNumProducts(); i++)
+	for (; itr != itrEnd; ++itr, ++itrIndex)
 	{
-		switch (product_index_array[i])
+		switch (*itrIndex)
 		{
 		case 0: //Item not selected in order, stays in shopping cart
-			new_shopping_cart[cart_index] = m_shopping_cart.getProductList()[i];
-			cart_index++;
+			new_shopping_cart.push_back(*itr);
 			break;
 		case 1:	//Item selected in order, move to order product list
-			new_order_product_list[order_index] = m_shopping_cart.getProductList()[i];
-			order_index++;
+			new_order_product_list.push_back(*itr);
 			break;
 		}
 	}
 	
 	//Update shopping cart
-	m_shopping_cart.setNumProducts(new_shopping_cart_size);
 	m_shopping_cart.setProductList(new_shopping_cart);
 	m_shopping_cart.setTotalPrice(m_shopping_cart.getTotalPrice() - total_price);
 
 	//Create new order
-	m_current_order = new Order(new_order_product_list, num_of_selected_products, total_price);
+	m_current_order = new Order(new_order_product_list, total_price);
 	Validation::checkAllocation(m_current_order);
 }
 //----------------------------------------------------------------------------------------//
@@ -144,26 +125,7 @@ After current order has been paid for, this method moves the order into the buye
 */
 void Buyer::addOrderToHistory()
 {
-	if (!m_order_history)	//If empty order list
-	{
-		m_num_of_orders++;
-		m_order_history = new Order*[m_num_of_orders];
-		Validation::checkAllocation(m_order_history);
-		m_order_history[0] = m_current_order;
-	}
-	else
-	{
-		Order** temp = new Order*[m_num_of_orders + 1];		//allocate memory for new order list
-		Validation::checkAllocation(temp);
-		for (int i = 0; i < m_num_of_orders; i++)			//copy each existing order to new list
-			temp[i] = m_order_history[i];
-		temp[m_num_of_orders] = m_current_order;			//add the new order to the new list
-		m_num_of_orders++;									//advance the counter for number of orders
-		delete[] m_order_history;							//delete the old order list
-		m_order_history = temp;								//assign the new order list
-		temp = nullptr;										//initialize the temporary pointer
-	}
-
+	m_order_history.push_back(m_current_order);
 	m_current_order = nullptr;
 }
 //----------------------------------------------------------------------------------------//
@@ -171,11 +133,11 @@ void Buyer::addOrderToHistory()
 Checks if feedback by this buyer already exists in seller's feedback list.
 If not, creates the feedback and adds it to list via a seller class method "addFeedback".
 */
-bool Buyer::newFeedback(Product* product, Seller* seller, const char* description, const Date& date)
+bool Buyer::newFeedback(Product* product, Seller* seller, const string& description, const Date& date)
 {
 	if (seller->getNumOfFeedbacks() != 0)
 	{
-		for (int i = 0; i < seller->getNumOfFeedbacks(); i++)
+		for (int i = 0; i < seller->getNumOfFeedbacks(); i++) //CHANGE SELLER'S FEEDBACK LIST FIRST!
 		{
 			if (seller->getFeedbackList()[i]->getBuyer() == this && seller->getFeedbackList()[i]->getProduct() == product)
 				return false;

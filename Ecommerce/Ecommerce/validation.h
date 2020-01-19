@@ -26,7 +26,7 @@ public:
 	//Methods
 	static bool passwordCheck(const string& password);
 	static bool usernameCheck(const string& username);
-	static bool checkString(const int length, const string& string);
+	static bool checkString(const string& string);
 	static void checkAllocation(void* ptr);
 };
 

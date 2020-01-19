@@ -12,8 +12,6 @@ public:
 	//C'tors
 	Feedback() = delete;
 	Feedback(const Date& date, const string& description, Buyer& buyer, Product& product);
-	Feedback(const Feedback& other);
-	Feedback(Feedback&& other);
 	
 	//D'tor
 	~Feedback();
@@ -29,8 +27,6 @@ public:
 
 	//Operators
 	friend ostream& operator<<(ostream& os, const Feedback& feedback);
-	const Feedback& operator=(const Feedback& other);
-	const Feedback& operator=(Feedback&& other);
 
 private:
 	Date		m_date;

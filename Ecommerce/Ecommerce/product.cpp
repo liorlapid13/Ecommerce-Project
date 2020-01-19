@@ -11,39 +11,21 @@ Product::Product(const string& name, float price, Product::eCategory category, c
 	setSellerName(seller_name);
 }
 //----------------------------------------------------------------------------------------//
-Product::Product(const Product& other) //copy c'tor
-{
-	m_serial_number = other.m_serial_number;
-	setName(other.m_name);
-	setPrice(other.m_price);
-	setCategory(other.m_category);
-	setSellerName(other.m_seller);
-}
-//----------------------------------------------------------------------------------------//
-Product::Product(Product&&other) //move c'tor
-{
-	m_name = move(other.m_name);
-	m_price = other.m_price;
-	m_serial_number = other.m_serial_number;
-	m_category = other.m_category;
-	m_seller = move(other.m_seller);
-}
-
-//----------------------------------------------------------------------------------------//
 Product::~Product()
 {
 
 }
 //----------------------------------------------------------------------------------------//
-bool Product::setName(const string& name)
+bool Product::setName(const string &name)
 {
-	//check if name contains symbols/spaces/invalid characters
-	for (int i = 0; i < name.length(); i++)
+	string::const_iterator itr = name.begin();
+	string::const_iterator itrEnd = name.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		if ((name[i] < '0' || name[i] > 'z' 
-		|| (name[i] > '9' && name[i] < 'A')
-		|| (name[i] > 'Z' && name[i] < 'a') )&& ( name[i] != ' '))
-		{ 
+		if ((*itr < '0' || *itr > 'z' || (*itr > '9' && *itr < 'A')	|| (*itr > 'Z' && *itr < 'a')) 
+			&& (*itr != ' '))
+		{
 			cout << "Name of products can only contain alphanumeric characters (lower/uppercase letters A-Z, numbers 0-9)\n";
 			return false;
 		}
@@ -126,33 +108,5 @@ ostream& operator<<(ostream& os, const Product& product)
 		<< "--------------------------------------------------\n";
 
 	return os;
-}
-//----------------------------------------------------------------------------------------//
-const Product& Product::operator=(const Product& other)
-{
-	if (this != &other)
-	{
-		m_serial_number = other.m_serial_number;
-		m_name = other.m_name;
-		m_price = other.m_price;
-		m_category = other.m_category;
-		m_seller = other.m_seller;
-	}
-
-	return *this;
-}
-//----------------------------------------------------------------------------------------//
-const Product& Product::operator=(Product&& other)
-{
-	if (this != &other)
-	{
-		m_serial_number = other.m_serial_number;
-		m_name = move(other.m_name);
-		m_price = other.m_price;
-		m_category = other.m_category;
-		m_seller = move(other.m_seller);
-	}
-
-	return *this;
 }
 //----------------------------------------------------------------------------------------//

@@ -20,7 +20,6 @@ public:
 	Buyer() = delete;
 	Buyer(const string& username, const string& password, const Address& address);
 	
-
 	//D'tors
 	virtual ~Buyer();
 	
@@ -40,23 +39,17 @@ public:
 	void showMe()								const;
 	bool payOrder();
 	void addOrderToHistory();
-	void createOrder(int num_of_selected_products, int* product_index_array, float total_price);
+	void createOrder(vector<int> product_index_array, float total_price);
 	bool newFeedback(Product* product, Seller* seller, const string& description, const Date& date);
 
 	//Operators
 	bool operator>(const Buyer& other)			const;
 	
-
 protected:
 	double			m_wallet;
 	ShoppingCart	m_shopping_cart;
 	Order*			m_current_order;
 	vector<Order*>	m_order_history;
-
-	const Buyer& operator=(const Buyer& other);
-	const Buyer& operator=(Buyer&& other);
-	Buyer(const Buyer& other);
-	Buyer(Buyer&& other);
 };
 
 #endif // __BUYER_H

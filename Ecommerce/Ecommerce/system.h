@@ -9,35 +9,35 @@ class System
 public:
 	//C'tors
 	System() = delete;
-	System(const char* name);
+	System(const string& name);
 
 	//D'tor
 	~System();
 
 	//Setters
-	void setName(const char* name);
+	void setName(const string& name);
 
 	//Getters
-	const char* getName()			const;
-	User**		getUserList();
-	int			getNumOfUsers()		const;
-	Product**	getProductList();
-	int			getNumOfProducts()	const;
+	const string&		getName()			const;
+	vector<User*>&		getUserList();
+	int					getNumOfUsers()		const;
+	vector<Product*>&	getProductList();
+	int					getNumOfProducts()	const;
 
 
 	//Methods
 	void addUser(User& new_user);
-	bool searchUsername(const char* username)				const;
+	bool searchUsername(const string& username)				const;
 	void newProduct(Product& new_product);
 	void printBuyerSellerList()								const;
 	void printSellerList()									const;
 	void printBuyerList()									const;
-	Seller* findSeller(const char* username)				const;
-	Buyer* findBuyer(const char* username)					const;
-	BuyerSeller* findBuyerSeller(const char* username)		const;
-	void printProductsByName(char* product_name)			const;	//->Products.printProduct
-	Product* findProduct(int serial_number, const char* name)		const;
-	bool productExist(const char* product_name)				const;
+	Seller* findSeller(const string& username)				const;
+	Buyer* findBuyer(const string& username)				const;
+	BuyerSeller* findBuyerSeller(const string& username)	const;
+	void printProductsByName(const string& product_name)	const;	//->Products.printProduct
+	Product* findProduct(int serial_number, const string& product_name)	const;
+	bool productExist(const string& product_name)			const;
 	
 	Buyer* pickBuyer(int buyer_number)						const;
 
@@ -47,11 +47,9 @@ public:
 	void operator+=(const BuyerSeller& buyerseller);
 
 private:
-	char*		m_name;
-	User**		m_user_list;
-	int			m_num_of_users;
-	Product**	m_product_list;
-	int			m_num_of_products;
+	string				m_name;
+	vector<User*>		m_user_list;
+	vector<Product*>	m_product_list;
 	
 	System(const System& other);
 	const System& operator=(const System& other) = delete;

@@ -9,7 +9,7 @@
 class ShoppingCart
 {
 public:
-	//C'tor
+	//C'tors
 	ShoppingCart();
 	
 	//D'tors

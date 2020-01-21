@@ -20,42 +20,43 @@ Asks the user to input details and creates a new user according to the selected 
 */
 User* Menu::createUser(int user_type)
 {
-	char username[Validation::MAX_STRING_LENGTH + 1];
 	cin.ignore();
+
+	string username;
 	do
 	{
 		cout << "Enter username(If username exists you will be asked again):\n";
 		cout << "Username must contain 6-24 alphanumeric characters (lower/uppercase letters A-Z, numbers 0-9)\n";
-		cin.getline(username, Validation::MAX_STRING_LENGTH + 1);
+		cin >> username;
 	} while (!(m_system->searchUsername(username)));
 
 	cout << "--------------------------------------------------\n";
 
-	char password[Validation::MAX_STRING_LENGTH + 1];
+	string password;
 	cout << "Enter password\n";
 	cout << "Password must contain 6-15 characters and atleast one of each of the following:\n";
 	cout << "-Lowercase letter\n";
 	cout << "-Uppercase letter\n";
 	cout << "-Number\n";
-	cin.getline(password, Validation::MAX_STRING_LENGTH + 1);
+	cin >> password;
 
 	cout << "--------------------------------------------------\n";
 
-	char country[Validation::MAX_STRING_LENGTH + 1];
+	string country;
 	cout << "Please enter country: ";
-	cin.getline(country, Validation::MAX_STRING_LENGTH + 1);
+	cin >> country;
 
 	cout << "--------------------------------------------------\n";
 
-	char city[Validation::MAX_STRING_LENGTH + 1];
+	string city;
 	cout << "Please enter city: ";
-	cin.getline(city, Validation::MAX_STRING_LENGTH + 1);
+	cin >> city;
 
 	cout << "--------------------------------------------------\n";
 
-	char street_name[Validation::MAX_STRING_LENGTH + 1];
+	string street_name;
 	cout << "Please enter street name: ";
-	cin.getline(street_name, Validation::MAX_STRING_LENGTH + 1);
+	cin >> street_name;
 
 	cout << "--------------------------------------------------\n";
 
@@ -100,13 +101,14 @@ User* Menu::createUser(int user_type)
 /*
 Asks the user to input details and creates a new product
 */
-Product* Menu::createProduct(const char* seller_username)
+Product* Menu::createProduct(const string& seller_username)
 {
-	char product_name[Product::MAX_PRODUCT_NAME + 1];
+	cin.ignore();
+
+	string product_name;
 	cout << "Enter product name\n";
 	cout << "Product name can only contain alphanumeric characters (lower/uppercase letters A-Z, numbers 0-9) and spaces\n";
-	cin.ignore();
-	cin.getline(product_name, Product::MAX_PRODUCT_NAME + 1);
+	cin >> product_name;
 
 	float price;
 	cout << "Enter product price (in dollars):$";
@@ -200,9 +202,13 @@ void Menu::completeOrder(Buyer& buyer)
 {
 	if (buyer.getCurrentOrder() != nullptr)
 	{
+		vector<Product*>::iterator itr = buyer.getCurrentOrder()->getProductList().begin();
+		vector<Product*>::iterator itrEnd = buyer.getCurrentOrder()->getProductList().end();
+
 		cout << "Your Order:\n";
-		for (int i = 0; i < buyer.getCurrentOrder()->getListSize(); i++)
-			buyer.getCurrentOrder()->getProductList()[i]->printProduct();
+		for (; itr != itrEnd; ++itr)
+			(*itr)->printProduct();
+
 		cout << "Total price: " << buyer.getCurrentOrder()->getTotalPrice() << endl;
 		cout << "Your funds: " << buyer.getWallet() << endl;
 		cout << "Please enter 1 to pay, or 0 to cancel: ";
@@ -237,22 +243,33 @@ void Menu::createFeedback(Buyer& buyer)
 {
 	cout << "--------------------------------------------------\n";
 
+	vector<Order*>::iterator itr = buyer.getOrderHistory().begin();
+	vector<Order*>::iterator itrEnd = buyer.getOrderHistory().end();
+
+	int order_counter = 0, product_counter = 0;
+
 	cout << "Please select for which product you wish to publish a feedback\n";
-	for (int i = 0; i < buyer.getNumOrders(); i++)
+	for (; itr != itrEnd; ++itr)
 	{
-		cout << "Order No." << i + 1 << ": \n";
-		for (int j = 0; j < buyer.getOrderHistory()[i]->getListSize(); j++)
+		cout << "Order No." << ++order_counter << ": \n";
+
+		vector<Product*>::iterator itrProd = (*itr)->getProductList().begin();
+		vector<Product*>::iterator itrEndProd = (*itr)->getProductList().end();
+
+		for (; itrProd != itrEndProd; ++itrProd)
 		{
-			buyer.getOrderHistory()[i]->getProductList()[j]->printProduct();
-			cout << "Enter " << j << " to publish a feedback for this product\n";
+			(*itrProd)->printProduct();
+			cout << "Enter " << product_counter++ << " to publish a feedback for this product\n";
 			cout << "--------------------------------------------------\n";
 		}
+
+		product_counter = 0;
 
 		cout << "Please select a product or enter -1 for next order: ";
 		int selection;
 		cin >> selection;
 
-		while ((selection != -1) && selection >= (buyer.getOrderHistory()[i]->getListSize()))
+		while ((selection != -1) && (selection >= (*itr)->getListSize()))
 		{
 			cout << "Invalid input, please try again: ";
 			cin >> selection;
@@ -262,8 +279,8 @@ void Menu::createFeedback(Buyer& buyer)
 		{
 			cin.ignore();
 			cout << "Product selected, please enter feedback description (Max 250 letters):\n";
-			char description[MAX_FEEDBACK_LENGTH + 1];
-			cin.getline(description, MAX_FEEDBACK_LENGTH + 1);
+			string description;
+			cin >> description;
 
 			cout << "--------------------------------------------------\n";
 
@@ -271,8 +288,8 @@ void Menu::createFeedback(Buyer& buyer)
 			int day, month, year;
 			cin >> day >> month >> year;
 			Date date(day, month, year);
-			if (buyer.newFeedback(buyer.getOrderHistory()[i]->getProductList()[selection],
-				m_system->findSeller(buyer.getOrderHistory()[i]->getProductList()[selection]->getSeller()),
+			if (buyer.newFeedback((*itr)->getProductList()[selection],
+				m_system->findSeller((*itr)->getProductList()[selection]->getSeller()),
 				description, date))
 				cout << "Feedback added successfully\n";
 			else
@@ -426,18 +443,18 @@ void Menu::logIn(int user_type)
 	{
 		cin.ignore();
 		cout << "Enter username: ";
-		char username[Validation::MAX_USERNAME_LENGTH + 1];
-		cin.getline(username, Validation::MAX_USERNAME_LENGTH + 1);
+		string username;
+		cin >> username;
 		
 
 		cout << "Enter password: ";
-		char password[Validation::MAX_PASSWORD_LENGTH + 1];
-		cin.getline(password, Validation::MAX_PASSWORD_LENGTH + 1);
+		string password;
+		cin >> password;
 
 		if (user_type == 1)
 		{
 			Buyer* buyer = m_system->findBuyer(username);
-			if (buyer && (strcmp(buyer->getPassword(), password) == 0))
+			if (buyer && (buyer->getPassword() == password))
 			{
 				logged_in = 1;
 				this->buyerMenu(*buyer);
@@ -446,7 +463,7 @@ void Menu::logIn(int user_type)
 		else if (user_type == 2)
 		{
 			Seller* seller = m_system->findSeller(username);
-			if (seller && (strcmp(seller->getPassword(), password) == 0))
+			if (seller && (seller->getPassword() == password))
 			{
 				logged_in = 1;
 				this->sellerMenu(*seller);
@@ -455,7 +472,7 @@ void Menu::logIn(int user_type)
 		else
 		{
 			BuyerSeller* buyerseller = m_system->findBuyerSeller(username);
-			if (buyerseller && (strcmp(buyerseller->getPassword(), password) == 0))
+			if (buyerseller && (buyerseller->getPassword() == password))
 			{
 				logged_in = 1;
 				this->buyerSellerMenu(*buyerseller);
@@ -559,13 +576,13 @@ void Menu::printBuyerMenu() const
 //----------------------------------------------------------------------------------------//
 void Menu::addProductToShoppingCart(Buyer& buyer)
 {
-	char product_name[Product::MAX_PRODUCT_NAME + 1];
+	string product_name;
 	bool product_found = 0;
 	while (!product_found)
 	{
 		cout << "Enter name of product you wish to buy: ";
 		cin.ignore();
-		cin.getline(product_name, Product::MAX_PRODUCT_NAME + 1);
+		cin >> product_name;
 		if (!(m_system->productExist(product_name)))
 		{
 			cout << "There is no " << product_name << " for sale in the system\n";
@@ -586,7 +603,7 @@ void Menu::addProductToShoppingCart(Buyer& buyer)
 		{
 			product_found = 1;
 			cout << "--------------------------------------------------\n";
-			m_system->printProductsByName(product_name);	//Question 10
+			m_system->printProductsByName(product_name);
 		}
 	}
 
@@ -605,7 +622,7 @@ void Menu::addProductToShoppingCart(Buyer& buyer)
 		product = m_system->findProduct(serial_number, product_name);
 	}
 
-	if (strcmp(product->getSeller(), buyer.getUserName()) == 0)
+	if (product->getSeller() == buyer.getUserName())
 	{
 		cout << "You cannot buy your own products, returning to menu\n";
 		cout << "--------------------------------------------------\n";
@@ -757,9 +774,9 @@ void Menu::searchProductByName()
 	while (search == 1)
 	{
 		cout << "Enter name of product: ";
-		char product_name[Product::MAX_PRODUCT_NAME + 1];
+		string product_name;
 		cin.ignore();
-		cin.getline(product_name, Product::MAX_PRODUCT_NAME + 1);
+		cin >> product_name;
 		if (!(m_system->productExist(product_name)))
 		{
 			cout << "There is no " << product_name << " for sale in the system\n";

@@ -25,7 +25,7 @@ public:
 
 	//Methods
 	User* createUser(int user_type);
-	Product* createProduct(const char* seller_username);
+	Product* createProduct(const string& seller_username);
 	void newOrder(Buyer& buyer);
 	void completeOrder(Buyer& buyer);
 	void createFeedback(Buyer& buyer);

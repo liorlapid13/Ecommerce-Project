@@ -14,8 +14,6 @@ private:
 	T*	m_arr;
 
 public:
-	friend class Seller;
-
 	//C'tors
 	Array() 
 	{ 
@@ -51,6 +49,17 @@ public:
 		for (int i = 0; i < m_size; i++)
 			delete m_arr[i];
 		delete[] m_arr;
+	}
+
+	//Getters
+	T* getArray() const
+	{
+		return m_arr;
+	}
+	
+	int getSize() const
+	{
+		return m_size;
 	}
 
 	//Operators
@@ -116,6 +125,11 @@ public:
 		}
 
 		return *this;
+	}
+
+	const T& operator[](int index)
+	{
+		return this->m_arr[index];
 	}
 };
 

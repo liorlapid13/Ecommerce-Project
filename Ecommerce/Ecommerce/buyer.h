@@ -50,6 +50,11 @@ protected:
 	ShoppingCart	m_shopping_cart;
 	Order*			m_current_order;
 	vector<Order*>	m_order_history;
+
+	Buyer(const Buyer& other);
+	Buyer(Buyer&& other);
+	const Buyer& operator=(const Buyer& other);
+	const Buyer& operator=(Buyer&& other);
 };
 
 #endif // __BUYER_H

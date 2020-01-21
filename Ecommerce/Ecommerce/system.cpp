@@ -1,60 +1,47 @@
 #include "system.h"
 //----------------------------------------------------------------------------------------//
-System::System(const char* name)
+System::System(const string& name)
 {
-	//System Name
 	setName(name);
-
-	//User List
-	m_user_list = nullptr;
-	m_num_of_users = 0;
 }
 //----------------------------------------------------------------------------------------//
 System::~System()
 {
-	int i;
+	vector<User*>::iterator itr = m_user_list.begin();
+	vector<User*>::iterator itrEnd = m_user_list.end();
 
-	//System Name
-	delete[] m_name;
-
-	//User List
-	for (i = 0; i < m_num_of_users; i++)
-		delete m_user_list[i];		//Delete each user
-	delete[] m_user_list;			//Delete list
-
-	//Product List
-	delete[] m_product_list;		//Delete list (products deleted in sellers' d'tor)
+	for (; itr != itrEnd; ++itr)
+		delete *itr;
 }
 //----------------------------------------------------------------------------------------//
-void System::setName(const char* name)
+void System::setName(const string& name)
 {
-	m_name = new char[strlen(name) + 1];
-	strcpy(m_name, name);
+	this->m_name = name;
 }
 //----------------------------------------------------------------------------------------//
-const char* System::getName() const
+const string& System::getName() const
 {
 	return m_name;
 }
 //----------------------------------------------------------------------------------------//
-User** System::getUserList()
+vector<User*>& System::getUserList()
 {
 	return m_user_list;
 }
 //----------------------------------------------------------------------------------------//
 int System::getNumOfUsers() const
 {
-	return m_num_of_users;
+	return m_user_list.size();
 }
 //----------------------------------------------------------------------------------------//
-Product** System::getProductList()
+vector<Product*>& System::getProductList()
 {
 	return m_product_list;
 }
 //----------------------------------------------------------------------------------------//
 int System::getNumOfProducts() const
 {
-	return m_num_of_products;
+	return m_product_list.size();
 }
 //----------------------------------------------------------------------------------------//
 /*
@@ -62,38 +49,22 @@ Receives a new user and adds it to the system user list
 */
 void System::addUser(User& new_user)
 {
-	if (!m_user_list)	//If empty user list
-	{
-		m_num_of_users++;
-		m_user_list = new User*[m_num_of_users];
-		Validation::checkAllocation(m_user_list);
-		m_user_list[0] = &new_user;
-	}
-	else
-	{
-		User** temp = new User*[m_num_of_users + 1];	//allocate memory for new user list
-		Validation::checkAllocation(temp);
-		for (int i = 0; i < m_num_of_users; i++)		//copy each existing user to new list
-			temp[i] = m_user_list[i];
-		temp[m_num_of_users] = &new_user;				//add the new user to the new list
-		m_num_of_users++;								//advance the counter for number of users
-		delete[] m_user_list;							//delete the old user list
-		m_user_list = temp;								//assign the new user list
-		temp = nullptr;									//remove the temporary pointer
-	}
+	m_user_list.push_back(&new_user);
 }
 //----------------------------------------------------------------------------------------//
 /*
 Search for username in system user list.
 */
-bool System::searchUsername(const char* username) const
+bool System::searchUsername(const string& username) const
 {
-		//search for username in user list
-		for (int i = 0; i < m_num_of_users; i++)
-		{
-			if (strcmp(m_user_list[i]->getUserName(), username) == 0)
-				return false;
-		}
+	vector<User*>::const_iterator itr = m_user_list.begin();
+	vector<User*>::const_iterator itrEnd = m_user_list.end();
+
+	for (; itr != itrEnd; ++itr)
+	{
+		if ((*itr)->getUserName() == username)
+			return false;
+	}
 
 	return true;
 }
@@ -112,12 +83,15 @@ void System::printBuyerList() const
 
 	int counter = 0;
 
-	for (int i = 0; i < m_num_of_users; i++)
+	vector<User*>::const_iterator itr = m_user_list.begin();
+	vector<User*>::const_iterator itrEnd = m_user_list.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		if (strcmp(typeid(*m_user_list[i]).name(), typeid(Buyer).name()) == 0)
+		if (strcmp(typeid(**itr).name(), typeid(Buyer).name()) == 0)
 		{
 			cout << ++counter << "\t";
-			m_user_list[i]->show();
+			(*itr)->show();
 			cout << "--------------------------------------------------\n";
 		}
 	}
@@ -136,12 +110,15 @@ void System::printSellerList() const
 
 	int counter = 0;
 
-	for (int i = 0; i < m_num_of_users; i++)
+	vector<User*>::const_iterator itr = m_user_list.begin();
+	vector<User*>::const_iterator itrEnd = m_user_list.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		if (strcmp(typeid(*m_user_list[i]).name(), typeid(Seller).name()) == 0)
+		if (strcmp(typeid(**itr).name(), typeid(Seller).name()) == 0)
 		{
 			cout << ++counter << "\t";
-			m_user_list[i]->show();
+			(*itr)->show();
 			cout << "--------------------------------------------------\n";
 		}
 	}
@@ -158,13 +135,15 @@ void System::printBuyerSellerList() const
 
 	int counter = 0;
 
-	for (int i = 0; i < m_num_of_users; i++)
+	vector<User*>::const_iterator itr = m_user_list.begin();
+	vector<User*>::const_iterator itrEnd = m_user_list.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		BuyerSeller* temp = dynamic_cast<BuyerSeller*>(m_user_list[i]);
-		if (temp)
+		if (strcmp(typeid(**itr).name(), typeid(BuyerSeller).name()) == 0)
 		{
 			cout << ++counter << "\t";
-			m_user_list[i]->show();
+			(*itr)->show();
 			cout << "--------------------------------------------------\n";
 		}
 	}
@@ -173,12 +152,15 @@ void System::printBuyerSellerList() const
 /*
 Receives a product name and prints all products in the system with that name
 */
-void System::printProductsByName(char* product_name) const
+void System::printProductsByName(const string& product_name) const
 {
-	for (int i = 0; i < m_num_of_products; i++)
+	vector<Product*>::const_iterator itr = m_product_list.begin();
+	vector<Product*>::const_iterator itrEnd = m_product_list.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		if (strcmp(m_product_list[i]->getName(), product_name) == 0)
-			m_product_list[i]->printProduct();
+		if ((*itr)->getName() == product_name)
+			(*itr)->printProduct();
 	}
 }	
 //----------------------------------------------------------------------------------------//
@@ -186,14 +168,17 @@ void System::printProductsByName(char* product_name) const
 Receives a username and searches the system's user list to find a seller with the given name.
 Returns a pointer to that seller
 */
-Seller* System::findSeller(const char* username) const
+Seller* System::findSeller(const string& username) const
 {
-	for (int i = 0; i < m_num_of_users; i++)
+	vector<User*>::const_iterator itr = m_user_list.begin();
+	vector<User*>::const_iterator itrEnd = m_user_list.end();
+
+	for ( ; itr != itrEnd; ++itr)
 	{
-		Seller* temp = dynamic_cast<Seller*>(m_user_list[i]);
+		Seller* temp = dynamic_cast<Seller*>(*itr);
 		if (temp)
 		{
-			if (strcmp(temp->getUserName(), username) == 0)
+			if (temp->getUserName() == username)
 				return temp;
 		}
 	}
@@ -205,14 +190,17 @@ Seller* System::findSeller(const char* username) const
 Receives a username and searches the system's user list to find a buyer with the given name.
 Returns a pointer to that buyer
 */
-Buyer* System::findBuyer(const char* username) const
+Buyer* System::findBuyer(const string& username) const
 {
-	for (int i = 0; i < m_num_of_users; i++)
+	vector<User*>::const_iterator itr = m_user_list.begin();
+	vector<User*>::const_iterator itrEnd = m_user_list.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		Buyer* temp = dynamic_cast<Buyer*>(m_user_list[i]);
+		Buyer* temp = dynamic_cast<Buyer*>(*itr);
 		if (temp)
 		{
-			if (strcmp(temp->getUserName(), username) == 0)
+			if (temp->getUserName() == username)
 				return temp;
 		}
 	}
@@ -224,14 +212,17 @@ Buyer* System::findBuyer(const char* username) const
 Receives a username and searches the system's user list to find a buyerseller with the given name.
 Returns a pointer to that buyerseller
 */
-BuyerSeller* System::findBuyerSeller(const char* username) const
+BuyerSeller* System::findBuyerSeller(const string& username) const
 {
-	for (int i = 0; i < m_num_of_users; i++)
+	vector<User*>::const_iterator itr = m_user_list.begin();
+	vector<User*>::const_iterator itrEnd = m_user_list.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		BuyerSeller* temp = dynamic_cast<BuyerSeller*>(m_user_list[i]);
+		BuyerSeller* temp = dynamic_cast<BuyerSeller*>(*itr);
 		if (temp)
 		{
-			if (strcmp(temp->getUserName(), username) == 0)
+			if (temp->getUserName() == username)
 				return temp;
 		}
 	}
@@ -244,37 +235,22 @@ Receives a product and adds it to the system's product list
 */
 void System::newProduct(Product& new_product)
 {
-	if (!m_product_list)	//If empty product list
-	{
-		m_num_of_products++;
-		m_product_list = new Product*[m_num_of_products];
-		Validation::checkAllocation(m_product_list);
-		m_product_list[0] = &new_product;
-	}
-	else
-	{
-		Product** temp = new Product*[m_num_of_products + 1];	//allocate memory for new product list
-		Validation::checkAllocation(temp);
-		for (int i = 0; i < m_num_of_products; i++)				//copy each existing product to new list
-			temp[i] = m_product_list[i];
-		temp[m_num_of_products] = &new_product;					//add the new product to the new list
-		m_num_of_products++;									//advance the counter for number of products
-		delete[] m_product_list;								//delete the old product list
-		m_product_list = temp;									//assign the new product list
-		temp = nullptr;											//initialize the temporary pointer
-	}
+	m_product_list.push_back(&new_product);
 }
 //----------------------------------------------------------------------------------------//
 /*
 Receives serial number from buyer menu, searches for item with matching serial number in the system's product list
 and returns the product if found.
 */
-Product* System::findProduct(int serial_number, const char* name) const
+Product* System::findProduct(int serial_number, const string& product_name) const
 {
-	for (int i = 0; i < m_num_of_products; i++)
+	vector<Product*>::const_iterator itr = m_product_list.begin();
+	vector<Product*>::const_iterator itrEnd = m_product_list.end();
+
+	for ( ; itr != itrEnd; ++itr)
 	{
-		if ((m_product_list[i]->getSerialNumber() == serial_number) && (strcmp(m_product_list[i]->getName(),name)==0))
-			return m_product_list[i];
+		if (((*itr)->getSerialNumber() == serial_number) && ((*itr)->getName() == product_name))
+			return *itr;
 	}
 
 	return nullptr;
@@ -283,11 +259,14 @@ Product* System::findProduct(int serial_number, const char* name) const
 /*
 Receives product name, returns true if any products with this name exist in the system, else false.
 */
-bool System::productExist(const char* product_name) const
+bool System::productExist(const string& product_name) const
 {
-	for (int i = 0; i < m_num_of_products; i++)
+	vector<Product*>::const_iterator itr = m_product_list.begin();
+	vector<Product*>::const_iterator itrEnd = m_product_list.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		if (strcmp(m_product_list[i]->getName(), product_name) == 0)
+		if ((*itr)->getName() == product_name)
 			return true;
 	}
 
@@ -329,7 +308,7 @@ The use of dynamic cast is to allow buyers and buyersellers to be picked.
 */
 Buyer* System::pickBuyer(int buyer_number) const
 {
-	if (m_num_of_users == 0)
+	if (m_user_list.size() == 0)
 	{
 		cout << "Please create buyers or buyersellers before testing the '>' operator\n";
 		cout << "--------------------------------------------------\n";
@@ -341,9 +320,12 @@ Buyer* System::pickBuyer(int buyer_number) const
 	cout << "Please pick buyer no." << buyer_number << endl;
 	cout << "--------------------------------------------------\n";
 
-	for (int i = 0; i < m_num_of_users; i++)
+	vector<User*>::const_iterator itr = m_user_list.begin();
+	vector<User*>::const_iterator itrEnd = m_user_list.end();
+
+	for (; itr != itrEnd; ++itr)
 	{
-		Buyer* temp = dynamic_cast<Buyer*>(m_user_list[i]);
+		Buyer* temp = dynamic_cast<Buyer*>(*itr);
 		if (temp)
 		{
 			temp->show();

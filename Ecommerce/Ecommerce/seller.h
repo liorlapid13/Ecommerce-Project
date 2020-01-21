@@ -15,7 +15,7 @@ public:
 
 	//C'tors
 	Seller() = delete;
-	Seller(const char* username, const char* password, const Address& address);
+	Seller(const string& username, const string& password, const Address& address);
 	
 
 	//D'tor
@@ -25,28 +25,26 @@ public:
 	
 
 	//Getters 
-	Feedback**				getFeedbackList();
-	int						getNumOfFeedbacks()		const;
+	vector<Feedback*>&		getFeedbackList();
 	Array<Product *>&		getStore();
 	int						getNumOfProducts()		const;
+	int						getNumOfFeedbacks()		const;
 
 	//Methods
 	virtual void show()								const override;
 	void showMe()									const;
 	bool addProduct(Product& new_product);
-	bool searchStore(const char* product_name)		const;
+	bool searchStore(const string& product_name);
 	void addFeedback(Feedback& new_feedback);
 	
 	
 
 protected:
-	Feedback**		m_feedback_list;
-	int				m_num_of_feedbacks;		
-	Array<Product*> m_store;
+	vector<Feedback*>	m_feedback_list;	
+	Array<Product*>		m_store;
 
 	Seller(const Seller& other);
 	Seller(Seller&& other);
-	//Operators
 	const Seller& operator=(const Seller& other);
 	const Seller& operator=(Seller&& other);
 

@@ -1,9 +1,29 @@
 #include "buyer.h"
 //----------------------------------------------------------------------------------------//
-Buyer::Buyer(const string& username, const string& password, const Address& address) :User(username, password, address), m_shopping_cart()
+Buyer::Buyer(const string& username, const string& password, const Address& address) 
+		:User(username, password, address), m_shopping_cart()
 {
 	setWallet(0);
 	setCurrentOrder(nullptr);
+}
+//----------------------------------------------------------------------------------------//
+Buyer::Buyer(const Buyer& other) :User(other), m_shopping_cart(other.m_shopping_cart)
+{
+	m_wallet = other.m_wallet;
+	m_current_order = new Order(*other.m_current_order);
+
+	for (auto s : other.m_order_history)
+		m_order_history.push_back(new Order(*s));
+}
+//----------------------------------------------------------------------------------------//
+Buyer::Buyer(Buyer&& other) :User(move(other)), m_shopping_cart(other.m_shopping_cart)
+{
+	m_wallet = other.m_wallet;
+	m_current_order = other.m_current_order;
+	other.m_current_order = nullptr;
+
+	m_order_history = move(other.m_order_history);
+	other.m_order_history.clear();
 }
 //----------------------------------------------------------------------------------------//
 Buyer::~Buyer()
@@ -14,7 +34,7 @@ Buyer::~Buyer()
 	vector<Order*>::iterator itrEnd = m_order_history.end();
 
 	for (; itr != itrEnd; ++itr)
-		m_order_history.erase(itr);
+		delete *itr;
 }
 //----------------------------------------------------------------------------------------//
 bool Buyer::setWallet(const double funds)
@@ -137,9 +157,12 @@ bool Buyer::newFeedback(Product* product, Seller* seller, const string& descript
 {
 	if (seller->getNumOfFeedbacks() != 0)
 	{
-		for (int i = 0; i < seller->getNumOfFeedbacks(); i++) //CHANGE SELLER'S FEEDBACK LIST FIRST!
+		vector<Feedback*>::iterator itr = seller->getFeedbackList().begin();
+		vector<Feedback*>::iterator itrEnd = seller->getFeedbackList().end();
+
+		for (; itr != itrEnd; ++itr)
 		{
-			if (seller->getFeedbackList()[i]->getBuyer() == this && seller->getFeedbackList()[i]->getProduct() == product)
+			if ((*itr)->getBuyer() == this && (*itr)->getProduct() == product)
 				return false;
 		}
 	}
@@ -169,20 +192,16 @@ const Buyer& Buyer::operator=(const Buyer& other)
 		else
 			m_current_order = nullptr;
 
-		for (int i = 0; i < m_num_of_orders; i++)
-			delete m_order_history[i];
-		delete[] m_order_history;
+		vector<Order*>::iterator itr = m_order_history.begin();
+		vector<Order*>::iterator itrEnd = m_order_history.end();
 
-		m_num_of_orders = other.m_num_of_orders;
-		
-		if (other.m_num_of_orders != 0)
-		{
-			m_order_history = new Order*[other.m_num_of_orders];
-			for (int i = 0; i < m_num_of_orders; i++)
-				m_order_history[i] = new Order(*other.m_order_history[i]);
-		}
-		else
-			m_order_history = nullptr;
+		for (; itr != itrEnd; ++itr)
+			delete *itr;
+
+		m_order_history.clear();
+
+		for (auto s : other.m_order_history)
+			m_order_history.push_back(new Order(*s));
 
 		m_shopping_cart = other.m_shopping_cart;
 	}
@@ -201,23 +220,18 @@ const Buyer& Buyer::operator=(Buyer&& other)
 		m_current_order = other.m_current_order;
 		other.m_current_order = nullptr;
 
-		for (int i = 0; i < m_num_of_orders; i++)
-			delete m_order_history[i];
-		delete[] m_order_history;
+		vector<Order*>::iterator itr = m_order_history.begin();
+		vector<Order*>::iterator itrEnd = m_order_history.end();
 
-		m_num_of_orders = other.m_num_of_orders;
+		for (; itr != itrEnd; ++itr)
+			delete *itr;
 
-		m_order_history = other.m_order_history;
-		for (int i = 0; i < other.m_num_of_orders; i++)
-		{
-			m_order_history[i] = other.m_order_history[i];
-			other.m_order_history[i] = nullptr;
-		}
+		m_order_history.clear();
 
-		other.m_num_of_orders = 0;
-		other.m_order_history = nullptr;
+		m_order_history = move(other.m_order_history);
+		other.m_order_history.clear();
 
-		m_shopping_cart = move(other.m_shopping_cart);
+		m_shopping_cart = other.m_shopping_cart;
 	}
 
 	return *this;

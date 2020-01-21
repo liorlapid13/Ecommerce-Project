@@ -13,14 +13,14 @@ public:
 	virtual ~User();
 
 	//Setters
-	bool setUsername(const char* username);
-	bool setPassword(const char* password);
+	bool setUsername(const string& username);
+	bool setPassword(const string& password);
 	void setAddress(const Address& address);
 
 	//Getters
-	const char*		getUserName()	const;
-	const char*		getPassword()	const;
-	const Address&	getAddress()	const;
+	const string&		getUserName()	const;
+	const string&		getPassword()	const;
+	const Address&		getAddress()	const;
 
 	//Methods
 	virtual void show() const = 0;
@@ -30,12 +30,12 @@ public:
 	const User& operator=(User&& other);
 
 protected:
-	char* m_username;
-	char* m_password;
+	string m_username;
+	string m_password;
 	Address m_address;
 
 	//C'tors (abstract class)
-	User(const char* username, const char* password, const Address& address);
+	User(const string& username, const string& password, const Address& address);
 	User(const User& other);
 	User(User&& other);
 };

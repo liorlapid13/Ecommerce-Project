@@ -7,10 +7,6 @@ Date::Date(const unsigned int day, const unsigned int month, const unsigned int 
 	setDay(day, month, year);
 }
 //----------------------------------------------------------------------------------------//
-Date::~Date()
-{	
-}
-//----------------------------------------------------------------------------------------//
 bool Date::setYear(const unsigned int year)
 {
 	//Check if year is in valid range

@@ -279,6 +279,7 @@ This operator adds a buyer to the system.
 void System::operator+=(const Buyer& buyer)
 {
 	User *new_user = new Buyer(buyer);
+	Validation::checkAllocation(new_user);
 	addUser(*new_user);
 }
 //----------------------------------------------------------------------------------------//
@@ -288,6 +289,7 @@ This operator adds a seller to the system.
 void System::operator+=(const Seller& seller)
 {
 	User *new_user = new Seller(seller);
+	Validation::checkAllocation(new_user);
 	addUser(*new_user);
 }
 //----------------------------------------------------------------------------------------//
@@ -297,6 +299,7 @@ This operator adds a buyerseller to the system.
 void System::operator+=(const BuyerSeller& buyerseller)
 {
 	User *new_user = new BuyerSeller(buyerseller);
+	Validation::checkAllocation(new_user);
 	addUser(*new_user);
 }
 //----------------------------------------------------------------------------------------//

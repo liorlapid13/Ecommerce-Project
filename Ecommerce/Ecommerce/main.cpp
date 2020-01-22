@@ -22,11 +22,21 @@ using namespace std;
 
 #pragma warning(disable: 4996)
 
+#include <crtdbg.h>
+
 void main()
 {
+	{
 		System system("ECOM");
 
 		Menu menu(&system);
 
 		menu.mainMenu();
+
+	}
+	
+	cout << _CrtDumpMemoryLeaks();
+	cout << endl;
+	system("pause");
+	
 }

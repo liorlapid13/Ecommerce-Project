@@ -12,10 +12,7 @@ public:
 	//C'tors
 	Feedback() = delete;
 	Feedback(const Date& date, const string& description, Buyer& buyer, Product& product);
-	
-	//D'tor
-	~Feedback();
-	
+
 	//Setters
 	bool setDescription(const string& description);
 

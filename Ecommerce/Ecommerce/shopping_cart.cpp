@@ -5,11 +5,6 @@ ShoppingCart::ShoppingCart()
 	m_total_price = 0;
 }
 //----------------------------------------------------------------------------------------//
-ShoppingCart::~ShoppingCart()
-{
-	//clear to prevent double deletion of products???
-}
-//----------------------------------------------------------------------------------------//
 int ShoppingCart::getNumProducts()  const
 {
 	return m_product_list.size();

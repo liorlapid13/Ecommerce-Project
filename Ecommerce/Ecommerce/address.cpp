@@ -10,11 +10,6 @@ Address::Address(const string& street_name, int	house_number,
 	setCountry(country);			//Country
 }
 //----------------------------------------------------------------------------------------//
-Address::~Address()
-{
-	
-}
-//----------------------------------------------------------------------------------------//
 bool Address::setStreetName(const string& street_name)
 {
 	if (!Validation::checkString(street_name))

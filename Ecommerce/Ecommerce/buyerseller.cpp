@@ -16,11 +16,6 @@ BuyerSeller::BuyerSeller(BuyerSeller&& other) :User(move(other)), Buyer(move(oth
 
 }
 //----------------------------------------------------------------------------------------//
-BuyerSeller::~BuyerSeller()
-{
-
-}
-//----------------------------------------------------------------------------------------//
 void BuyerSeller::show() const
 {
 	User::show();

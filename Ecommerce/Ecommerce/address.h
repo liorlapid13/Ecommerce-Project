@@ -13,11 +13,7 @@ public:
 			int	zip_code,
 			const string& city,
 			const string& country);
-	
-	//D'tors
-	~Address();
 
-public:
 	//Setters
 	bool setStreetName(const string& street_name);
 	bool setHouseNumber(const int house_number);

@@ -17,9 +17,6 @@ public:
 	Menu() = delete;
 	Menu(System* system);
 
-	//D'tor
-	~Menu();
-	
 	//Getters
 	System* getSystem()	const;
 

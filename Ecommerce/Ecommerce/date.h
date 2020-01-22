@@ -14,9 +14,6 @@ public:
 	Date() = delete;
 	Date(const unsigned int day, const unsigned int month, const unsigned int year);
 
-	//D'tors
-	~Date();
-
 	//Setters
 	bool setDay(const unsigned int day, const unsigned int month, const unsigned int year);
 	bool setMonth(const unsigned int month);

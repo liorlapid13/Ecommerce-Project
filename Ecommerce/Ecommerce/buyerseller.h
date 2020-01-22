@@ -11,9 +11,6 @@ public:
 	//C'tors
 	BuyerSeller() = delete;
 	BuyerSeller(const string& username, const string& password, const Address& address);
-	
-	//D'tor
-	~BuyerSeller();
 
 	//Methods
 	void show()	const override;

@@ -3,14 +3,20 @@
 Buyer::Buyer(const string& username, const string& password, const Address& address) 
 		:User(username, password, address), m_shopping_cart()
 {
-	setWallet(0);
-	setCurrentOrder(nullptr);
+	m_wallet = 0;
+	m_current_order = nullptr;
 }
 //----------------------------------------------------------------------------------------//
 Buyer::Buyer(const Buyer& other) :User(other), m_shopping_cart(other.m_shopping_cart)
 {
 	m_wallet = other.m_wallet;
-	m_current_order = new Order(*other.m_current_order);
+	if (other.m_current_order)
+	{
+		m_current_order = new Order(*other.m_current_order);
+		Validation::checkAllocation(m_current_order);
+	}
+	else
+		m_current_order = nullptr;
 
 	for (auto s : other.m_order_history)
 		m_order_history.push_back(new Order(*s));
@@ -84,7 +90,7 @@ void Buyer::show() const
 //----------------------------------------------------------------------------------------//
 void Buyer::showMe() const
 {
-	cout << "\tWallet: " << m_wallet << endl;
+	cout << "\tWallet: $" << m_wallet << endl;
 	cout << "\tOrders completed: " << m_order_history.size() << endl;
 }
 //----------------------------------------------------------------------------------------//
@@ -168,6 +174,7 @@ bool Buyer::newFeedback(Product* product, Seller* seller, const string& descript
 	}
 
 	Feedback* new_feedback= new Feedback(date, description, *this, *product);
+	Validation::checkAllocation(new_feedback);
 	seller->addFeedback(*new_feedback);
 	return true;
 }
@@ -188,7 +195,10 @@ const Buyer& Buyer::operator=(const Buyer& other)
 		
 		delete m_current_order;
 		if (other.m_current_order)
+		{
 			m_current_order = new Order(*other.m_current_order);
+			Validation::checkAllocation(m_current_order);
+		}
 		else
 			m_current_order = nullptr;
 

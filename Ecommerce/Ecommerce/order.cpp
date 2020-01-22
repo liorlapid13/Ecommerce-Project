@@ -6,11 +6,6 @@ Order::Order(vector<Product*> product_list, const float total_price)
 	setTotalPrice(total_price);
 }
 //----------------------------------------------------------------------------------------//
-Order::~Order()
-{
-	m_product_list.clear();
-}
-//----------------------------------------------------------------------------------------//
 void Order::setTotalPrice(const float total_price)
 {
 	m_total_price = total_price;

@@ -12,9 +12,6 @@ public:
 	Order() = delete;
 	Order(vector<Product*> product_list, const float total_price);
 
-	//D'tors
-	~Order();
-
 	//Setters
 	void setTotalPrice(const float total_price);
 

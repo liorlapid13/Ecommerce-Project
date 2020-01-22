@@ -11,11 +11,6 @@ Product::Product(const string& name, float price, Product::eCategory category, c
 	setSellerName(seller_name);
 }
 //----------------------------------------------------------------------------------------//
-Product::~Product()
-{
-
-}
-//----------------------------------------------------------------------------------------//
 bool Product::setName(const string &name)
 {
 	string::const_iterator itr = name.begin();

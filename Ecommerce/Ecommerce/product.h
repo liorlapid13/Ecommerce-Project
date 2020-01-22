@@ -18,9 +18,6 @@ public:
 	Product() = delete;
 	Product(const string& name, float price, Product::eCategory category, const string& seller_name);
 
-	//D'tor
-	~Product();
-
 	//Setters
 	bool setName(const string& name);
 	bool setPrice(float price);

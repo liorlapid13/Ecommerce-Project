@@ -9,11 +9,8 @@
 class ShoppingCart
 {
 public:
-	//C'tors
+	//C'tor
 	ShoppingCart();
-	
-	//D'tors
-	~ShoppingCart();
 	
 	//Setters
 	void setProductList(vector<Product*> product_list);

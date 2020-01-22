@@ -8,11 +8,6 @@ Feedback::Feedback(const Date& date, const string& description, Buyer& buyer, Pr
 	m_product = &product;
 }
 //----------------------------------------------------------------------------------------//
-Feedback::~Feedback()
-{
-
-}
-//----------------------------------------------------------------------------------------//
 bool Feedback::setDescription(const string& description)
 {
 	if (description.length() == 0)

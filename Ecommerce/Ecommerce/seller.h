@@ -16,7 +16,6 @@ public:
 	//C'tors
 	Seller() = delete;
 	Seller(const string& username, const string& password, const Address& address);
-	
 
 	//D'tor
 	virtual ~Seller();

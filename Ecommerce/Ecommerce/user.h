@@ -6,7 +6,7 @@
 class User 
 {
 public:
-	//C'tors
+	//C'tor
 	User() = delete;
 
 	//D'tor
@@ -28,6 +28,9 @@ public:
 	//Operators
 	const User& operator=(const User& other);
 	const User& operator=(User&& other);
+
+	//Files
+	void writeUser(ofstream& out_file) const;
 
 protected:
 	string m_username;

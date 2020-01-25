@@ -118,3 +118,8 @@ ostream& operator<<(ostream& os, const Address& address)
 	return os;
 }
 //----------------------------------------------------------------------------------------//
+void Address::writeAddress(ofstream& out_file) const
+{
+	out_file << m_country << "$" << m_city << "$" << m_street_name << "$" << m_house_number << "$" << m_zip_code << "$";
+}
+//----------------------------------------------------------------------------------------//

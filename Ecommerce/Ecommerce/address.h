@@ -1,6 +1,8 @@
 #ifndef __ADDRESS_H
 #define __ADDRESS_H
 
+#include <fstream>
+
 #include "validation.h"
 
 class Address
@@ -33,6 +35,9 @@ public:
 
 	//Operators
 	friend ostream& operator<<(ostream& os, const Address& address);
+
+	//Files
+	void writeAddress(ofstream& out_file) const;
 
 private:
 	int		m_house_number;

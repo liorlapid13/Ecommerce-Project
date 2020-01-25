@@ -16,6 +16,7 @@ public:
 	void show()	const override;
 
 private:
+	//C'tors
 	BuyerSeller(const BuyerSeller& other);
 	BuyerSeller(BuyerSeller&& other);
 

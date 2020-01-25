@@ -24,7 +24,6 @@ public:
 	vector<Product*>&	getProductList();
 	int					getNumOfProducts()	const;
 
-
 	//Methods
 	void addUser(User& new_user);
 	bool searchUsername(const string& username)				const;
@@ -45,6 +44,10 @@ public:
 	void operator+=(const Buyer& buyer);
 	void operator+=(const Seller& seller);
 	void operator+=(const BuyerSeller& buyerseller);
+
+	//Files
+	void writeUserList() const;
+	void loadUserList(const char* fileName);
 
 private:
 	string				m_name;

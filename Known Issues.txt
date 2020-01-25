@@ -55,3 +55,8 @@ Operator tests -> You can only test each '+=' option once, else multiple indenti
 	users will be added. This will happen because the system creates a buyer
 	with pre-defined inputs chosen by us, therefore skipping validation checks 
 	in the program.
+
+Files -> On the first run of the program, when asked if you would like to read from file,
+	you must enter 2 (don't read from file) to prevent attempting to open+read from a non-existing
+	file. At the end of every run of the program, when "Quit" is selected in the final menu,
+	the program will write to the file and for all future runs, the file will exist.

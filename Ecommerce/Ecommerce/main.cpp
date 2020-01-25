@@ -22,21 +22,26 @@ using namespace std;
 
 #pragma warning(disable: 4996)
 
-#include <crtdbg.h>
-
 void main()
 {
-	{
 		System system("ECOM");
+		
+		int input;
+		cout << "Enter 1 to read user list from file or 2 to continue: ";
+		cin >> input;
+
+		while (input != 1 && input != 2)
+		{
+			cout << "Invalid input, please try again: ";
+			cin >> input;
+		}
+
+		if (input == 1)
+			system.loadUserList("User_list.txt");
+
+		cout << "--------------------------------------------------\n";
 
 		Menu menu(&system);
 
 		menu.mainMenu();
-
-	}
-	
-	cout << _CrtDumpMemoryLeaks();
-	cout << endl;
-	system("pause");
-	
 }

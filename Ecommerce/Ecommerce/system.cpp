@@ -352,3 +352,78 @@ Buyer* System::pickBuyer(int buyer_number) const
 	return nullptr;
 }
 //----------------------------------------------------------------------------------------//
+void System::writeUserList() const
+{
+	ofstream out_file("User_list.txt", ios::trunc);
+	if (this->m_user_list.empty())
+		out_file << 0 << endl;
+	else
+	{
+		out_file << this->m_user_list.size() << endl;
+
+		vector<User*>::const_iterator itr = m_user_list.begin();
+		vector<User*>::const_iterator itrEnd = m_user_list.end();
+
+		for (; itr != itrEnd; ++itr)
+			(*itr)->writeUser(out_file);
+	}
+	out_file.close();
+}
+//----------------------------------------------------------------------------------------//
+void System::loadUserList(const char* file_name)
+{
+	ifstream in_file(file_name, ios::in);
+
+	int num_of_users;
+	in_file >> num_of_users;
+
+	if (num_of_users == 0)
+		in_file.close();
+	else
+	{
+		User* user;
+		string username, password, street, city, country;
+		int house_number, zip_code;
+		char delimiter;
+		cout << "Reading users from file..\n";
+		for (int i = 0; i < num_of_users; i++)
+		{
+			int user_type;
+			in_file >> user_type >> delimiter;
+			getline(in_file, username, '$');
+			getline(in_file, password, '$');
+			getline(in_file, country, '$');
+			getline(in_file, city, '$');
+			getline(in_file, street, '$');
+			in_file >> house_number >> delimiter >> zip_code >> delimiter;
+			Address address(street, house_number, zip_code, city, country);
+
+			switch (user_type)
+			{
+				case 1:
+				{
+					user = new Buyer(username, password, address);
+					addUser(*user);
+					break;
+				}
+				case 2:
+				{
+					user = new Seller(username, password, address);
+					addUser(*user);
+					break;
+				}
+				case 3:
+				{
+					user = new BuyerSeller(username, password, address);
+					addUser(*user);
+					break;
+				}
+				default:
+					cout << "Invalid user type read from file\n";
+					break;
+			}
+		}
+
+		in_file.close();
+	}
+}
